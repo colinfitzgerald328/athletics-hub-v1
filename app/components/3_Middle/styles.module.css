@@ -1,0 +1,50 @@
+.athleteBreakdown {
+    width: calc(100% / 2);
+    padding-left: 10px;
+}
+
+.itemsContainer {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.athleteImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.gradient {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+    border-radius: 25px;
+}
+
+
+.athleteNameHolder {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    margin-left: 20px;
+    color: white;
+}
+
+
+.fullName {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.disciplines {
+    font-size: 18px;
+    font-weight: bold;
+    font-weight: 100;
+}

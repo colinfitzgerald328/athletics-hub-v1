@@ -1,0 +1,100 @@
+.leftSide {
+  width: calc(100% / 3.5);
+  padding: 0px 0px 0px 20px;
+}
+
+.searchBar {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  padding-left: 40px;
+  position: relative;
+}
+
+.searchBar:focus {
+  border: none;
+  outline: none;
+}
+
+.searchBarFocused {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  padding-left: 40px;
+  position: relative;
+  border: none;
+  outline: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 30px;
+  margin-top: 12px;
+  color: gray;
+}
+
+.xButton {
+  position: absolute;
+  transform: translateY(-42px);
+  left: calc((100% / 3.5) - 50px);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: gray;
+}
+
+.xButton:hover {
+  background-color: lightgray;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.searchResults {
+    background-color: white;
+    height: 300px;
+    overflow-y: scroll;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.singleResult {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    padding-left: 10px;
+}
+
+.singleResult:hover {
+    background-color: lightgray;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.searchResultImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.textDisplay {
+  margin-left: 10px;
+}
+
+.fullName {
+  font-weight: bold;
+}
+
+.disciplines {
+  color: gray;
+  font-size: 12px;
+  font-weight: 100;
+}
