@@ -73,7 +73,9 @@ export default function RightSide(props) {
             >
                 DEEP DIVE
             </Button>
-            <div className={styles.socialProfiles}>
+            {
+                twitterHandle || instagramHandle &&
+                <div className={styles.socialProfiles}>
                 <div className={styles.label}>
                     Social Profiles
                 </div>
@@ -96,6 +98,7 @@ export default function RightSide(props) {
                     </div>
                 }
             </div>
+            }
         </div>
     );
 }
