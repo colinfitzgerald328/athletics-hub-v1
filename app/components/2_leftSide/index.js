@@ -74,7 +74,7 @@ export default function LeftSide(props) {
       }
       setLoadingSearchResults(true);
       handleSearchTermChange(searchTerm);
-    }, 800);
+    }, 300);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
