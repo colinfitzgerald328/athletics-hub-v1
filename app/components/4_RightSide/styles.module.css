@@ -4,20 +4,6 @@
     padding-right: 10px;
 }
 
-.customButton {
-    width: 100%;
-    border-radius: 25px;
-    font-weight: bold;
-    background-color: #323232;
-    padding: 10px;
-    font-size: 20px;
-}
-
-.customButton:hover {
-    background-color: #323232;
-    opacity: 0.8;
-}
-
 .socialProfiles {
     margin-top: 10px;
     background-color: white;
