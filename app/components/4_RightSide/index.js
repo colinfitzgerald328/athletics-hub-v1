@@ -84,7 +84,12 @@ export default function RightSide(props) {
                     className={styles.socialIcon}
                     src={"https://about.twitter.com/content/dam/about-twitter/x/brand-toolkit/logo-black.png.twimg.1920.png"}
                 />
+                <div
+                className={styles.socialHandle}
+                onClick={()=> window.open("https://www.twitter.com/" + twitterHandle)}
+                >
                 @{twitterHandle}
+                </div>
             </div>
         }
         {instagramHandle &&
@@ -93,7 +98,12 @@ export default function RightSide(props) {
                     className={styles.socialIcon}
                     src={"https://cdn4.iconfinder.com/data/icons/social-media-black-white-2/600/Instagram_glyph_svg-512.png"}
                 />
+                <div
+                className={styles.socialHandle}
+                onClick={()=> window.open("https://www.instagram.com/" + instagramHandle)}
+                >
                 @{instagramHandle}
+                </div>
             </div>
         }
     </div>

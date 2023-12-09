@@ -31,3 +31,9 @@
     font-size: 16px;
     font-weight: 500;
 }
+
+.socialHandle:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}    
+
