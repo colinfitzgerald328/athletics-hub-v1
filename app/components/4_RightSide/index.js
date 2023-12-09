@@ -17,6 +17,9 @@ export default function RightSide(props) {
     }, [props.athlete.social_urls]);
 
     function getTwitterHandle(socialUrls) {
+        if (!socialUrls) {
+            return; 
+        }
         const twitterObject = socialUrls.find(urlObject => urlObject.hasOwnProperty('twitter_url'));
         if (twitterObject) {
             const twitterUrl = twitterObject.twitter_url;
@@ -28,6 +31,9 @@ export default function RightSide(props) {
     }
 
     function getInstagramHandle(socialUrls) {
+        if (!socialUrls) {
+            return;
+        }
         const instagramObject = socialUrls.find(urlObject => urlObject.hasOwnProperty('instagram_url'));
     
         if (instagramObject) {
