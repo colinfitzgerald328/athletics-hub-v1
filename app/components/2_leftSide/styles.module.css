@@ -58,31 +58,31 @@
 }
 
 .searchResults {
-    background-color: white;
-    height: 300px;
-    overflow-y: scroll;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
+  background-color: white;
+  height: 300px;
+  overflow-y: scroll;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
 }
 
 .singleResult {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
 }
 
 .singleResult:hover {
-    background-color: lightgray;
-    transition: background-color 0.5s;
-    cursor: pointer;
+  background-color: lightgray;
+  transition: background-color 0.5s;
+  cursor: pointer;
 }
 
 .searchResultImage {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .textDisplay {

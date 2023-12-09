@@ -28,7 +28,7 @@ export default class MainComponent extends React.Component {
   }
 
   setAthlete = async (athlete) => {
-    console.log("this function is being run")
+    console.log("this function is being run");
     this.setState({
       athlete: athlete,
       loadingNewAthlete: true,
@@ -69,7 +69,6 @@ export default class MainComponent extends React.Component {
     });
   }
 
-
   getSimilarAthletes(athlete_id) {
     return new Promise((resolve, reject) => {
       API.getSimilarAthletes(
@@ -106,15 +105,9 @@ export default class MainComponent extends React.Component {
       <div>
         <TopBar />
         <div className={styles.mainDisplay}>
-          <LeftSide
-            setAthlete={this.setAthlete.bind(this)}
-          />
-          <AthleteBreakDown
-          athlete={this.state.athlete}
-          />
-          <RightSide
-            athlete={this.state.athlete}
-          />
+          <LeftSide setAthlete={this.setAthlete.bind(this)} />
+          <AthleteBreakDown athlete={this.state.athlete} />
+          <RightSide athlete={this.state.athlete} />
         </div>
       </div>
     );

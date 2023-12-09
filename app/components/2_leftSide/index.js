@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import LinearProgress from '@mui/material/LinearProgress';
+import LinearProgress from "@mui/material/LinearProgress";
 import Image from "next/image";
-import { useRef } from 'react';
+import { useRef } from "react";
 import * as API from "/app/api/api.js";
 import styles from "./styles.module.css";
 
@@ -14,17 +14,17 @@ export default function LeftSide(props) {
   const [loadingSearchResults, setLoadingSearchResults] = React.useState(false);
   const inputRef = useRef(null);
   const searchResultsRef = useRef(null);
-  useOutsideAlerter(inputRef)
+  useOutsideAlerter(inputRef);
   const xButtonRef = useRef(null);
 
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
-        setTimeout(() => {
-            setShowSearchResults(true)
-            setSearchResults(data.search_results)
-            setLoadingSearchResults(false)
-          }, 500);
-    })
+      setTimeout(() => {
+        setShowSearchResults(true);
+        setSearchResults(data.search_results);
+        setLoadingSearchResults(false);
+      }, 500);
+    });
   }
 
   function handleClearSearch() {
@@ -40,13 +40,15 @@ export default function LeftSide(props) {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           if (xButtonRef.current && xButtonRef.current.contains(event.target)) {
-            setSearchTerm("")
-          } else if (searchResultsRef.current && searchResultsRef.current.contains(event.target)) {
-            return; 
-          }
-          else {
-            setShowSearchResults(false)
-            setSearchResults([])
+            setSearchTerm("");
+          } else if (
+            searchResultsRef.current &&
+            searchResultsRef.current.contains(event.target)
+          ) {
+            return;
+          } else {
+            setShowSearchResults(false);
+            setSearchResults([]);
           }
         }
       }
@@ -59,14 +61,11 @@ export default function LeftSide(props) {
     }, [ref]);
   }
 
-
-
   function getAndSetTop20Results() {
     API.getTopRecords((data) => {
       setSearchResults(data.records);
     });
   }
-
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -74,25 +73,25 @@ export default function LeftSide(props) {
         return;
       }
       setLoadingSearchResults(true);
-      handleSearchTermChange(searchTerm)
-    }, 800)
+      handleSearchTermChange(searchTerm);
+    }, 800);
 
-    return () => clearTimeout(delayDebounceFn)
-  }, [searchTerm])
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
 
   function handleChooseAthlete(athlete) {
-    props.setAthlete(athlete),
-    setSearchResults([]), 
-    setSearchTerm("")
-    setShowSearchResults(false)
+    props.setAthlete(athlete), setSearchResults([]), setSearchTerm("");
+    setShowSearchResults(false);
   }
-
-
 
   return (
     <div className={styles.leftSide}>
       <input
-        className={showSearchResults || loadingSearchResults && searchTerm.length > 0 ? styles.searchBarFocused : styles.searchBar}
+        className={
+          showSearchResults || (loadingSearchResults && searchTerm.length > 0)
+            ? styles.searchBarFocused
+            : styles.searchBar
+        }
         placeholder="Search for an athlete..."
         value={searchTerm}
         ref={inputRef}
@@ -101,51 +100,40 @@ export default function LeftSide(props) {
       <SearchIcon className={styles.searchIcon} />
       {searchTerm && (
         <div
-        className={styles.xButton}
-        onClick={() => handleClearSearch()}
-        ref={xButtonRef}
+          className={styles.xButton}
+          onClick={() => handleClearSearch()}
+          ref={xButtonRef}
         >
           <CloseIcon />
         </div>
       )}
-      {
-        showSearchResults || searchResults.length > 0 ? 
-        <div
-        className={styles.searchResults}
-        ref={searchResultsRef}
-        >
-          {loadingSearchResults && <LinearProgress/>}
-        {searchResults.map((result) =>
-          <div
-          key={result.aaAthleteId}
-          onClick={()=>
-            handleChooseAthlete(result)
-          }
-          className={styles.singleResult}>
-            <img
-            src={result.hq_image_url}
-            className={styles.searchResultImage}
-            />
-            <div className={styles.textDisplay}>
-            <div className={styles.fullName}>
-            {result.full_name}
+      {showSearchResults || searchResults.length > 0 ? (
+        <div className={styles.searchResults} ref={searchResultsRef}>
+          {loadingSearchResults && <LinearProgress />}
+          {searchResults.map((result) => (
+            <div
+              key={result.aaAthleteId}
+              onClick={() => handleChooseAthlete(result)}
+              className={styles.singleResult}
+            >
+              <img
+                src={result.hq_image_url}
+                className={styles.searchResultImage}
+              />
+              <div className={styles.textDisplay}>
+                <div className={styles.fullName}>{result.full_name}</div>
+                <div className={styles.disciplines}>{result.disciplines}</div>
+              </div>
             </div>
-            <div className={styles.disciplines}>
-            {result.disciplines}
-            </div>
-            </div>
-          </div>
-        )}
+          ))}
         </div>
-        :
-        loadingSearchResults && searchTerm.length > 0
-        ?
+      ) : loadingSearchResults && searchTerm.length > 0 ? (
         <div className={styles.searchResults}>
-          <LinearProgress/>
+          <LinearProgress />
         </div>
-        :
+      ) : (
         ""
-      }
+      )}
     </div>
   );
 }
