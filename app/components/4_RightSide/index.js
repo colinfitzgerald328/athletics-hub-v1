@@ -73,32 +73,32 @@ export default function RightSide(props) {
             >
                 DEEP DIVE
             </Button>
-            {
-                twitterHandle || instagramHandle &&
-                <div className={styles.socialProfiles}>
-                <div className={styles.label}>
-                    Social Profiles
-                </div>
-                {twitterHandle &&
-                    <div className={styles.socialItem}>
-                        <img
-                            className={styles.socialIcon}
-                            src={"https://about.twitter.com/content/dam/about-twitter/x/brand-toolkit/logo-black.png.twimg.1920.png"}
-                        />
-                        @{twitterHandle}
-                    </div>
-                }
-                {instagramHandle &&
-                    <div className={styles.socialItem}>
-                        <img
-                            className={styles.socialIcon}
-                            src={"https://cdn4.iconfinder.com/data/icons/social-media-black-white-2/600/Instagram_glyph_svg-512.png"}
-                        />
-                        @{instagramHandle}
-                    </div>
-                }
+            {(twitterHandle || instagramHandle) &&
+    <div className={styles.socialProfiles}>
+        <div className={styles.label}>
+            Social Profiles
+        </div>
+        {twitterHandle &&
+            <div className={styles.socialItem}>
+                <img
+                    className={styles.socialIcon}
+                    src={"https://about.twitter.com/content/dam/about-twitter/x/brand-toolkit/logo-black.png.twimg.1920.png"}
+                />
+                @{twitterHandle}
             </div>
-            }
+        }
+        {instagramHandle &&
+            <div className={styles.socialItem}>
+                <img
+                    className={styles.socialIcon}
+                    src={"https://cdn4.iconfinder.com/data/icons/social-media-black-white-2/600/Instagram_glyph_svg-512.png"}
+                />
+                @{instagramHandle}
+            </div>
+        }
+    </div>
+}
+
         </div>
     );
 }
