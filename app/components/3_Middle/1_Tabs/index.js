@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 import styles from "./styles.module.css";
 
 function CustomTabPanel(props) {
@@ -35,7 +35,7 @@ CustomTabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
@@ -58,19 +58,24 @@ export default function BasicTabs(props) {
     return name;
   };
 
-  console.log(topCompetitors)
-
+  console.log(topCompetitors);
 
   return (
-    <Box sx={{
-        width: '100%',
-        backgroundColor: '#FCFCFC', 
-        borderBottomLeftRadius: '25px',
-        borderBottomRightRadius: '25px', 
-        height: 'calc(100% - 400px)'
-        }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+    <Box
+      sx={{
+        width: "100%",
+        backgroundColor: "#FCFCFC",
+        borderBottomLeftRadius: "25px",
+        borderBottomRightRadius: "25px",
+        height: "calc(100% - 400px)",
+      }}
+    >
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
           <Tab label="Summary" {...a11yProps(0)} />
           <Tab label="Competition" {...a11yProps(1)} />
           <Tab label="Personal Bests" {...a11yProps(2)} />
@@ -82,15 +87,25 @@ export default function BasicTabs(props) {
         {props.athlete.summary}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-      {topCompetitors && topCompetitors.map((competitor, index) => (
-        <div
-          key={index}
-          className={competitor.athlete_id ? styles.competitor : styles.competitorNoLink}
-          onClick={() => props.setAthleteFromTopCompetitors(competitor.athlete_id)}
-        >
-          {index + 1}. <b style={{ marginLeft: '5px' }}>{normalizeName(competitor.athlete_name)}</b>
-        </div>
-      ))}
+        {topCompetitors &&
+          topCompetitors.map((competitor, index) => (
+            <div
+              key={index}
+              className={
+                competitor.athlete_id
+                  ? styles.competitor
+                  : styles.competitorNoLink
+              }
+              onClick={() =>
+                props.setAthleteFromTopCompetitors(competitor.athlete_id)
+              }
+            >
+              {index + 1}.{" "}
+              <b style={{ marginLeft: "5px" }}>
+                {normalizeName(competitor.athlete_name)}
+              </b>
+            </div>
+          ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         Personal Bests

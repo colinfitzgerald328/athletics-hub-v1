@@ -24,8 +24,8 @@ export default function RightSide(props) {
       </Button>
       <SocialProfiles athlete={props.athlete}></SocialProfiles>
       <Recommended
-      similar_athletes={props.similar_athletes}
-      setAthlete={props.setAthlete}
+        similar_athletes={props.similar_athletes}
+        setAthlete={props.setAthlete}
       />
     </div>
   );

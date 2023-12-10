@@ -108,9 +108,9 @@ export default class MainComponent extends React.Component {
           <LeftSide setAthlete={this.setAthlete.bind(this)} />
           <AthleteBreakDown athlete={this.state.athlete} />
           <RightSide
-          athlete={this.state.athlete}
-          similar_athletes={this.state.similar_athletes}
-          setAthlete={this.setAthlete.bind(this)}
+            athlete={this.state.athlete}
+            similar_athletes={this.state.similar_athletes}
+            setAthlete={this.setAthlete.bind(this)}
           />
         </div>
       </div>

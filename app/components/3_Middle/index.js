@@ -13,9 +13,7 @@ export default function AthleteBreakDown(props) {
           <div className={styles.disciplines}>{props.athlete.disciplines}</div>
         </div>
       </div>
-      <CustomTabPanel
-        athlete={props.athlete}
-      />
+      <CustomTabPanel athlete={props.athlete} />
     </div>
   );
 }

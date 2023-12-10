@@ -1,53 +1,51 @@
 .socialProfiles {
-    margin-top: 10px;
-    background-color: white;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    padding-left: 15px;
-    padding-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .label {
-    margin-bottom: 10px;
-    font-size: 25px;
-  }
+  margin-top: 10px;
+  background-color: white;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-left: 15px;
+  padding-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
-  .similarAthlete {
-    display: flex;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 15px;
-  }
+.label {
+  margin-bottom: 10px;
+  font-size: 25px;
+}
 
-  .similarAthlete:hover {
-    background-color: lightgray;
-    transition: background-color 0.5s;
-    cursor: pointer;
-  }
+.similarAthlete {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 15px;
+}
 
+.similarAthlete:hover {
+  background-color: lightgray;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
 
-  .athleteImage {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 20px;
-  }
+.athleteImage {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 20px;
+}
 
-  .athleteName {
-    font-size: 18px;
-  }
+.athleteName {
+  font-size: 18px;
+}
 
-  .athleteDisciplines {
-    font-size: 12px;
-    color: gray;
-    font-weight: 200;
-  }
+.athleteDisciplines {
+  font-size: 12px;
+  color: gray;
+  font-weight: 200;
+}
 
-  .itemsHolder {
-    margin-left: 10px;
-
-  }
+.itemsHolder {
+  margin-left: 10px;
+}
