@@ -1,7 +1,8 @@
 .athleteBreakdown {
   width: calc(100% / 2);
-  padding-left: 10px;
+  margin-left: 10px;
   background-color: white;
+  border-radius: 25px;
 }
 
 .itemsContainer {
