@@ -1,0 +1,17 @@
+.pbItem {
+    background-color: lightgray;
+    border-radius: 25px;
+    padding: 10px;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+.discipline {
+    font-size: 18px;
+    font-style: italic;
+}
+
+.mark {
+    font-size: 40px;
+    font-weight: bold;
+}

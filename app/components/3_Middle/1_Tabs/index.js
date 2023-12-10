@@ -120,7 +120,18 @@ export default function BasicTabs(props) {
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Personal Bests
+        {
+          props.athlete.personal_bests && props.athlete.personal_bests.map((item, index)=> 
+          <div key={index} className={styles.pbItem}>
+              <div className={styles.discipline}>
+                {item.discipline}
+              </div>
+              <div className={styles.mark}>
+                {item.result}
+              </div>
+          </div>
+          )
+        }
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
         Accolades

@@ -52,3 +52,7 @@
   font-weight: bold;
   font-weight: 100;
 }
+
+.superiorZIndex {
+  z-index: 10000;
+}
