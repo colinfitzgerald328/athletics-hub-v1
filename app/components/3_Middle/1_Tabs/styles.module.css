@@ -1,35 +1,35 @@
 .pbItem {
-    background-color: lightgray;
-    border-radius: 25px;
-    padding: 10px;
-    line-height: normal;
-    margin-bottom: 10px;
+  background-color: lightgray;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: normal;
+  margin-bottom: 10px;
 }
 
 .discipline {
-    font-size: 18px;
-    font-style: italic;
+  font-size: 18px;
+  font-style: italic;
 }
 
 .indicator {
-    font-style: italic;
-    font-size: 18px;
+  font-style: italic;
+  font-size: 18px;
 }
 
 .mark {
-    font-size: 30px;
-    font-weight: bold;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .summary {
-    font-size: 20px;
-    font-family: "SF Pro Display", sans-serif;
+  font-size: 20px;
+  font-family: "SF Pro Display", sans-serif;
 }
 
 .competitor {
-    font-size: 20px;
-    background-color: lightgray;
-    border-radius: 20px;
-    padding: 10px;
-    margin-bottom: 10px;
+  font-size: 20px;
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
 }

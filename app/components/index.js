@@ -107,9 +107,9 @@ export default class MainComponent extends React.Component {
         <div className={styles.mainDisplay}>
           <LeftSide setAthlete={this.setAthlete.bind(this)} />
           <AthleteBreakDown
-          athlete={this.state.athlete}
-          loadingNewAthlete={this.state.loadingNewAthlete}
-          athlete_data={this.state.athlete_data}
+            athlete={this.state.athlete}
+            loadingNewAthlete={this.state.loadingNewAthlete}
+            athlete_data={this.state.athlete_data}
           />
           <RightSide
             athlete={this.state.athlete}

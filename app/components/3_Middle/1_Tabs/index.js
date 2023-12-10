@@ -87,22 +87,19 @@ export default function BasicTabs(props) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        {
-          props.loadingNewAthlete ? 
+        {props.loadingNewAthlete ? (
           <div>
-          <Skeleton animation="wave"/>
-          <Skeleton animation="wave"/>
-          <Skeleton animation="wave"/>
-          <Skeleton animation="wave"/>
-          <Skeleton animation="wave"/>
-          <Skeleton animation="wave"/>
-          <Skeleton animation="wave"/>
+            <Skeleton animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton animation="wave" />
+            <Skeleton animation="wave" />
           </div>
-          :
-          <div className={styles.summary}>
-            {props.athlete.summary}
-          </div>
-        }
+        ) : (
+          <div className={styles.summary}>{props.athlete.summary}</div>
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {topCompetitors &&
@@ -125,37 +122,25 @@ export default function BasicTabs(props) {
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        {
-          props.athlete.personal_bests && props.athlete.personal_bests.map((item, index)=> 
-          <div key={index} className={styles.pbItem}>
-              <div className={styles.discipline}>
-                {item.discipline}
-              </div>
-              <div className={styles.mark}>
-                {item.result}
-              </div>
-          </div>
-          )
-        }
+        {props.athlete.personal_bests &&
+          props.athlete.personal_bests.map((item, index) => (
+            <div key={index} className={styles.pbItem}>
+              <div className={styles.discipline}>{item.discipline}</div>
+              <div className={styles.mark}>{item.result}</div>
+            </div>
+          ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-      {
-          props.athlete.accomplishments && props.athlete.accomplishments.slice(0, 3).map((item, index)=> 
-          <div key={index} className={styles.pbItem}>
-              <div className={styles.indicator}>
-                {item.split("x")[0]}x
-              </div>
-              <div className={styles.mark}>
-                {item.split("x")[1]}
-              </div>
-          </div>
-          )
-        }
+        {props.athlete.accomplishments &&
+          props.athlete.accomplishments.slice(0, 3).map((item, index) => (
+            <div key={index} className={styles.pbItem}>
+              <div className={styles.indicator}>{item.split("x")[0]}x</div>
+              <div className={styles.mark}>{item.split("x")[1]}</div>
+            </div>
+          ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
-        <DataTable
-          athlete_data={props.athlete_data}
-        />
+        <DataTable athlete_data={props.athlete_data} />
       </CustomTabPanel>
     </Box>
   );
