@@ -62,7 +62,13 @@ export default function BasicTabs(props) {
 
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{
+        width: '100%',
+        backgroundColor: '#FCFCFC', 
+        borderBottomLeftRadius: '25px',
+        borderBottomRightRadius: '25px', 
+        height: 'calc(100% - 400px)'
+        }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Summary" {...a11yProps(0)} />
