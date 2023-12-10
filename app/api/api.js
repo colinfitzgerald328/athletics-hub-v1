@@ -165,7 +165,7 @@ export async function getSimilarAthletes(athlete_id, callback) {
     }),
   };
 
-  fetch(API_URL + "athlete/similar", options)
+  fetch(API_URL + "/athlete/similar", options)
     .then((response) => {
       if (response.ok) {
         return response.json();

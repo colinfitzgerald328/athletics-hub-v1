@@ -73,7 +73,9 @@ export default function BasicTabs(props) {
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="Summary" {...a11yProps(0)} />
           <Tab label="Competition" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Personal Bests" {...a11yProps(2)} />
+          <Tab label="Accolades" {...a11yProps(3)} />
+          <Tab label="Results" {...a11yProps(4)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
@@ -91,7 +93,13 @@ export default function BasicTabs(props) {
       ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
+        Personal Bests
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={3}>
+        Accolades
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={4}>
+        Results
       </CustomTabPanel>
     </Box>
   );
