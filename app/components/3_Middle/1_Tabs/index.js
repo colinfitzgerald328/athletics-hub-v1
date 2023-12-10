@@ -54,10 +54,13 @@ export default function BasicTabs(props) {
     setTopCompetitors(props.athlete.top_competitors_with_reference);
   }, [props.athlete.top_competitors_with_reference]);
 
-  const normalizeName = (name) => {
-    // Implement your normalizeName function
-    return name;
-  };
+  function normalizeName(name) {
+    const nameParts = name.toLowerCase().split(" ");
+    const normalizedParts = nameParts.map((part) => {
+      return part.charAt(0).toUpperCase() + part.slice(1);
+    });
+    return normalizedParts.join(" ");
+  }
 
   console.log(topCompetitors);
 
@@ -95,7 +98,9 @@ export default function BasicTabs(props) {
           <Skeleton animation="wave"/>
           </div>
           :
-          props.athlete.summary
+          <div className={styles.summary}>
+            {props.athlete.summary}
+          </div>
         }
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
@@ -112,7 +117,6 @@ export default function BasicTabs(props) {
                 props.setAthleteFromTopCompetitors(competitor.athlete_id)
               }
             >
-              {index + 1}.{" "}
               <b style={{ marginLeft: "5px" }}>
                 {normalizeName(competitor.athlete_name)}
               </b>
@@ -134,7 +138,18 @@ export default function BasicTabs(props) {
         }
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        Accolades
+      {
+          props.athlete.accomplishments && props.athlete.accomplishments.slice(0, 3).map((item, index)=> 
+          <div key={index} className={styles.pbItem}>
+              <div className={styles.indicator}>
+                {item.split("x")[0]}x
+              </div>
+              <div className={styles.mark}>
+                {item.split("x")[1]}
+              </div>
+          </div>
+          )
+        }
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
         Results
