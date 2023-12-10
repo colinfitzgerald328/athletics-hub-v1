@@ -79,11 +79,26 @@ export default function BasicTabs(props) {
           onChange={handleChange}
           aria-label="basic tabs example"
         >
-          <Tab label="Summary" {...a11yProps(0)} />
-          <Tab label="Competition" {...a11yProps(1)} />
-          <Tab label="Personal Bests" {...a11yProps(2)} />
-          <Tab label="Accolades" {...a11yProps(3)} />
-          <Tab label="Results" {...a11yProps(4)} />
+          <Tab
+          label="Summary" {...a11yProps(0)}
+          sx={{"width": "20%", fontSize: "14px"}}
+          />
+          <Tab
+          label="Competition" {...a11yProps(1)}
+          sx={{"width": "20%", fontSize: "14px"}}
+          />
+          <Tab
+          label="Personal Bests" {...a11yProps(2)}
+          sx={{"width": "20%", fontSize: "14px"}}
+          />
+          <Tab
+          label="Accolades" {...a11yProps(3)}
+          sx={{"width": "20%", fontSize: "14px"}}
+          />
+          <Tab
+          label="Results" {...a11yProps(4)}
+          sx={{"width": "20%", fontSize: "16px"}}
+          />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
