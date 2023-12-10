@@ -16,6 +16,7 @@ export default function AthleteBreakDown(props) {
       <CustomTabPanel
       athlete={props.athlete}
       loadingNewAthlete={props.loadingNewAthlete}
+      athlete_data={props.athlete_data}
       />
     </div>
   );

@@ -5,6 +5,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
+import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
 
 function CustomTabPanel(props) {
@@ -152,7 +153,9 @@ export default function BasicTabs(props) {
         }
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
-        Results
+        <DataTable
+          athlete_data={props.athlete_data}
+        />
       </CustomTabPanel>
     </Box>
   );

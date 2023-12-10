@@ -109,6 +109,7 @@ export default class MainComponent extends React.Component {
           <AthleteBreakDown
           athlete={this.state.athlete}
           loadingNewAthlete={this.state.loadingNewAthlete}
+          athlete_data={this.state.athlete_data}
           />
           <RightSide
             athlete={this.state.athlete}
