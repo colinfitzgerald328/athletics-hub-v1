@@ -80,24 +80,29 @@ export default function BasicTabs(props) {
           aria-label="basic tabs example"
         >
           <Tab
-          label="Summary" {...a11yProps(0)}
-          sx={{"width": "20%", fontSize: "14px"}}
+            label="Summary"
+            {...a11yProps(0)}
+            sx={{ width: "20%", fontSize: "14px" }}
           />
           <Tab
-          label="Competition" {...a11yProps(1)}
-          sx={{"width": "20%", fontSize: "14px"}}
+            label="Competition"
+            {...a11yProps(1)}
+            sx={{ width: "20%", fontSize: "14px" }}
           />
           <Tab
-          label="Personal Bests" {...a11yProps(2)}
-          sx={{"width": "20%", fontSize: "14px"}}
+            label="Personal Bests"
+            {...a11yProps(2)}
+            sx={{ width: "20%", fontSize: "14px" }}
           />
           <Tab
-          label="Accolades" {...a11yProps(3)}
-          sx={{"width": "20%", fontSize: "14px"}}
+            label="Accolades"
+            {...a11yProps(3)}
+            sx={{ width: "20%", fontSize: "14px" }}
           />
           <Tab
-          label="Results" {...a11yProps(4)}
-          sx={{"width": "20%", fontSize: "16px"}}
+            label="Results"
+            {...a11yProps(4)}
+            sx={{ width: "20%", fontSize: "16px" }}
           />
         </Tabs>
       </Box>
