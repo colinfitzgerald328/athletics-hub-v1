@@ -2,6 +2,8 @@
   display: flex;
   background-color: dodgerblue;
   padding: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .labeledItem {
@@ -27,13 +29,13 @@
 }
 
 .venue {
-  width: calc(100% / 4);
+  width: calc(100% / 2);
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .venueLabel {
-  width: calc(100% / 4);
+  width: calc(100% / 2);
   margin-left: 20px;
   margin-right: 20px;
   font-weight: 600;
@@ -46,6 +48,7 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  height: 70px;
 }
 
 .tableRowAlternate {
@@ -56,4 +59,5 @@
   padding-right: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
+  height: 70px;
 }
