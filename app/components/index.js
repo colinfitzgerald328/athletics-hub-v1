@@ -111,6 +111,7 @@ export default class MainComponent extends React.Component {
             athlete={this.state.athlete}
             similar_athletes={this.state.similar_athletes}
             setAthlete={this.setAthlete.bind(this)}
+            loadingNewAthlete={this.state.loadingNewAthlete}
           />
         </div>
       </div>

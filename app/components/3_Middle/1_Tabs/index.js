@@ -65,7 +65,7 @@ export default function BasicTabs(props) {
       sx={{
         width: "100%",
         borderBottomLeftRadius: "25px",
-        borderBottomRightRadius: "25px"
+        borderBottomRightRadius: "25px",
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

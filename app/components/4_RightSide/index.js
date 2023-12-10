@@ -26,6 +26,7 @@ export default function RightSide(props) {
       <Recommended
         similar_athletes={props.similar_athletes}
         setAthlete={props.setAthlete}
+        loadingNewAthlete={props.loadingNewAthlete}
       />
     </div>
   );
