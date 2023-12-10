@@ -4,6 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Skeleton } from "@mui/material";
 import styles from "./styles.module.css";
 
 function CustomTabPanel(props) {
@@ -82,7 +83,20 @@ export default function BasicTabs(props) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        {props.athlete.summary}
+        {
+          props.loadingNewAthlete ? 
+          <div>
+          <Skeleton animation="wave"/>
+          <Skeleton animation="wave"/>
+          <Skeleton animation="wave"/>
+          <Skeleton animation="wave"/>
+          <Skeleton animation="wave"/>
+          <Skeleton animation="wave"/>
+          <Skeleton animation="wave"/>
+          </div>
+          :
+          props.athlete.summary
+        }
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {topCompetitors &&

@@ -106,7 +106,10 @@ export default class MainComponent extends React.Component {
         <TopBar />
         <div className={styles.mainDisplay}>
           <LeftSide setAthlete={this.setAthlete.bind(this)} />
-          <AthleteBreakDown athlete={this.state.athlete} />
+          <AthleteBreakDown
+          athlete={this.state.athlete}
+          loadingNewAthlete={this.state.loadingNewAthlete}
+          />
           <RightSide
             athlete={this.state.athlete}
             similar_athletes={this.state.similar_athletes}
