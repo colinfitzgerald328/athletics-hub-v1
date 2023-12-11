@@ -34,25 +34,31 @@ export default class MainComponent extends React.Component {
       athlete: athlete,
       loadingNewAthlete: true,
     });
-
+  
     try {
       await Promise.all([
         this.getResultsForAthlete(athlete.aaAthleteId),
         this.getSimilarAthletes(athlete.aaAthleteId),
         this.getTopCompetitors(athlete.aaAthleteId),
       ]);
-
-      this.setState({
-        loadingNewAthlete: false,
-      });
+  
+      // Use setTimeout and requestAnimationFrame to wait for the next render cycle
+      setTimeout(() => {
+        requestAnimationFrame(() => {
+          this.setState({
+            loadingNewAthlete: false,
+          });
+        });
+      }, 0);
     } catch (error) {
       console.error("Error occurred:", error);
-
+  
       this.setState({
         loadingNewAthlete: false,
       });
     }
   };
+  
 
   getResultsForAthlete(athlete_id) {
     return new Promise((resolve, reject) => {
