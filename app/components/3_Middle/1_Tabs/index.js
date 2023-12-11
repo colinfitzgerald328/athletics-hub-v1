@@ -145,8 +145,18 @@ export default function BasicTabs(props) {
         {props.athlete.personal_bests &&
           props.athlete.personal_bests.map((item, index) => (
             <div key={index} className={styles.pbItem}>
-              <div className={styles.discipline}>{item.discipline}</div>
-              <div className={styles.mark}>{item.result}</div>
+              {
+                props.loadingNewAthlete ? 
+                <Skeleton animation="wave" width={100} height={18}/>
+                :
+                <div className={styles.discipline}>{item.discipline}</div>
+              }
+              {
+                props.loadingNewAthlete ? 
+                <Skeleton sx={{"marginTop": "0px"}} animation="wave" width={120} height={35}/>
+                :
+                <div className={styles.mark}>{item.result}</div>
+              }
             </div>
           ))}
       </CustomTabPanel>
@@ -154,8 +164,18 @@ export default function BasicTabs(props) {
         {props.athlete.accomplishments &&
           props.athlete.accomplishments.slice(0, 3).map((item, index) => (
             <div key={index} className={styles.pbItem}>
+                            {
+                props.loadingNewAthlete ? 
+                <Skeleton animation="wave" width={20} height={18}/>
+                :
               <div className={styles.indicator}>{item.split("x")[0]}x</div>
+                            }
+                                                        {
+                props.loadingNewAthlete ? 
+                <Skeleton animation="wave" width={400} height={40}/>
+                :
               <div className={styles.mark}>{item.split("x")[1]}</div>
+                                                        }
             </div>
           ))}
       </CustomTabPanel>
