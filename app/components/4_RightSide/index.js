@@ -24,8 +24,8 @@ export default function RightSide(props) {
         DEEP DIVE
       </Button>
       <PeformanceGraph
-      athlete_data={props.athlete_data}
-      loadingNewAthlete={props.loadingNewAthlete}
+        athlete_data={props.athlete_data}
+        loadingNewAthlete={props.loadingNewAthlete}
       />
       <SocialProfiles athlete={props.athlete}></SocialProfiles>
       <Recommended

@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Box from "@mui/material/Box";
 import { Skeleton, Button } from "@mui/material";
+import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
 
@@ -46,8 +47,6 @@ function a11yProps(index) {
 export default function BasicTabs(props) {
   const [value, setValue] = React.useState(0);
   const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
-
-  console.log(topCompetitors)
 
   useEffect(() => {
     setTopCompetitors(props.top_competitors);
@@ -144,80 +143,85 @@ export default function BasicTabs(props) {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
         {topCompetitors &&
-          topCompetitors.map((competitor, index) => (
-            <div key={index} className={styles.competitor}>
-              <div className={styles.topItems}>
-                {props.loadingNewAthlete ? (
-                  <Skeleton
-                    sx={{ borderRadius: "15px" }}
-                    animation="wave"
-                    variant="rectangular"
-                    width={90}
-                    height={80}
-                  />
-                ) : (
-                  <div className={styles.competitorImageHolder}>
+          (topCompetitors.length == 0 ? (
+            <div className={styles.nothingHereYet}>
+              <ConstructionIcon /> Nothing here yet! As our data team improves,
+              top competitors will populate for this athlete.
+            </div>
+          ) : (
+            topCompetitors.map((competitor, index) => (
+              <div key={index} className={styles.competitor}>
+                <div className={styles.topItems}>
+                  {props.loadingNewAthlete ? (
+                    <Skeleton
+                      sx={{ borderRadius: "15px" }}
+                      animation="wave"
+                      variant="rectangular"
+                      width={90}
+                      height={80}
+                    />
+                  ) : (
                     <img
                       className={styles.competitorImage}
                       src={competitor.hq_image_url}
                     />
-                  </div>
-                )}
-                <div className={styles.criticalInfo}>
-                  <div className={styles.leftItems}>
-                    {props.loadingNewAthlete ? (
-                      <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width={150}
-                        height={18}
-                      />
-                    ) : (
-                      <div
-                        onClick={() =>
-                          props.setAthleteFromTopCompetitors(
-                            competitor.aaAthleteId,
-                          )
-                        }
-                        className={styles.competitorName}
-                      >
-                        {competitor.full_name}
-                      </div>
-                    )}
-                    {props.loadingNewAthlete ? (
-                      <Skeleton
-                        animation="wave"
-                        variant="rectangular"
-                        width={300}
-                        height={18}
-                        sx={{ marginTop: "5px" }}
-                      />
-                    ) : (
-                      <div className={styles.disciplines}>
-                        {competitor.disciplines}
-                      </div>
-                    )}
-                  </div>
-                  <div
-                    onClick={() => updateSummaryStyle(competitor)}
-                    className={styles.rightItems}
-                  >
-                    {competitor.summary &&
-                      (competitor.height && competitor.height != "0px" ? (
-                        <RemoveIcon sx={{ fontWeight: "bold" }} />
+                  )}
+                  <div className={styles.criticalInfo}>
+                    <div className={styles.leftItems}>
+                      {props.loadingNewAthlete ? (
+                        <Skeleton
+                          animation="wave"
+                          variant="rectangular"
+                          width={150}
+                          height={18}
+                        />
                       ) : (
-                        <AddIcon />
-                      ))}
+                        <div
+                          onClick={() =>
+                            props.setAthleteFromTopCompetitors(
+                              competitor.aaAthleteId,
+                            )
+                          }
+                          className={styles.competitorName}
+                        >
+                          {competitor.full_name}
+                        </div>
+                      )}
+                      {props.loadingNewAthlete ? (
+                        <Skeleton
+                          animation="wave"
+                          variant="rectangular"
+                          width={300}
+                          height={18}
+                          sx={{ marginTop: "5px" }}
+                        />
+                      ) : (
+                        <div className={styles.disciplines}>
+                          {competitor.disciplines}
+                        </div>
+                      )}
+                    </div>
+                    <div
+                      onClick={() => updateSummaryStyle(competitor)}
+                      className={styles.rightItems}
+                    >
+                      {competitor.summary &&
+                        (competitor.height && competitor.height != "0px" ? (
+                          <RemoveIcon sx={{ fontWeight: "bold" }} />
+                        ) : (
+                          <AddIcon />
+                        ))}
+                    </div>
                   </div>
                 </div>
+                <div
+                  className={styles.competitorSummary}
+                  style={{ height: competitor.height }}
+                >
+                  {competitor.summary}
+                </div>
               </div>
-              <div
-                className={styles.competitorSummary}
-                style={{ height: competitor.height }}
-              >
-                {competitor.summary}
-              </div>
-            </div>
+            ))
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
@@ -244,18 +248,28 @@ export default function BasicTabs(props) {
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
         {props.athlete.accomplishments &&
-          props.athlete.accomplishments.slice(0, 3).map((item, index) => (
-            <div key={index} className={styles.accomplishmentHolder}>
-              {
-                props.loadingNewAthlete ? 
-                <Skeleton animation="wave" width={300} height={50} />
-                :
-                <div style={{display: "flex", alignItems: "last baseline"}}>
-                                  <div className={styles.indicator}>{item.split("x")[0]}x</div>
-                <div className={styles.accomplishment}>{item.split("x")[1]}</div>
-                </div>
-              }
+          (props.athlete.accomplishments.length == 0 ? (
+            <div className={styles.nothingHereYet}>
+              <ConstructionIcon /> Nothing here yet! As our data team improves,
+              accomplishments will populate for this athlete.
             </div>
+          ) : (
+            props.athlete.accomplishments.slice(0, 3).map((item, index) => (
+              <div key={index} className={styles.accomplishmentHolder}>
+                {props.loadingNewAthlete ? (
+                  <Skeleton animation="wave" width={300} height={50} />
+                ) : (
+                  <div style={{ display: "flex", alignItems: "last baseline" }}>
+                    <div className={styles.indicator}>
+                      {item.split("x")[0]}x
+                    </div>
+                    <div className={styles.accomplishment}>
+                      {item.split("x")[1]}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
