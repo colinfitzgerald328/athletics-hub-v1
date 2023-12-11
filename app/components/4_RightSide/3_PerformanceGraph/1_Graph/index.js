@@ -73,8 +73,7 @@ export default function GraphModal(props) {
         data={filteredResults}
         margin={{
           top: 5,
-          right: 30,
-          left: 20,
+          right: 20,
           bottom: 5,
         }}
       >

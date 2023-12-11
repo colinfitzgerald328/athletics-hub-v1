@@ -47,6 +47,8 @@ export default function BasicTabs(props) {
   const [value, setValue] = React.useState(0);
   const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
 
+  console.log(topCompetitors)
+
   useEffect(() => {
     setTopCompetitors(props.top_competitors);
   }, [props.top_competitors]);
