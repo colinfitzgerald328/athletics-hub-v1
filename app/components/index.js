@@ -5,6 +5,7 @@ import LeftSide from "./2_leftSide";
 import AthleteBreakDown from "./3_Middle";
 import RightSide from "./4_RightSide";
 import styles from "./styles.module.css";
+import Head from "next/head";
 import * as API from "/app/api/api.js";
 
 export default class MainComponent extends React.Component {
@@ -131,6 +132,9 @@ export default class MainComponent extends React.Component {
   render() {
     return (
       <div>
+        <Head>
+        <meta property="og:image" content="/icon.png" />
+        </Head>
         <TopBar />
         <div className={styles.mainDisplay}>
           <LeftSide setAthlete={this.setAthlete.bind(this)} />
