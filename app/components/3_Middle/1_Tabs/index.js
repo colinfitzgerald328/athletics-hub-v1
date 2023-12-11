@@ -243,7 +243,7 @@ export default function BasicTabs(props) {
       <CustomTabPanel value={value} index={3}>
         {props.athlete.accomplishments &&
           props.athlete.accomplishments.slice(0, 3).map((item, index) => (
-            <div key={index} className={styles.pbItem}>
+            <div key={index} className={styles.accomplishmentHolder}>
               {props.loadingNewAthlete ? (
                 <Skeleton animation="wave" width={20} height={18} />
               ) : (
@@ -252,7 +252,7 @@ export default function BasicTabs(props) {
               {props.loadingNewAthlete ? (
                 <Skeleton animation="wave" width={400} height={40} />
               ) : (
-                <div className={styles.mark}>{item.split("x")[1]}</div>
+                <div className={styles.accomplishment}>{item.split("x")[1]}</div>
               )}
             </div>
           ))}

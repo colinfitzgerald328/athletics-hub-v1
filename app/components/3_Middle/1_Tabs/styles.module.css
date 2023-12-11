@@ -6,14 +6,30 @@
   margin-bottom: 10px;
 }
 
+.accomplishmentHolder {
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  line-height: normal;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: last baseline;
+}
+
 .discipline {
   font-size: 18px;
   font-style: italic;
 }
 
 .indicator {
-  font-style: italic;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.accomplishment {
   font-size: 18px;
+  font-weight: normal;
+  margin-left: 10px;
 }
 
 .mark {
