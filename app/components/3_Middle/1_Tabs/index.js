@@ -160,7 +160,10 @@ export default function BasicTabs(props) {
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
-        <DataTable athlete_data={props.athlete_data} />
+        <DataTable
+        athlete_data={props.athlete_data}
+        loadingNewAthlete={props.loadingNewAthlete}
+        />
       </CustomTabPanel>
     </Box>
   );
