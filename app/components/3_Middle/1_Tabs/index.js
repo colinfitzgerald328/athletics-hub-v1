@@ -244,16 +244,15 @@ export default function BasicTabs(props) {
         {props.athlete.accomplishments &&
           props.athlete.accomplishments.slice(0, 3).map((item, index) => (
             <div key={index} className={styles.accomplishmentHolder}>
-              {props.loadingNewAthlete ? (
-                <Skeleton animation="wave" width={20} height={18} />
-              ) : (
-                <div className={styles.indicator}>{item.split("x")[0]}x</div>
-              )}
-              {props.loadingNewAthlete ? (
-                <Skeleton animation="wave" width={400} height={40} />
-              ) : (
+              {
+                props.loadingNewAthlete ? 
+                <Skeleton animation="wave" width={300} height={50} />
+                :
+                <div style={{display: "flex", alignItems: "last baseline"}}>
+                                  <div className={styles.indicator}>{item.split("x")[0]}x</div>
                 <div className={styles.accomplishment}>{item.split("x")[1]}</div>
-              )}
+                </div>
+              }
             </div>
           ))}
       </CustomTabPanel>
