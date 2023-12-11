@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import Box from "@mui/material/Box";
-import { Skeleton } from "@mui/material";
+import { Skeleton, Button } from "@mui/material";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
 
@@ -43,12 +45,48 @@ function a11yProps(index) {
 
 export default function BasicTabs(props) {
   const [value, setValue] = React.useState(0);
+  const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
+
+  useEffect(()=> {
+    setTopCompetitors(props.top_competitors)
+  }, [props.top_competitors])
+
+  useEffect(()=> {
+    setTopCompetitors(topCompetitors)
+  }, [topCompetitors])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  console.log(props)
+  function updateSummaryStyle(competitor) {
+    var elements = document.getElementsByClassName(styles.competitorSummary);
+    var newScrollHeight;
+  
+    for (let item of elements) {
+      if (item.textContent == competitor.summary) {
+        newScrollHeight = item.scrollHeight + "px";
+      }
+    }
+  
+    for (let i = 0; i < topCompetitors.length; i++) {
+      if (topCompetitors[i].aaAthleteId == competitor.aaAthleteId) {
+        if (topCompetitors[i].height == undefined) {
+          topCompetitors[i].height = newScrollHeight
+        } else if (topCompetitors[i].height != "0px") {
+          topCompetitors[i].height = "0px";
+        } else {
+          topCompetitors[i].height = newScrollHeight;
+        
+        }
+      }
+    }
+  
+    setTopCompetitors([...topCompetitors]);
+  }
+  
+
+
 
 
   return (
@@ -108,24 +146,68 @@ export default function BasicTabs(props) {
         )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {props.top_competitors &&
-          props.top_competitors.map((competitor, index) => (
+        {topCompetitors &&
+          topCompetitors.map((competitor, index) => (
             <div
               key={index}
               className={styles.competitor}
             >
               <div className={styles.topItems}>
-              <img className={styles.competitorImage} src={competitor.hq_image_url}/>
+                {
+                  props.loadingNewAthlete ? 
+                  <Skeleton
+                  sx={{ borderRadius: "15px" }}
+                  animation="wave"
+                  variant="rectangular"
+                  width={90}
+                  height={80}
+                />
+                  :
+                  <div className={styles.competitorImageHolder}>
+                    <img className={styles.competitorImage} src={competitor.hq_image_url}/>
+                  </div>
+                }
               <div className={styles.criticalInfo}>
-                <div className={styles.competitorName}>
-                  {competitor.full_name}
+                <div className={styles.leftItems}>
+                  {
+                    props.loadingNewAthlete ? 
+                    <Skeleton
+                    animation="wave"
+                    variant="rectangular"
+                    width={150}
+                    height={18}
+                  />
+                  :
+                  <div className={styles.competitorName}>
+                    {competitor.full_name}
                   </div>
-                  <div className={styles.disciplines}>
-                  {competitor.disciplines}
-                  </div>
+                  }
+                                      {
+                                        props.loadingNewAthlete ? 
+                                        <Skeleton
+                                        animation="wave"
+                                        variant="rectangular"
+                                        width={300}
+                                        height={18}
+                                        sx={{"marginTop": "5px"}}
+                                      />
+                                      :
+                                      <div className={styles.disciplines}>
+                                      {competitor.disciplines}
+                                    </div>
+                  }
+                </div>
+                <div
+                onClick={()=> updateSummaryStyle(competitor)}
+                className={styles.rightItems}>
+                  {
+                    competitor.summary && 
+                    (competitor.height && competitor.height != "0px" ? <RemoveIcon/> : <AddIcon/>)
+                  }
+                </div>
                 </div>
               </div>
-              <div className={styles.summary}>
+              <div className={styles.competitorSummary} style={{"height": competitor.height}}>
                 {competitor.summary}
               </div>
             </div>

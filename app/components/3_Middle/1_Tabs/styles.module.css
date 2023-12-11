@@ -39,7 +39,8 @@
 }
 
 .competitorImage {
-  width: 80px;
+  min-width: 80px;
+  max-width: 80px;
   height: 80px;
   object-fit: cover;
   border-radius: 15px;
@@ -52,10 +53,36 @@
 
 .criticalInfo {
   margin-left: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .disciplines {
   color: #536371;
   font-size: 16px;
   font-style: italic;
+}
+
+.competitorSummary {
+  height: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: height 0.5s ease-in-out;
+}
+
+.rightItems {
+  cursor: pointer;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.rightItems:hover {
+  background-color: white;
+  transition: background-color 1s;
+
 }
