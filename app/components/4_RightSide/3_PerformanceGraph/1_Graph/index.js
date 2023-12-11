@@ -68,33 +68,31 @@ export default function GraphModal(props) {
   };
 
   return (
-          <ResponsiveContainer className={styles.graphHolder}>
-            <LineChart
-              data={filteredResults}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date"  />
-              <YAxis
-                domain={["dataMin - 100", "dataMax + 100"]}
-              />
-              <Tooltip
-                content={<CustomTooltip />}
-                cursor={{ stroke: "#325573", strokeDasharray: "3 3" }}
-              />
-              <Legend  />
-              <Line
-                name="Result Score"
-                type="monotone"
-                dataKey="resultScore"
-                activeDot={{ r: 8 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
+    <ResponsiveContainer className={styles.graphHolder}>
+      <LineChart
+        data={filteredResults}
+        margin={{
+          top: 5,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis domain={["dataMin - 100", "dataMax + 100"]} />
+        <Tooltip
+          content={<CustomTooltip />}
+          cursor={{ stroke: "#325573", strokeDasharray: "3 3" }}
+        />
+        <Legend />
+        <Line
+          name="Result Score"
+          type="monotone"
+          dataKey="resultScore"
+          activeDot={{ r: 8 }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }

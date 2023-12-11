@@ -139,7 +139,9 @@ export default class MainComponent extends React.Component {
             loadingNewAthlete={this.state.loadingNewAthlete}
             athlete_data={this.state.athlete_data}
             top_competitors={this.state.top_competitors}
-            setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(this)}
+            setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
+              this,
+            )}
           />
           <RightSide
             athlete={this.state.athlete}
