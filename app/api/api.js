@@ -180,3 +180,27 @@ export async function getSimilarAthletes(athlete_id, callback) {
       console.log(error);
     });
 }
+
+
+export async function getTopCompetitors(athlete_id, callback) {
+  var data = {
+    athlete_id: athlete_id,
+  };
+
+  var url = new URL(API_URL + "/v1/athlete/competitors");
+  url.search = new URLSearchParams(data).toString();
+  fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

@@ -38,6 +38,7 @@ export default class MainComponent extends React.Component {
       await Promise.all([
         this.getResultsForAthlete(athlete.aaAthleteId),
         this.getSimilarAthletes(athlete.aaAthleteId),
+        this.getTopCompetitors(athlete.aaAthleteId)
       ]);
 
       this.setState({
@@ -100,6 +101,25 @@ export default class MainComponent extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+
+  getTopCompetitors(athlete_id) {
+    return new Promise((resolve, reject) => {
+      API.getTopCompetitors(
+        athlete_id,
+        (data) => {
+          this.setState({
+            top_competitors: data["top_competitors"],
+          });
+          resolve(data); // Resolve the promise with the data
+        },
+        (error) => {
+          console.log(error);
+          reject(error); // Reject the promise with the error
+        },
+      );
+    });
+  }
+
   render() {
     return (
       <div>
@@ -110,6 +130,7 @@ export default class MainComponent extends React.Component {
             athlete={this.state.athlete}
             loadingNewAthlete={this.state.loadingNewAthlete}
             athlete_data={this.state.athlete_data}
+            top_competitors={this.state.top_competitors}
           />
           <RightSide
             athlete={this.state.athlete}

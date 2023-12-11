@@ -48,22 +48,8 @@ export default function BasicTabs(props) {
     setValue(newValue);
   };
 
-  const [topCompetitors, setTopCompetitors] = useState([]);
+  console.log(props)
 
-  useEffect(() => {
-    // Assuming this.props.athlete.top_competitors_with_reference is your data
-    setTopCompetitors(props.athlete.top_competitors_with_reference);
-  }, [props.athlete.top_competitors_with_reference]);
-
-  function normalizeName(name) {
-    const nameParts = name.toLowerCase().split(" ");
-    const normalizedParts = nameParts.map((part) => {
-      return part.charAt(0).toUpperCase() + part.slice(1);
-    });
-    return normalizedParts.join(" ");
-  }
-
-  console.log(topCompetitors);
 
   return (
     <Box
@@ -122,22 +108,26 @@ export default function BasicTabs(props) {
         )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {topCompetitors &&
-          topCompetitors.map((competitor, index) => (
+        {props.top_competitors &&
+          props.top_competitors.map((competitor, index) => (
             <div
               key={index}
-              className={
-                competitor.athlete_id
-                  ? styles.competitor
-                  : styles.competitorNoLink
-              }
-              onClick={() =>
-                props.setAthleteFromTopCompetitors(competitor.athlete_id)
-              }
+              className={styles.competitor}
             >
-              <b style={{ marginLeft: "5px" }}>
-                {normalizeName(competitor.athlete_name)}
-              </b>
+              <div className={styles.topItems}>
+              <img className={styles.competitorImage} src={competitor.hq_image_url}/>
+              <div className={styles.criticalInfo}>
+                <div className={styles.competitorName}>
+                  {competitor.full_name}
+                  </div>
+                  <div className={styles.disciplines}>
+                  {competitor.disciplines}
+                  </div>
+                </div>
+              </div>
+              <div className={styles.summary}>
+                {competitor.summary}
+              </div>
             </div>
           ))}
       </CustomTabPanel>

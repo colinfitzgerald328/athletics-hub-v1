@@ -17,6 +17,7 @@ export default function AthleteBreakDown(props) {
         athlete={props.athlete}
         loadingNewAthlete={props.loadingNewAthlete}
         athlete_data={props.athlete_data}
+        top_competitors={props.top_competitors}
       />
     </div>
   );
