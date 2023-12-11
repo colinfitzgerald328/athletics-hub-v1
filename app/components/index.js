@@ -119,6 +119,15 @@ export default class MainComponent extends React.Component {
     });
   }
 
+  setAthleteFromTopCompetitors(athlete_id) {
+    API.getAthleteById(athlete_id, (athlete) => {
+      this.setState({
+        athlete: athlete.found_athlete,
+      });
+      this.setAthlete(athlete.found_athlete);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -130,12 +139,14 @@ export default class MainComponent extends React.Component {
             loadingNewAthlete={this.state.loadingNewAthlete}
             athlete_data={this.state.athlete_data}
             top_competitors={this.state.top_competitors}
+            setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(this)}
           />
           <RightSide
             athlete={this.state.athlete}
             similar_athletes={this.state.similar_athletes}
             setAthlete={this.setAthlete.bind(this)}
             loadingNewAthlete={this.state.loadingNewAthlete}
+            athlete_data={this.state.athlete_data}
           />
         </div>
       </div>

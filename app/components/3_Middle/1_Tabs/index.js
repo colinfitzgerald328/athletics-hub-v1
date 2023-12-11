@@ -171,7 +171,9 @@ export default function BasicTabs(props) {
                         height={18}
                       />
                     ) : (
-                      <div className={styles.competitorName}>
+                      <div
+                      onClick={()=> props.setAthleteFromTopCompetitors(competitor.aaAthleteId)}
+                      className={styles.competitorName}>
                         {competitor.full_name}
                       </div>
                     )}
@@ -195,7 +197,7 @@ export default function BasicTabs(props) {
                   >
                     {competitor.summary &&
                       (competitor.height && competitor.height != "0px" ? (
-                        <RemoveIcon />
+                        <RemoveIcon sx={{"fontWeight": "bold"}} />
                       ) : (
                         <AddIcon />
                       ))}

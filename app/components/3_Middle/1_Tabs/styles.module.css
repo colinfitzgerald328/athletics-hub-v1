@@ -51,6 +51,12 @@
   font-weight: 600;
 }
 
+.competitorName:hover {
+  text-decoration: underline;
+  transition: text-decoration 0.5s;
+  cursor: pointer;
+}
+
 .criticalInfo {
   margin-left: 10px;
   width: 100%;
