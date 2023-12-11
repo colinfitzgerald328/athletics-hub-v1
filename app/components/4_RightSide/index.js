@@ -23,7 +23,10 @@ export default function RightSide(props) {
       >
         DEEP DIVE
       </Button>
-      <PeformanceGraph athlete_data={props.athlete_data} />
+      <PeformanceGraph
+      athlete_data={props.athlete_data}
+      loadingNewAthlete={props.loadingNewAthlete}
+      />
       <SocialProfiles athlete={props.athlete}></SocialProfiles>
       <Recommended
         similar_athletes={props.similar_athletes}
