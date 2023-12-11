@@ -181,7 +181,6 @@ export async function getSimilarAthletes(athlete_id, callback) {
     });
 }
 
-
 export async function getTopCompetitors(athlete_id, callback) {
   var data = {
     athlete_id: athlete_id,

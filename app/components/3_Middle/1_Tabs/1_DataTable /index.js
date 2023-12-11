@@ -12,21 +12,20 @@ export default function DataTable(props) {
         <div className={styles.labeledItem}>Date</div>
       </div>
       <div className={styles.table}>
-        {
-          props.loadingNewAthlete ? 
+        {props.loadingNewAthlete ? (
           <div>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
-          <Skeleton height={70} animation="wave"/>
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
+            <Skeleton height={70} animation="wave" />
           </div>
-          :
+        ) : (
           props.athlete_data.map((row, index) => (
             <div
               key={index}
@@ -40,7 +39,7 @@ export default function DataTable(props) {
               <div className={styles.result}>{row.date}</div>
             </div>
           ))
-        }
+        )}
       </div>
     </div>
   );

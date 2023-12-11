@@ -38,7 +38,7 @@ export default class MainComponent extends React.Component {
       await Promise.all([
         this.getResultsForAthlete(athlete.aaAthleteId),
         this.getSimilarAthletes(athlete.aaAthleteId),
-        this.getTopCompetitors(athlete.aaAthleteId)
+        this.getTopCompetitors(athlete.aaAthleteId),
       ]);
 
       this.setState({
@@ -100,7 +100,6 @@ export default class MainComponent extends React.Component {
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
-
 
   getTopCompetitors(athlete_id) {
     return new Promise((resolve, reject) => {

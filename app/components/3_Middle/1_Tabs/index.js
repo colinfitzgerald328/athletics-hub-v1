@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import Box from "@mui/material/Box";
 import { Skeleton, Button } from "@mui/material";
 import DataTable from "./1_DataTable ";
@@ -47,13 +47,13 @@ export default function BasicTabs(props) {
   const [value, setValue] = React.useState(0);
   const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
 
-  useEffect(()=> {
-    setTopCompetitors(props.top_competitors)
-  }, [props.top_competitors])
+  useEffect(() => {
+    setTopCompetitors(props.top_competitors);
+  }, [props.top_competitors]);
 
-  useEffect(()=> {
-    setTopCompetitors(topCompetitors)
-  }, [topCompetitors])
+  useEffect(() => {
+    setTopCompetitors(topCompetitors);
+  }, [topCompetitors]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -62,32 +62,27 @@ export default function BasicTabs(props) {
   function updateSummaryStyle(competitor) {
     var elements = document.getElementsByClassName(styles.competitorSummary);
     var newScrollHeight;
-  
+
     for (let item of elements) {
       if (item.textContent == competitor.summary) {
         newScrollHeight = item.scrollHeight + "px";
       }
     }
-  
+
     for (let i = 0; i < topCompetitors.length; i++) {
       if (topCompetitors[i].aaAthleteId == competitor.aaAthleteId) {
         if (topCompetitors[i].height == undefined) {
-          topCompetitors[i].height = newScrollHeight
+          topCompetitors[i].height = newScrollHeight;
         } else if (topCompetitors[i].height != "0px") {
           topCompetitors[i].height = "0px";
         } else {
           topCompetitors[i].height = newScrollHeight;
-        
         }
       }
     }
-  
+
     setTopCompetitors([...topCompetitors]);
   }
-  
-
-
-
 
   return (
     <Box
@@ -148,66 +143,69 @@ export default function BasicTabs(props) {
       <CustomTabPanel value={value} index={1}>
         {topCompetitors &&
           topCompetitors.map((competitor, index) => (
-            <div
-              key={index}
-              className={styles.competitor}
-            >
+            <div key={index} className={styles.competitor}>
               <div className={styles.topItems}>
-                {
-                  props.loadingNewAthlete ? 
+                {props.loadingNewAthlete ? (
                   <Skeleton
-                  sx={{ borderRadius: "15px" }}
-                  animation="wave"
-                  variant="rectangular"
-                  width={90}
-                  height={80}
-                />
-                  :
-                  <div className={styles.competitorImageHolder}>
-                    <img className={styles.competitorImage} src={competitor.hq_image_url}/>
-                  </div>
-                }
-              <div className={styles.criticalInfo}>
-                <div className={styles.leftItems}>
-                  {
-                    props.loadingNewAthlete ? 
-                    <Skeleton
+                    sx={{ borderRadius: "15px" }}
                     animation="wave"
                     variant="rectangular"
-                    width={150}
-                    height={18}
+                    width={90}
+                    height={80}
                   />
-                  :
-                  <div className={styles.competitorName}>
-                    {competitor.full_name}
+                ) : (
+                  <div className={styles.competitorImageHolder}>
+                    <img
+                      className={styles.competitorImage}
+                      src={competitor.hq_image_url}
+                    />
                   </div>
-                  }
-                                      {
-                                        props.loadingNewAthlete ? 
-                                        <Skeleton
-                                        animation="wave"
-                                        variant="rectangular"
-                                        width={300}
-                                        height={18}
-                                        sx={{"marginTop": "5px"}}
-                                      />
-                                      :
-                                      <div className={styles.disciplines}>
-                                      {competitor.disciplines}
-                                    </div>
-                  }
-                </div>
-                <div
-                onClick={()=> updateSummaryStyle(competitor)}
-                className={styles.rightItems}>
-                  {
-                    competitor.summary && 
-                    (competitor.height && competitor.height != "0px" ? <RemoveIcon/> : <AddIcon/>)
-                  }
-                </div>
+                )}
+                <div className={styles.criticalInfo}>
+                  <div className={styles.leftItems}>
+                    {props.loadingNewAthlete ? (
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={150}
+                        height={18}
+                      />
+                    ) : (
+                      <div className={styles.competitorName}>
+                        {competitor.full_name}
+                      </div>
+                    )}
+                    {props.loadingNewAthlete ? (
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={300}
+                        height={18}
+                        sx={{ marginTop: "5px" }}
+                      />
+                    ) : (
+                      <div className={styles.disciplines}>
+                        {competitor.disciplines}
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    onClick={() => updateSummaryStyle(competitor)}
+                    className={styles.rightItems}
+                  >
+                    {competitor.summary &&
+                      (competitor.height && competitor.height != "0px" ? (
+                        <RemoveIcon />
+                      ) : (
+                        <AddIcon />
+                      ))}
+                  </div>
                 </div>
               </div>
-              <div className={styles.competitorSummary} style={{"height": competitor.height}}>
+              <div
+                className={styles.competitorSummary}
+                style={{ height: competitor.height }}
+              >
                 {competitor.summary}
               </div>
             </div>
@@ -217,18 +215,21 @@ export default function BasicTabs(props) {
         {props.athlete.personal_bests &&
           props.athlete.personal_bests.map((item, index) => (
             <div key={index} className={styles.pbItem}>
-              {
-                props.loadingNewAthlete ? 
-                <Skeleton animation="wave" width={100} height={18}/>
-                :
+              {props.loadingNewAthlete ? (
+                <Skeleton animation="wave" width={100} height={18} />
+              ) : (
                 <div className={styles.discipline}>{item.discipline}</div>
-              }
-              {
-                props.loadingNewAthlete ? 
-                <Skeleton sx={{"marginTop": "0px"}} animation="wave" width={120} height={35}/>
-                :
+              )}
+              {props.loadingNewAthlete ? (
+                <Skeleton
+                  sx={{ marginTop: "0px" }}
+                  animation="wave"
+                  width={120}
+                  height={35}
+                />
+              ) : (
                 <div className={styles.mark}>{item.result}</div>
-              }
+              )}
             </div>
           ))}
       </CustomTabPanel>
@@ -236,25 +237,23 @@ export default function BasicTabs(props) {
         {props.athlete.accomplishments &&
           props.athlete.accomplishments.slice(0, 3).map((item, index) => (
             <div key={index} className={styles.pbItem}>
-                            {
-                props.loadingNewAthlete ? 
-                <Skeleton animation="wave" width={20} height={18}/>
-                :
-              <div className={styles.indicator}>{item.split("x")[0]}x</div>
-                            }
-                                                        {
-                props.loadingNewAthlete ? 
-                <Skeleton animation="wave" width={400} height={40}/>
-                :
-              <div className={styles.mark}>{item.split("x")[1]}</div>
-                                                        }
+              {props.loadingNewAthlete ? (
+                <Skeleton animation="wave" width={20} height={18} />
+              ) : (
+                <div className={styles.indicator}>{item.split("x")[0]}x</div>
+              )}
+              {props.loadingNewAthlete ? (
+                <Skeleton animation="wave" width={400} height={40} />
+              ) : (
+                <div className={styles.mark}>{item.split("x")[1]}</div>
+              )}
             </div>
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={4}>
         <DataTable
-        athlete_data={props.athlete_data}
-        loadingNewAthlete={props.loadingNewAthlete}
+          athlete_data={props.athlete_data}
+          loadingNewAthlete={props.loadingNewAthlete}
         />
       </CustomTabPanel>
     </Box>
