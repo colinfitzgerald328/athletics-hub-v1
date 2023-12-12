@@ -141,7 +141,7 @@ export default class MainComponent extends React.Component {
         <div className={styles.underConstruction}>
           <ConstructionIcon sx={{"fontSize": "50px"}}/>
           <div className={styles.commentary}>
-          Our engineering team is hard at work building out mobile. It'll be ready soon 😊. For now you can visit the desktop version.
+          Our engineering team is hard at work building out mobile. It will be ready soon 😊. For now you can visit the desktop version.
             </div>
         <Link className={styles.hoverUnderline} href="https://athletics-hub-v1.vercel.app">Open in browser</Link>
         </div>
