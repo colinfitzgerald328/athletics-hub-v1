@@ -29,7 +29,7 @@ export default function DataTable(props) {
   }
   return (
     <div className={styles.tableContainer}>
-      {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
+      {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
         <Button
           onClick={() => scrollIntoView()}
           sx={{
@@ -55,7 +55,7 @@ export default function DataTable(props) {
         </Button>
       ) : (
         ""
-      )}
+      )} */}
       <div className={styles.tableHeader}>
         <div className={styles.markLabel}>Mark</div>
         <div className={styles.markLabel}>Discipline</div>
