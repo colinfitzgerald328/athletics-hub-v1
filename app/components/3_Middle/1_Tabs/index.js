@@ -285,26 +285,29 @@ export default function BasicTabs(props) {
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        {props.athlete.personal_bests &&
-          props.athlete.personal_bests.map((item, index) => (
-            <div key={index} className={styles.pbItem}>
-              {props.loadingNewAthlete ? (
-                <Skeleton animation="wave" width={100} height={18} />
-              ) : (
-                <div className={styles.discipline}>{item.discipline}</div>
-              )}
-              {props.loadingNewAthlete ? (
-                <Skeleton
-                  sx={{ marginTop: "0px" }}
-                  animation="wave"
-                  width={120}
-                  height={35}
-                />
-              ) : (
-                <div className={styles.mark}>{item.result}</div>
-              )}
-            </div>
-          ))}
+      {props.athlete.personal_bests &&
+  props.athlete.personal_bests.map((item, index) => (
+    item && item.discipline && item.result && (
+      <div key={index} className={styles.pbItem}>
+        {props.loadingNewAthlete ? (
+          <Skeleton animation="wave" width={100} height={18} />
+        ) : (
+          <div className={styles.discipline}>{item.discipline}</div>
+        )}
+        {props.loadingNewAthlete ? (
+          <Skeleton
+            sx={{ marginTop: "0px" }}
+            animation="wave"
+            width={120}
+            height={35}
+          />
+        ) : (
+          <div className={styles.mark}>{item.result}</div>
+        )}
+      </div>
+    )
+  ))}
+
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
         {props.athlete.accomplishments &&
