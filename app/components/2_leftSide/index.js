@@ -108,6 +108,13 @@ export default function LeftSide(props) {
         </div>
       )}
       {showSearchResults || searchResults.length > 0 ? (
+        searchResults.length == 0 ? 
+        <div className={styles.searchResults} ref={searchResultsRef}>
+          <div className={styles.noResults}>
+            😱 Unfortunately no search results for that query...
+          </div>
+        </div>
+        :
         <div className={styles.searchResults} ref={searchResultsRef}>
           {loadingSearchResults && <LinearProgress />}
           {searchResults.map((result) => (

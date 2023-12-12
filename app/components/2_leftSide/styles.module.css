@@ -73,6 +73,13 @@
   padding-left: 10px;
 }
 
+.noResults {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
+}
+
 .singleResult:hover {
   background-color: lightgray;
   transition: background-color 0.5s;
