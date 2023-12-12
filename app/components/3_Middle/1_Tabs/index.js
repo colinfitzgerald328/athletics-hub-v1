@@ -22,11 +22,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          {children}
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -87,35 +83,28 @@ export default function BasicTabs(props) {
     setTopCompetitors([...topCompetitors]);
   }
 
-  useEffect(()=> {
-    var element = document.getElementsByClassName(styles.summary)[0]
+  useEffect(() => {
+    var element = document.getElementsByClassName(styles.summary)[0];
     if (element) {
-      var subtraction = props.height - 500 - element.scrollHeight
-      console.log(subtraction)
+      var subtraction = props.height - 500 - element.scrollHeight;
+      console.log(subtraction);
       if (subtraction < 20) {
-        setShowScrollButton(true)
+        setShowScrollButton(true);
       } else {
-        setShowScrollButton(false)
+        setShowScrollButton(false);
       }
     }
-  }
-  )
+  });
 
-  useEffect(()=> {
-    setScrolled(false)
-  }, [props.athlete])
+  useEffect(() => {
+    setScrolled(false);
+  }, [props.athlete]);
 
   function scrollIntoView() {
-    var element = document.getElementsByClassName(styles.summary)[0]
+    var element = document.getElementsByClassName(styles.summary)[0];
     element.scrollIntoView({ behavior: "smooth" });
     setScrolled(true);
   }
-
-
-
-
-
-
 
   return (
     <Box
@@ -123,7 +112,7 @@ export default function BasicTabs(props) {
         width: "100%",
         borderBottomLeftRadius: "25px",
         borderBottomRightRadius: "25px",
-        position: "relative"
+        position: "relative",
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -160,30 +149,35 @@ export default function BasicTabs(props) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        {
-          (showScrollButton && !scrolled && !props.loadingNewAthlete) ? 
+        {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
           <Button
-      onClick={()=> scrollIntoView()}
-              sx={{
-                width: "150px",
-                height: "50px",
-                backgroundColor: "#323232",
-                fontWeight: "bold",
-                borderRadius: "25px",
-                paddingTop: "10px",
-                paddingBottom: "10px",
-                fontSize: "18px",
-                color: "white"
-              }}
-              variant="contained"
-      style={{"position": "absolute", "top": (props.height - 540) + "px", zIndex: "1000", right: 0}}>
-        Scroll
-      </Button>
-      :
-      ""
-        }
-      
-        {(props.loadingNewAthlete || props.athlete.summary == undefined) ? (
+            onClick={() => scrollIntoView()}
+            sx={{
+              width: "150px",
+              height: "50px",
+              backgroundColor: "#323232",
+              fontWeight: "bold",
+              borderRadius: "25px",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              fontSize: "18px",
+              color: "white",
+            }}
+            variant="contained"
+            style={{
+              position: "absolute",
+              top: props.height - 540 + "px",
+              zIndex: "1000",
+              right: 0,
+            }}
+          >
+            Scroll
+          </Button>
+        ) : (
+          ""
+        )}
+
+        {props.loadingNewAthlete || props.athlete.summary == undefined ? (
           <div>
             <Skeleton animation="wave" />
             <Skeleton animation="wave" />
@@ -194,10 +188,7 @@ export default function BasicTabs(props) {
             <Skeleton animation="wave" />
           </div>
         ) : (
-          <div
-            className={styles.summary}>
-              {props.athlete.summary}
-          </div>
+          <div className={styles.summary}>{props.athlete.summary}</div>
         )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>

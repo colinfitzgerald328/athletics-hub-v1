@@ -33,14 +33,14 @@ export default class MainComponent extends React.Component {
       athlete: athlete,
       loadingNewAthlete: true,
     });
-  
+
     try {
       await Promise.all([
         this.getResultsForAthlete(athlete.aaAthleteId),
         this.getSimilarAthletes(athlete.aaAthleteId),
         this.getTopCompetitors(athlete.aaAthleteId),
       ]);
-  
+
       // Use setTimeout and requestAnimationFrame to wait for the next render cycle
       setTimeout(() => {
         requestAnimationFrame(() => {
@@ -51,13 +51,12 @@ export default class MainComponent extends React.Component {
       }, 0);
     } catch (error) {
       console.error("Error occurred:", error);
-  
+
       this.setState({
         loadingNewAthlete: false,
       });
     }
   };
-  
 
   getResultsForAthlete(athlete_id) {
     return new Promise((resolve, reject) => {
@@ -138,7 +137,7 @@ export default class MainComponent extends React.Component {
     return (
       <div>
         <Head>
-        <meta property="og:image" content="/icon.png" />
+          <meta property="og:image" content="/icon.png" />
         </Head>
         <TopBar />
         <div className={styles.mainDisplay}>

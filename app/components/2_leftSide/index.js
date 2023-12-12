@@ -108,32 +108,33 @@ export default function LeftSide(props) {
         </div>
       )}
       {showSearchResults || searchResults.length > 0 ? (
-        searchResults.length == 0 ? 
-        <div className={styles.searchResults} ref={searchResultsRef}>
-          <div className={styles.noResults}>
-            😱 Unfortunately no search results for that query...
-          </div>
-        </div>
-        :
-        <div className={styles.searchResults} ref={searchResultsRef}>
-          {loadingSearchResults && <LinearProgress />}
-          {searchResults.map((result) => (
-            <div
-              key={result.aaAthleteId}
-              onClick={() => handleChooseAthlete(result)}
-              className={styles.singleResult}
-            >
-              <img
-                src={result.hq_image_url}
-                className={styles.searchResultImage}
-              />
-              <div className={styles.textDisplay}>
-                <div className={styles.fullName}>{result.full_name}</div>
-                <div className={styles.disciplines}>{result.disciplines}</div>
-              </div>
+        searchResults.length == 0 ? (
+          <div className={styles.searchResults} ref={searchResultsRef}>
+            <div className={styles.noResults}>
+              😱 Unfortunately no search results for that query...
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div className={styles.searchResults} ref={searchResultsRef}>
+            {loadingSearchResults && <LinearProgress />}
+            {searchResults.map((result) => (
+              <div
+                key={result.aaAthleteId}
+                onClick={() => handleChooseAthlete(result)}
+                className={styles.singleResult}
+              >
+                <img
+                  src={result.hq_image_url}
+                  className={styles.searchResultImage}
+                />
+                <div className={styles.textDisplay}>
+                  <div className={styles.fullName}>{result.full_name}</div>
+                  <div className={styles.disciplines}>{result.disciplines}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )
       ) : loadingSearchResults && searchTerm.length > 0 ? (
         <div className={styles.searchResults}>
           <LinearProgress />

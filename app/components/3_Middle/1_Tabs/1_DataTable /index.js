@@ -30,7 +30,11 @@ export default function DataTable(props) {
             <div
               key={index}
               className={
-                index == props.athlete_data.length - 1 ? styles.tableRowLast : index % 2 == 0 ? styles.tableRow : styles.tableRowAlternate
+                index == props.athlete_data.length - 1
+                  ? styles.tableRowLast
+                  : index % 2 == 0
+                    ? styles.tableRow
+                    : styles.tableRowAlternate
               }
             >
               <div className={styles.mark}>{row.mark}</div>
