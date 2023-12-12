@@ -29,7 +29,6 @@ export default class MainComponent extends React.Component {
   }
 
   setAthlete = async (athlete) => {
-    console.log("this function is being run");
     this.setState({
       athlete: athlete,
       loadingNewAthlete: true,
