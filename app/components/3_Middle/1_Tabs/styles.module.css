@@ -4,7 +4,7 @@
   padding: 10px;
   line-height: normal;
   margin-bottom: 10px;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .accomplishmentHolder {
@@ -15,7 +15,7 @@
   margin-bottom: 10px;
   display: flex;
   align-items: last baseline;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .discipline {
@@ -45,7 +45,7 @@
   background-color: lightgray;
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .competitor {
@@ -54,7 +54,7 @@
   border-radius: 20px;
   padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 5px 5px 10px;
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .topItems {
