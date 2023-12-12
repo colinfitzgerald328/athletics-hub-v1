@@ -11,6 +11,7 @@
   font-size: 20px;
   padding-left: 40px;
   position: relative;
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .searchBar:focus {
