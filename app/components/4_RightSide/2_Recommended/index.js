@@ -56,6 +56,9 @@ export default function Recommended(props) {
   );
 
   return (
+    props.similar_athletes.length == 0 ? 
+    ""
+    :
     <div className={styles.socialProfiles}>
       <div className={styles.label}>You might also like...</div>
       {similarAthletesMap}
