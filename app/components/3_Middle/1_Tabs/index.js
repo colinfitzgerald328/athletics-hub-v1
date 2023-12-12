@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -47,6 +47,8 @@ function a11yProps(index) {
 export default function BasicTabs(props) {
   const [value, setValue] = React.useState(0);
   const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
+  const [showScrollButton, setShowScrollButton] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     setTopCompetitors(props.top_competitors);
@@ -85,6 +87,34 @@ export default function BasicTabs(props) {
     setTopCompetitors([...topCompetitors]);
   }
 
+  useEffect(()=> {
+    var element = document.getElementsByClassName(styles.summary)[0]
+    if (element) {
+      var subtraction = props.height - 500 - element.scrollHeight
+      console.log(subtraction)
+      if (subtraction < 20) {
+        setShowScrollButton(true)
+      } else {
+        setShowScrollButton(false)
+      }
+    }
+  }
+  )
+
+  useEffect(()=> {
+    setScrolled(false)
+  }, [props.athlete])
+
+  function scrollIntoView() {
+    var element = document.getElementsByClassName(styles.summary)[0]
+    element.scrollIntoView({ behavior: "smooth" });
+    setScrolled(true);
+  }
+
+
+
+
+
 
 
   return (
@@ -93,6 +123,7 @@ export default function BasicTabs(props) {
         width: "100%",
         borderBottomLeftRadius: "25px",
         borderBottomRightRadius: "25px",
+        position: "relative"
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -129,6 +160,29 @@ export default function BasicTabs(props) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
+        {
+          (showScrollButton && !scrolled && !props.loadingNewAthlete) ? 
+          <Button
+      onClick={()=> scrollIntoView()}
+              sx={{
+                width: "150px",
+                height: "50px",
+                backgroundColor: "#323232",
+                fontWeight: "bold",
+                borderRadius: "25px",
+                paddingTop: "10px",
+                paddingBottom: "10px",
+                fontSize: "18px",
+                color: "white"
+              }}
+              variant="contained"
+      style={{"position": "absolute", "top": (props.height - 540) + "px", zIndex: "1000", right: 0}}>
+        Scroll
+      </Button>
+      :
+      ""
+        }
+      
         {(props.loadingNewAthlete || props.athlete.summary == undefined) ? (
           <div>
             <Skeleton animation="wave" />
@@ -140,7 +194,10 @@ export default function BasicTabs(props) {
             <Skeleton animation="wave" />
           </div>
         ) : (
-          <div className={styles.summary}>{props.athlete.summary}</div>
+          <div
+            className={styles.summary}>
+              {props.athlete.summary}
+          </div>
         )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>

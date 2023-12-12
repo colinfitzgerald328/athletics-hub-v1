@@ -151,6 +151,7 @@ export default class MainComponent extends React.Component {
             setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
               this,
             )}
+            height={this.state.height}
           />
           <RightSide
             athlete={this.state.athlete}

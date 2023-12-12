@@ -19,6 +19,7 @@ export default function AthleteBreakDown(props) {
         athlete_data={props.athlete_data}
         top_competitors={props.top_competitors}
         setAthleteFromTopCompetitors={props.setAthleteFromTopCompetitors}
+        height={props.height}
       />
     </div>
   );
