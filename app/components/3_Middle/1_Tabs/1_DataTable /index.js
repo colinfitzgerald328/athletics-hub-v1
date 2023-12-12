@@ -29,33 +29,33 @@ export default function DataTable(props) {
   }
   return (
     <div className={styles.tableContainer}>
-              {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
-          <Button
-            onClick={() => scrollIntoView()}
-            sx={{
-              width: "150px",
-              height: "50px",
-              backgroundColor: "#323232",
-              fontWeight: "bold",
-              borderRadius: "25px",
-              paddingTop: "10px",
-              paddingBottom: "10px",
-              fontSize: "18px",
-              color: "white",
-            }}
-            variant="contained"
-            style={{
-              position: "absolute",
-              top: props.height - 600 + "px",
-              zIndex: "1000",
-              right: 0,
-            }}
-          >
-            Scroll
-          </Button>
-        ) : (
-          ""
-        )}
+      {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
+        <Button
+          onClick={() => scrollIntoView()}
+          sx={{
+            width: "150px",
+            height: "50px",
+            backgroundColor: "#323232",
+            fontWeight: "bold",
+            borderRadius: "25px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            fontSize: "18px",
+            color: "white",
+          }}
+          variant="contained"
+          style={{
+            position: "absolute",
+            top: props.height - 600 + "px",
+            zIndex: "1000",
+            right: 0,
+          }}
+        >
+          Scroll
+        </Button>
+      ) : (
+        ""
+      )}
       <div className={styles.tableHeader}>
         <div className={styles.markLabel}>Mark</div>
         <div className={styles.markLabel}>Discipline</div>
