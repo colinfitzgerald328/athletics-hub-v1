@@ -48,6 +48,7 @@ export default class MainComponent extends React.Component {
         requestAnimationFrame(() => {
           this.setState({
             loadingNewAthlete: false,
+            pageLoaded: true
           });
         });
       }, 0);
@@ -136,7 +137,7 @@ export default class MainComponent extends React.Component {
   }
 
   render() {
-    if (this.state.width < 1000) {
+    if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
         <div className={styles.underConstruction}>
           <ConstructionIcon sx={{"fontSize": "50px"}}/>
