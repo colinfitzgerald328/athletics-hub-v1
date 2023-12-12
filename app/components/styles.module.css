@@ -3,3 +3,26 @@
   height: calc(100vh - 70px);
   position: sticky;
 }
+
+.underConstruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: unset;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.commentary {
+  margin-top: 10px;
+}
+
+.hoverUnderline {
+  color: dodgerblue;
+}
+
+.hoverUnderline:hover {
+  text-decoration: underline;
+}

@@ -6,6 +6,8 @@ import AthleteBreakDown from "./3_Middle";
 import RightSide from "./4_RightSide";
 import styles from "./styles.module.css";
 import Head from "next/head";
+import ConstructionIcon from '@mui/icons-material/Construction';
+import Link from "next/link";
 import * as API from "/app/api/api.js";
 
 export default class MainComponent extends React.Component {
@@ -134,33 +136,45 @@ export default class MainComponent extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <Head>
-          <meta property="og:image" content="/icon.png" />
-        </Head>
-        <TopBar />
-        <div className={styles.mainDisplay}>
-          <LeftSide setAthlete={this.setAthlete.bind(this)} />
-          <AthleteBreakDown
-            athlete={this.state.athlete}
-            loadingNewAthlete={this.state.loadingNewAthlete}
-            athlete_data={this.state.athlete_data}
-            top_competitors={this.state.top_competitors}
-            setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
-              this,
-            )}
-            height={this.state.height}
-          />
-          <RightSide
-            athlete={this.state.athlete}
-            similar_athletes={this.state.similar_athletes}
-            setAthlete={this.setAthlete.bind(this)}
-            loadingNewAthlete={this.state.loadingNewAthlete}
-            athlete_data={this.state.athlete_data}
-          />
+    if (this.state.width < 1000) {
+      return (
+        <div className={styles.underConstruction}>
+          <ConstructionIcon sx={{"fontSize": "50px"}}/>
+          <div className={styles.commentary}>
+          Our engineering team is hard at work building out mobile. It'll be ready soon 😊. For now you can visit the desktop version.
+            </div>
+        <Link className={styles.hoverUnderline} href="https://athletics-hub-v1.vercel.app">Open in browser</Link>
         </div>
-      </div>
-    );
+      )
+    } else {
+      return (
+        <div>
+          <Head>
+            <meta property="og:image" content="/icon.png" />
+          </Head>
+          <TopBar />
+          <div className={styles.mainDisplay}>
+            <LeftSide setAthlete={this.setAthlete.bind(this)} />
+            <AthleteBreakDown
+              athlete={this.state.athlete}
+              loadingNewAthlete={this.state.loadingNewAthlete}
+              athlete_data={this.state.athlete_data}
+              top_competitors={this.state.top_competitors}
+              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
+                this,
+              )}
+              height={this.state.height}
+            />
+            <RightSide
+              athlete={this.state.athlete}
+              similar_athletes={this.state.similar_athletes}
+              setAthlete={this.setAthlete.bind(this)}
+              loadingNewAthlete={this.state.loadingNewAthlete}
+              athlete_data={this.state.athlete_data}
+            />
+          </div>
+        </div>
+      );
+    }
   }
 }
