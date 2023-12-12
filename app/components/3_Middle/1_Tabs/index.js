@@ -2,7 +2,6 @@ import React, { useState, useEffect, use } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Box from "@mui/material/Box";
@@ -326,6 +325,7 @@ export default function BasicTabs(props) {
         <DataTable
           athlete_data={props.athlete_data}
           loadingNewAthlete={props.loadingNewAthlete}
+          height={props.height}
         />
       </CustomTabPanel>
     </Box>
