@@ -85,6 +85,8 @@ export default function BasicTabs(props) {
     setTopCompetitors([...topCompetitors]);
   }
 
+
+
   return (
     <Box
       sx={{
@@ -127,7 +129,7 @@ export default function BasicTabs(props) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        {props.loadingNewAthlete ? (
+        {(props.loadingNewAthlete || props.athlete.summary == undefined) ? (
           <div>
             <Skeleton animation="wave" />
             <Skeleton animation="wave" />
