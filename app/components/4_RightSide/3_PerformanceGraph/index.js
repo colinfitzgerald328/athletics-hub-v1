@@ -34,6 +34,7 @@ export default function PeformanceGraph(props) {
         onCancel={closeModal}
         footer=""
         width={"80vw"}
+        centered
       >
         <div className={styles.divHolder}>
           <BigGraph athlete={props.athlete} athlete_data={props.athlete_data} />
