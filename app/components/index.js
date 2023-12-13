@@ -35,12 +35,12 @@ export default class MainComponent extends React.Component {
   }
 
   logInUser() {
-    this.setState({ loggedIn: true })
+    this.setState({ loggedIn: true });
   }
 
   logOutUser() {
-    this.setState({ loggedIn: false })
-    window.localStorage.clear()
+    this.setState({ loggedIn: false });
+    window.localStorage.clear();
   }
 
   setAthlete = async (athlete) => {
@@ -173,9 +173,9 @@ export default class MainComponent extends React.Component {
             <meta property="og:image" content="/icon.png" />
           </Head>
           <TopBar
-          loggedIn={this.state.loggedIn}
-          logOutUser={this.logOutUser.bind(this)}
-          logInUser={this.logInUser.bind(this)}
+            loggedIn={this.state.loggedIn}
+            logOutUser={this.logOutUser.bind(this)}
+            logInUser={this.logInUser.bind(this)}
           />
           <div className={styles.mainDisplay}>
             <LeftSide setAthlete={this.setAthlete.bind(this)} />

@@ -43,11 +43,11 @@ export default function TopBar(props) {
           localStorage.setItem("userName", userName);
           localStorage.setItem("password", password);
           setOpen(true);
-          props.logInUser()
-          cancelModal()
+          props.logInUser();
+          cancelModal();
         } else {
           setDangerAlertOpen(true);
-          setLoggingIn(false)
+          setLoggingIn(false);
         }
       });
     }, 1000);
@@ -62,11 +62,11 @@ export default function TopBar(props) {
           localStorage.setItem("userName", userName);
           localStorage.setItem("password", password);
           setCreatedAccountOpen(true);
-          props.logInUser()
-          cancelModal()
+          props.logInUser();
+          cancelModal();
         }
       });
-  }, 1000);
+    }, 1000);
   }
 
   const handleClose = (event, reason) => {
@@ -84,7 +84,6 @@ export default function TopBar(props) {
 
     setCreatedAccountOpen(false);
   };
-
 
   const handleCloseDanger = (event, reason) => {
     if (reason === "clickaway") {
@@ -119,9 +118,9 @@ export default function TopBar(props) {
           <div className={styles.userName}>
             Welcome, {localStorage.getItem("userName")}
           </div>
-        <Button onClick={()=> props.logOutUser()} type="primary">
-          Log out 
-        </Button>
+          <Button onClick={() => props.logOutUser()} type="primary">
+            Log out
+          </Button>
         </div>
       ) : (
         <Button onClick={openModal} type="primary">
@@ -185,24 +184,41 @@ export default function TopBar(props) {
         </Box>
       </Modal>
       <Snackbar
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={open} autoHideDuration={3000} onClose={handleClose}>
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
         <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
           Login success!
         </Alert>
       </Snackbar>
       <Snackbar
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={createdAccountOpen} autoHideDuration={3000} onClose={handleCloseCreate}>
-        <Alert onClose={handleCloseCreate} severity="success" sx={{ width: "100%" }}>
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={createdAccountOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseCreate}
+      >
+        <Alert
+          onClose={handleCloseCreate}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
           Account created and now logged in!
         </Alert>
       </Snackbar>
       <Snackbar
-      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={dangerAlertOpen} autoHideDuration={3000} onClose={handleClose}>
-        <Alert onClose={handleCloseDanger} severity="error" sx={{ width: "100%" }}>
-          Error logging you in. Please check your username and password. 
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        open={dangerAlertOpen}
+        autoHideDuration={3000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleCloseDanger}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Error logging you in. Please check your username and password.
         </Alert>
       </Snackbar>
     </div>
