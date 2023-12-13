@@ -6,7 +6,7 @@ export default function TopBar() {
     <div className={styles.topBarHolder}>
       <div className={styles.pageLabel}>athletics hub</div>
       <div className={styles.pageAction}>
-        A research tool built for track and field fans
+        Stay up to date on your favorite track and field athletes
       </div>
     </div>
   );
