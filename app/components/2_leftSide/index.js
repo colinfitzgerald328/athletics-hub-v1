@@ -6,6 +6,7 @@ import { useRef } from "react";
 import * as API from "/app/api/api.js";
 import ComparisonModal from "./1_Modal";
 import styles from "./styles.module.css";
+import { Button } from "@mui/material";
 
 export default function LeftSide(props) {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -142,6 +143,25 @@ export default function LeftSide(props) {
         ""
       )}
       <ComparisonModal />
+      {
+        props.loggedIn && 
+        <Button
+        variant="contained"
+        sx={{
+          width: "100%",
+          marginTop: "10px",
+          borderRadius: "20px",
+          height: "50px",
+          fontSize: "20px",
+          backgroundColor: "lightslategray",
+          fontWeight: "bold",
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        Collections 
+      </Button>
+      }
     </div>
   );
 }
