@@ -46,34 +46,34 @@ export default function BigGraph(props) {
 
   return (
     <>
-    <h2 className={styles.graphName}>
-    Performance Graph for {props.athlete.full_name}
-  </h2>
-    <ResponsiveContainer className={styles.graphHolder}>
-      <LineChart
-        data={filteredResults}
-        margin={{
-          top: 5,
-          right: 20,
-          bottom: 5,
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="date" />
-        <YAxis domain={["dataMin - 100", "dataMax + 100"]} />
-        <Tooltip
-          content={<CustomTooltip />}
-          cursor={{ stroke: "#325573", strokeDasharray: "3 3" }}
-        />
-        <Legend />
-        <Line
-          name="Result Score"
-          type="monotone"
-          dataKey="resultScore"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+      <h2 className={styles.graphName}>
+        Performance Graph for {props.athlete.full_name}
+      </h2>
+      <ResponsiveContainer className={styles.graphHolder}>
+        <LineChart
+          data={filteredResults}
+          margin={{
+            top: 5,
+            right: 20,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
+          <YAxis domain={["dataMin - 100", "dataMax + 100"]} />
+          <Tooltip
+            content={<CustomTooltip />}
+            cursor={{ stroke: "#325573", strokeDasharray: "3 3" }}
+          />
+          <Legend />
+          <Line
+            name="Result Score"
+            type="monotone"
+            dataKey="resultScore"
+            activeDot={{ r: 8 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
     </>
   );
 }

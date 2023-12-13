@@ -1,38 +1,37 @@
 .graphName {
-    padding-bottom: 10px;
-  }
-  
-  .graphHolder {
-    width: 100%;
-    color: white;
-    border-radius: 20px;
-    font-size: 14px !important;
-    font-weight: 400 !important;
-    padding: 0px !important;
-    margin: 0px !important;
-    display: flex !important;
-    height: 75vh !important;
-  }
-  
-  .customTooltip {
-    background-color: #325573;
-    border: 1px solid #325573;
-    color: white;
-    padding: 20px;
-    border-radius: 20px;
-    width: 200px;
-  }
-  
-  .label {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .yAxis {
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 5px;
-  }
-  
+  padding-bottom: 10px;
+}
+
+.graphHolder {
+  width: 100%;
+  color: white;
+  border-radius: 20px;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  padding: 0px !important;
+  margin: 0px !important;
+  display: flex !important;
+  height: 75vh !important;
+}
+
+.customTooltip {
+  background-color: #325573;
+  border: 1px solid #325573;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  width: 200px;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.yAxis {
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 5px;
+}

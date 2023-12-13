@@ -115,13 +115,13 @@ export default function ComparisonModal() {
       <Button
         variant="contained"
         sx={{
-          "width": "100%",
-          "marginTop": "10px",
-          "borderRadius": "20px", 
-          "height": "50px",
-          "fontSize": "20px",
-          "backgroundColor": "lightslategray",
-          "fontWeight": "bold"
+          width: "100%",
+          marginTop: "10px",
+          borderRadius: "20px",
+          height: "50px",
+          fontSize: "20px",
+          backgroundColor: "lightslategray",
+          fontWeight: "bold",
         }}
         onClick={openModal}
       >
