@@ -194,8 +194,8 @@ export default function ComparisonModal() {
             )}
             <div className={styles.athletesHolder}>
               {athletes &&
-                athletes.map((athlete) => (
-                  <div className={styles.athlete}>
+                athletes.map((athlete, index) => (
+                  <div key={index} className={styles.athlete}>
                     <div className={styles.itemsContainer}>
                       <div className={styles.gradient}></div>
                       <img
@@ -222,8 +222,8 @@ export default function ComparisonModal() {
                         Personal Bests
                       </div>
                       <div className={styles.personalBestsHolder}>
-                        {athlete.personal_bests.map((pb) => (
-                          <div>
+                        {athlete.personal_bests.map((pb, index) => (
+                          <div key={index}>
                             <div className={styles.pbEvent}>
                               {pb.discipline}
                             </div>
