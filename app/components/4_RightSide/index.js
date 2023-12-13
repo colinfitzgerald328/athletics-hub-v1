@@ -26,6 +26,7 @@ export default function RightSide(props) {
       <PeformanceGraph
         athlete_data={props.athlete_data}
         loadingNewAthlete={props.loadingNewAthlete}
+        athlete={props.athlete}
       />
       <SocialProfiles athlete={props.athlete}></SocialProfiles>
       <Recommended

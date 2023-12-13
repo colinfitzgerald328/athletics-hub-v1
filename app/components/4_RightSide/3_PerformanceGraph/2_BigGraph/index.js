@@ -11,7 +11,7 @@ import {
 } from "recharts";
 import styles from "./styles.module.css";
 
-export default function CardGraph(props) {
+export default function BigGraph(props) {
   const filteredResults = props.athlete_data
     .filter((result) => result.resultScore !== 0)
     .reverse();
@@ -45,6 +45,10 @@ export default function CardGraph(props) {
   };
 
   return (
+    <>
+    <h2 className={styles.graphName}>
+    Performance Graph for {props.athlete.full_name}
+  </h2>
     <ResponsiveContainer className={styles.graphHolder}>
       <LineChart
         data={filteredResults}
@@ -70,5 +74,6 @@ export default function CardGraph(props) {
         />
       </LineChart>
     </ResponsiveContainer>
+    </>
   );
 }
