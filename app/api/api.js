@@ -203,3 +203,61 @@ export async function getTopCompetitors(athlete_id, callback) {
       console.log(error);
     });
 }
+
+export async function loginUser(username, password, callback) {
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  };
+
+  fetch(API_URL + "/v1/account/login", options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+export async function createAccount(username, password, callback) {
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: username,
+      password: password,
+    }),
+  };
+
+  fetch(API_URL + "/v1/account/create", options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

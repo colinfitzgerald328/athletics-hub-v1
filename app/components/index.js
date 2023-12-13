@@ -21,13 +21,26 @@ export default class MainComponent extends React.Component {
       width: 0,
       height: 0,
       pageLoaded: false,
+      loggedIn: false,
     };
   }
 
   componentDidMount() {
+    if (localStorage.getItem("userName") && localStorage.getItem("password")) {
+      this.setState({ loggedIn: true });
+    }
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
     this.updateWindowDimensions();
     this.fetchRandomAthlete();
+  }
+
+  logInUser() {
+    this.setState({ loggedIn: true })
+  }
+
+  logOutUser() {
+    this.setState({ loggedIn: false })
+    window.localStorage.clear()
   }
 
   setAthlete = async (athlete) => {
@@ -159,7 +172,11 @@ export default class MainComponent extends React.Component {
           <Head>
             <meta property="og:image" content="/icon.png" />
           </Head>
-          <TopBar />
+          <TopBar
+          loggedIn={this.state.loggedIn}
+          logOutUser={this.logOutUser.bind(this)}
+          logInUser={this.logInUser.bind(this)}
+          />
           <div className={styles.mainDisplay}>
             <LeftSide setAthlete={this.setAthlete.bind(this)} />
             <AthleteBreakDown

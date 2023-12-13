@@ -6,8 +6,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
-import SportsMmaIcon from '@mui/icons-material/SportsMma';
-import RectangleIcon from '@mui/icons-material/Rectangle';
+import SportsMmaIcon from "@mui/icons-material/SportsMma";
+import RectangleIcon from "@mui/icons-material/Rectangle";
 import * as API from "/app/api/api.js";
 
 export default function ComparisonModal() {
@@ -24,9 +24,9 @@ export default function ComparisonModal() {
 
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
-        setShowSearchResults(true);
-        setSearchResults(data.search_results);
-        setLoadingSearchResults(false);
+      setShowSearchResults(true);
+      setSearchResults(data.search_results);
+      setLoadingSearchResults(false);
     });
   }
 
@@ -122,12 +122,12 @@ export default function ComparisonModal() {
           fontSize: "20px",
           backgroundColor: "lightslategray",
           fontWeight: "bold",
-          display: "flex", 
-          alignItems: "center"
+          display: "flex",
+          alignItems: "center",
         }}
         onClick={openModal}
       >
-        Head to head <SportsMmaIcon/>
+        Head to head <SportsMmaIcon />
       </Button>
       <ConfigProvider
         theme={{
@@ -139,11 +139,13 @@ export default function ComparisonModal() {
         }}
       >
         <Modal footer="" open={modalOpen} onCancel={closeModal} width={"60vw"}>
-          <div
-          className={styles.modalLabel}>Head to head <SportsMmaIcon/>
+          <div className={styles.modalLabel}>
+            Head to head <SportsMmaIcon />
           </div>
           <div className={styles.explanation}>
-          <RectangleIcon/> Search for an athlete, click, and it will add it to the display. Repeat to compare the personal bests of as many athletes as you would like 😊 
+            <RectangleIcon /> Search for an athlete, click, and it will add it
+            to the display. Repeat to compare the personal bests of as many
+            athletes as you would like 😊
           </div>
           <div className={styles.content}>
             <input

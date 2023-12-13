@@ -19,9 +19,9 @@ export default function LeftSide(props) {
 
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
-        setShowSearchResults(true);
-        setSearchResults(data.search_results);
-        setLoadingSearchResults(false);
+      setShowSearchResults(true);
+      setSearchResults(data.search_results);
+      setLoadingSearchResults(false);
     });
   }
 
