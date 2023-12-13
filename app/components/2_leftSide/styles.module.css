@@ -1,6 +1,7 @@
 .leftSide {
   width: calc(100% / 3.5);
   padding: 0px 0px 0px 20px;
+  position: relative;
 }
 
 .searchBar {
@@ -9,9 +10,10 @@
   border: none;
   border-radius: 25px;
   font-size: 20px;
-  padding-left: 40px;
+  padding-left: 45px;
   position: relative;
   box-shadow: 2px 2px 5px slategray;
+  position: relative;
 }
 
 .searchBar:focus {
@@ -25,7 +27,7 @@
   border: none;
   border-radius: 25px;
   font-size: 20px;
-  padding-left: 40px;
+  padding-left: 45px;
   position: relative;
   border: none;
   outline: none;
@@ -35,7 +37,7 @@
 
 .searchIcon {
   position: absolute;
-  left: 30px;
+  left: 35px;
   margin-top: 12px;
   color: gray;
 }
@@ -43,7 +45,7 @@
 .xButton {
   position: absolute;
   transform: translateY(-42px);
-  left: calc((100% / 3.5) - 50px);
+  left: calc(100% - 50px);
   padding: 5px;
   display: flex;
   align-items: center;
@@ -64,6 +66,9 @@
   overflow-y: scroll;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+  position: absolute;
+  z-index: 1000;
+  width: calc(100% - 20px);
 }
 
 .singleResult {
