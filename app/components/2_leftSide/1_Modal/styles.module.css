@@ -241,3 +241,18 @@
   font-weight: bold;
   font-weight: 100;
 }
+
+.modalLabel {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.explanation {
+  color: gray;
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
