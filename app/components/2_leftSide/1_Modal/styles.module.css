@@ -140,6 +140,7 @@
   border-radius: 20px;
   margin-right: 10px;
   height: fit-content;
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .athleteName {
