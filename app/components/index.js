@@ -6,7 +6,7 @@ import AthleteBreakDown from "./3_Middle";
 import RightSide from "./4_RightSide";
 import styles from "./styles.module.css";
 import Head from "next/head";
-import ConstructionIcon from '@mui/icons-material/Construction';
+import ConstructionIcon from "@mui/icons-material/Construction";
 import Link from "next/link";
 import * as API from "/app/api/api.js";
 
@@ -48,7 +48,7 @@ export default class MainComponent extends React.Component {
         requestAnimationFrame(() => {
           this.setState({
             loadingNewAthlete: false,
-            pageLoaded: true
+            pageLoaded: true,
           });
         });
       }, 0);
@@ -140,13 +140,19 @@ export default class MainComponent extends React.Component {
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
         <div className={styles.underConstruction}>
-          <ConstructionIcon sx={{"fontSize": "50px"}}/>
+          <ConstructionIcon sx={{ fontSize: "50px" }} />
           <div className={styles.commentary}>
-          Our engineering team is hard at work building out mobile. It will be ready soon 😊. For now you can visit the desktop version.
-            </div>
-        <Link className={styles.hoverUnderline} href="https://athletics-hub-v1.vercel.app">Open in browser</Link>
+            Our engineering team is hard at work building out mobile. It will be
+            ready soon 😊. For now you can visit the desktop version.
+          </div>
+          <Link
+            className={styles.hoverUnderline}
+            href="https://athletics-hub-v1.vercel.app"
+          >
+            Open in browser
+          </Link>
         </div>
-      )
+      );
     } else {
       return (
         <div>

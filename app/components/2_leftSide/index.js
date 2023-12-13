@@ -142,7 +142,7 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
-      <ComparisonModal/>
+      <ComparisonModal />
     </div>
   );
 }

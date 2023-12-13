@@ -1,251 +1,249 @@
 .comparison {
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 20px;
-    height: 50px;
-    font-size: 20px;
-    background-color: lightslategray;
-    font-weight: bold;
-  }
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 20px;
+  height: 50px;
+  font-size: 20px;
+  background-color: lightslategray;
+  font-weight: bold;
+}
 
-  .leftSide {
-    width: calc(100% / 3.5);
-    padding: 0px 0px 0px 20px;
-  }
-  
-  .searchBar {
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 25px;
-    font-size: 20px;
-    padding-left: 50px;
-    position: relative;
-    box-shadow: 2px 2px 5px slategray;
-  }
-  
-  .searchBar:focus {
-    border: none;
-    outline: none;
-  }
-  
-  .searchBarFocused {
-    width: 100%;
-    height: 50px;
-    border: none;
-    border-radius: 25px;
-    font-size: 20px;
-    padding-left: 50px;
-    border: none;
-    outline: none;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-  }
-  
-  .searchIcon {
-    position: absolute;
-    left: 20px;
-    margin-top: 12px;
-    color: gray;
-  }
-  
-  .xButton {
-    position: absolute;
-    transform: translateY(-42px);
-    left: calc(100% - 55px);
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: gray;
-  }
-  
-  .xButton:hover {
-    background-color: lightgray;
-    cursor: pointer;
-    transition: background-color 0.5s;
-  }
-  
-  .searchResults {
-    background-color: white;
-    height: 300px;
-    overflow-y: scroll;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    z-index: 1000;
-    position: absolute;
-    width: 100%;
-    box-shadow: 2px 2px 5px slategray;
-  }
-  
-  .singleResult {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    padding-left: 10px;
-  }
-  
-  .noResults {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    display: flex;
-    padding-left: 10px;
-  }
-  
-  .singleResult:hover {
-    background-color: lightgray;
-    transition: background-color 0.5s;
-    cursor: pointer;
-  }
-  
-  .searchResultImage {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  .textDisplay {
-    margin-left: 10px;
-  }
-  
-  .fullName {
-    font-weight: bold;
-    font-size: 20px;
-  }
-  
-  .disciplines {
-    color: gray;
-    font-size: 12px;
-    font-weight: 100;
-  }
-  
-  .comparison {
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 20px;
-    height: 50px;
-    font-size: 20px;
-    background-color: lightslategray;
-  }
+.leftSide {
+  width: calc(100% / 3.5);
+  padding: 0px 0px 0px 20px;
+}
 
-  .content {
-    height: 60vh;
-    position: relative;
-  }
+.searchBar {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  padding-left: 50px;
+  position: relative;
+  box-shadow: 2px 2px 5px slategray;
+}
 
-  .athletesHolder {
-    border-radius: 20px;
-    margin-top: 10px;
-    display: flex; 
-    overflow-x: scroll;
-  }
+.searchBar:focus {
+  border: none;
+  outline: none;
+}
 
-  .athlete {
-    min-width: 300px;
-    max-width: 300px;
-    background-color: white;
-    border-radius: 20px;
-    margin-right: 10px;
-  }
+.searchBarFocused {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 25px;
+  font-size: 20px;
+  padding-left: 50px;
+  border: none;
+  outline: none;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
 
-  .athleteName {
-    font-size: 25px;
-    font-weight: bold;
-  }
+.searchIcon {
+  position: absolute;
+  left: 20px;
+  margin-top: 12px;
+  color: gray;
+}
 
-  .personalBestsLabel {
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 10px;
-  }
+.xButton {
+  position: absolute;
+  transform: translateY(-42px);
+  left: calc(100% - 55px);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: gray;
+}
 
-  .personalBestsHolder {
-    border: 2px solid slategray;
-    border-radius: 15px;
-    padding: 10px;
-  }
+.xButton:hover {
+  background-color: lightgray;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
 
-  .otherItems {
-    padding: 10px;
-  }
+.searchResults {
+  background-color: white;
+  height: 300px;
+  overflow-y: scroll;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  z-index: 1000;
+  position: absolute;
+  width: 100%;
+  box-shadow: 2px 2px 5px slategray;
+}
 
-  .pbEvent {
-    font-size: 14px;
-    font-weight: normal;
-  }
+.singleResult {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
+}
 
-  .pbMark {
-    font-size: 16px;
-    font-weight: 600;
-  }
+.noResults {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  padding-left: 10px;
+}
+
+.singleResult:hover {
+  background-color: lightgray;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+
+.searchResultImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.textDisplay {
+  margin-left: 10px;
+}
+
+.fullName {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.disciplines {
+  color: gray;
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.comparison {
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 20px;
+  height: 50px;
+  font-size: 20px;
+  background-color: lightslategray;
+}
+
+.content {
+  height: 60vh;
+  position: relative;
+}
+
+.athletesHolder {
+  border-radius: 20px;
+  margin-top: 10px;
+  display: flex;
+  overflow-x: scroll;
+}
+
+.athlete {
+  min-width: 300px;
+  max-width: 300px;
+  background-color: white;
+  border-radius: 20px;
+  margin-right: 10px;
+}
+
+.athleteName {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.personalBestsLabel {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.personalBestsHolder {
+  border: 2px solid slategray;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.otherItems {
+  padding: 10px;
+}
+
+.pbEvent {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.pbMark {
+  font-size: 16px;
+  font-weight: 600;
+}
 
 .itemsContainer {
-    position: relative;
-    width: 100%;
-    height: 300px;
-  }
-  
-  .athleteImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  }
-  
-  .gradient {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 0%,
-      rgba(0, 0, 0, 0.9) 100%
-    );
-    border-radius: 25px;
-  }
-  
-  .athleteNameHolder {
-    position: absolute;
-    bottom: 10px;
-    left: 5px;
-    font-size: 40px;
-    font-weight: bold;
-    margin-left: 10px;
-    color: white;
-  }
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
 
-  .xButtonHolder {
-    position: absolute;
-    top: 8px;
-    right: 16px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 5px;
-    color: white;
-  }
+.athleteImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
 
-  .xButtonHolder:hover {
-    background-color: lightgray;
-    transition: background-color 0.5s;
-    cursor: pointer;
-  }
-  
-  .fullNameInResult {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .disciplinesInResult {
-    font-size: 16px;
-    font-weight: bold;
-    font-weight: 100;
-  }
-  
-  
+.gradient {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.9) 100%
+  );
+  border-radius: 25px;
+}
+
+.athleteNameHolder {
+  position: absolute;
+  bottom: 10px;
+  left: 5px;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: white;
+}
+
+.xButtonHolder {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5px;
+  color: white;
+}
+
+.xButtonHolder:hover {
+  background-color: lightgray;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+
+.fullNameInResult {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.disciplinesInResult {
+  font-size: 16px;
+  font-weight: bold;
+  font-weight: 100;
+}
