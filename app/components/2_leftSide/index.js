@@ -19,11 +19,9 @@ export default function LeftSide(props) {
 
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
-      setTimeout(() => {
         setShowSearchResults(true);
         setSearchResults(data.search_results);
         setLoadingSearchResults(false);
-      }, 500);
     });
   }
 
@@ -96,6 +94,7 @@ export default function LeftSide(props) {
         value={searchTerm}
         ref={inputRef}
         onChange={(e) => setSearchTerm(e.target.value)}
+        spellCheck="false"
       ></input>
       <SearchIcon className={styles.searchIcon} />
       {searchTerm && (
