@@ -14,6 +14,7 @@
     "@material/web": "^1.0.1",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
+    "antd": "^5.12.2",
     "lodash.debounce": "^4.0.8",
     "next": "14.0.4",
     "react": "^18",

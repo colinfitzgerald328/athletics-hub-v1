@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
-import Image from "next/image";
 import { useRef } from "react";
 import * as API from "/app/api/api.js";
+import ComparisonModal from "./1_Modal";
 import styles from "./styles.module.css";
 
 export default function LeftSide(props) {
@@ -142,6 +142,7 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
+      <ComparisonModal/>
     </div>
   );
 }
