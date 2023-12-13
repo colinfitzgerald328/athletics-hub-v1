@@ -1,12 +1,13 @@
 .graphName {
   padding-bottom: 10px;
+  font-size: 25px;
 }
 
 .graphHolder {
   width: 100%;
   color: white;
   border-radius: 20px;
-  font-size: 14px !important;
+  font-size: 16px !important;
   font-weight: 400 !important;
   padding: 0px !important;
   margin: 0px !important;
@@ -15,17 +16,24 @@
 }
 
 .customTooltip {
-  background-color: #325573;
-  border: 1px solid #325573;
-  color: white;
+  background-color: white;
+  border: 1px solid gray;
+  color: black;
   padding: 20px;
   border-radius: 20px;
-  width: 200px;
+  box-shadow: 2px 2px 5px slategray;
+  max-width: 400px;
 }
 
 .label {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid gray;
+}
+
+.secondaryLabel {
+  font-size: 18px;
   margin-bottom: 5px;
 }
 

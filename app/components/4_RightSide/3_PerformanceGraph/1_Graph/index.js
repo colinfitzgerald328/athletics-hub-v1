@@ -21,19 +21,19 @@ export default function CardGraph(props) {
       return (
         <div className={styles.customTooltip}>
           <p className={styles.label}>{`Score: ${payload[0].value}`}</p>
-          <p className="label">
+          <p className={styles.secondaryLabel}>
             <b style={{ marginRight: "5px" }}>Mark:</b>
             {payload[0].payload.mark}
           </p>
-          <p className="label">
+          <p className={styles.secondaryLabel}>
             <b style={{ marginRight: "5px" }}>Event:</b>
             {payload[0].payload.discipline}
           </p>
-          <p className="label">
+          <p className={styles.secondaryLabel}>
             <b style={{ marginRight: "5px" }}>Competition:</b>
             {payload[0].payload.competition}
           </p>
-          <p className="label">
+          <p className={styles.secondaryLabel}>
             <b style={{ marginRight: "5px" }}>Date:</b>
             {payload[0].payload.date}
           </p>

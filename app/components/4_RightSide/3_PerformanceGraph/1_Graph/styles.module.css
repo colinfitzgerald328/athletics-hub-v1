@@ -17,17 +17,25 @@
 }
 
 .customTooltip {
-  background-color: #325573;
-  border: 1px solid #325573;
-  color: white;
+  background-color: white;
+  border: 1px solid gray;
+  color: black;
   padding: 20px;
   border-radius: 20px;
-  width: 200px;
+  box-shadow: 2px 2px 5px slategray;
+  max-width: 280px;
+  opacity: 0.95;
 }
 
 .label {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid gray;
+}
+
+.secondaryLabel {
+  font-size: 18px;
   margin-bottom: 5px;
 }
 
