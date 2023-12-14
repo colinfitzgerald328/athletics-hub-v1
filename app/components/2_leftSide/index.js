@@ -157,6 +157,7 @@ export default function LeftSide(props) {
             display: "flex",
             alignItems: "center",
           }}
+          className={styles.animatedButton}
           onClick={() => props.showCollections()}
         >
           Collections

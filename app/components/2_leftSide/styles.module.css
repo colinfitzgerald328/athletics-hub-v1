@@ -119,3 +119,19 @@
   font-size: 20px;
   background-color: lightslategray;
 }
+
+
+.animatedButton {
+  animation: slidein 0.5s;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
