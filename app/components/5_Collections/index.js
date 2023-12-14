@@ -142,6 +142,7 @@ export default function Collections(props) {
           <AddToCollectionModal
                       currentIndex={currentIndex}
                       user_collections={props.user_collections}
+                      getCollectionsForUser={props.getCollectionsForUser}
           />
           {collection.map((athlete, index) => (
             <div key={index} className={styles.competitor}>
