@@ -6,6 +6,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
 import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js";
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
+import DeleteOptionMenu from "./3_DeleteOption";
 import TimeAgo from "javascript-time-ago";
 import * as API from "/app/api/api.js";
 
@@ -151,11 +152,6 @@ export default function Collections(props) {
                 <div className={styles.criticalInfo}>
                   <div className={styles.leftItems}>
                     <div
-                      // onClick={() =>
-                      //   props.setAthleteFromTopCompetitors(
-                      //     competitor.aaAthleteId,
-                      //   )
-                      // }
                       className={styles.competitorName}
                     >
                       {athlete.full_name}
@@ -164,17 +160,24 @@ export default function Collections(props) {
                       {athlete.disciplines}
                     </div>
                   </div>
-                  <div
-                    onClick={() => updateSummaryStyle(athlete, index)}
-                    className={styles.rightItems}
-                  >
-                    {athlete.summary &&
-                      (athlete.height && athlete.height != "0px" ? (
-                        <RemoveIcon sx={{ fontWeight: "bold" }} />
-                      ) : (
-                        <AddIcon />
-                      ))}
-                  </div>
+                  <div className={styles.rightItemsContainer}>
+                    <DeleteOptionMenu
+                      athlete_id={athlete.aaAthleteId}
+                      collection_id={props.user_collections[currentIndex]["_id"]}
+                      getCollectionsForUser={props.getCollectionsForUser}
+                    />
+                    <div
+                      onClick={() => updateSummaryStyle(athlete, index)}
+                      className={styles.rightItems}
+                    >
+                      {athlete.summary &&
+                        (athlete.height && athlete.height != "0px" ? (
+                          <RemoveIcon sx={{ fontWeight: "bold" }} />
+                        ) : (
+                          <AddIcon />
+                        ))}
+                    </div>
+                    </div>
                 </div>
               </div>
               <div

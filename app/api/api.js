@@ -351,3 +351,37 @@ export async function addAthletesToCollection(
       console.log(error);
     });
 }
+
+
+export async function deleteAthleteFromCollection(
+  collectionId,
+  athleteId,
+  callback,
+) {
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      collection_id: collectionId,
+      athlete_id: athleteId,
+    }),
+  };
+
+  fetch(API_URL + "/v1/collections/delete", options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

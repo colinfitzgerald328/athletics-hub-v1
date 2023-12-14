@@ -173,3 +173,11 @@
   display: flex;
   align-items: center;
 }
+
+
+.rightItemsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
