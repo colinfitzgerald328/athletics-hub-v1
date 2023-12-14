@@ -24,16 +24,26 @@ export default class MainComponent extends React.Component {
       pageLoaded: false,
       loggedIn: false,
       showingCollections: false,
+      user_collections: []
     };
   }
 
   componentDidMount() {
     if (localStorage.getItem("userName") && localStorage.getItem("password")) {
       this.setState({ loggedIn: true });
+      this.getCollectionsForUser();
     }
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
     this.updateWindowDimensions();
     this.fetchRandomAthlete();
+  }
+
+  getCollectionsForUser() {
+    console.log("running this function")
+    API.getCollectionsForAccount((data) => 
+    {
+      this.setState({ user_collections: data["collections"]})
+    })
   }
 
   logInUser() {
@@ -196,6 +206,8 @@ export default class MainComponent extends React.Component {
               />
               <Collections
                 closeCollections={this.closeCollections.bind(this)}
+                getCollectionsForUser={this.getCollectionsForUser.bind(this)}
+                user_collections={this.state.user_collections}
               />
             </div>
           ) : (

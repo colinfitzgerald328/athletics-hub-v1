@@ -295,3 +295,27 @@ export async function createCollection(
       console.log(error);
     });
 }
+
+
+export async function getCollectionsForAccount(callback) {
+  var data = {
+    account_id: localStorage.getItem("account_id"),
+  };
+
+  var url = new URL(API_URL + "/v1/account/collections");
+  url.search = new URLSearchParams(data).toString();
+  fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

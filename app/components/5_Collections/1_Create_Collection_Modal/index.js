@@ -7,7 +7,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
 import * as API from "/app/api/api.js";
 
-export default function CreateCollectionModal() {
+export default function CreateCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [athletes, setAthletes] = useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -118,6 +118,7 @@ export default function CreateCollectionModal() {
       API.createCollection(collectionName, athlete_ids, (data) => {
         setSavingCollection(false);
         setModalOpen(false);
+        props.getCollectionsForUser()
       });
     }, 1000);
   }
