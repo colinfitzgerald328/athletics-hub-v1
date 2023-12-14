@@ -9,7 +9,6 @@ export default function DataTable(props) {
     var element = document.getElementsByClassName(styles.tableContainer)[0];
     if (element) {
       var subtraction = props.height - 600 - element.scrollHeight;
-      console.log(subtraction);
       if (subtraction < 20) {
         setShowScrollButton(true);
       } else {

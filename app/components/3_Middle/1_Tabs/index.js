@@ -86,7 +86,6 @@ export default function BasicTabs(props) {
     var element = document.getElementsByClassName(styles.summary)[0];
     if (element) {
       var subtraction = props.height - 500 - element.scrollHeight;
-      console.log(subtraction);
       if (subtraction < 20) {
         setShowScrollButton(true);
       } else {

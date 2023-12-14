@@ -25,6 +25,7 @@ export default class MainComponent extends React.Component {
       loggedIn: false,
       showingCollections: false,
       user_collections: [],
+      loadingCollections: true,
     };
   }
 
@@ -40,7 +41,7 @@ export default class MainComponent extends React.Component {
 
   getCollectionsForUser() {
     API.getCollectionsForAccount((data) => {
-      this.setState({ user_collections: data["collections"] });
+      this.setState({ user_collections: data["collections"], loadingCollections: false });
     });
   }
 
@@ -168,6 +169,7 @@ export default class MainComponent extends React.Component {
     this.setState({ showingCollections: false });
   }
 
+
   render() {
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
@@ -202,6 +204,7 @@ export default class MainComponent extends React.Component {
                 setAthlete={this.setAthlete.bind(this)}
                 loggedIn={this.state.loggedIn}
                 showCollections={this.showCollections.bind(this)}
+                loadingCollections={this.state.loadingCollections}
               />
               <Collections
                 closeCollections={this.closeCollections.bind(this)}
@@ -215,6 +218,7 @@ export default class MainComponent extends React.Component {
                 setAthlete={this.setAthlete.bind(this)}
                 loggedIn={this.state.loggedIn}
                 showCollections={this.showCollections.bind(this)}
+                loadingCollections={this.state.loadingCollections}
               />
               <AthleteBreakDown
                 athlete={this.state.athlete}

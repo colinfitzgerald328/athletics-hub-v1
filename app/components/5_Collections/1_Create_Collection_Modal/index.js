@@ -114,7 +114,6 @@ export default function CreateCollectionModal(props) {
     const athlete_ids = [];
     athletes.forEach((athlete) => athlete_ids.push(athlete.aaAthleteId));
     setTimeout(() => {
-      console.log("Delayed for 1 second.");
       API.createCollection(collectionName, athlete_ids, (data) => {
         setSavingCollection(false);
         setModalOpen(false);
