@@ -5,13 +5,14 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
 import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js"
+import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import TimeAgo from "javascript-time-ago";
 import * as API from "/app/api/api.js";
 
 // English.
 import en from "javascript-time-ago/locale/en";
 
-TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(en);
 
 // Create formatter (English).
 const timeAgo = new TimeAgo("en-US");
@@ -138,6 +139,10 @@ export default function Collections(props) {
             ))}
         </div>
         <div className={styles.panel}>
+          <AddToCollectionModal
+                      currentIndex={currentIndex}
+                      user_collections={props.user_collections}
+          />
           {collection.map((athlete, index) => (
             <div key={index} className={styles.competitor}>
               <div className={styles.topItems}>
