@@ -4,6 +4,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
+import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js"
 import TimeAgo from "javascript-time-ago";
 
 // English.
@@ -20,15 +21,9 @@ export default function Collections(props) {
   );
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  function updateSummaryStyle(athlete) {
-    var elements = document.getElementsByClassName(styles.competitorSummary);
-    var newScrollHeight;
-
-    for (let item of elements) {
-      if (item.textContent == athlete.summary) {
-        newScrollHeight = item.scrollHeight + "px";
-      }
-    }
+  function updateSummaryStyle(athlete, index) {
+    var element = document.getElementById(index);
+    var newScrollHeight = element.scrollHeight + "px";
 
     for (let i = 0; i < collection.length; i++) {
       if (collection[i].aaAthleteId == athlete.aaAthleteId) {
@@ -113,7 +108,7 @@ export default function Collections(props) {
                     </div>
                   </div>
                   <div
-                    onClick={() => updateSummaryStyle(athlete)}
+                    onClick={() => updateSummaryStyle(athlete, index)}
                     className={styles.rightItems}
                   >
                     {athlete.summary &&
@@ -125,11 +120,15 @@ export default function Collections(props) {
                   </div>
                 </div>
               </div>
-              <div
-                className={styles.competitorSummary}
-                style={{ height: athlete.height }}
-              >
-                {athlete.summary}
+                <div id={index} className={styles.competitorSummary} style={{ height: athlete.height }}>
+                <CustomTabPanel
+                  athlete={athlete}
+                  loadingNewAthlete={false}
+                  athlete_data={[]}
+                  top_competitors={[]}
+                  // setAthleteFromTopCompetitors={function}
+                  // height={props.height}
+                  />
               </div>
             </div>
           ))}
