@@ -15,7 +15,9 @@ TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
 export default function Collections(props) {
-  const [collection, setCollection] = useState(props.user_collections[0].detailed_athletes);
+  const [collection, setCollection] = useState(
+    props.user_collections[0].detailed_athletes,
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function updateSummaryStyle(athlete) {
@@ -44,8 +46,8 @@ export default function Collections(props) {
   }
 
   function handleSelect(index, collection) {
-    setCollection(collection)
-    setCurrentIndex(index)
+    setCollection(collection);
+    setCurrentIndex(index);
   }
 
   return (
@@ -65,9 +67,14 @@ export default function Collections(props) {
           {props.user_collections &&
             props.user_collections.map((collection, index) => (
               <div
-              onClick={()=> handleSelect(index, collection.detailed_athletes)}
-              key={index}
-              className={currentIndex == index ? styles.selected : styles.collection}>
+                onClick={() =>
+                  handleSelect(index, collection.detailed_athletes)
+                }
+                key={index}
+                className={
+                  currentIndex == index ? styles.selected : styles.collection
+                }
+              >
                 <div className={styles.collectionName}>
                   {collection.collection_name}
                 </div>
@@ -78,52 +85,50 @@ export default function Collections(props) {
             ))}
         </div>
         <div className={styles.panel}>
-          {
-            collection.map((athlete, index) => (
-              <div key={index} className={styles.competitor}>
-                <div className={styles.topItems}>
-                    <img
-                      className={styles.competitorImage}
-                      src={athlete.hq_image_url}
-                    />
-                  <div className={styles.criticalInfo}>
-                    <div className={styles.leftItems}>
-                        <div
-                          // onClick={() =>
-                          //   props.setAthleteFromTopCompetitors(
-                          //     competitor.aaAthleteId,
-                          //   )
-                          // }
-                          className={styles.competitorName}
-                        >
-                          {athlete.full_name}
-                        </div>
-                        <div className={styles.disciplines}>
-                          {athlete.disciplines}
-                        </div>
-                    </div>
+          {collection.map((athlete, index) => (
+            <div key={index} className={styles.competitor}>
+              <div className={styles.topItems}>
+                <img
+                  className={styles.competitorImage}
+                  src={athlete.hq_image_url}
+                />
+                <div className={styles.criticalInfo}>
+                  <div className={styles.leftItems}>
                     <div
-                      onClick={() => updateSummaryStyle(athlete)}
-                      className={styles.rightItems}
+                      // onClick={() =>
+                      //   props.setAthleteFromTopCompetitors(
+                      //     competitor.aaAthleteId,
+                      //   )
+                      // }
+                      className={styles.competitorName}
                     >
-                      {athlete.summary &&
-                        (athlete.height && athlete.height != "0px" ? (
-                          <RemoveIcon sx={{ fontWeight: "bold" }} />
-                        ) : (
-                          <AddIcon />
-                        ))}
+                      {athlete.full_name}
+                    </div>
+                    <div className={styles.disciplines}>
+                      {athlete.disciplines}
                     </div>
                   </div>
-                </div>
-                <div
-                  className={styles.competitorSummary}
-                  style={{ height: athlete.height }}
-                >
-                  {athlete.summary}
+                  <div
+                    onClick={() => updateSummaryStyle(athlete)}
+                    className={styles.rightItems}
+                  >
+                    {athlete.summary &&
+                      (athlete.height && athlete.height != "0px" ? (
+                        <RemoveIcon sx={{ fontWeight: "bold" }} />
+                      ) : (
+                        <AddIcon />
+                      ))}
+                  </div>
                 </div>
               </div>
-            ))
-          }
+              <div
+                className={styles.competitorSummary}
+                style={{ height: athlete.height }}
+              >
+                {athlete.summary}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
