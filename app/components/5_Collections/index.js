@@ -6,6 +6,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
 import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js"
 import TimeAgo from "javascript-time-ago";
+import * as API from "/app/api/api.js";
 
 // English.
 import en from "javascript-time-ago/locale/en";
@@ -20,6 +21,9 @@ export default function Collections(props) {
     props.user_collections[0].detailed_athletes,
   );
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [top_competitors, setTopCompetitors] = useState([]);
+  const [athlete_data, setAthleteData] = useState([]);
+  const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
 
   function updateSummaryStyle(athlete, index) {
     var element = document.getElementById(index);
@@ -29,10 +33,12 @@ export default function Collections(props) {
       if (collection[i].aaAthleteId == athlete.aaAthleteId) {
         if (collection[i].height == undefined) {
           collection[i].height = newScrollHeight;
+          getDataForAthlete(athlete)
         } else if (collection[i].height != "0px") {
           collection[i].height = "0px";
         } else {
           collection[i].height = newScrollHeight;
+          getDataForAthlete(athlete)
         }
       }
     }
@@ -48,6 +54,54 @@ export default function Collections(props) {
   useEffect(()=> {
     setCollection(props.user_collections[0].detailed_athletes)
   }, [props.user_collections])
+
+
+  async function getDataForAthlete(athlete) {
+    console.log("running this function")
+    setLoadingNewAthlete(true);
+    try {
+      await Promise.all([
+        getResultsForAthlete(athlete.aaAthleteId),
+        getTopCompetitors(athlete.aaAthleteId),
+      ]);
+      setLoadingNewAthlete(false);
+    } catch (error) {
+      console.error("Error occurred:", error);
+      setLoadingNewAthlete(false);
+    }
+  };
+
+
+  function getTopCompetitors(athlete_id) {
+    return new Promise((resolve, reject) => {
+      API.getTopCompetitors(
+        athlete_id,
+        (data) => {
+          setTopCompetitors(data["top_competitors"]),
+          resolve(data); // Resolve the promise with the data
+        },
+        (error) => {
+          console.log(error);
+          reject(error); // Reject the promise with the error
+        },
+      );
+    });
+  }
+
+  function getResultsForAthlete(athlete_id) {
+    return new Promise((resolve, reject) => {
+      API.getResultsForAthlete(
+        athlete_id,
+        (results) => {
+          setAthleteData(results["athlete_data"])
+          resolve(results); // Resolve the promise with the data
+        },
+        (error) => {
+          reject(error); // Reject the promise with the error
+        },
+      );
+    });
+  }
 
   return (
     <div className={styles.basic}>
@@ -123,9 +177,9 @@ export default function Collections(props) {
                 <div id={index} className={styles.competitorSummary} style={{ height: athlete.height }}>
                 <CustomTabPanel
                   athlete={athlete}
-                  loadingNewAthlete={false}
-                  athlete_data={[]}
-                  top_competitors={[]}
+                  loadingNewAthlete={loadingNewAthlete}
+                  athlete_data={athlete_data}
+                  top_competitors={top_competitors}
                   // setAthleteFromTopCompetitors={function}
                   // height={props.height}
                   />
