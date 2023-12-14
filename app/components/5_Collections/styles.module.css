@@ -2,6 +2,17 @@
   padding-left: 10px;
   width: calc((calc(100% / 2) + calc(100% / 3.5)));
   margin-right: 10px;
+  animation: slideUp 0.5s;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
 }
 
 .topItems {
