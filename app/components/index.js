@@ -58,7 +58,7 @@ export default class MainComponent extends React.Component {
   }
 
   logOutUser() {
-    this.setState({ loggedIn: false });
+    this.setState({ loggedIn: false, showingCollections: false });
     window.localStorage.clear();
   }
 

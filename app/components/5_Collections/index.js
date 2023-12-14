@@ -19,81 +19,88 @@ TimeAgo.addLocale(en);
 const timeAgo = new TimeAgo("en-US");
 
 export default function Collections(props) {
-  const [collection, setCollection] = useState(
-    props.user_collections[0].detailed_athletes,
+  const [collections, setCollections] = useState(
+    [],
   );
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [top_competitors, setTopCompetitors] = useState([]);
-  const [athlete_data, setAthleteData] = useState([]);
   const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
 
-  function updateSummaryStyle(athlete, index) {
+  async function updateSummaryStyle(athlete, index) {
+    const currentCollections = collections;
+    const theItem = currentCollections[currentIndex].detailed_athletes[index]
     var element = document.getElementById(index);
     var newScrollHeight = element.scrollHeight + "px";
 
-    for (let i = 0; i < collection.length; i++) {
-      if (collection[i].aaAthleteId == athlete.aaAthleteId) {
-        if (collection[i].height == undefined) {
-          collection[i].height = newScrollHeight;
-          getDataForAthlete(athlete);
-        } else if (collection[i].height != "0px") {
-          collection[i].height = "0px";
-        } else {
-          collection[i].height = newScrollHeight;
-          getDataForAthlete(athlete);
-        }
-      }
+    if (theItem.height == undefined) {
+      theItem.height = newScrollHeight;
+      const data_fetch_results = await getDataForAthlete(athlete);
+      theItem.athlete_results = data_fetch_results.athlete_results
+      theItem.top_competitors = data_fetch_results.top_competitors
+      return; 
+    } else if (theItem.height != "0px") {
+      theItem.height = "0px";
+    } else {
+      theItem.height = newScrollHeight;
+      getDataForAthlete(athlete);
     }
-
-    setCollection([...collection]);
+    setCollections([...currentCollections]);
   }
 
-  function handleSelect(index, collection) {
-    setCollection(collection);
+  function handleSelect(index) {
     setCurrentIndex(index);
   }
 
   useEffect(() => {
-    setCollection(props.user_collections[currentIndex].detailed_athletes);
+    setCollections(props.user_collections);
   }, [props.user_collections]);
 
   async function getDataForAthlete(athlete) {
-    console.log("running this function");
     setLoadingNewAthlete(true);
+  
     try {
-      await Promise.all([
-        getResultsForAthlete(athlete.aaAthleteId),
-        getTopCompetitors(athlete.aaAthleteId),
+      const athleteResultsPromise = getResultsForAthlete(athlete.aaAthleteId);
+      const topCompetitorsPromise = getTopCompetitors(athlete.aaAthleteId);
+  
+      const [athleteResults, topCompetitors] = await Promise.all([
+        athleteResultsPromise,
+        topCompetitorsPromise,
       ]);
+  
       setLoadingNewAthlete(false);
+  
+      return {
+        athlete_results: athleteResults,
+        top_competitors: topCompetitors,
+      };
     } catch (error) {
-      console.error("Error occurred:", error);
+      console.error("Error fetching data for athlete:", error);
       setLoadingNewAthlete(false);
+      throw error; // Rethrow the error to handle it further up the call stack
     }
   }
-
+  
   function getTopCompetitors(athlete_id) {
     return new Promise((resolve, reject) => {
       API.getTopCompetitors(
         athlete_id,
         (data) => {
-          setTopCompetitors(data["top_competitors"]), resolve(data); // Resolve the promise with the data
+          resolve(data["top_competitors"]);
         },
         (error) => {
-          console.log(error);
-          reject(error); // Reject the promise with the error
-        },
+          console.error("Error fetching top competitors:", error);
+          reject(error);
+        }
       );
     });
   }
+  
 
   function getResultsForAthlete(athlete_id) {
     return new Promise((resolve, reject) => {
       API.getResultsForAthlete(
         athlete_id,
         (results) => {
-          setAthleteData(results["athlete_data"]);
-          resolve(results); // Resolve the promise with the data
+          resolve(results["athlete_data"]); // Resolve the promise with the data
         },
         (error) => {
           reject(error); // Reject the promise with the error
@@ -101,6 +108,7 @@ export default function Collections(props) {
       );
     });
   }
+  
 
   return (
     <div className={styles.basic}>
@@ -116,11 +124,11 @@ export default function Collections(props) {
       </div>
       <div className={styles.contentHolder}>
         <div className={styles.collections}>
-          {props.user_collections &&
+          {props.user_collections.length > 0 &&
             props.user_collections.map((collection, index) => (
               <div
                 onClick={() =>
-                  handleSelect(index, collection.detailed_athletes)
+                  handleSelect(index)
                 }
                 key={index}
                 className={
@@ -140,16 +148,16 @@ export default function Collections(props) {
         <div className={styles.panel}>
           <div className={styles.textLabels}>
           <div className={styles.collectionLabel}>
-              {props.user_collections[currentIndex].collection_name}
+              {props.user_collections.length > 0 && props.user_collections[currentIndex].collection_name}
             </div>
             <AddToCollectionModal
               currentIndex={currentIndex}
               user_collections={props.user_collections}
               getCollectionsForUser={props.getCollectionsForUser}
-              collectionName={props.user_collections[currentIndex].collection_name}
+              collectionName={props.user_collections.length > 0 && props.user_collections[currentIndex].collection_name}
             />
           </div>
-          {collection.map((athlete, index) => (
+          {collections.length > 0 && collections[currentIndex].detailed_athletes.map((athlete, index) => (
             <div key={index} className={styles.competitor}>
               <div className={styles.topItems}>
                 <img
@@ -194,9 +202,9 @@ export default function Collections(props) {
               >
                 <CustomTabPanel
                   athlete={athlete}
-                  loadingNewAthlete={loadingNewAthlete}
-                  athlete_data={athlete_data}
-                  top_competitors={top_competitors}
+                  loadingNewAthlete={false}
+                  athlete_data={athlete.athlete_results || []}
+                  top_competitors={athlete.top_competitors}
                 />
               </div>
             </div>

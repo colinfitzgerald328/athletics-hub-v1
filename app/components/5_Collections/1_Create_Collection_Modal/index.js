@@ -97,6 +97,7 @@ export default function CreateCollectionModal(props) {
   function closeModal() {
     setModalOpen(false);
     setAthletes([]);
+    setCollectionName("");
   }
 
   function spliceItem(item) {

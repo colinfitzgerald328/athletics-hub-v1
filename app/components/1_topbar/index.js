@@ -65,6 +65,7 @@ export default function TopBar(props) {
           setLoggingIn(false);
           localStorage.setItem("userName", userName);
           localStorage.setItem("password", password);
+          localStorage.setItem("account_id", data["account_id"])
           setCreatedAccountOpen(true);
           props.logInUser();
           cancelModal();
