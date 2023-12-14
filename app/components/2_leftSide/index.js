@@ -143,7 +143,7 @@ export default function LeftSide(props) {
         ""
       )}
       <ComparisonModal />
-      {(props.loggedIn && !props.loadingCollections) ? 
+      {props.loggedIn && !props.loadingCollections ? (
         <Button
           variant="contained"
           sx={{
@@ -161,9 +161,9 @@ export default function LeftSide(props) {
         >
           Collections
         </Button>
-        :
+      ) : (
         ""
-      }
+      )}
     </div>
   );
 }

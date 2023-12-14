@@ -319,7 +319,6 @@ export async function getCollectionsForAccount(callback) {
     });
 }
 
-
 export async function addAthletesToCollection(
   collectionId,
   athleteIds,

@@ -30,7 +30,11 @@ export default class MainComponent extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem("userName") && localStorage.getItem("password") && localStorage.getItem("account_id")) {
+    if (
+      localStorage.getItem("userName") &&
+      localStorage.getItem("password") &&
+      localStorage.getItem("account_id")
+    ) {
       this.setState({ loggedIn: true });
       this.getCollectionsForUser();
     }
@@ -41,7 +45,10 @@ export default class MainComponent extends React.Component {
 
   getCollectionsForUser() {
     API.getCollectionsForAccount((data) => {
-      this.setState({ user_collections: JSON.parse(data["collections"]), loadingCollections: false });
+      this.setState({
+        user_collections: JSON.parse(data["collections"]),
+        loadingCollections: false,
+      });
     });
   }
 
@@ -168,7 +175,6 @@ export default class MainComponent extends React.Component {
   closeCollections() {
     this.setState({ showingCollections: false });
   }
-
 
   render() {
     if (this.state.width < 1000 && this.state.pageLoaded) {

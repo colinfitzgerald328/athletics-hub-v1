@@ -4,7 +4,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
-import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js"
+import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js";
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import TimeAgo from "javascript-time-ago";
 import * as API from "/app/api/api.js";
@@ -34,12 +34,12 @@ export default function Collections(props) {
       if (collection[i].aaAthleteId == athlete.aaAthleteId) {
         if (collection[i].height == undefined) {
           collection[i].height = newScrollHeight;
-          getDataForAthlete(athlete)
+          getDataForAthlete(athlete);
         } else if (collection[i].height != "0px") {
           collection[i].height = "0px";
         } else {
           collection[i].height = newScrollHeight;
-          getDataForAthlete(athlete)
+          getDataForAthlete(athlete);
         }
       }
     }
@@ -52,13 +52,12 @@ export default function Collections(props) {
     setCurrentIndex(index);
   }
 
-  useEffect(()=> {
-    setCollection(props.user_collections[0].detailed_athletes)
-  }, [props.user_collections])
-
+  useEffect(() => {
+    setCollection(props.user_collections[0].detailed_athletes);
+  }, [props.user_collections]);
 
   async function getDataForAthlete(athlete) {
-    console.log("running this function")
+    console.log("running this function");
     setLoadingNewAthlete(true);
     try {
       await Promise.all([
@@ -70,16 +69,14 @@ export default function Collections(props) {
       console.error("Error occurred:", error);
       setLoadingNewAthlete(false);
     }
-  };
-
+  }
 
   function getTopCompetitors(athlete_id) {
     return new Promise((resolve, reject) => {
       API.getTopCompetitors(
         athlete_id,
         (data) => {
-          setTopCompetitors(data["top_competitors"]),
-          resolve(data); // Resolve the promise with the data
+          setTopCompetitors(data["top_competitors"]), resolve(data); // Resolve the promise with the data
         },
         (error) => {
           console.log(error);
@@ -94,7 +91,7 @@ export default function Collections(props) {
       API.getResultsForAthlete(
         athlete_id,
         (results) => {
-          setAthleteData(results["athlete_data"])
+          setAthleteData(results["athlete_data"]);
           resolve(results); // Resolve the promise with the data
         },
         (error) => {
@@ -140,9 +137,9 @@ export default function Collections(props) {
         </div>
         <div className={styles.panel}>
           <AddToCollectionModal
-                      currentIndex={currentIndex}
-                      user_collections={props.user_collections}
-                      getCollectionsForUser={props.getCollectionsForUser}
+            currentIndex={currentIndex}
+            user_collections={props.user_collections}
+            getCollectionsForUser={props.getCollectionsForUser}
           />
           {collection.map((athlete, index) => (
             <div key={index} className={styles.competitor}>
@@ -180,7 +177,11 @@ export default function Collections(props) {
                   </div>
                 </div>
               </div>
-                <div id={index} className={styles.competitorSummary} style={{ height: athlete.height }}>
+              <div
+                id={index}
+                className={styles.competitorSummary}
+                style={{ height: athlete.height }}
+              >
                 <CustomTabPanel
                   athlete={athlete}
                   loadingNewAthlete={loadingNewAthlete}
@@ -188,7 +189,7 @@ export default function Collections(props) {
                   top_competitors={top_competitors}
                   // setAthleteFromTopCompetitors={function}
                   // height={props.height}
-                  />
+                />
               </div>
             </div>
           ))}

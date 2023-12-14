@@ -110,7 +110,7 @@ export default function AddToCollectionModal(props) {
   }
 
   function saveCollection() {
-    const collectionId = props.user_collections[props.currentIndex]["_id"]
+    const collectionId = props.user_collections[props.currentIndex]["_id"];
     setSavingCollection(true);
     const athlete_ids = [];
     athletes.forEach((athlete) => athlete_ids.push(athlete.aaAthleteId));
@@ -125,13 +125,17 @@ export default function AddToCollectionModal(props) {
 
   return (
     <>
-      <Button className={styles.addToCollection} type="primary" onClick={openModal}>
+      <Button
+        className={styles.addToCollection}
+        type="primary"
+        onClick={openModal}
+      >
         + Add to Collection
       </Button>
       <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
         <div className={styles.modalLabel}>Add to Collection</div>
         <div className={styles.content}>
-            Search for athletes to add to your collection
+          Search for athletes to add to your collection
           <input
             className={
               showSearchResults ||
