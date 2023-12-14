@@ -54,7 +54,7 @@ export default function Collections(props) {
   }
 
   useEffect(() => {
-    setCollection(props.user_collections[0].detailed_athletes);
+    setCollection(props.user_collections[currentIndex].detailed_athletes);
   }, [props.user_collections]);
 
   async function getDataForAthlete(athlete) {

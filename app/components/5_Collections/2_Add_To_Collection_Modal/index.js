@@ -94,6 +94,7 @@ export default function AddToCollectionModal(props) {
 
   function closeModal() {
     setModalOpen(false);
+    setAthletes([]);
   }
 
   function spliceItem(item) {
@@ -118,9 +119,10 @@ export default function AddToCollectionModal(props) {
       API.addAthletesToCollection(collectionId, athlete_ids, (data) => {
         setSavingCollection(false);
         setModalOpen(false);
+        setAthletes([]);
         props.getCollectionsForUser();
       });
-    }, 1000);
+    }, 300);
   }
 
   return (
@@ -231,7 +233,7 @@ export default function AddToCollectionModal(props) {
               type="primary"
             >
               {" "}
-              Save collection
+              Update
             </Button>
           </div>
         </div>
