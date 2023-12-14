@@ -29,7 +29,7 @@ export default class MainComponent extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.getItem("userName") && localStorage.getItem("password")) {
+    if (localStorage.getItem("userName") && localStorage.getItem("password") && localStorage.getItem("account_id")) {
       this.setState({ loggedIn: true });
       this.getCollectionsForUser();
     }
@@ -39,7 +39,6 @@ export default class MainComponent extends React.Component {
   }
 
   getCollectionsForUser() {
-    console.log("running this function");
     API.getCollectionsForAccount((data) => {
       this.setState({ user_collections: data["collections"] });
     });
