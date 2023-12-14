@@ -129,7 +129,7 @@ export default function TopBar(props) {
         </div>
       ) : (
         <Button onClick={openModal} type="primary">
-          Log in
+          Log in to save collections :)
         </Button>
       )}
       <Modal open={loginModalOpen} onClose={cancelModal}>
