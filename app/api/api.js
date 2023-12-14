@@ -261,3 +261,33 @@ export async function createAccount(username, password, callback) {
       console.log(error);
     });
 }
+
+export async function createCollection(collectionName, collectionAthletes, callback) {
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      collection_name: collectionName,
+      collection_athletes: collectionAthletes,
+      account_id: parseInt(localStorage.getItem("account_id"))
+    }),
+  };
+
+  fetch(API_URL + "/v1/collections/insert", options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

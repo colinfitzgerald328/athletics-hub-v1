@@ -158,6 +158,7 @@ export default function LeftSide(props) {
           display: "flex",
           alignItems: "center",
         }}
+        onClick={()=> props.showCollections()}
       >
         Collections 
       </Button>

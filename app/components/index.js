@@ -4,6 +4,7 @@ import TopBar from "./1_topbar";
 import LeftSide from "./2_leftSide";
 import AthleteBreakDown from "./3_Middle";
 import RightSide from "./4_RightSide";
+import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
 import ConstructionIcon from "@mui/icons-material/Construction";
@@ -22,6 +23,7 @@ export default class MainComponent extends React.Component {
       height: 0,
       pageLoaded: false,
       loggedIn: false,
+      showingCollections: false
     };
   }
 
@@ -149,6 +151,14 @@ export default class MainComponent extends React.Component {
     });
   }
 
+  showCollections() {
+    this.setState({ showingCollections: true })
+  }
+
+  closeCollections() {
+    this.setState({ showingCollections: false })
+  }
+
   render() {
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
@@ -177,29 +187,46 @@ export default class MainComponent extends React.Component {
             logOutUser={this.logOutUser.bind(this)}
             logInUser={this.logInUser.bind(this)}
           />
-          <div className={styles.mainDisplay}>
+          {
+            this.state.showingCollections ? 
+            <div className={styles.mainDisplay}>
             <LeftSide
-            setAthlete={this.setAthlete.bind(this)}
-            loggedIn={this.state.loggedIn}
-            />
-            <AthleteBreakDown
-              athlete={this.state.athlete}
-              loadingNewAthlete={this.state.loadingNewAthlete}
-              athlete_data={this.state.athlete_data}
-              top_competitors={this.state.top_competitors}
-              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
-                this,
-              )}
-              height={this.state.height}
-            />
-            <RightSide
-              athlete={this.state.athlete}
-              similar_athletes={this.state.similar_athletes}
-              setAthlete={this.setAthlete.bind(this)}
-              loadingNewAthlete={this.state.loadingNewAthlete}
-              athlete_data={this.state.athlete_data}
-            />
-          </div>
+          setAthlete={this.setAthlete.bind(this)}
+          loggedIn={this.state.loggedIn}
+          showCollections={this.showCollections.bind(this)}
+          />
+          <Collections
+          closeCollections={this.closeCollections.bind(this)}
+          />
+        </div>
+          :
+          <div className={styles.mainDisplay}>
+          <LeftSide
+        setAthlete={this.setAthlete.bind(this)}
+        loggedIn={this.state.loggedIn}
+        showCollections={this.showCollections.bind(this)}
+        />
+          <AthleteBreakDown
+          athlete={this.state.athlete}
+          loadingNewAthlete={this.state.loadingNewAthlete}
+          athlete_data={this.state.athlete_data}
+          top_competitors={this.state.top_competitors}
+          setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
+            this,
+          )}
+          height={this.state.height}
+        />
+        <RightSide
+          athlete={this.state.athlete}
+          similar_athletes={this.state.similar_athletes}
+          setAthlete={this.setAthlete.bind(this)}
+          loadingNewAthlete={this.state.loadingNewAthlete}
+          athlete_data={this.state.athlete_data}
+        />
+      </div>
+
+          }
+
         </div>
       );
     }
