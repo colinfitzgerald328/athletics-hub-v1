@@ -20,6 +20,7 @@ function CustomTabPanel(props) {
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
+      style={{        "backgroundColor": "white"}}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
