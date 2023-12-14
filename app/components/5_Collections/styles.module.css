@@ -34,7 +34,6 @@
 
 .topItems {
   display: flex;
-  justify-content: space-between;
   margin-right: 10px;
 }
 
@@ -49,9 +48,7 @@
   box-shadow: 2px 2px 5px slategray;
 }
 
-.createCollection {
-  margin-left: 40px;
-}
+
 
 .myCollections {
   font-size: 18px;
@@ -179,4 +176,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.textLabels {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.collectionLabel {
+  font-size: 22px;
+  font-weight: 600;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }

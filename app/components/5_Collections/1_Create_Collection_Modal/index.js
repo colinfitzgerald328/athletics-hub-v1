@@ -5,6 +5,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
+import CreateIcon from '@mui/icons-material/Create';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import * as API from "/app/api/api.js";
 
 export default function CreateCollectionModal(props) {
@@ -126,8 +128,11 @@ export default function CreateCollectionModal(props) {
 
   return (
     <>
-      <Button type="primary" onClick={openModal}>
-        + Create New Collection
+      <Button className={styles.createCollectionLabel} onClick={openModal}>
+        <div className={styles.leftItemsLabel}>
+          <BookmarkBorderIcon sx={{"fontSize": "16px", color: "gray"}}/>
+        New collection
+        </div> <CreateIcon sx={{"fontSize": "14px", color: "gray"}}/>
       </Button>
       <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
         <div className={styles.modalLabel}>Create New Collection</div>

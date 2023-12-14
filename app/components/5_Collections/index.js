@@ -135,13 +135,20 @@ export default function Collections(props) {
                 </div>
               </div>
             ))}
+
         </div>
         <div className={styles.panel}>
-          <AddToCollectionModal
-            currentIndex={currentIndex}
-            user_collections={props.user_collections}
-            getCollectionsForUser={props.getCollectionsForUser}
-          />
+          <div className={styles.textLabels}>
+          <div className={styles.collectionLabel}>
+              {props.user_collections[currentIndex].collection_name}
+            </div>
+            <AddToCollectionModal
+              currentIndex={currentIndex}
+              user_collections={props.user_collections}
+              getCollectionsForUser={props.getCollectionsForUser}
+              collectionName={props.user_collections[currentIndex].collection_name}
+            />
+          </div>
           {collection.map((athlete, index) => (
             <div key={index} className={styles.competitor}>
               <div className={styles.topItems}>
@@ -190,8 +197,6 @@ export default function Collections(props) {
                   loadingNewAthlete={loadingNewAthlete}
                   athlete_data={athlete_data}
                   top_competitors={top_competitors}
-                  // setAthleteFromTopCompetitors={function}
-                  // height={props.height}
                 />
               </div>
             </div>

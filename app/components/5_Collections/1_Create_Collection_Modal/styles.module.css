@@ -299,3 +299,19 @@
 .saveButton {
   margin-left: 5px;
 }
+
+.createCollectionLabel {
+  margin-left: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+  font-size: 14px;
+}
+
+.leftItemsLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

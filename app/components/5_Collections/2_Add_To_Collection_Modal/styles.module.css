@@ -304,3 +304,8 @@
   margin-top: 10px;
   margin-left: 10px;
 }
+
+.addIcon {
+  display: flex;
+  align-items: center;
+}
