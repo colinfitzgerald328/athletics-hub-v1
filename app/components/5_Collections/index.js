@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
@@ -49,6 +49,10 @@ export default function Collections(props) {
     setCollection(collection);
     setCurrentIndex(index);
   }
+
+  useEffect(()=> {
+    setCollection(props.user_collections[0].detailed_athletes)
+  }, [props.user_collections])
 
   return (
     <div className={styles.basic}>
