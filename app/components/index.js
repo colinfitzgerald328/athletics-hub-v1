@@ -48,6 +48,7 @@ export default class MainComponent extends React.Component {
 
   logInUser() {
     this.setState({ loggedIn: true });
+    this.getCollectionsForUser();
   }
 
   logOutUser() {
