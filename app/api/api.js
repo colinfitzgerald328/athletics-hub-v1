@@ -262,7 +262,11 @@ export async function createAccount(username, password, callback) {
     });
 }
 
-export async function createCollection(collectionName, collectionAthletes, callback) {
+export async function createCollection(
+  collectionName,
+  collectionAthletes,
+  callback,
+) {
   const options = {
     method: "POST",
     headers: {
@@ -272,7 +276,7 @@ export async function createCollection(collectionName, collectionAthletes, callb
     body: JSON.stringify({
       collection_name: collectionName,
       collection_athletes: collectionAthletes,
-      account_id: parseInt(localStorage.getItem("account_id"))
+      account_id: parseInt(localStorage.getItem("account_id")),
     }),
   };
 

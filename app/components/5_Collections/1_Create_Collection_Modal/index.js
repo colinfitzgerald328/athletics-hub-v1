@@ -112,138 +112,134 @@ export default function CreateCollectionModal() {
   function saveCollection() {
     setSavingCollection(true);
     const athlete_ids = [];
-    athletes.forEach((athlete) => athlete_ids.push(athlete.aaAthleteId))
+    athletes.forEach((athlete) => athlete_ids.push(athlete.aaAthleteId));
     setTimeout(() => {
-        console.log("Delayed for 1 second.");      
-    API.createCollection(collectionName, athlete_ids, (data) => {
+      console.log("Delayed for 1 second.");
+      API.createCollection(collectionName, athlete_ids, (data) => {
         setSavingCollection(false);
         setModalOpen(false);
-    })
-}, 1000);
+      });
+    }, 1000);
   }
 
   return (
     <>
-      <Button
-        type="primary"
-        onClick={openModal}
-      >
+      <Button type="primary" onClick={openModal}>
         + Create New Collection
       </Button>
-        <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
-          <div className={styles.modalLabel}>
-            Create New Collection
-          </div>
-          <div className={styles.collectionName}>
-            Step 1: Name your collection
-            <input
+      <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
+        <div className={styles.modalLabel}>Create New Collection</div>
+        <div className={styles.collectionName}>
+          Step 1: Name your collection
+          <input
             className={styles.collectionInput}
-                placeholder="your collection name..."
-                value={collectionName}
-                onChange={(e)=> setCollectionName(e.target.value)}
-            ></input>
-          </div>
-          <div className={styles.content}>
-            Step 2: Search for athletes to add to your collection
-            <input
-              className={
-                showSearchResults ||
-                (loadingSearchResults && searchTerm.length > 0)
-                  ? styles.searchBarFocused
-                  : styles.searchBar
-              }
-              placeholder="Search for an athlete..."
-              value={searchTerm}
-              ref={inputRef}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              spellCheck="false"
-            ></input>
-            <SearchIcon className={styles.searchIcon} />
-            {searchTerm && (
-              <div
-                className={styles.xButton}
-                onClick={() => handleClearSearch()}
-                ref={xButtonRef}
-              >
-                <CloseIcon />
-              </div>
-            )}
-            {showSearchResults || searchResults.length > 0 ? (
-              searchResults.length == 0 ? (
-                <div className={styles.searchResults} ref={searchResultsRef}>
-                  <div className={styles.noResults}>
-                    😱 Unfortunately no search results for that query...
-                  </div>
+            placeholder="your collection name..."
+            value={collectionName}
+            onChange={(e) => setCollectionName(e.target.value)}
+          ></input>
+        </div>
+        <div className={styles.content}>
+          Step 2: Search for athletes to add to your collection
+          <input
+            className={
+              showSearchResults ||
+              (loadingSearchResults && searchTerm.length > 0)
+                ? styles.searchBarFocused
+                : styles.searchBar
+            }
+            placeholder="Search for an athlete..."
+            value={searchTerm}
+            ref={inputRef}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            spellCheck="false"
+          ></input>
+          <SearchIcon className={styles.searchIcon} />
+          {searchTerm && (
+            <div
+              className={styles.xButton}
+              onClick={() => handleClearSearch()}
+              ref={xButtonRef}
+            >
+              <CloseIcon />
+            </div>
+          )}
+          {showSearchResults || searchResults.length > 0 ? (
+            searchResults.length == 0 ? (
+              <div className={styles.searchResults} ref={searchResultsRef}>
+                <div className={styles.noResults}>
+                  😱 Unfortunately no search results for that query...
                 </div>
-              ) : (
-                <div className={styles.searchResults} ref={searchResultsRef}>
-                  {loadingSearchResults && <LinearProgress />}
-                  {searchResults.map((result) => (
-                    <div
-                      key={result.aaAthleteId}
-                      onClick={() => handleChooseAthlete(result)}
-                      className={styles.singleResult}
-                    >
-                      <img
-                        src={result.hq_image_url}
-                        className={styles.searchResultImage}
-                      />
-                      <div className={styles.textDisplay}>
-                        <div className={styles.fullName}>
-                          {result.full_name}
-                        </div>
-                        <div className={styles.disciplines}>
-                          {result.disciplines}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )
-            ) : loadingSearchResults && searchTerm.length > 0 ? (
-              <div className={styles.searchResults}>
-                <LinearProgress />
               </div>
             ) : (
-              ""
-            )}
-            <div className={styles.athletesHolder}>
-              {athletes &&
-                athletes.map((athlete, index) => (
-                  <div key={index} className={styles.athlete}>
-                    <div className={styles.itemsContainer}>
-                      <div className={styles.gradient}></div>
-                      <img
-                        src={athlete.hq_image_url}
-                        className={styles.athleteImage}
-                      />
-                      <div className={styles.athleteNameHolder}>
-                        <div className={styles.fullName}>
-                          {athlete.full_name}
-                        </div>
-                        <div className={styles.disciplines}>
-                          {athlete.disciplines}
-                        </div>
-                      </div>
-                      <div
-                        onClick={() => spliceItem(athlete)}
-                        className={styles.xButtonHolder}
-                      >
-                        <CloseIcon />
+              <div className={styles.searchResults} ref={searchResultsRef}>
+                {loadingSearchResults && <LinearProgress />}
+                {searchResults.map((result) => (
+                  <div
+                    key={result.aaAthleteId}
+                    onClick={() => handleChooseAthlete(result)}
+                    className={styles.singleResult}
+                  >
+                    <img
+                      src={result.hq_image_url}
+                      className={styles.searchResultImage}
+                    />
+                    <div className={styles.textDisplay}>
+                      <div className={styles.fullName}>{result.full_name}</div>
+                      <div className={styles.disciplines}>
+                        {result.disciplines}
                       </div>
                     </div>
                   </div>
                 ))}
+              </div>
+            )
+          ) : loadingSearchResults && searchTerm.length > 0 ? (
+            <div className={styles.searchResults}>
+              <LinearProgress />
             </div>
-            <div className={styles.buttonsHolder}>
-            <Button> Cancel</Button>
-                <Button
-                loading={savingCollection}
-                onClick={saveCollection}
-                className={styles.saveButton} type="primary"> Save collection</Button>
-            </div>
+          ) : (
+            ""
+          )}
+          <div className={styles.athletesHolder}>
+            {athletes &&
+              athletes.map((athlete, index) => (
+                <div key={index} className={styles.athlete}>
+                  <div className={styles.itemsContainer}>
+                    <div className={styles.gradient}></div>
+                    <img
+                      src={athlete.hq_image_url}
+                      className={styles.athleteImage}
+                    />
+                    <div className={styles.athleteNameHolder}>
+                      <div className={styles.fullName}>{athlete.full_name}</div>
+                      <div className={styles.disciplines}>
+                        {athlete.disciplines}
+                      </div>
+                    </div>
+                    <div
+                      onClick={() => spliceItem(athlete)}
+                      className={styles.xButtonHolder}
+                    >
+                      <CloseIcon />
+                    </div>
+                  </div>
+                </div>
+              ))}
           </div>
-        </Modal>
+          <div className={styles.buttonsHolder}>
+            <Button> Cancel</Button>
+            <Button
+              loading={savingCollection}
+              onClick={saveCollection}
+              className={styles.saveButton}
+              type="primary"
+            >
+              {" "}
+              Save collection
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 }

@@ -143,26 +143,25 @@ export default function LeftSide(props) {
         ""
       )}
       <ComparisonModal />
-      {
-        props.loggedIn && 
+      {props.loggedIn && (
         <Button
-        variant="contained"
-        sx={{
-          width: "100%",
-          marginTop: "10px",
-          borderRadius: "20px",
-          height: "50px",
-          fontSize: "20px",
-          backgroundColor: "lightslategray",
-          fontWeight: "bold",
-          display: "flex",
-          alignItems: "center",
-        }}
-        onClick={()=> props.showCollections()}
-      >
-        Collections 
-      </Button>
-      }
+          variant="contained"
+          sx={{
+            width: "100%",
+            marginTop: "10px",
+            borderRadius: "20px",
+            height: "50px",
+            fontSize: "20px",
+            backgroundColor: "lightslategray",
+            fontWeight: "bold",
+            display: "flex",
+            alignItems: "center",
+          }}
+          onClick={() => props.showCollections()}
+        >
+          Collections
+        </Button>
+      )}
     </div>
   );
 }
