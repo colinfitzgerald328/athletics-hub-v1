@@ -1,11 +1,11 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import IconButton from '@mui/material/IconButton';
-import { MoreHoriz } from '@mui/icons-material';
+import React from "react";
+import Box from "@mui/material/Box";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import IconButton from "@mui/material/IconButton";
+import { MoreHoriz } from "@mui/icons-material";
 import * as API from "/app/api/api.js";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function DeleteOptionMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -18,23 +18,27 @@ export default function DeleteOptionMenu(props) {
   };
 
   const handleDelete = () => {
-    API.deleteAthleteFromCollection(props.collection_id, props.athlete_id, (data) => {
-        props.getCollectionsForUser()
-    })
+    API.deleteAthleteFromCollection(
+      props.collection_id,
+      props.athlete_id,
+      (data) => {
+        props.getCollectionsForUser();
+      },
+    );
     setAnchorEl(null);
-  }
+  };
   return (
     <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <MoreHoriz />
-          </IconButton>
+      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+        <IconButton
+          onClick={handleClick}
+          size="small"
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+        >
+          <MoreHoriz />
+        </IconButton>
       </Box>
       <Menu
         anchorEl={anchorEl}
@@ -45,31 +49,31 @@ export default function DeleteOptionMenu(props) {
         PaperProps={{
           elevation: 0,
           sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
             mt: 1.5,
-            '& .MuiAvatar-root': {
+            "& .MuiAvatar-root": {
               width: 32,
               height: 32,
               ml: -0.5,
               mr: 1,
             },
-            '&:before': {
+            "&:before": {
               content: '""',
-              display: 'block',
-              position: 'absolute',
+              display: "block",
+              position: "absolute",
               top: 0,
               right: 14,
               width: 10,
               height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
               zIndex: 0,
             },
           },
         }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleDelete}>
           <DeleteForeverIcon /> Remove athlete from collection

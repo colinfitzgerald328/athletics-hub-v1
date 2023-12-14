@@ -151,9 +151,7 @@ export default function Collections(props) {
                 />
                 <div className={styles.criticalInfo}>
                   <div className={styles.leftItems}>
-                    <div
-                      className={styles.competitorName}
-                    >
+                    <div className={styles.competitorName}>
                       {athlete.full_name}
                     </div>
                     <div className={styles.disciplines}>
@@ -163,7 +161,9 @@ export default function Collections(props) {
                   <div className={styles.rightItemsContainer}>
                     <DeleteOptionMenu
                       athlete_id={athlete.aaAthleteId}
-                      collection_id={props.user_collections[currentIndex]["_id"]}
+                      collection_id={
+                        props.user_collections[currentIndex]["_id"]
+                      }
                       getCollectionsForUser={props.getCollectionsForUser}
                     />
                     <div
@@ -177,7 +177,7 @@ export default function Collections(props) {
                           <AddIcon />
                         ))}
                     </div>
-                    </div>
+                  </div>
                 </div>
               </div>
               <div

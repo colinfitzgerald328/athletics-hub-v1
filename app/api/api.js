@@ -352,7 +352,6 @@ export async function addAthletesToCollection(
     });
 }
 
-
 export async function deleteAthleteFromCollection(
   collectionId,
   athleteId,
