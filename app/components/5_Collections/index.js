@@ -29,8 +29,8 @@ export default function Collections(props) {
         <div className={styles.collections}>
           {
             props.user_collections && 
-            props.user_collections.map((collection) => 
-            <div className={styles.collection}>
+            props.user_collections.map((collection, index) => 
+            <div key={index} className={styles.collection}>
               <div className={styles.collectionName}>
               {
                 collection.collection_name
