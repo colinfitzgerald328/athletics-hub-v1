@@ -296,7 +296,6 @@ export async function createCollection(
     });
 }
 
-
 export async function getCollectionsForAccount(callback) {
   var data = {
     account_id: localStorage.getItem("account_id"),

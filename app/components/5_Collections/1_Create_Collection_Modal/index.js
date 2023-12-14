@@ -118,7 +118,7 @@ export default function CreateCollectionModal(props) {
       API.createCollection(collectionName, athlete_ids, (data) => {
         setSavingCollection(false);
         setModalOpen(false);
-        props.getCollectionsForUser()
+        props.getCollectionsForUser();
       });
     }, 1000);
   }

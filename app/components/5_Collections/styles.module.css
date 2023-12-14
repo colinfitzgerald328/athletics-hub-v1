@@ -25,7 +25,7 @@
 }
 
 .collections {
-  background-color: #F8F9FD;
+  background-color: #f8f9fd;
   width: calc(100% / 3);
   padding: 10px;
   border-radius: 10px;
@@ -65,7 +65,7 @@
 
 .collection {
   margin-bottom: 10px;
-  background-color: #ECEDF1;
+  background-color: #ecedf1;
   border-radius: 10px;
   padding: 10px;
 }
@@ -79,10 +79,10 @@
 .collectionName {
   font-size: 18px;
   font-weight: 600;
-  color: #04053D;
+  color: #04053d;
 }
 
 .collectionCreated {
-  color: #ADB1B9;
+  color: #adb1b9;
   font-size: 12px;
 }

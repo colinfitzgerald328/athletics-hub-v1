@@ -24,7 +24,7 @@ export default class MainComponent extends React.Component {
       pageLoaded: false,
       loggedIn: false,
       showingCollections: false,
-      user_collections: []
+      user_collections: [],
     };
   }
 
@@ -39,11 +39,10 @@ export default class MainComponent extends React.Component {
   }
 
   getCollectionsForUser() {
-    console.log("running this function")
-    API.getCollectionsForAccount((data) => 
-    {
-      this.setState({ user_collections: data["collections"]})
-    })
+    console.log("running this function");
+    API.getCollectionsForAccount((data) => {
+      this.setState({ user_collections: data["collections"] });
+    });
   }
 
   logInUser() {
