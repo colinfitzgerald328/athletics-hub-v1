@@ -92,8 +92,8 @@
 
 .collection:hover {
   cursor: pointer;
-  box-shadow: 2px 2px 5px slategray;
-  transition: box-shadow 1s;
+  box-shadow: 1px 1px 5px slategray;
+  transition: box-shadow 0.7s;
 }
 
 .collectionName {
