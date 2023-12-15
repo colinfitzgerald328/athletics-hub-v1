@@ -193,33 +193,34 @@ export default function Collections(props) {
             ))}
         </div>
         <div className={styles.panel}>
-          {
-            props.user_collections.length > 0 ? 
+          {props.user_collections.length > 0 ? (
             <div className={styles.textLabels}>
-            <input
-              ref={editingRef}
-              onChange={(e) => handleChangeName(e.target.value)}
-              value={
-                collections.length > 0
-                  ? collections[currentIndex].collection_name
-                  : []
-              }
-              className={styles.collectionLabel}
-            ></input>
-            <AddToCollectionModal
-              currentIndex={currentIndex}
-              user_collections={props.user_collections}
-              getCollectionsForUser={props.getCollectionsForUser}
-              collectionName={
-                props.user_collections[currentIndex].collection_name
-              }
-            />
-          </div>
-          :
-          <div className={styles.noCollectionsYet}>
-            It's a blank canvas for now 🖼️. Click <strong className={styles.smallMargin}> New Collection </strong> to create your first collection.
-          </div>
-          }
+              <input
+                ref={editingRef}
+                onChange={(e) => handleChangeName(e.target.value)}
+                value={
+                  collections.length > 0
+                    ? collections[currentIndex].collection_name
+                    : []
+                }
+                className={styles.collectionLabel}
+              ></input>
+              <AddToCollectionModal
+                currentIndex={currentIndex}
+                user_collections={props.user_collections}
+                getCollectionsForUser={props.getCollectionsForUser}
+                collectionName={
+                  props.user_collections[currentIndex].collection_name
+                }
+              />
+            </div>
+          ) : (
+            <div className={styles.noCollectionsYet}>
+              It's a blank canvas for now 🖼️. Click{" "}
+              <strong className={styles.smallMargin}> New Collection </strong>{" "}
+              to create your first collection.
+            </div>
+          )}
           {collections.length > 0 &&
             collections[currentIndex].detailed_athletes.map(
               (athlete, index) => (
