@@ -217,7 +217,9 @@ export default function Collections(props) {
           ) : (
             <div className={styles.noCollectionsYet}>
               <div>
-              It&apos;s a blank canvas for now. Click{" "} <strong>New Collection</strong> to create your first collection 🖼️
+                It&apos;s a blank canvas for now. Click{" "}
+                <strong>New Collection</strong> to create your first collection
+                🖼️
               </div>
             </div>
           )}
