@@ -147,8 +147,18 @@ export default function Collections(props) {
   return (
     <div className={styles.basic}>
       <div className={styles.topItems}>
-        <div onClick={() => props.closeCollections()} className={styles.goBack}>
-          <ArrowBackIcon />
+        <div onClick={() => props.closeCollections()}>
+          <IconButton
+            size="small"
+            aria-controls={open ? "account-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            sx={{
+              padding: 1,
+            }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
         </div>
         <div className={styles.createCollection}>
           <CreateCollectionModal
