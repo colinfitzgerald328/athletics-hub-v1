@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
-import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
 import CollectionTabs from "./5_Tabs";
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
@@ -195,7 +193,9 @@ export default function Collections(props) {
             ))}
         </div>
         <div className={styles.panel}>
-          <div className={styles.textLabels}>
+          {
+            props.user_collections.length > 0 && 
+            <div className={styles.textLabels}>
             <input
               ref={editingRef}
               onChange={(e) => handleChangeName(e.target.value)}
@@ -211,11 +211,11 @@ export default function Collections(props) {
               user_collections={props.user_collections}
               getCollectionsForUser={props.getCollectionsForUser}
               collectionName={
-                props.user_collections.length > 0 &&
                 props.user_collections[currentIndex].collection_name
               }
             />
           </div>
+          }
           {collections.length > 0 &&
             collections[currentIndex].detailed_athletes.map(
               (athlete, index) => (
