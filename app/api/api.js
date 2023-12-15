@@ -413,7 +413,6 @@ export async function deleteCollection(collectionId, callback) {
     });
 }
 
-
 export async function updateCollectionName(collectionId, newName, callback) {
   const options = {
     method: "POST",
@@ -423,7 +422,7 @@ export async function updateCollectionName(collectionId, newName, callback) {
     },
     body: JSON.stringify({
       collection_id: collectionId,
-      new_name: newName
+      new_name: newName,
     }),
   };
 

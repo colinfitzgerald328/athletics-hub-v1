@@ -10,14 +10,14 @@ import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
 import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
-import { toaster } from 'evergreen-ui'
+import { toaster } from "evergreen-ui";
 import * as API from "/app/api/api.js";
 
 export default function Collections(props) {
   const [collections, setCollections] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const editingRef = useRef(null);
-  useOutsideAlerter(editingRef)
+  useOutsideAlerter(editingRef);
 
   async function updateSummaryStyle(athlete, index) {
     const currentCollections = collections;
@@ -102,7 +102,6 @@ export default function Collections(props) {
     });
   }
 
-
   function useOutsideAlerter(ref) {
     useEffect(() => {
       /**
@@ -110,7 +109,7 @@ export default function Collections(props) {
        */
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
-          checkForNameChangeAndSendAPICall(collections, currentIndex)
+          checkForNameChangeAndSendAPICall(collections, currentIndex);
         }
       }
       // Bind the event listener
@@ -124,22 +123,27 @@ export default function Collections(props) {
 
   function handleChangeName(newName) {
     let collectionsCopy = [...collections];
-    collectionsCopy[currentIndex].collection_name = newName
+    collectionsCopy[currentIndex].collection_name = newName;
     setCollections(collectionsCopy);
   }
 
   function checkForNameChangeAndSendAPICall(collections, currentIndex) {
-    if (collections[currentIndex].collection_name !== props.collections_local_copy[currentIndex].collection_name) {
-      API.updateCollectionName(collections[currentIndex]["_id"], collections[currentIndex].collection_name, (data) => {
-        toaster.success('Collection name updated')
-        props.getCollectionsForUser()
-      }
-      )
+    if (
+      collections[currentIndex].collection_name !==
+      props.collections_local_copy[currentIndex].collection_name
+    ) {
+      API.updateCollectionName(
+        collections[currentIndex]["_id"],
+        collections[currentIndex].collection_name,
+        (data) => {
+          toaster.success("Collection name updated");
+          props.getCollectionsForUser();
+        },
+      );
     } else {
-      return; 
+      return;
     }
   }
-
 
   return (
     <div className={styles.basic}>
@@ -183,20 +187,24 @@ export default function Collections(props) {
         </div>
         <div className={styles.panel}>
           <div className={styles.textLabels}>
-              <input
+            <input
               ref={editingRef}
-                onChange={(e)=> handleChangeName(e.target.value)}
-                value={collections.length > 0 ? collections[currentIndex].collection_name : []}
-                className={styles.collectionLabel}
-              >
-              </input>
+              onChange={(e) => handleChangeName(e.target.value)}
+              value={
+                collections.length > 0
+                  ? collections[currentIndex].collection_name
+                  : []
+              }
+              className={styles.collectionLabel}
+            ></input>
             <AddToCollectionModal
               currentIndex={currentIndex}
               user_collections={props.user_collections}
               getCollectionsForUser={props.getCollectionsForUser}
               collectionName={
                 props.user_collections.length > 0 &&
-                props.user_collections[currentIndex].collection_name}
+                props.user_collections[currentIndex].collection_name
+              }
             />
           </div>
           {collections.length > 0 &&
