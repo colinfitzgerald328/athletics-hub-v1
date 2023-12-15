@@ -12,6 +12,7 @@ import * as API from "/app/api/api.js";
 
 // English.
 import en from "javascript-time-ago/locale/en";
+import moment from "moment";
 
 TimeAgo.addLocale(en);
 
@@ -139,7 +140,7 @@ export default function Collections(props) {
                   {collection.collection_name}
                 </div>
                 <div className={styles.collectionCreated}>
-                  Created {timeAgo.format(new Date(collection.created_at))}
+                  Created {moment.unix(collection.created_at).fromNow()}
                 </div>
               </div>
             ))}
