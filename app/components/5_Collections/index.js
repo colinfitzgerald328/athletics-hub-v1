@@ -24,13 +24,11 @@ export default function Collections(props) {
     const theItem = currentCollections[currentIndex].detailed_athletes[index];
     var element = document.getElementById(index);
     var newScrollHeight = element.scrollHeight + "px";
-
     if (theItem.height == undefined) {
       theItem.height = newScrollHeight;
       const data_fetch_results = await getDataForAthlete(athlete);
       theItem.athlete_results = data_fetch_results.athlete_results;
       theItem.top_competitors = data_fetch_results.top_competitors;
-      return;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
     } else {
@@ -49,8 +47,6 @@ export default function Collections(props) {
   }, [props.user_collections]);
 
   async function getDataForAthlete(athlete) {
-    setLoadingNewAthlete(true);
-
     try {
       const athleteResultsPromise = getResultsForAthlete(athlete.aaAthleteId);
       const topCompetitorsPromise = getTopCompetitors(athlete.aaAthleteId);
@@ -60,15 +56,12 @@ export default function Collections(props) {
         topCompetitorsPromise,
       ]);
 
-      setLoadingNewAthlete(false);
-
       return {
         athlete_results: athleteResults,
         top_competitors: topCompetitors,
       };
     } catch (error) {
       console.error("Error fetching data for athlete:", error);
-      setLoadingNewAthlete(false);
       throw error; // Rethrow the error to handle it further up the call stack
     }
   }
