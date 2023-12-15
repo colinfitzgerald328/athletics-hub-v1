@@ -216,9 +216,9 @@ export default function Collections(props) {
             </div>
           ) : (
             <div className={styles.noCollectionsYet}>
-              It's a blank canvas for now 🖼️. Click{" "}
-              <strong className={styles.smallMargin}> New Collection </strong>{" "}
-              to create your first collection.
+              <div>
+              It&apos;s a blank canvas for now. Click{" "} <strong>New Collection</strong> to create your first collection 🖼️
+              </div>
             </div>
           )}
           {collections.length > 0 &&
