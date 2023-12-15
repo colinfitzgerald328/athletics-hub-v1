@@ -134,12 +134,6 @@
   font-weight: 600;
 }
 
-.competitorName:hover {
-  text-decoration: underline;
-  transition: text-decoration 0.5s;
-  cursor: pointer;
-}
-
 .criticalInfo {
   margin-left: 10px;
   width: 100%;
@@ -205,4 +199,21 @@
   font-weight: 600;
   padding-top: 5px;
   padding-bottom: 5px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.collectionLabel:focus {
+  border: 2px solid #04053d;
+}
+
+.collectionLabel:hover {
+  border: 2px solid #04053d;
+  transition: border 0.5s;
+}
+
+.smallPadding {
+  margin-left: 10px;
+  cursor: pointer;
 }

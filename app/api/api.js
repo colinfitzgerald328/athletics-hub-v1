@@ -412,3 +412,33 @@ export async function deleteCollection(collectionId, callback) {
       console.log(error);
     });
 }
+
+
+export async function updateCollectionName(collectionId, newName, callback) {
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      collection_id: collectionId,
+      new_name: newName
+    }),
+  };
+
+  fetch(API_URL + "/v1/collections/name/update", options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

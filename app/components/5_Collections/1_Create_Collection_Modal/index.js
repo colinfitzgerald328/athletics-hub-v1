@@ -134,7 +134,6 @@ export default function CreateCollectionModal(props) {
           <BookmarkBorderIcon sx={{ fontSize: "16px", color: "gray" }} />
           New collection
         </div>{" "}
-        <CreateIcon sx={{ fontSize: "14px", color: "gray" }} />
       </Button>
       <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
         <div className={styles.modalLabel}>Create New Collection</div>

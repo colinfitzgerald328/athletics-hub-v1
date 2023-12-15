@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
@@ -10,12 +10,14 @@ import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
 import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
+import { toaster } from 'evergreen-ui'
 import * as API from "/app/api/api.js";
 
 export default function Collections(props) {
   const [collections, setCollections] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
+  const editingRef = useRef(null);
+  useOutsideAlerter(editingRef)
 
   async function updateSummaryStyle(athlete, index) {
     const currentCollections = collections;
@@ -100,6 +102,45 @@ export default function Collections(props) {
     });
   }
 
+
+  function useOutsideAlerter(ref) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          checkForNameChangeAndSendAPICall(collections, currentIndex)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref, collections, currentIndex]);
+  }
+
+  function handleChangeName(newName) {
+    let collectionsCopy = [...collections];
+    collectionsCopy[currentIndex].collection_name = newName
+    setCollections(collectionsCopy);
+  }
+
+  function checkForNameChangeAndSendAPICall(collections, currentIndex) {
+    if (collections[currentIndex].collection_name !== props.collections_local_copy[currentIndex].collection_name) {
+      API.updateCollectionName(collections[currentIndex]["_id"], collections[currentIndex].collection_name, (data) => {
+        toaster.success('Collection name updated')
+        props.getCollectionsForUser()
+      }
+      )
+    } else {
+      return; 
+    }
+  }
+
+
   return (
     <div className={styles.basic}>
       <div className={styles.topItems}>
@@ -142,18 +183,20 @@ export default function Collections(props) {
         </div>
         <div className={styles.panel}>
           <div className={styles.textLabels}>
-            <div className={styles.collectionLabel}>
-              {props.user_collections.length > 0 &&
-                props.user_collections[currentIndex].collection_name}
-            </div>
+              <input
+              ref={editingRef}
+                onChange={(e)=> handleChangeName(e.target.value)}
+                value={collections.length > 0 ? collections[currentIndex].collection_name : []}
+                className={styles.collectionLabel}
+              >
+              </input>
             <AddToCollectionModal
               currentIndex={currentIndex}
               user_collections={props.user_collections}
               getCollectionsForUser={props.getCollectionsForUser}
               collectionName={
                 props.user_collections.length > 0 &&
-                props.user_collections[currentIndex].collection_name
-              }
+                props.user_collections[currentIndex].collection_name}
             />
           </div>
           {collections.length > 0 &&

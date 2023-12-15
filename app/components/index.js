@@ -25,6 +25,7 @@ export default class MainComponent extends React.Component {
       loggedIn: false,
       showingCollections: false,
       user_collections: [],
+      collections_local_copy: [], 
       loadingCollections: true,
     };
   }
@@ -47,6 +48,7 @@ export default class MainComponent extends React.Component {
     API.getCollectionsForAccount((data) => {
       this.setState({
         user_collections: JSON.parse(data["collections"]),
+        collections_local_copy: JSON.parse(data["collections"]), 
         loadingCollections: false,
       });
     });
@@ -216,6 +218,7 @@ export default class MainComponent extends React.Component {
                 closeCollections={this.closeCollections.bind(this)}
                 getCollectionsForUser={this.getCollectionsForUser.bind(this)}
                 user_collections={this.state.user_collections}
+                collections_local_copy={this.state.collections_local_copy}
               />
             </div>
           ) : (
