@@ -15,6 +15,7 @@
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
     "antd": "^5.12.2",
+    "evergreen-ui": "^7.1.9",
     "javascript-time-ago": "^2.5.9",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.4",

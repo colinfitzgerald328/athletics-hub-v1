@@ -7,17 +7,9 @@ import styles from "./styles.module.css";
 import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js";
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
-import TimeAgo from "javascript-time-ago";
+import moment from "moment";
 import * as API from "/app/api/api.js";
 
-// English.
-import en from "javascript-time-ago/locale/en";
-import moment from "moment";
-
-TimeAgo.addLocale(en);
-
-// Create formatter (English).
-const timeAgo = new TimeAgo("en-US");
 
 export default function Collections(props) {
   const [collections, setCollections] = useState(
