@@ -80,9 +80,7 @@ export default function DataTable(props) {
             <div
               key={index}
               className={
-                  index % 2 == 0
-                    ? styles.tableRow
-                    : styles.tableRowAlternate
+                index % 2 == 0 ? styles.tableRow : styles.tableRowAlternate
               }
             >
               <div className={styles.mark}>{row.mark}</div>

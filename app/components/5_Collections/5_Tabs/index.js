@@ -10,8 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,7 +24,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3}}>{children}</Box>}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -113,7 +113,7 @@ export default function CollectionTabs(props) {
         width: "100%",
         borderBottomLeftRadius: "25px",
         borderBottomRightRadius: "25px",
-        overflow: "scroll"
+        overflow: "scroll",
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>

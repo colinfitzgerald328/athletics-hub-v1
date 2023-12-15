@@ -10,8 +10,8 @@ import IconButton from "@mui/material/IconButton";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;

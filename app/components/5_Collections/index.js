@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
-import CollectionTabs from "./5_Tabs"
+import CollectionTabs from "./5_Tabs";
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
 import CollectionDeleteOption from "./4_MenuDeleteOption";
@@ -125,7 +125,7 @@ export default function Collections(props) {
   function checkForNameChangeAndSendAPICall(collections, currentIndex) {
     if (collections.length == 0) {
       // if there are no collections, do nothing
-      return; 
+      return;
     }
     if (
       collections[currentIndex].collection_name !==
@@ -228,7 +228,8 @@ export default function Collections(props) {
                         <DeleteOptionMenu
                           athlete_id={athlete.aaAthleteId}
                           collection_id={
-                            props.user_collections.length > 0 && props.user_collections[currentIndex]["_id"]
+                            props.user_collections.length > 0 &&
+                            props.user_collections[currentIndex]["_id"]
                           }
                           getCollectionsForUser={props.getCollectionsForUser}
                         />
@@ -249,7 +250,9 @@ export default function Collections(props) {
                                   padding: 1,
                                 }}
                               >
-                                <KeyboardArrowUpIcon sx={{ fontWeight: "bold" }} />
+                                <KeyboardArrowUpIcon
+                                  sx={{ fontWeight: "bold" }}
+                                />
                               </IconButton>
                             ) : (
                               <IconButton
@@ -273,7 +276,7 @@ export default function Collections(props) {
                   <div
                     id={index}
                     className={styles.competitorSummary}
-                    style={{ height: athlete.height, overflow: 'scroll'}}
+                    style={{ height: athlete.height, overflow: "scroll" }}
                   >
                     <CollectionTabs
                       athlete={athlete}
