@@ -122,7 +122,6 @@
 }
 
 .rightItems:hover {
-  background-color: white;
   transition: background-color 1s;
 }
 

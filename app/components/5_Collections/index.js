@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
+import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
 import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js";
@@ -180,9 +181,29 @@ export default function Collections(props) {
                     >
                       {athlete.summary &&
                         (athlete.height && athlete.height != "0px" ? (
+                          <IconButton
+                          size="small"
+                          aria-controls={open ? "account-menu" : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                          sx={{
+                            padding: 1,
+                          }}
+                        >
                           <RemoveIcon sx={{ fontWeight: "bold" }} />
+                          </IconButton>
                         ) : (
+                          <IconButton
+                          size="small"
+                          aria-controls={open ? "account-menu" : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                          sx={{
+                            padding: 1,
+                          }}
+                        >
                           <AddIcon />
+                          </IconButton>
                         ))}
                     </div>
                   </div>

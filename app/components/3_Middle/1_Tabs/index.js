@@ -6,6 +6,7 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
@@ -263,9 +264,29 @@ export default function BasicTabs(props) {
                     >
                       {competitor.summary &&
                         (competitor.height && competitor.height != "0px" ? (
+                          <IconButton
+                          size="small"
+                          aria-controls={open ? "account-menu" : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                          sx={{
+                            padding: 1,
+                          }}
+                        >
                           <RemoveIcon sx={{ fontWeight: "bold" }} />
+                          </IconButton>
                         ) : (
+                          <IconButton
+                          size="small"
+                          aria-controls={open ? "account-menu" : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? "true" : undefined}
+                          sx={{
+                            padding: 1,
+                          }}
+                        >
                           <AddIcon />
+                          </IconButton>
                         ))}
                     </div>
                   </div>
