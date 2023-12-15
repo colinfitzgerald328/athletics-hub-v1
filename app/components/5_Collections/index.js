@@ -28,7 +28,7 @@ export default function Collections(props) {
     var newScrollHeight = element.scrollHeight + "px";
     if (theItem.height == undefined) {
       theItem.height = newScrollHeight;
-      console.log("setting new height")
+      setCollections([...currentCollections]);
       const data_fetch_results = await getDataForAthlete(athlete);
       theItem.athlete_results = data_fetch_results.athlete_results;
       theItem.top_competitors = data_fetch_results.top_competitors;
@@ -36,7 +36,6 @@ export default function Collections(props) {
       theItem.height = "0px";
     } else {
       theItem.height = newScrollHeight;
-      getDataForAthlete(athlete);
     }
     setCollections([...currentCollections]);
   }
