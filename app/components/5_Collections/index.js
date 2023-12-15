@@ -123,6 +123,10 @@ export default function Collections(props) {
   }
 
   function checkForNameChangeAndSendAPICall(collections, currentIndex) {
+    if (collections.length == 0) {
+      // if there are no collections, do nothing
+      return; 
+    }
     if (
       collections[currentIndex].collection_name !==
       props.collections_local_copy[currentIndex].collection_name
@@ -224,7 +228,7 @@ export default function Collections(props) {
                         <DeleteOptionMenu
                           athlete_id={athlete.aaAthleteId}
                           collection_id={
-                            props.user_collections[currentIndex]["_id"]
+                            props.user_collections.length > 0 && props.user_collections[currentIndex]["_id"]
                           }
                           getCollectionsForUser={props.getCollectionsForUser}
                         />
