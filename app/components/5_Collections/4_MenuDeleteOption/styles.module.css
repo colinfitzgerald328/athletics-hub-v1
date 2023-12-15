@@ -1,0 +1,5 @@
+.theDeleteOption:hover {
+    color: red; 
+    display: flex;
+    align-items: center;
+}

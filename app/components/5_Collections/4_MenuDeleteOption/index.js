@@ -1,4 +1,3 @@
-
 import React from "react";
 import Box from "@mui/material/Box";
 import Menu from "@mui/material/Menu";
@@ -6,26 +5,25 @@ import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import { MoreVert } from "@mui/icons-material";
 import * as API from "/app/api/api.js";
+import styles from "./styles.module.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 export default function CollectionDeleteOption(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
-    event.stopPropagation()
+    event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.stopPropagation();
     setAnchorEl(null);
   };
 
   const handleDelete = () => {
-    API.deleteCollection(
-      props.collection_id,
-      (data) => {
-        props.getCollectionsForUser();
-      },
-    );
+    API.deleteCollection(props.collection_id, (data) => {
+      props.getCollectionsForUser();
+    });
     setAnchorEl(null);
   };
   return (
@@ -45,8 +43,8 @@ export default function CollectionDeleteOption(props) {
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
-        onClose={handleClose}
-        onClick={handleClose}
+        onClose={(e) => handleClose(e)}
+        onClick={(e) => handleClose(e)}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -76,7 +74,7 @@ export default function CollectionDeleteOption(props) {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleDelete}>
+        <MenuItem className={styles.theDeleteOption} onClick={handleDelete}>
           <DeleteForeverIcon /> Delete collection
         </MenuItem>
       </Menu>

@@ -385,12 +385,7 @@ export async function deleteAthleteFromCollection(
     });
 }
 
-
-
-export async function deleteCollection(
-  collectionId,
-  callback,
-) {
+export async function deleteCollection(collectionId, callback) {
   const options = {
     method: "POST",
     headers: {

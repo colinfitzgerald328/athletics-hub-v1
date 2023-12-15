@@ -265,27 +265,27 @@ export default function BasicTabs(props) {
                       {competitor.summary &&
                         (competitor.height && competitor.height != "0px" ? (
                           <IconButton
-                          size="small"
-                          aria-controls={open ? "account-menu" : undefined}
-                          aria-haspopup="true"
-                          aria-expanded={open ? "true" : undefined}
-                          sx={{
-                            padding: 1,
-                          }}
-                        >
-                          <RemoveIcon sx={{ fontWeight: "bold" }} />
+                            size="small"
+                            aria-controls={open ? "account-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            sx={{
+                              padding: 1,
+                            }}
+                          >
+                            <RemoveIcon sx={{ fontWeight: "bold" }} />
                           </IconButton>
                         ) : (
                           <IconButton
-                          size="small"
-                          aria-controls={open ? "account-menu" : undefined}
-                          aria-haspopup="true"
-                          aria-expanded={open ? "true" : undefined}
-                          sx={{
-                            padding: 1,
-                          }}
-                        >
-                          <AddIcon />
+                            size="small"
+                            aria-controls={open ? "account-menu" : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? "true" : undefined}
+                            sx={{
+                              padding: 1,
+                            }}
+                          >
+                            <AddIcon />
                           </IconButton>
                         ))}
                     </div>

@@ -5,7 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import * as API from "/app/api/api.js";
 
 export default function AddToCollectionModal(props) {
@@ -128,15 +128,13 @@ export default function AddToCollectionModal(props) {
 
   return (
     <>
-      <Button
-        type="primary"
-        onClick={openModal}
-        className={styles.addIcon}
-      >
-        <AddIcon/>
+      <Button type="primary" onClick={openModal} className={styles.addIcon}>
+        <AddIcon />
       </Button>
       <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
-        <div className={styles.modalLabel}>Add to Collection: {props.collectionName}</div>
+        <div className={styles.modalLabel}>
+          Add to Collection: {props.collectionName}
+        </div>
         <div className={styles.content}>
           Search for athletes to add to your collection
           <input

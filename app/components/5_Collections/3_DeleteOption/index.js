@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import styles from "./styles.module.css";
 import * as API from "/app/api/api.js";
-import { TrashIcon } from 'evergreen-ui'
+import { TrashIcon } from "evergreen-ui";
 
 export default function DeleteOptionMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);

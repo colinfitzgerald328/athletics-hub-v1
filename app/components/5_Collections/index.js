@@ -12,26 +12,23 @@ import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
 import * as API from "/app/api/api.js";
 
-
 export default function Collections(props) {
-  const [collections, setCollections] = useState(
-    [],
-  );
+  const [collections, setCollections] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
 
   async function updateSummaryStyle(athlete, index) {
     const currentCollections = collections;
-    const theItem = currentCollections[currentIndex].detailed_athletes[index]
+    const theItem = currentCollections[currentIndex].detailed_athletes[index];
     var element = document.getElementById(index);
     var newScrollHeight = element.scrollHeight + "px";
 
     if (theItem.height == undefined) {
       theItem.height = newScrollHeight;
       const data_fetch_results = await getDataForAthlete(athlete);
-      theItem.athlete_results = data_fetch_results.athlete_results
-      theItem.top_competitors = data_fetch_results.top_competitors
-      return; 
+      theItem.athlete_results = data_fetch_results.athlete_results;
+      theItem.top_competitors = data_fetch_results.top_competitors;
+      return;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
     } else {
@@ -51,18 +48,18 @@ export default function Collections(props) {
 
   async function getDataForAthlete(athlete) {
     setLoadingNewAthlete(true);
-  
+
     try {
       const athleteResultsPromise = getResultsForAthlete(athlete.aaAthleteId);
       const topCompetitorsPromise = getTopCompetitors(athlete.aaAthleteId);
-  
+
       const [athleteResults, topCompetitors] = await Promise.all([
         athleteResultsPromise,
         topCompetitorsPromise,
       ]);
-  
+
       setLoadingNewAthlete(false);
-  
+
       return {
         athlete_results: athleteResults,
         top_competitors: topCompetitors,
@@ -73,7 +70,7 @@ export default function Collections(props) {
       throw error; // Rethrow the error to handle it further up the call stack
     }
   }
-  
+
   function getTopCompetitors(athlete_id) {
     return new Promise((resolve, reject) => {
       API.getTopCompetitors(
@@ -84,11 +81,10 @@ export default function Collections(props) {
         (error) => {
           console.error("Error fetching top competitors:", error);
           reject(error);
-        }
+        },
       );
     });
   }
-  
 
   function getResultsForAthlete(athlete_id) {
     return new Promise((resolve, reject) => {
@@ -103,7 +99,6 @@ export default function Collections(props) {
       );
     });
   }
-  
 
   return (
     <div className={styles.basic}>
@@ -122,21 +117,19 @@ export default function Collections(props) {
           {props.user_collections.length > 0 &&
             props.user_collections.map((collection, index) => (
               <div
-                onClick={() =>
-                  handleSelect(index)
-                }
+                onClick={() => handleSelect(index)}
                 key={index}
                 className={
                   currentIndex == index ? styles.selected : styles.collection
                 }
               >
                 <div className={styles.leftItems}>
-                <div className={styles.collectionName}>
-                  {collection.collection_name}
-                </div>
-                <div className={styles.collectionCreated}>
-                  Created {moment.unix(collection.created_at).fromNow()}
-                </div>
+                  <div className={styles.collectionName}>
+                    {collection.collection_name}
+                  </div>
+                  <div className={styles.collectionCreated}>
+                    Created {moment.unix(collection.created_at).fromNow()}
+                  </div>
                 </div>
                 <div>
                   <CollectionDeleteOption
@@ -146,92 +139,102 @@ export default function Collections(props) {
                 </div>
               </div>
             ))}
-
         </div>
         <div className={styles.panel}>
           <div className={styles.textLabels}>
-          <div className={styles.collectionLabel}>
-              {props.user_collections.length > 0 && props.user_collections[currentIndex].collection_name}
+            <div className={styles.collectionLabel}>
+              {props.user_collections.length > 0 &&
+                props.user_collections[currentIndex].collection_name}
             </div>
             <AddToCollectionModal
               currentIndex={currentIndex}
               user_collections={props.user_collections}
               getCollectionsForUser={props.getCollectionsForUser}
-              collectionName={props.user_collections.length > 0 && props.user_collections[currentIndex].collection_name}
+              collectionName={
+                props.user_collections.length > 0 &&
+                props.user_collections[currentIndex].collection_name
+              }
             />
           </div>
-          {collections.length > 0 && collections[currentIndex].detailed_athletes.map((athlete, index) => (
-            <div key={index} className={styles.competitor}>
-              <div className={styles.topItems}>
-                <img
-                  className={styles.competitorImage}
-                  src={athlete.hq_image_url}
-                />
-                <div className={styles.criticalInfo}>
-                  <div className={styles.leftItems}>
-                    <div className={styles.competitorName}>
-                      {athlete.full_name}
-                    </div>
-                    <div className={styles.disciplines}>
-                      {athlete.disciplines}
+          {collections.length > 0 &&
+            collections[currentIndex].detailed_athletes.map(
+              (athlete, index) => (
+                <div key={index} className={styles.competitor}>
+                  <div className={styles.topItems}>
+                    <img
+                      className={styles.competitorImage}
+                      src={athlete.hq_image_url}
+                    />
+                    <div className={styles.criticalInfo}>
+                      <div className={styles.leftItems}>
+                        <div className={styles.competitorName}>
+                          {athlete.full_name}
+                        </div>
+                        <div className={styles.disciplines}>
+                          {athlete.disciplines}
+                        </div>
+                      </div>
+                      <div className={styles.rightItemsContainer}>
+                        <DeleteOptionMenu
+                          athlete_id={athlete.aaAthleteId}
+                          collection_id={
+                            props.user_collections[currentIndex]["_id"]
+                          }
+                          getCollectionsForUser={props.getCollectionsForUser}
+                        />
+                        <div
+                          onClick={() => updateSummaryStyle(athlete, index)}
+                          className={styles.rightItems}
+                        >
+                          {athlete.summary &&
+                            (athlete.height && athlete.height != "0px" ? (
+                              <IconButton
+                                size="small"
+                                aria-controls={
+                                  open ? "account-menu" : undefined
+                                }
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                                sx={{
+                                  padding: 1,
+                                }}
+                              >
+                                <RemoveIcon sx={{ fontWeight: "bold" }} />
+                              </IconButton>
+                            ) : (
+                              <IconButton
+                                size="small"
+                                aria-controls={
+                                  open ? "account-menu" : undefined
+                                }
+                                aria-haspopup="true"
+                                aria-expanded={open ? "true" : undefined}
+                                sx={{
+                                  padding: 1,
+                                }}
+                              >
+                                <AddIcon />
+                              </IconButton>
+                            ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className={styles.rightItemsContainer}>
-                    <DeleteOptionMenu
-                      athlete_id={athlete.aaAthleteId}
-                      collection_id={
-                        props.user_collections[currentIndex]["_id"]
-                      }
-                      getCollectionsForUser={props.getCollectionsForUser}
+                  <div
+                    id={index}
+                    className={styles.competitorSummary}
+                    style={{ height: athlete.height }}
+                  >
+                    <CustomTabPanel
+                      athlete={athlete}
+                      loadingNewAthlete={false}
+                      athlete_data={athlete.athlete_results || []}
+                      top_competitors={athlete.top_competitors}
                     />
-                    <div
-                      onClick={() => updateSummaryStyle(athlete, index)}
-                      className={styles.rightItems}
-                    >
-                      {athlete.summary &&
-                        (athlete.height && athlete.height != "0px" ? (
-                          <IconButton
-                          size="small"
-                          aria-controls={open ? "account-menu" : undefined}
-                          aria-haspopup="true"
-                          aria-expanded={open ? "true" : undefined}
-                          sx={{
-                            padding: 1,
-                          }}
-                        >
-                          <RemoveIcon sx={{ fontWeight: "bold" }} />
-                          </IconButton>
-                        ) : (
-                          <IconButton
-                          size="small"
-                          aria-controls={open ? "account-menu" : undefined}
-                          aria-haspopup="true"
-                          aria-expanded={open ? "true" : undefined}
-                          sx={{
-                            padding: 1,
-                          }}
-                        >
-                          <AddIcon />
-                          </IconButton>
-                        ))}
-                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                id={index}
-                className={styles.competitorSummary}
-                style={{ height: athlete.height }}
-              >
-                <CustomTabPanel
-                  athlete={athlete}
-                  loadingNewAthlete={false}
-                  athlete_data={athlete.athlete_results || []}
-                  top_competitors={athlete.top_competitors}
-                />
-              </div>
-            </div>
-          ))}
+              ),
+            )}
         </div>
       </div>
     </div>
