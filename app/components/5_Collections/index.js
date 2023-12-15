@@ -8,6 +8,7 @@ import styles from "./styles.module.css";
 import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js";
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
+import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
 import * as API from "/app/api/api.js";
 
@@ -129,11 +130,19 @@ export default function Collections(props) {
                   currentIndex == index ? styles.selected : styles.collection
                 }
               >
+                <div className={styles.leftItems}>
                 <div className={styles.collectionName}>
                   {collection.collection_name}
                 </div>
                 <div className={styles.collectionCreated}>
                   Created {moment.unix(collection.created_at).fromNow()}
+                </div>
+                </div>
+                <div>
+                  <CollectionDeleteOption
+                    collection_id={collection["_id"]}
+                    getCollectionsForUser={props.getCollectionsForUser}
+                  />
                 </div>
               </div>
             ))}

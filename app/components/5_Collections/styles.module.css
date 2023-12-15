@@ -78,6 +78,8 @@
   border-radius: 10px;
   padding: 10px;
   color: #04053d;
+  display: flex;
+  justify-content: space-between;
 }
 
 .selected {
@@ -86,6 +88,8 @@
   border-radius: 10px;
   padding: 10px;
   color: white;
+  display: flex;
+  justify-content: space-between;
 }
 
 .collection:hover {
