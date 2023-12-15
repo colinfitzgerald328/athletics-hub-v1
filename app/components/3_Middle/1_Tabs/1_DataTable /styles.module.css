@@ -54,6 +54,19 @@
   padding-bottom: 5px;
   height: 70px;
   border-bottom: 1px solid gray;
+  font-size: 16px;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.tableRowAlternate:last-child {
+  border-bottom: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .tableRowAlternate {
@@ -66,6 +79,7 @@
   height: 70px;
   background-color: #f3f3f3;
   border-bottom: 1px solid gray;
+  font-size: 16px;
 }
 
 .tableRowLast {
