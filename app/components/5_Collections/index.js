@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import IconButton from "@mui/material/IconButton";
 import RemoveIcon from "@mui/icons-material/Remove";
 import styles from "./styles.module.css";
-import CustomTabPanel from "/app/components/3_Middle/1_Tabs/index.js";
+import CollectionTabs from "./5_Tabs"
 import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
 import CollectionDeleteOption from "./4_MenuDeleteOption";
@@ -26,6 +28,7 @@ export default function Collections(props) {
     var newScrollHeight = element.scrollHeight + "px";
     if (theItem.height == undefined) {
       theItem.height = newScrollHeight;
+      console.log("setting new height")
       const data_fetch_results = await getDataForAthlete(athlete);
       theItem.athlete_results = data_fetch_results.athlete_results;
       theItem.top_competitors = data_fetch_results.top_competitors;
@@ -243,7 +246,7 @@ export default function Collections(props) {
                                   padding: 1,
                                 }}
                               >
-                                <RemoveIcon sx={{ fontWeight: "bold" }} />
+                                <KeyboardArrowUpIcon sx={{ fontWeight: "bold" }} />
                               </IconButton>
                             ) : (
                               <IconButton
@@ -257,7 +260,7 @@ export default function Collections(props) {
                                   padding: 1,
                                 }}
                               >
-                                <AddIcon />
+                                <KeyboardArrowDownIcon />
                               </IconButton>
                             ))}
                         </div>
@@ -267,9 +270,9 @@ export default function Collections(props) {
                   <div
                     id={index}
                     className={styles.competitorSummary}
-                    style={{ height: athlete.height }}
+                    style={{ height: athlete.height, overflow: 'scroll'}}
                   >
-                    <CustomTabPanel
+                    <CollectionTabs
                       athlete={athlete}
                       loadingNewAthlete={false}
                       athlete_data={athlete.athlete_results || []}

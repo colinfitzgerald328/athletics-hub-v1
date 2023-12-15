@@ -1,0 +1,131 @@
+.pbItem {
+  background-color: lightgray;
+  border-radius: 25px;
+  padding: 10px;
+  line-height: normal;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 5px slategray;
+}
+
+.accomplishmentHolder {
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  line-height: normal;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: last baseline;
+  box-shadow: 2px 2px 5px slategray;
+}
+
+.discipline {
+  font-size: 18px;
+  font-style: italic;
+}
+
+.indicator {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.accomplishment {
+  font-size: 18px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+.mark {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.summary {
+  font-size: 20px;
+  font-family: "SF Pro Display", sans-serif;
+  background-color: lightgray;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px slategray;
+  line-height: 30px;
+  position: relative;
+}
+
+.summaryButton {
+  position: absolute;
+  top: 0;
+}
+
+.competitor {
+  font-size: 20px;
+  background-color: lightgray;
+  border-radius: 20px;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 5px slategray;
+}
+
+.topItems {
+  display: flex;
+}
+
+.competitorImage {
+  min-width: 80px;
+  max-width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.competitorName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.competitorName:hover {
+  text-decoration: underline;
+  transition: text-decoration 0.5s;
+  cursor: pointer;
+}
+
+.criticalInfo {
+  margin-left: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.disciplines {
+  color: #536371;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.competitorSummary {
+  height: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: height 0.5s ease-in-out;
+  line-height: 30px;
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.rightItems {
+  cursor: pointer;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.rightItems:hover {
+  transition: background-color 1s;
+}
+
+.nothingHereYet {
+  display: flex;
+  align-items: center;
+}

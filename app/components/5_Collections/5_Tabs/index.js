@@ -24,7 +24,7 @@ function CustomTabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
+      {value === index && <Box sx={{ p: 3}}>{children}</Box>}
     </div>
   );
 }
@@ -42,7 +42,7 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs(props) {
+export default function CollectionTabs(props) {
   const [value, setValue] = React.useState(0);
   const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -113,7 +113,7 @@ export default function BasicTabs(props) {
         width: "100%",
         borderBottomLeftRadius: "25px",
         borderBottomRightRadius: "25px",
-        position: "relative",
+        overflow: "scroll"
       }}
     >
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
