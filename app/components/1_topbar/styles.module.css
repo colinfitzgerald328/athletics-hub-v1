@@ -8,7 +8,7 @@
   width: 100vw;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 10px;
   justify-content: space-between;
 }
@@ -30,7 +30,7 @@
   border-radius: 25px;
   outline: none;
   font-size: 18px;
-  padding-left: 15px;
+  padding: 20px;
   border: none; 
   box-shadow: 2px 2px 5px slategray;
 }
