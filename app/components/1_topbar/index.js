@@ -243,6 +243,7 @@ export default function TopBar(props) {
                       aria-expanded={open ? "true" : undefined}
                       sx={{
                         padding: 1,
+                        marginTop: "10px",
                         borderRadius: "25px"
                       }}
                       className={styles.fullWidthBackButton}
