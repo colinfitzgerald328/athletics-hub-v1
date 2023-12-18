@@ -243,6 +243,7 @@ export default function TopBar(props) {
                       aria-expanded={open ? "true" : undefined}
                       sx={{
                         padding: 1,
+                        borderRadius: "25px"
                       }}
                       className={styles.fullWidthBackButton}
                       onClick={() => setCreatingAccount(false)}
