@@ -179,7 +179,7 @@ export default function TopBar(props) {
           )}
           {!creatingAccount && (
             <div className={styles.noAccountYet}>
-              Don't have an account? 
+              Don&apos;t have an account? 
             <div
               onClick={() => setCreatingAccount(true)}
               className={styles.signUpButton}
