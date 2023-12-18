@@ -7,6 +7,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import HubIcon from '@mui/icons-material/Hub';
 import * as API from "/app/api/api.js";
 
 const style = {
@@ -38,6 +39,7 @@ export default function TopBar(props) {
   const [createdAccountOpen, setCreatedAccountOpen] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
   const [dangerAlertOpen, setDangerAlertOpen] = useState(false);
+  const [accountFailedOpen, setAccountFailedOpen] = useState(false);
 
   function handleLogin() {
     setLoggingIn(true);
@@ -62,6 +64,10 @@ export default function TopBar(props) {
   }
 
   function createAccount() {
+    if (userName == "" || password == "") {
+      setAccountFailedOpen(true);
+      return; 
+    }
     setLoggingIn(true);
     setTimeout(() => {
       API.createAccount(userName, password, (data) => {
@@ -102,6 +108,13 @@ export default function TopBar(props) {
     setDangerAlertOpen(false);
   };
 
+  const handleCloseFailedCreate = (event, reason) => {
+    if (reason === "clickaway") {
+      return; 
+    }
+    setAccountFailedOpen(false);
+  }
+
   function openModal() {
     setLoginModalOpen(true);
   }
@@ -141,19 +154,53 @@ export default function TopBar(props) {
       </div>
       <Modal className={styles.modalWithHeight} open={loginModalOpen} onClose={cancelModal}>
         <Box sx={style}>
-          <h1 style={{"marginBottom": "10px"}}>{creatingAccount ? "Create Account" : "Sign in to view collections"}</h1>
-          <input
-            className={styles.basicInput}
-            placeholder="username"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            spellCheck="false"
-          ></input>
+          <div className={styles.baseIcon}>
+          <HubIcon sx={{"color": "#1095E5", fontSize: "50px"}}/>
+          </div>
+          {
+            creatingAccount ? 
+            <h1 className={styles.callOut}>Sign up</h1>
+            :
+            <h1 className={styles.callOut}>Welcome back</h1>
+          }
+            <div className={styles.subMessageHolder}>
+              {
+                creatingAccount ? 
+                <div className={styles.subMessage}>
+                  Welcome to the athletics hub!
+              </div>
+              :
+              <div className={styles.subMessage}>
+              Glad to see you again 👋
+            </div>
+              }
+              {
+                creatingAccount ?
+                <div className={styles.subMessageWithMargin}>
+                Enter your details below to create your account and get started. 
+              </div>
+              :
+              <div className={styles.subMessage}>
+              Login to your account below
+            </div>
+              }
+            </div>
+            <div className={styles.inputContainer}>
+              <div className={styles.inputLabel}>Username</div>
+                <input
+                  className={styles.basicInput}
+                  placeholder="enter username..."
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  spellCheck="false"
+                ></input>
+          </div>
+          <div className={styles.inputLabel}>Password</div>
           <input
             className={styles.basicInput}
             type="password"
             value={password}
-            placeholder="password"
+            placeholder="enter password..."
             spellCheck="false"
             onChange={(e) => setPassword(e.target.value)}
           ></input>
@@ -241,6 +288,20 @@ export default function TopBar(props) {
           sx={{ width: "100%" }}
         >
           Error logging you in. Please check your username and password.
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "center"}}
+        open={accountFailedOpen}
+        autoHideDuration={3000}
+        onClose={handleCloseFailedCreate}
+      >
+                <Alert
+          onClose={handleCloseFailedCreate}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Error creating account. Please enter a username and password and try again. 
         </Alert>
       </Snackbar>
     </div>
