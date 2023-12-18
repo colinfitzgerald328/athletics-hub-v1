@@ -129,11 +129,8 @@ export default function CreateCollectionModal(props) {
 
   return (
     <>
-      <Button className={styles.createCollectionLabel} onClick={openModal}>
-        <div className={styles.leftItemsLabel}>
-          <BookmarkBorderIcon sx={{ fontSize: "16px", color: "gray" }} />
-          New collection
-        </div>{" "}
+      <Button type="primary" className={styles.createCollectionLabel} onClick={openModal}>
+        New Collection 
       </Button>
       <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
         <div className={styles.modalLabel}>Create New Collection</div>

@@ -117,7 +117,7 @@ export default function ComparisonModal() {
         sx={{
           width: "100%",
           marginTop: "10px",
-          borderRadius: "20px",
+          borderRadius: "25px",
           height: "50px",
           fontSize: "20px",
           backgroundColor: "lightslategray",
