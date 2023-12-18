@@ -1,21 +1,19 @@
 .pbItem {
-  background-color: lightgray;
+  background-color: #F2F2F2;
   border-radius: 25px;
-  padding: 10px;
+  padding: 20px;
   line-height: normal;
   margin-bottom: 10px;
-  box-shadow: 2px 2px 5px slategray;
 }
 
 .accomplishmentHolder {
-  background-color: lightgray;
+  background-color: #F2F2F2;
   border-radius: 20px;
-  padding: 10px;
+  padding: 20px;
   line-height: normal;
   margin-bottom: 10px;
   display: flex;
   align-items: last baseline;
-  box-shadow: 2px 2px 5px slategray;
 }
 
 .discipline {
@@ -42,10 +40,9 @@
 .summary {
   font-size: 20px;
   font-family: "SF Pro Display", sans-serif;
-  background-color: lightgray;
-  padding: 10px;
+  background-color: #F2F2F2;
+  padding: 20px;
   border-radius: 20px;
-  box-shadow: 2px 2px 5px slategray;
   line-height: 30px;
   position: relative;
 }
@@ -57,11 +54,10 @@
 
 .competitor {
   font-size: 20px;
-  background-color: lightgray;
+  background-color: #F2F2F2;
   border-radius: 20px;
   padding: 10px;
   margin-bottom: 10px;
-  box-shadow: 2px 2px 5px slategray;
 }
 
 .topItems {
@@ -107,7 +103,9 @@
   transition: height 0.5s ease-in-out;
   line-height: 30px;
   border-radius: 20px;
-  padding-top: 5px;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   padding-bottom: 5px;
 }
 
