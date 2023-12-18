@@ -5,6 +5,8 @@ import Modal from "@mui/material/Modal";
 import styles from "./styles.module.css";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import * as API from "/app/api/api.js";
 
 const style = {
@@ -12,11 +14,13 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
-  innerHeight: 100,
+  width: 450,
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4,
+  paddingTop: "30px", 
+  paddingBottom: "30px",
+  paddingLeft: "30px", 
+  paddingRight: "30px",
   borderRadius: "10px",
   outline: "none",
 };
@@ -118,23 +122,26 @@ export default function TopBar(props) {
           Stay up to date on your favorite track and field athletes
         </div>
       </div>
+      <div className={styles.rightItems}>
+        {
+          props.loggedIn && 
+          <div className={styles.welcomeForUser}>
+          Welcome <div className={styles.userName}>{localStorage.getItem('userName')}</div>
+        </div>
+}
       {props.loggedIn ? (
-        <div className={styles.userLoggedIn}>
-          <div className={styles.userName}>
-            Welcome, {localStorage.getItem("userName")}
-          </div>
-          <Button onClick={() => props.logOutUser()} type="primary">
+          <Button className={styles.fullWidthLogin} onClick={() => props.logOutUser()} type="primary">
             Log out
           </Button>
-        </div>
       ) : (
-        <Button onClick={openModal} type="primary">
-          Log in to save collections :)
+        <Button className={styles.fullWidthLogin} onClick={openModal} type="primary">
+          Sign in 
         </Button>
       )}
-      <Modal open={loginModalOpen} onClose={cancelModal}>
+      </div>
+      <Modal className={styles.modalWithHeight} open={loginModalOpen} onClose={cancelModal}>
         <Box sx={style}>
-          <h1>{creatingAccount ? "Create Account" : "Log in"}</h1>
+          <h1 style={{"marginBottom": "10px"}}>{creatingAccount ? "Create Account" : "Sign in to view collections"}</h1>
           <input
             className={styles.basicInput}
             placeholder="username"
@@ -171,20 +178,30 @@ export default function TopBar(props) {
             </Button>
           )}
           {!creatingAccount && (
-            <Button
+            <div className={styles.noAccountYet}>
+              Don't have an account? 
+            <div
               onClick={() => setCreatingAccount(true)}
-              className={styles.fullWidth}
+              className={styles.signUpButton}
             >
-              New here? Click to create an account
-            </Button>
+              Sign up
+            </div>
+            </div>
           )}
           {creatingAccount && (
-            <Button
-              onClick={() => setCreatingAccount(false)}
-              className={styles.fullWidth}
-            >
-              Back to login
-            </Button>
+                      <IconButton
+                      size="small"
+                      aria-controls={open ? "account-menu" : undefined}
+                      aria-haspopup="true"
+                      aria-expanded={open ? "true" : undefined}
+                      sx={{
+                        padding: 1,
+                      }}
+                      className={styles.fullWidthBackButton}
+                      onClick={() => setCreatingAccount(false)}
+                    >
+                      <ArrowBackIcon />
+                    </IconButton>
           )}
         </Box>
       </Modal>

@@ -26,17 +26,41 @@
 .basicInput {
   margin-top: 10px;
   width: 100%;
-  height: 40px;
+  height: 50px;
   border-radius: 10px;
   outline: none;
-  border: 1px solid dodgerblue;
-  font-size: 20px;
+  font-size: 18px;
   padding-left: 10px;
+  border: none; 
+  box-shadow: 2px 2px 5px slategray;
 }
 
 .fullWidth {
-  margin-top: 20px;
+  margin-top: 15px;
   width: 100%;
+  background-color: #1095E5;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+
+.fullWidthLogin {
+  background-color: #1095E5;
+  border-radius: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+
+.fullWidthBackButton {
+  margin-top: 10px;
+  width: 100%;
+  color: gray;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 18px;
 }
 
 .userLoggedIn {
@@ -45,7 +69,38 @@
 }
 
 .userName {
-  font-size: 20px;
   font-weight: 600;
-  margin-right: 10px;
+  margin-left: 3px;
+}
+
+
+.noAccountYet {
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.signUpButton {
+  display: flex; 
+  color: #1095E5;
+  margin-left: 3px;
+}
+
+.signUpButton:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rightItems {
+  display: flex;
+  align-items: center;
+}
+
+.welcomeForUser {
+  margin-right: 5px;
+  display: flex;
+  align-items: last baseline;
 }
