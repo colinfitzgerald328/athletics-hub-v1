@@ -7,7 +7,7 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import HubIcon from '@mui/icons-material/Hub';
+import HubIcon from "@mui/icons-material/Hub";
 import * as API from "/app/api/api.js";
 
 const style = {
@@ -18,9 +18,9 @@ const style = {
   width: 450,
   bgcolor: "background.paper",
   boxShadow: 24,
-  paddingTop: "30px", 
+  paddingTop: "30px",
   paddingBottom: "30px",
-  paddingLeft: "30px", 
+  paddingLeft: "30px",
   paddingRight: "30px",
   borderRadius: "10px",
   outline: "none",
@@ -66,7 +66,7 @@ export default function TopBar(props) {
   function createAccount() {
     if (userName == "" || password == "") {
       setAccountFailedOpen(true);
-      return; 
+      return;
     }
     setLoggingIn(true);
     setTimeout(() => {
@@ -110,10 +110,10 @@ export default function TopBar(props) {
 
   const handleCloseFailedCreate = (event, reason) => {
     if (reason === "clickaway") {
-      return; 
+      return;
     }
     setAccountFailedOpen(false);
-  }
+  };
 
   function openModal() {
     setLoginModalOpen(true);
@@ -136,64 +136,73 @@ export default function TopBar(props) {
         </div>
       </div>
       <div className={styles.rightItems}>
-        {
-          props.loggedIn && 
+        {props.loggedIn && (
           <div className={styles.welcomeForUser}>
-          Welcome <div className={styles.userName}>{localStorage.getItem('userName')}</div>
-        </div>
-}
-      {props.loggedIn ? (
-          <Button className={styles.fullWidthLogin} onClick={() => props.logOutUser()} type="primary">
+            Welcome{" "}
+            <div className={styles.userName}>
+              {localStorage.getItem("userName")}
+            </div>
+          </div>
+        )}
+        {props.loggedIn ? (
+          <Button
+            className={styles.fullWidthLogin}
+            onClick={() => props.logOutUser()}
+            type="primary"
+          >
             Log out
           </Button>
-      ) : (
-        <Button className={styles.fullWidthLogin} onClick={openModal} type="primary">
-          Sign in 
-        </Button>
-      )}
+        ) : (
+          <Button
+            className={styles.fullWidthLogin}
+            onClick={openModal}
+            type="primary"
+          >
+            Sign in
+          </Button>
+        )}
       </div>
-      <Modal className={styles.modalWithHeight} open={loginModalOpen} onClose={cancelModal}>
+      <Modal
+        className={styles.modalWithHeight}
+        open={loginModalOpen}
+        onClose={cancelModal}
+      >
         <Box sx={style}>
           <div className={styles.baseIcon}>
-          <HubIcon sx={{"color": "#1095E5", fontSize: "50px"}}/>
+            <HubIcon sx={{ color: "#1095E5", fontSize: "50px" }} />
           </div>
-          {
-            creatingAccount ? 
+          {creatingAccount ? (
             <h1 className={styles.callOut}>Sign up</h1>
-            :
+          ) : (
             <h1 className={styles.callOut}>Welcome back</h1>
-          }
-            <div className={styles.subMessageHolder}>
-              {
-                creatingAccount ? 
-                <div className={styles.subMessage}>
-                  Welcome to the athletics hub!
-              </div>
-              :
+          )}
+          <div className={styles.subMessageHolder}>
+            {creatingAccount ? (
               <div className={styles.subMessage}>
-              Glad to see you again 👋
-            </div>
-              }
-              {
-                creatingAccount ?
-                <div className={styles.subMessageWithMargin}>
-                Enter your details below to create your account and get started. 
+                Welcome to the athletics hub!
               </div>
-              :
+            ) : (
+              <div className={styles.subMessage}>Glad to see you again 👋</div>
+            )}
+            {creatingAccount ? (
+              <div className={styles.subMessageWithMargin}>
+                Enter your details below to create your account and get started.
+              </div>
+            ) : (
               <div className={styles.subMessage}>
-              Login to your account below
-            </div>
-              }
-            </div>
-            <div className={styles.inputContainer}>
-              <div className={styles.inputLabel}>Username</div>
-                <input
-                  className={styles.basicInput}
-                  placeholder="enter username..."
-                  value={userName}
-                  onChange={(e) => setUserName(e.target.value)}
-                  spellCheck="false"
-                ></input>
+                Login to your account below
+              </div>
+            )}
+          </div>
+          <div className={styles.inputContainer}>
+            <div className={styles.inputLabel}>Username</div>
+            <input
+              className={styles.basicInput}
+              placeholder="enter username..."
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              spellCheck="false"
+            ></input>
           </div>
           <div className={styles.inputLabel}>Password</div>
           <input
@@ -226,31 +235,31 @@ export default function TopBar(props) {
           )}
           {!creatingAccount && (
             <div className={styles.noAccountYet}>
-              Don&apos;t have an account? 
-            <div
-              onClick={() => setCreatingAccount(true)}
-              className={styles.signUpButton}
-            >
-              Sign up
-            </div>
+              Don&apos;t have an account?
+              <div
+                onClick={() => setCreatingAccount(true)}
+                className={styles.signUpButton}
+              >
+                Sign up
+              </div>
             </div>
           )}
           {creatingAccount && (
-                      <IconButton
-                      size="small"
-                      aria-controls={open ? "account-menu" : undefined}
-                      aria-haspopup="true"
-                      aria-expanded={open ? "true" : undefined}
-                      sx={{
-                        padding: 1,
-                        marginTop: "10px",
-                        borderRadius: "25px"
-                      }}
-                      className={styles.fullWidthBackButton}
-                      onClick={() => setCreatingAccount(false)}
-                    >
-                      <ArrowBackIcon />
-                    </IconButton>
+            <IconButton
+              size="small"
+              aria-controls={open ? "account-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? "true" : undefined}
+              sx={{
+                padding: 1,
+                marginTop: "10px",
+                borderRadius: "25px",
+              }}
+              className={styles.fullWidthBackButton}
+              onClick={() => setCreatingAccount(false)}
+            >
+              <ArrowBackIcon />
+            </IconButton>
           )}
         </Box>
       </Modal>
@@ -293,17 +302,18 @@ export default function TopBar(props) {
         </Alert>
       </Snackbar>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center"}}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={accountFailedOpen}
         autoHideDuration={3000}
         onClose={handleCloseFailedCreate}
       >
-                <Alert
+        <Alert
           onClose={handleCloseFailedCreate}
           severity="error"
           sx={{ width: "100%" }}
         >
-          Error creating account. Please enter a username and password and try again. 
+          Error creating account. Please enter a username and password and try
+          again.
         </Alert>
       </Snackbar>
     </div>

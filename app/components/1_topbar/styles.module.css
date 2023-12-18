@@ -31,28 +31,26 @@
   outline: none;
   font-size: 18px;
   padding: 20px;
-  border: none; 
+  border: none;
   box-shadow: 2px 2px 5px slategray;
 }
 
 .fullWidth {
   margin-top: 20px;
   width: 100%;
-  background-color: #1095E5;
+  background-color: #1095e5;
   height: 50px;
   border-radius: 25px;
   font-size: 18px;
 }
 
-
 .fullWidthLogin {
-  background-color: #1095E5;
+  background-color: #1095e5;
   border-radius: 15px;
   font-size: 16px;
   display: flex;
   align-items: center;
 }
-
 
 .fullWidthBackButton {
   margin-top: 10px;
@@ -72,7 +70,6 @@
   margin-left: 3px;
 }
 
-
 .noAccountYet {
   display: flex;
   margin-top: 30px;
@@ -81,10 +78,9 @@
   margin-right: auto;
 }
 
-
 .signUpButton {
-  display: flex; 
-  color: #1095E5;
+  display: flex;
+  color: #1095e5;
   margin-left: 3px;
 }
 
@@ -103,7 +99,6 @@
   display: flex;
   align-items: last baseline;
 }
-
 
 .callOut {
   display: flex;
@@ -145,7 +140,7 @@
 }
 
 .inputLabel {
-  color: #4E5963;
+  color: #4e5963;
 }
 
 .inputContainer {

@@ -129,8 +129,12 @@ export default function CreateCollectionModal(props) {
 
   return (
     <>
-      <Button type="primary" className={styles.createCollectionLabel} onClick={openModal}>
-        New Collection 
+      <Button
+        type="primary"
+        className={styles.createCollectionLabel}
+        onClick={openModal}
+      >
+        New Collection
       </Button>
       <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
         <div className={styles.modalLabel}>Create New Collection</div>

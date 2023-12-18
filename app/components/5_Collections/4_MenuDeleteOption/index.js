@@ -38,7 +38,7 @@ export default function CollectionDeleteOption(props) {
           aria-expanded={open ? "true" : undefined}
         >
           <MoreVert
-          sx={{"color": props.currentIndex == props.itemIndex ? "white" : ""}}
+            sx={{ color: props.currentIndex == props.itemIndex ? "white" : "" }}
           />
         </IconButton>
       </Box>
