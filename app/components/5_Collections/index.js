@@ -187,6 +187,8 @@ export default function Collections(props) {
                   <CollectionDeleteOption
                     collection_id={collection["_id"]}
                     getCollectionsForUser={props.getCollectionsForUser}
+                    currentIndex={currentIndex}
+                    itemIndex={index}
                   />
                 </div>
               </div>
