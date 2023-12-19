@@ -13,8 +13,8 @@ export default function AthleteBreakDown(props) {
         <div className={styles.nameVariables}>
           <div className={styles.fullName}>{props.athlete.full_name}</div>
           <div className={styles.disciplines}>
-            {disciplinesArr && disciplinesArr.map((discipline) => 
-              <div className={styles.tag}>
+            {disciplinesArr && disciplinesArr.map((discipline, index) => 
+              <div key={index} className={styles.tag}>
                 {discipline}
               </div>
             )}
