@@ -2,8 +2,6 @@ import React, { useState, useEffect, use } from "react";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
