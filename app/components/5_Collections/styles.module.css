@@ -1,7 +1,5 @@
 .basic {
-  padding-left: 10px;
-  width: calc((calc(100% / 2) + calc(100% / 3.5)));
-  margin-right: 10px;
+  width: calc(100% - calc(100% / 3.5));
   animation: slideUp 0.5s;
   display: none;
 }
@@ -21,7 +19,7 @@
 }
 
 .dismiss {
-  animation: slideDown 0.3s;
+  animation: slideDown 0.5s;
 }
 
 

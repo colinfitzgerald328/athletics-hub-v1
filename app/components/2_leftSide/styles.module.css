@@ -1,8 +1,8 @@
 .leftSide {
-  min-width: 500px;
-  max-width: 500px;
-  padding: 0px 0px 0px 20px;
+  width: calc(100% / 3.5);
   position: relative;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .searchBar {
