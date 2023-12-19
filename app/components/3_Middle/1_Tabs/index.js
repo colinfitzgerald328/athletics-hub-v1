@@ -376,9 +376,6 @@ export default function BasicTabs(props) {
                         (competitor.height && competitor.height != "0px" ? (
                           <IconButton
                             size="small"
-                            aria-controls={open ? "account-menu" : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? "true" : undefined}
                             sx={{
                               padding: 1,
                             }}
@@ -388,9 +385,6 @@ export default function BasicTabs(props) {
                         ) : (
                           <IconButton
                             size="small"
-                            aria-controls={open ? "account-menu" : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? "true" : undefined}
                             sx={{
                               padding: 1,
                             }}

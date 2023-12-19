@@ -18,12 +18,13 @@ export default function RightSide(props) {
 
   function handleFadeIn() {
     var element = document.getElementsByClassName(styles.rightSide)[0]
-    console.log("this is the element classlist", element.classList)
-      setTimeout(()=> {
-        element.classList.remove(styles.removeDisplay)
-        element.classList.remove(styles.fadeOut)
-        element.classList.add(styles.fadeIn)
-      }, 300)
+    setTimeout(()=> {
+      element.classList.remove(styles.removeDisplay)
+      element.classList.remove(styles.fadeOut)
+        setTimeout(()=> {
+          element.classList.add(styles.fadeIn)
+      }, 200)
+    }, 300)
   }
   
 

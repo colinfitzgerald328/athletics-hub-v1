@@ -247,9 +247,6 @@ export default function TopBar(props) {
           {creatingAccount && (
             <IconButton
               size="small"
-              aria-controls={open ? "account-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
               sx={{
                 padding: 1,
                 marginTop: "10px",

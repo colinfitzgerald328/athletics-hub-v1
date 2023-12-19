@@ -31,9 +31,6 @@ export default function DeleteOptionMenu(props) {
         <IconButton
           onClick={handleDelete}
           size="small"
-          aria-controls={open ? "account-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
           sx={{
             padding: 1,
           }}

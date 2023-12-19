@@ -33,9 +33,6 @@ export default function CollectionDeleteOption(props) {
         <IconButton
           onClick={handleClick}
           size="small"
-          aria-controls={open ? "account-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
         >
           <MoreVert
             sx={{ color: props.currentIndex == props.itemIndex ? "white" : "" }}
