@@ -42,8 +42,9 @@ export default function SocialProfiles(props) {
     if (instagramObject) {
       const instagramUrl = instagramObject.instagram_url;
 
-      // Check if the URL contains "/username/" or ends with "/username"
-      const match = instagramUrl.match(/\/([^\/]+)\/?$/);
+      const regex = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([^\/?]+)/i;
+
+      const match = instagramUrl.match(regex);
 
       if (match) {
         // Extract the username from the matched part

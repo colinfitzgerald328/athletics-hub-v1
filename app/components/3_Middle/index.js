@@ -4,7 +4,6 @@ import styles from "./styles.module.css";
 import { Skeleton } from "@mui/material";
 
 export default function AthleteBreakDown(props) {
-  console.log(props)
   const disciplinesArr =
     props.athlete.length !== 0
       ? props.athlete.disciplines.split(", ")
