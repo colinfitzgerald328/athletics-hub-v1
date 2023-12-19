@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CustomTabPanel from "./1_Tabs";
 import styles from "./styles.module.css";
 import { Skeleton } from "@mui/material";
@@ -8,6 +8,35 @@ export default function AthleteBreakDown(props) {
     props.athlete.length !== 0
       ? props.athlete.disciplines.split(", ")
       : undefined;
+
+  function handleFadeOut() {
+    var element = document.getElementsByClassName(styles.athleteBreakdown)[0]
+    element.classList.add(styles.fadeOut)
+    setTimeout(()=> {
+      element.classList.add(styles.removeDisplay)
+      element.classList.remove(styles.fadeIn)
+    }, 300)
+  }
+
+  function handleFadeIn() {
+    var element = document.getElementsByClassName(styles.athleteBreakdown)[0]
+      setTimeout(()=> {
+        element.classList.remove(styles.removeDisplay)
+        element.classList.remove(styles.fadeOut)
+        element.classList.add(styles.fadeIn)
+      }, 300)
+  }
+  
+
+  useEffect(()=> {
+    if (props.showingCollections) {
+      handleFadeOut()
+    } else if (!props.showingCollections) {
+      handleFadeIn()
+    }
+  }, [props.showingCollections])
+
+
   return (
     <div className={styles.athleteBreakdown}>
       <div className={styles.itemsContainer}>

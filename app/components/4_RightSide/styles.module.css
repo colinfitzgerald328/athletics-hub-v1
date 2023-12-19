@@ -3,4 +3,19 @@
   padding-left: 10px;
   padding-right: 10px;
   overflow-y: scroll;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: block;
+}
+
+.fadeIn {
+  opacity: 1;
+}
+
+.fadeOut {
+  opacity: 0; 
+}
+
+.removeDisplay {
+  display: none;
 }

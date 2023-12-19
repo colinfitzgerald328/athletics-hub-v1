@@ -10,6 +10,7 @@ import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
 import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { toaster } from "evergreen-ui";
 import * as API from "/app/api/api.js";
 
@@ -142,10 +143,33 @@ export default function Collections(props) {
     }
   }
 
+  function handleCloseCollections() {
+    var element = document.getElementsByClassName(styles.basic)[0]
+    element.classList.add(styles.dismiss);
+    props.closeCollections()
+    setTimeout(()=> {
+      element.classList.remove(styles.dismiss);
+      element.classList.remove(styles.show);
+    }, 300)
+  }
+
+  function handleShowCollections() {
+    setTimeout(()=> {
+      var element = document.getElementsByClassName(styles.basic)[0]
+      element.classList.add(styles.show)
+    }, 300)
+  }
+
+  useEffect(()=> {
+    if (props.showingCollections) {
+      handleShowCollections()
+    }
+  }, [props.showingCollections])
+
   return (
     <div className={styles.basic}>
       <div className={styles.topItems}>
-        <div onClick={() => props.closeCollections()}>
+        <div onClick={() => handleCloseCollections()}>
           <IconButton
             size="small"
             aria-controls={open ? "account-menu" : undefined}
@@ -155,7 +179,7 @@ export default function Collections(props) {
               padding: 1,
             }}
           >
-            <ArrowBackIcon />
+            <ArrowDownwardIcon />
           </IconButton>
         </div>
         <div className={styles.createCollection}>

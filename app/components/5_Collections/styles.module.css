@@ -3,6 +3,11 @@
   width: calc((calc(100% / 2) + calc(100% / 3.5)));
   margin-right: 10px;
   animation: slideUp 0.5s;
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 @keyframes slideUp {
@@ -12,6 +17,33 @@
 
   to {
     transform: translateY(0%);
+  }
+}
+
+.dismiss {
+  animation: slideDown 0.3s;
+}
+
+
+@keyframes slideUpWithOpacity {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0%);
+  }
+
+  to {
+    transform: translateY(100%);
   }
 }
 

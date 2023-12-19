@@ -27,6 +27,7 @@ export default class MainComponent extends React.Component {
       user_collections: [],
       collections_local_copy: [],
       loadingCollections: true,
+      shouldFadeOut: false
     };
   }
 
@@ -171,11 +172,15 @@ export default class MainComponent extends React.Component {
   }
 
   showCollections() {
-    this.setState({ showingCollections: true });
+    this.setState({
+      showingCollections: true
+    });
   }
 
   closeCollections() {
-    this.setState({ showingCollections: false });
+    this.setState({
+      showingCollections: false
+    });
   }
 
   render() {
@@ -206,7 +211,6 @@ export default class MainComponent extends React.Component {
             logOutUser={this.logOutUser.bind(this)}
             logInUser={this.logInUser.bind(this)}
           />
-          {this.state.showingCollections ? (
             <div className={styles.mainDisplay}>
               <LeftSide
                 setAthlete={this.setAthlete.bind(this)}
@@ -219,15 +223,7 @@ export default class MainComponent extends React.Component {
                 getCollectionsForUser={this.getCollectionsForUser.bind(this)}
                 user_collections={this.state.user_collections}
                 collections_local_copy={this.state.collections_local_copy}
-              />
-            </div>
-          ) : (
-            <div className={styles.mainDisplay}>
-              <LeftSide
-                setAthlete={this.setAthlete.bind(this)}
-                loggedIn={this.state.loggedIn}
-                showCollections={this.showCollections.bind(this)}
-                loadingCollections={this.state.loadingCollections}
+                showingCollections={this.state.showingCollections}
               />
               <AthleteBreakDown
                 athlete={this.state.athlete}
@@ -238,6 +234,7 @@ export default class MainComponent extends React.Component {
                   this,
                 )}
                 height={this.state.height}
+                showingCollections={this.state.showingCollections}
               />
               <RightSide
                 athlete={this.state.athlete}
@@ -245,9 +242,9 @@ export default class MainComponent extends React.Component {
                 setAthlete={this.setAthlete.bind(this)}
                 loadingNewAthlete={this.state.loadingNewAthlete}
                 athlete_data={this.state.athlete_data}
+                showingCollections={this.state.showingCollections}
               />
             </div>
-          )}
         </div>
       );
     }
