@@ -121,31 +121,125 @@ export default function CollectionTabs(props) {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          sx={{
+            marginTop: "10px", 
+            fontFamily: "SF Pro Display, sans-serif",
+            '& .MuiTabs-indicator': {
+              display: 'flex',
+              justifyContent: 'center',
+              backgroundColor: 'transparent',
+            },
+            '& .MuiTabs-indicatorSpan': {
+              maxWidth: 40,
+              width: '100%',
+              backgroundColor: '#635ee7',
+            },
+          }}
         >
           <Tab
             label="Summary"
             {...a11yProps(0)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
+            }}
           />
           <Tab
             label="Competition"
             {...a11yProps(1)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
+            }}
           />
           <Tab
             label="Personal Bests"
             {...a11yProps(2)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
+            }}
           />
           <Tab
             label="Accolades"
             {...a11yProps(3)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
+            }}
           />
           <Tab
             label="Results"
             {...a11yProps(4)}
-            sx={{ width: "20%", fontSize: "16px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
+            }}
           />
         </Tabs>
       </Box>

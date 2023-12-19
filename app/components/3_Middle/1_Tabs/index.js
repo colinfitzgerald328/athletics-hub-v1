@@ -139,7 +139,6 @@ export default function BasicTabs(props) {
               backgroundColor: '#635ee7',
             },
           }}
-
         >
           <Tab
             label="Summary"
