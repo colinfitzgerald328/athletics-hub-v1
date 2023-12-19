@@ -1,3 +1,6 @@
 .deleteHoverable:hover {
-  color: red;
+  color: #F92082;
+  display: flex;
+  align-items: center;
+  background-color: #F9E3EB;
 }
