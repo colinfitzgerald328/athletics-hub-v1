@@ -4,7 +4,6 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
-import SwipeableViews from 'react-swipeable-views';
 import IconButton from "@mui/material/IconButton";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
@@ -149,11 +148,18 @@ export default function BasicTabs(props) {
               fontFamily: "SF Pro Display, sans-serif",
               width: "20%",
               fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
               "&.Mui-selected": {
                 color: "white", 
                 backgroundColor: "#1095e5", 
                 borderRadius: "25px"
               },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
             }}
           />
           <Tab
@@ -163,12 +169,18 @@ export default function BasicTabs(props) {
               fontFamily: "SF Pro Display, sans-serif",
               width: "20%",
               fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
               "&.Mui-selected": {
                 color: "white", 
                 backgroundColor: "#1095e5", 
-                borderRadius: "25px",
-                transition: "backgroundColor 0.5s"
+                borderRadius: "25px"
               },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
             }}
           />
           <Tab
@@ -178,11 +190,18 @@ export default function BasicTabs(props) {
               fontFamily: "SF Pro Display, sans-serif",
               width: "20%",
               fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
               "&.Mui-selected": {
                 color: "white", 
                 backgroundColor: "#1095e5", 
                 borderRadius: "25px"
               },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
             }}
           />
           <Tab
@@ -192,11 +211,18 @@ export default function BasicTabs(props) {
               fontFamily: "SF Pro Display, sans-serif",
               width: "20%",
               fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
               "&.Mui-selected": {
                 color: "white", 
                 backgroundColor: "#1095e5", 
                 borderRadius: "25px"
               },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
             }}
           />
           <Tab
@@ -206,20 +232,22 @@ export default function BasicTabs(props) {
               fontFamily: "SF Pro Display, sans-serif",
               width: "20%",
               fontSize: "14px",
+              borderRadius: "25px",
+              transition: "all 0.5s ease-in-out",
               "&.Mui-selected": {
                 color: "white", 
                 backgroundColor: "#1095e5", 
                 borderRadius: "25px"
               },
+              "&:hover": {
+                backgroundColor: "dodgerblue",
+                borderRadius: "25px",
+                color: "white"
+              }
             }}
           />
         </Tabs>
       </Box>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
       <CustomTabPanel value={value} index={0}>
         {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
           <Button
@@ -434,7 +462,6 @@ export default function BasicTabs(props) {
           height={props.height}
         />
       </CustomTabPanel>
-      </SwipeableViews>
     </Box>
   );
 }
