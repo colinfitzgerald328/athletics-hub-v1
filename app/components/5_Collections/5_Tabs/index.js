@@ -116,7 +116,7 @@ export default function CollectionTabs(props) {
         overflow: "scroll",
       }}
     >
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box>
         <Tabs
           value={value}
           onChange={handleChange}

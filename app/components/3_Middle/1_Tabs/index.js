@@ -117,11 +117,12 @@ export default function BasicTabs(props) {
         width: "100%",
         borderRadius: "25px",
         backgroundColor: "white",
+        height: "calc(100% - 360px)",
         marginTop: "10px",
         position: "relative",
       }}
     >
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box>
         <Tabs
           value={value}
           onChange={handleChange}
