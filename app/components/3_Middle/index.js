@@ -4,6 +4,7 @@ import styles from "./styles.module.css";
 import { Skeleton } from "@mui/material";
 
 export default function AthleteBreakDown(props) {
+  console.log(props)
   const disciplinesArr =
     props.athlete.length !== 0
       ? props.athlete.disciplines.split(", ")
@@ -11,7 +12,7 @@ export default function AthleteBreakDown(props) {
   return (
     <div className={styles.athleteBreakdown}>
       <div className={styles.itemsContainer}>
-        {props.loadingNewAthlete ? (
+        {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
           <Skeleton
             animation="wave"
             height={230}
@@ -24,7 +25,7 @@ export default function AthleteBreakDown(props) {
           />
         )}
         <div className={styles.athleteNameHolder}>
-          {props.loadingNewAthlete ? (
+          {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
             <Skeleton
               sx={{ zIndex: 1000 }}
               animation="wave"
@@ -39,7 +40,7 @@ export default function AthleteBreakDown(props) {
             />
           )}
           <div className={styles.nameVariables}>
-            {props.loadingNewAthlete ? (
+            {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
               <Skeleton
                 animation="wave"
                 width={200}
@@ -49,7 +50,7 @@ export default function AthleteBreakDown(props) {
             ) : (
               <div className={styles.fullName}>{props.athlete.full_name}</div>
             )}
-            {props.loadingNewAthlete ? (
+            {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
               <Skeleton
                 sx={{ marginTop: "5px" }}
                 animation="wave"
