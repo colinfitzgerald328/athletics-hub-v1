@@ -118,8 +118,12 @@ export default function BasicTabs(props) {
         borderRadius: "25px",
         backgroundColor: "white",
         height: "calc(100% - 360px)",
+        overflowY: "scroll",
         marginTop: "10px",
         position: "relative",
+        "::-webkit-scrollbar": {
+          display: "none",
+        },
       }}
     >
       <Box>

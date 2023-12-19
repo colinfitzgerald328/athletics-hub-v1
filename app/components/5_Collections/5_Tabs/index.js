@@ -113,7 +113,6 @@ export default function CollectionTabs(props) {
         width: "100%",
         borderBottomLeftRadius: "25px",
         borderBottomRightRadius: "25px",
-        overflow: "scroll",
       }}
     >
       <Box>
