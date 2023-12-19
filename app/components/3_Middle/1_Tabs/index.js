@@ -4,10 +4,12 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Skeleton } from "@mui/material";
+import SwipeableViews from 'react-swipeable-views';
 import IconButton from "@mui/material/IconButton";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
+import { useTheme } from '@mui/material/styles';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -41,6 +43,7 @@ function a11yProps(index) {
 }
 
 export default function BasicTabs(props) {
+  const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -105,6 +108,10 @@ export default function BasicTabs(props) {
     setScrolled(true);
   }
 
+  const handleChangeIndex = (index) => {
+    setValue(index);
+  };
+
   return (
     <Box
       sx={{
@@ -120,34 +127,99 @@ export default function BasicTabs(props) {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          sx={{
+            fontFamily: "SF Pro Display, sans-serif",
+            '& .MuiTabs-indicator': {
+              display: 'flex',
+              justifyContent: 'center',
+              backgroundColor: 'transparent',
+            },
+            '& .MuiTabs-indicatorSpan': {
+              maxWidth: 40,
+              width: '100%',
+              backgroundColor: '#635ee7',
+            },
+          }}
+
         >
           <Tab
             label="Summary"
             {...a11yProps(0)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+            }}
           />
           <Tab
             label="Competition"
             {...a11yProps(1)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px",
+                transition: "backgroundColor 0.5s"
+              },
+            }}
           />
           <Tab
             label="Personal Bests"
             {...a11yProps(2)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+            }}
           />
           <Tab
             label="Accolades"
             {...a11yProps(3)}
-            sx={{ width: "20%", fontSize: "14px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+            }}
           />
           <Tab
             label="Results"
             {...a11yProps(4)}
-            sx={{ width: "20%", fontSize: "16px" }}
+            sx={{
+              fontFamily: "SF Pro Display, sans-serif",
+              width: "20%",
+              fontSize: "14px",
+              "&.Mui-selected": {
+                color: "white", 
+                backgroundColor: "#1095e5", 
+                borderRadius: "25px"
+              },
+            }}
           />
         </Tabs>
       </Box>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
       <CustomTabPanel value={value} index={0}>
         {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
           <Button
@@ -199,7 +271,7 @@ export default function BasicTabs(props) {
           <div className={styles.summary}>{props.athlete.summary}</div>
         )}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
+      <CustomTabPanel value={value} index={1} dir={theme.direction}>
         {topCompetitors &&
           (topCompetitors.length == 0 ? (
             <div className={styles.nothingHereYet}>
@@ -362,6 +434,7 @@ export default function BasicTabs(props) {
           height={props.height}
         />
       </CustomTabPanel>
+      </SwipeableViews>
     </Box>
   );
 }
