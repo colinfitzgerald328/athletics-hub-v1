@@ -145,19 +145,20 @@ export default function BasicTabs(props) {
             {...a11yProps(0)}
             sx={{
               fontFamily: "SF Pro Display, sans-serif",
+              color: "black", 
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
-              transition: "all 0.5s ease-in-out",
+              transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
-                color: "white", 
-                backgroundColor: "#1095e5", 
-                borderRadius: "25px"
+                borderRadius: "25px",
+                backgroundColor: "#E7E7E7",
+                color: "black", 
+                fontWeight: "bold"
               },
               "&:hover": {
-                backgroundColor: "dodgerblue",
+                backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-                color: "white"
               }
             }}
           />
@@ -166,19 +167,20 @@ export default function BasicTabs(props) {
             {...a11yProps(1)}
             sx={{
               fontFamily: "SF Pro Display, sans-serif",
+              color: "black", 
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
-              transition: "all 0.5s ease-in-out",
+              transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
-                color: "white", 
-                backgroundColor: "#1095e5", 
-                borderRadius: "25px"
+                borderRadius: "25px",
+                backgroundColor: "#E7E7E7",
+                color: "black", 
+                fontWeight: "bold"
               },
               "&:hover": {
-                backgroundColor: "dodgerblue",
+                backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-                color: "white"
               }
             }}
           />
@@ -187,19 +189,20 @@ export default function BasicTabs(props) {
             {...a11yProps(2)}
             sx={{
               fontFamily: "SF Pro Display, sans-serif",
+              color: "black", 
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
-              transition: "all 0.5s ease-in-out",
+              transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
-                color: "white", 
-                backgroundColor: "#1095e5", 
-                borderRadius: "25px"
+                borderRadius: "25px",
+                backgroundColor: "#E7E7E7",
+                color: "black", 
+                fontWeight: "bold"
               },
               "&:hover": {
-                backgroundColor: "dodgerblue",
+                backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-                color: "white"
               }
             }}
           />
@@ -208,19 +211,20 @@ export default function BasicTabs(props) {
             {...a11yProps(3)}
             sx={{
               fontFamily: "SF Pro Display, sans-serif",
+              color: "black", 
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
-              transition: "all 0.5s ease-in-out",
+              transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
-                color: "white", 
-                backgroundColor: "#1095e5", 
-                borderRadius: "25px"
+                borderRadius: "25px",
+                backgroundColor: "#E7E7E7",
+                color: "black", 
+                fontWeight: "bold"
               },
               "&:hover": {
-                backgroundColor: "dodgerblue",
+                backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-                color: "white"
               }
             }}
           />
@@ -229,19 +233,20 @@ export default function BasicTabs(props) {
             {...a11yProps(4)}
             sx={{
               fontFamily: "SF Pro Display, sans-serif",
+              color: "black", 
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
-              transition: "all 0.5s ease-in-out",
+              transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
-                color: "white", 
-                backgroundColor: "#1095e5", 
-                borderRadius: "25px"
+                borderRadius: "25px",
+                backgroundColor: "#E7E7E7",
+                color: "black", 
+                fontWeight: "bold"
               },
               "&:hover": {
-                backgroundColor: "dodgerblue",
+                backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-                color: "white"
               }
             }}
           />
