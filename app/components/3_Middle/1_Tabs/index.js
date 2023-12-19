@@ -111,8 +111,9 @@ export default function BasicTabs(props) {
     <Box
       sx={{
         width: "100%",
-        borderBottomLeftRadius: "25px",
-        borderBottomRightRadius: "25px",
+        borderRadius: "25px",
+        backgroundColor: "white",
+        marginTop: "10px",
         position: "relative",
       }}
     >
