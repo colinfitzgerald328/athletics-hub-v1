@@ -154,7 +154,7 @@
 
 .basicContainer1 {
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
 }
 
 .fade {
@@ -163,8 +163,4 @@
 
 .fadeIn {
   opacity: 1;
-}
-
-.modalWithHeight {
-  transition: 'height 0.3s ease-in-out',
 }

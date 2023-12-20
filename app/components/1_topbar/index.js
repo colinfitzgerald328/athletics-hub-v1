@@ -16,6 +16,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 450,
+  height: 550, 
   bgcolor: "background.paper",
   boxShadow: 24,
   paddingTop: "30px",
@@ -135,8 +136,8 @@ export default function TopBar(props) {
       setTimeout(()=> {
         var secondElement = document.getElementsByClassName(styles.basicContainer1)[0]
         secondElement.classList.add(styles.fadeIn)
-      }, 100)
-    }, 500)
+      }, 10)
+    }, 1000)
   }
 
   function closeCreateDiv() {
@@ -144,7 +145,7 @@ export default function TopBar(props) {
     element.classList.remove(styles.fadeIn)
     setTimeout(()=> {
       setCreatingAccount(false)
-    }, 500)
+    }, 1000)
   }
 
   return (
@@ -186,9 +187,6 @@ export default function TopBar(props) {
         className={styles.modalWithHeight}
         open={loginModalOpen}
         onClose={cancelModal}
-        style={{
-          transition: "height 0.5s ease"
-        }}
       >
         <Box sx={style}>
           <div className={styles.baseIcon}>
