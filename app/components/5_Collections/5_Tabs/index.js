@@ -416,8 +416,17 @@ export default function CollectionTabs(props) {
                       height={35}
                     />
                   ) : (
-                    <div className={styles.mark}>{item.result}</div>
+                    <div className={styles.mark}>{item.result} {item.records.length > 0 && item.records.map((record, index)=>
+                      <div key={index} className={styles.record}>
+                        {
+                          index == item.records.length - 1 ? record : record + ","
+                        }
+                      </div>
+                    )}</div>
                   )}
+                                    <div className={styles.competition}>
+                    {item.competition}
+                  </div>
                 </div>
               ),
           )}

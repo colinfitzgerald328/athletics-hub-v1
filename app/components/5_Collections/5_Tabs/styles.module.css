@@ -35,6 +35,8 @@
 .mark {
   font-size: 30px;
   font-weight: bold;
+  display: flex;
+  align-items: last baseline;
 }
 
 .summary {
@@ -94,6 +96,7 @@
   color: #536371;
   font-size: 14px;
   font-style: italic;
+  line-height: 14px;
 }
 
 .competitorSummary {
@@ -107,6 +110,8 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 5px;
+  font-size: 18px;
+  font-family: 'Bricolage Grotesque, sans-serif',
 }
 
 .rightItems {
@@ -126,4 +131,15 @@
 .nothingHereYet {
   display: flex;
   align-items: center;
+}
+
+.competition {
+  color: #536371;
+  font-size: 14px;
+}
+
+.record {
+  font-size: 14px;
+  margin-left: 2px;
+  margin-right: 2px;
 }
