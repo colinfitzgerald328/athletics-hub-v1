@@ -127,6 +127,26 @@ export default function TopBar(props) {
     setLoggingIn(false);
   }
 
+  function openCreateDiv() {
+    var element = document.getElementsByClassName(styles.basicContainer)[0]
+    element.classList.add(styles.fade)
+    setTimeout(()=> {
+      setCreatingAccount(true)
+      setTimeout(()=> {
+        var secondElement = document.getElementsByClassName(styles.basicContainer1)[0]
+        secondElement.classList.add(styles.fadeIn)
+      }, 100)
+    }, 500)
+  }
+
+  function closeCreateDiv() {
+    var element = document.getElementsByClassName(styles.basicContainer1)[0]
+    element.classList.remove(styles.fadeIn)
+    setTimeout(()=> {
+      setCreatingAccount(false)
+    }, 500)
+  }
+
   return (
     <div className={styles.topBarHolder}>
       <div className={styles.leftItems}>
@@ -166,33 +186,25 @@ export default function TopBar(props) {
         className={styles.modalWithHeight}
         open={loginModalOpen}
         onClose={cancelModal}
+        style={{
+          transition: "height 0.5s ease"
+        }}
       >
         <Box sx={style}>
           <div className={styles.baseIcon}>
             <HubIcon sx={{ color: "#1095E5", fontSize: "50px" }} />
           </div>
-          {creatingAccount ? (
+          {
+            creatingAccount ? 
+              <div className={styles.basicContainer1}>
             <h1 className={styles.callOut}>Sign up</h1>
-          ) : (
-            <h1 className={styles.callOut}>Welcome back</h1>
-          )}
           <div className={styles.subMessageHolder}>
-            {creatingAccount ? (
               <div className={styles.subMessage}>
                 Welcome to the athletics hub!
               </div>
-            ) : (
-              <div className={styles.subMessage}>Glad to see you again 👋</div>
-            )}
-            {creatingAccount ? (
               <div className={styles.subMessageWithMargin}>
                 Enter your details below to create your account and get started.
               </div>
-            ) : (
-              <div className={styles.subMessage}>
-                Login to your account below
-              </div>
-            )}
           </div>
           <div className={styles.inputContainer}>
             <div className={styles.inputLabel}>Username</div>
@@ -213,17 +225,6 @@ export default function TopBar(props) {
             spellCheck="false"
             onChange={(e) => setPassword(e.target.value)}
           ></input>
-          {!creatingAccount && (
-            <Button
-              loading={loggingIn}
-              onClick={handleLogin}
-              className={styles.fullWidth}
-              type="primary"
-            >
-              {loggingIn ? "Logging you in" : "Log in"}
-            </Button>
-          )}
-          {creatingAccount && (
             <Button
               onClick={createAccount}
               className={styles.fullWidth}
@@ -232,19 +233,6 @@ export default function TopBar(props) {
             >
               {loggingIn ? "Creating your account" : "Create account"}
             </Button>
-          )}
-          {!creatingAccount && (
-            <div className={styles.noAccountYet}>
-              Don&apos;t have an account?
-              <div
-                onClick={() => setCreatingAccount(true)}
-                className={styles.signUpButton}
-              >
-                Sign up
-              </div>
-            </div>
-          )}
-          {creatingAccount && (
             <IconButton
               size="small"
               sx={{
@@ -253,11 +241,58 @@ export default function TopBar(props) {
                 borderRadius: "25px",
               }}
               className={styles.fullWidthBackButton}
-              onClick={() => setCreatingAccount(false)}
+              onClick={() => closeCreateDiv()}
             >
               <ArrowBackIcon />
             </IconButton>
-          )}
+            </div>
+            :
+            <div className={styles.basicContainer}>
+            <h1 className={styles.callOut}>Welcome back</h1>
+          <div className={styles.subMessageHolder}>
+              <div className={styles.subMessage}>Glad to see you again 👋</div>
+              <div className={styles.subMessage}>
+                Login to your account below
+              </div>
+          </div>
+          <div className={styles.inputContainer}>
+            <div className={styles.inputLabel}>Username</div>
+            <input
+              className={styles.basicInput}
+              placeholder="enter username..."
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              spellCheck="false"
+            ></input>
+          </div>
+          <div className={styles.inputLabel}>Password</div>
+          <input
+            className={styles.basicInput}
+            type="password"
+            value={password}
+            placeholder="enter password..."
+            spellCheck="false"
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
+            <Button
+              loading={loggingIn}
+              onClick={handleLogin}
+              className={styles.fullWidth}
+              type="primary"
+            >
+              {loggingIn ? "Logging you in" : "Log in"}
+            </Button>
+            <div className={styles.noAccountYet}>
+              Don&apos;t have an account?
+              <div
+                onClick={() => openCreateDiv()}
+                className={styles.signUpButton}
+              >
+                Sign up
+              </div>
+            </div>
+            </div>
+          }
         </Box>
       </Modal>
       <Snackbar
