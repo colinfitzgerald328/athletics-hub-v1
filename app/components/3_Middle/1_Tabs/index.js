@@ -414,20 +414,43 @@ export default function BasicTabs(props) {
               item.result && (
                 <div key={index} className={styles.pbItem}>
                   {props.loadingNewAthlete ? (
-                    <Skeleton animation="wave" width={100} height={18} />
+                    <Skeleton sx={{"marginBottom": "5px"}} variant="rectangular" animation="wave" width={100} height={18} />
                   ) : (
                     <div className={styles.discipline}>{item.discipline}</div>
                   )}
                   {props.loadingNewAthlete ? (
                     <Skeleton
-                      sx={{ marginTop: "0px" }}
+                      variant="rectangular"
                       animation="wave"
+                      sx={{
+                        marginBottom: "5px"
+                      }}
                       width={120}
                       height={35}
                     />
                   ) : (
-                    <div className={styles.mark}>{item.result}</div>
+                    <div className={styles.mark}>{item.result} {item.records.length > 0 && item.records.map((record, index)=>
+                      <div key={index} className={styles.record}>
+                        {
+                          index == item.records.length - 1 ? record : record + ","
+                        }
+                      </div>
+                    )}</div>
                   )}
+                  {props.loadingNewAthlete ? (
+                    <Skeleton
+                      variant="rectangular"
+                      animation="wave"
+                      width={400}
+                      height={14}
+                    />
+                  )
+                  :
+
+                  <div className={styles.competition}>
+                    {item.competition}
+                  </div>
+}
                 </div>
               ),
           )}

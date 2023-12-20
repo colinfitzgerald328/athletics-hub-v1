@@ -135,6 +135,7 @@ export default function ComparisonModal() {
           components: {
             Modal: {
               contentBg: "lightgray",
+              fontFamily: 'Bricolage Grotesque, sans-serif',
             },
           },
         }}

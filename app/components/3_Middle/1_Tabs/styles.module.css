@@ -35,6 +35,8 @@
 .mark {
   font-size: 30px;
   font-weight: bold;
+  display: flex;
+  align-items: last baseline;
 }
 
 .summary {
@@ -126,4 +128,14 @@
 .nothingHereYet {
   display: flex;
   align-items: center;
+}
+
+.record {
+  font-size: 14px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.competition {
+  color: #536371;;
 }
