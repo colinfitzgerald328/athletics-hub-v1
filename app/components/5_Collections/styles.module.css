@@ -22,7 +22,6 @@
   animation: slideDown 0.5s;
 }
 
-
 @keyframes slideUpWithOpacity {
   from {
     transform: translateY(50%);

@@ -30,10 +30,7 @@ export default function CollectionDeleteOption(props) {
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        <IconButton
-          onClick={handleClick}
-          size="small"
-        >
+        <IconButton onClick={handleClick} size="small">
           <MoreVert
             sx={{ color: props.currentIndex == props.itemIndex ? "white" : "" }}
           />

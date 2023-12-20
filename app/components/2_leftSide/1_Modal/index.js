@@ -124,7 +124,7 @@ export default function ComparisonModal() {
           fontWeight: "bold",
           display: "flex",
           alignItems: "center",
-          fontFamily: 'Bricolage Grotesque, sans-serif',
+          fontFamily: "Bricolage Grotesque, sans-serif",
         }}
         onClick={openModal}
       >
@@ -135,7 +135,7 @@ export default function ComparisonModal() {
           components: {
             Modal: {
               contentBg: "lightgray",
-              fontFamily: 'Bricolage Grotesque, sans-serif',
+              fontFamily: "Bricolage Grotesque, sans-serif",
             },
           },
         }}

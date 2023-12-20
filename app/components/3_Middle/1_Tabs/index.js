@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ConstructionIcon from "@mui/icons-material/Construction";
 import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from "@mui/material/styles";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 
@@ -132,16 +132,16 @@ export default function BasicTabs(props) {
           onChange={handleChange}
           aria-label="basic tabs example"
           sx={{
-            fontFamily: 'Bricolage Grotesque, sans-serif',
-            '& .MuiTabs-indicator': {
-              display: 'flex',
-              justifyContent: 'center',
-              backgroundColor: 'transparent',
+            fontFamily: "Bricolage Grotesque, sans-serif",
+            "& .MuiTabs-indicator": {
+              display: "flex",
+              justifyContent: "center",
+              backgroundColor: "transparent",
             },
-            '& .MuiTabs-indicatorSpan': {
+            "& .MuiTabs-indicatorSpan": {
               maxWidth: 40,
-              width: '100%',
-              backgroundColor: '#635ee7',
+              width: "100%",
+              backgroundColor: "#635ee7",
             },
           }}
         >
@@ -149,8 +149,8 @@ export default function BasicTabs(props) {
             label="Summary"
             {...a11yProps(0)}
             sx={{
-              fontFamily: 'Bricolage Grotesque, sans-serif',
-              color: "black", 
+              fontFamily: "Bricolage Grotesque, sans-serif",
+              color: "black",
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
@@ -158,21 +158,21 @@ export default function BasicTabs(props) {
               "&.Mui-selected": {
                 borderRadius: "25px",
                 backgroundColor: "#E7E7E7",
-                color: "black", 
-                fontWeight: "bold"
+                color: "black",
+                fontWeight: "bold",
               },
               "&:hover": {
                 backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-              }
+              },
             }}
           />
           <Tab
             label="Competition"
             {...a11yProps(1)}
             sx={{
-              fontFamily: 'Bricolage Grotesque, sans-serif',
-              color: "black", 
+              fontFamily: "Bricolage Grotesque, sans-serif",
+              color: "black",
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
@@ -180,21 +180,21 @@ export default function BasicTabs(props) {
               "&.Mui-selected": {
                 borderRadius: "25px",
                 backgroundColor: "#E7E7E7",
-                color: "black", 
-                fontWeight: "bold"
+                color: "black",
+                fontWeight: "bold",
               },
               "&:hover": {
                 backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-              }
+              },
             }}
           />
           <Tab
             label="PBs"
             {...a11yProps(2)}
             sx={{
-              fontFamily: 'Bricolage Grotesque, sans-serif',
-              color: "black", 
+              fontFamily: "Bricolage Grotesque, sans-serif",
+              color: "black",
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
@@ -202,21 +202,21 @@ export default function BasicTabs(props) {
               "&.Mui-selected": {
                 borderRadius: "25px",
                 backgroundColor: "#E7E7E7",
-                color: "black", 
-                fontWeight: "bold"
+                color: "black",
+                fontWeight: "bold",
               },
               "&:hover": {
                 backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-              }
+              },
             }}
           />
           <Tab
             label="Accolades"
             {...a11yProps(3)}
             sx={{
-              fontFamily: 'Bricolage Grotesque, sans-serif',
-              color: "black", 
+              fontFamily: "Bricolage Grotesque, sans-serif",
+              color: "black",
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
@@ -224,21 +224,21 @@ export default function BasicTabs(props) {
               "&.Mui-selected": {
                 borderRadius: "25px",
                 backgroundColor: "#E7E7E7",
-                color: "black", 
-                fontWeight: "bold"
+                color: "black",
+                fontWeight: "bold",
               },
               "&:hover": {
                 backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-              }
+              },
             }}
           />
           <Tab
             label="Results"
             {...a11yProps(4)}
             sx={{
-              fontFamily: 'Bricolage Grotesque, sans-serif',
-              color: "black", 
+              fontFamily: "Bricolage Grotesque, sans-serif",
+              color: "black",
               width: "20%",
               fontSize: "14px",
               borderRadius: "25px",
@@ -246,13 +246,13 @@ export default function BasicTabs(props) {
               "&.Mui-selected": {
                 borderRadius: "25px",
                 backgroundColor: "#E7E7E7",
-                color: "black", 
-                fontWeight: "bold"
+                color: "black",
+                fontWeight: "bold",
               },
               "&:hover": {
                 backgroundColor: "#E7E7E7",
                 borderRadius: "25px",
-              }
+              },
             }}
           />
         </Tabs>
@@ -414,7 +414,13 @@ export default function BasicTabs(props) {
               item.result && (
                 <div key={index} className={styles.pbItem}>
                   {props.loadingNewAthlete ? (
-                    <Skeleton sx={{"marginBottom": "5px"}} variant="rectangular" animation="wave" width={100} height={18} />
+                    <Skeleton
+                      sx={{ marginBottom: "5px" }}
+                      variant="rectangular"
+                      animation="wave"
+                      width={100}
+                      height={18}
+                    />
                   ) : (
                     <div className={styles.discipline}>{item.discipline}</div>
                   )}
@@ -423,19 +429,23 @@ export default function BasicTabs(props) {
                       variant="rectangular"
                       animation="wave"
                       sx={{
-                        marginBottom: "5px"
+                        marginBottom: "5px",
                       }}
                       width={120}
                       height={35}
                     />
                   ) : (
-                    <div className={styles.mark}>{item.result} {item.records.length > 0 && item.records.map((record, index)=>
-                      <div key={index} className={styles.record}>
-                        {
-                          index == item.records.length - 1 ? record : record + ","
-                        }
-                      </div>
-                    )}</div>
+                    <div className={styles.mark}>
+                      {item.result}{" "}
+                      {item.records.length > 0 &&
+                        item.records.map((record, index) => (
+                          <div key={index} className={styles.record}>
+                            {index == item.records.length - 1
+                              ? record
+                              : record + ","}
+                          </div>
+                        ))}
+                    </div>
                   )}
                   {props.loadingNewAthlete ? (
                     <Skeleton
@@ -444,13 +454,9 @@ export default function BasicTabs(props) {
                       width={400}
                       height={14}
                     />
-                  )
-                  :
-
-                  <div className={styles.competition}>
-                    {item.competition}
-                  </div>
-}
+                  ) : (
+                    <div className={styles.competition}>{item.competition}</div>
+                  )}
                 </div>
               ),
           )}

@@ -6,35 +6,33 @@ import Button from "@mui/material/Button";
 import styles from "./styles.module.css";
 
 export default function RightSide(props) {
-
   function handleFadeOut() {
-    var element = document.getElementsByClassName(styles.rightSide)[0]
-    element.classList.add(styles.fadeOut)
-    setTimeout(()=> {
-      element.classList.add(styles.removeDisplay)
-      element.classList.remove(styles.fadeIn)
-    }, 300)
+    var element = document.getElementsByClassName(styles.rightSide)[0];
+    element.classList.add(styles.fadeOut);
+    setTimeout(() => {
+      element.classList.add(styles.removeDisplay);
+      element.classList.remove(styles.fadeIn);
+    }, 300);
   }
 
   function handleFadeIn() {
-    var element = document.getElementsByClassName(styles.rightSide)[0]
-    setTimeout(()=> {
-      element.classList.remove(styles.removeDisplay)
-      element.classList.remove(styles.fadeOut)
-        setTimeout(()=> {
-          element.classList.add(styles.fadeIn)
-      }, 10)
-    }, 300)
+    var element = document.getElementsByClassName(styles.rightSide)[0];
+    setTimeout(() => {
+      element.classList.remove(styles.removeDisplay);
+      element.classList.remove(styles.fadeOut);
+      setTimeout(() => {
+        element.classList.add(styles.fadeIn);
+      }, 10);
+    }, 300);
   }
-  
 
-  useEffect(()=> {
+  useEffect(() => {
     if (props.showingCollections) {
-      handleFadeOut()
+      handleFadeOut();
     } else if (!props.showingCollections) {
-      handleFadeIn()
+      handleFadeIn();
     }
-  }, [props.showingCollections])
+  }, [props.showingCollections]);
 
   return (
     <div className={styles.rightSide}>
@@ -59,10 +57,9 @@ export default function RightSide(props) {
         athlete={props.athlete}
       />
       <SocialProfiles
-      athlete={props.athlete}
-      loadingNewAthlete={props.loadingNewAthlete}
-      >
-      </SocialProfiles>
+        athlete={props.athlete}
+        loadingNewAthlete={props.loadingNewAthlete}
+      ></SocialProfiles>
       <Recommended
         similar_athletes={props.similar_athletes}
         setAthlete={props.setAthlete}

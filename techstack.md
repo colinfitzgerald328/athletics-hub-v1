@@ -36,13 +36,16 @@ Full tech stack [here](/techstack.md)
 <div align="center">
 
 # Tech Stack File
+
 ![](https://img.stackshare.io/repo.svg "repo") [colinfitzgerald328/athletics-hub-v1](https://github.com/colinfitzgerald328/athletics-hub-v1)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
 |17<br/>Tools used|12/19/23 <br/>Report generated|
 |------|------|
+
 </div>
 
 ## <img src='https://img.stackshare.io/languages.svg'/> Languages (2)
+
 <table><tr>
   <td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/6727/css.png' alt='CSS 3'>
@@ -64,6 +67,7 @@ Full tech stack [here](/techstack.md)
 </table>
 
 ## <img src='https://img.stackshare.io/frameworks.svg'/> Frameworks (4)
+
 <table><tr>
   <td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/6112/12101536.png' alt='Ant Design'>
@@ -101,6 +105,7 @@ Full tech stack [here](/techstack.md)
 </table>
 
 ## <img src='https://img.stackshare.io/devops.svg'/> DevOps (4)
+
 <table><tr>
   <td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/3337/Q4L7Jncy.jpg' alt='ESLint'>
@@ -138,6 +143,7 @@ Full tech stack [here](/techstack.md)
 </table>
 
 ## Other (1)
+
 <table><tr>
   <td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/3643/Xrtdc94q_400x400.png' alt='Moment.js'>
@@ -150,19 +156,18 @@ Full tech stack [here](/techstack.md)
 </tr>
 </table>
 
-
 ## <img src='https://img.stackshare.io/group.svg' /> Open source packages (6)</h2>
 
 ## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (6)
 
-|NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
-|:------|:------|:------|:------|:------|:------|
-|[@emotion/styled](https://www.npmjs.com/@emotion/styled)|v11.11.0|12/09/23|Colin |MIT|N/A|
-|[antd](https://www.npmjs.com/antd)|v5.12.2|12/13/23|Colin |MIT|N/A|
-|[eslint-config-next](https://www.npmjs.com/eslint-config-next)|v14.0.4|12/09/23|Colin |N/A|N/A|
-|[lodash.debounce](https://www.npmjs.com/lodash.debounce)|v4.0.8|12/09/23|Colin |MIT|N/A|
-|[moment](https://www.npmjs.com/moment)|v2.29.4|12/15/23|Colin |MIT|N/A|
-|[react-dom](https://www.npmjs.com/react-dom)|v18.2.0|12/11/23|Colin |MIT|N/A|
+| NAME                                                           | VERSION  | LAST UPDATED | LAST UPDATED BY | LICENSE | VULNERABILITIES |
+| :------------------------------------------------------------- | :------- | :----------- | :-------------- | :------ | :-------------- |
+| [@emotion/styled](https://www.npmjs.com/@emotion/styled)       | v11.11.0 | 12/09/23     | Colin           | MIT     | N/A             |
+| [antd](https://www.npmjs.com/antd)                             | v5.12.2  | 12/13/23     | Colin           | MIT     | N/A             |
+| [eslint-config-next](https://www.npmjs.com/eslint-config-next) | v14.0.4  | 12/09/23     | Colin           | N/A     | N/A             |
+| [lodash.debounce](https://www.npmjs.com/lodash.debounce)       | v4.0.8   | 12/09/23     | Colin           | MIT     | N/A             |
+| [moment](https://www.npmjs.com/moment)                         | v2.29.4  | 12/15/23     | Colin           | MIT     | N/A             |
+| [react-dom](https://www.npmjs.com/react-dom)                   | v18.2.0  | 12/11/23     | Colin           | MIT     | N/A             |
 
 <br/>
 <div align='center'>

@@ -10,39 +10,37 @@ export default function AthleteBreakDown(props) {
       : undefined;
 
   function handleFadeOut() {
-    var element = document.getElementsByClassName(styles.athleteBreakdown)[0]
-    element.classList.add(styles.fadeOut)
-    setTimeout(()=> {
-      element.classList.add(styles.removeDisplay)
-      element.classList.remove(styles.fadeIn)
-    }, 300)
+    var element = document.getElementsByClassName(styles.athleteBreakdown)[0];
+    element.classList.add(styles.fadeOut);
+    setTimeout(() => {
+      element.classList.add(styles.removeDisplay);
+      element.classList.remove(styles.fadeIn);
+    }, 300);
   }
 
   function handleFadeIn() {
-    var element = document.getElementsByClassName(styles.athleteBreakdown)[0]
-      setTimeout(()=> {
-        element.classList.remove(styles.removeDisplay)
-        element.classList.remove(styles.fadeOut)
-        setTimeout(()=> {
-          element.classList.add(styles.fadeIn)
-      }, 10)
-      }, 300)
+    var element = document.getElementsByClassName(styles.athleteBreakdown)[0];
+    setTimeout(() => {
+      element.classList.remove(styles.removeDisplay);
+      element.classList.remove(styles.fadeOut);
+      setTimeout(() => {
+        element.classList.add(styles.fadeIn);
+      }, 10);
+    }, 300);
   }
-  
 
-  useEffect(()=> {
+  useEffect(() => {
     if (props.showingCollections) {
-      handleFadeOut()
+      handleFadeOut();
     } else if (!props.showingCollections) {
-      handleFadeIn()
+      handleFadeIn();
     }
-  }, [props.showingCollections])
-
+  }, [props.showingCollections]);
 
   return (
     <div className={styles.athleteBreakdown}>
       <div className={styles.itemsContainer}>
-        {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
+        {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
           <Skeleton
             animation="wave"
             height={230}
@@ -55,7 +53,7 @@ export default function AthleteBreakDown(props) {
           />
         )}
         <div className={styles.athleteNameHolder}>
-          {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
+          {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
             <Skeleton
               sx={{ zIndex: 1000 }}
               animation="wave"
@@ -70,7 +68,7 @@ export default function AthleteBreakDown(props) {
             />
           )}
           <div className={styles.nameVariables}>
-            {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
+            {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
               <Skeleton
                 animation="wave"
                 width={200}
@@ -80,7 +78,7 @@ export default function AthleteBreakDown(props) {
             ) : (
               <div className={styles.fullName}>{props.athlete.full_name}</div>
             )}
-            {(props.loadingNewAthlete || props.loadingNewAthlete == undefined) ? (
+            {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
               <Skeleton
                 sx={{ marginTop: "5px" }}
                 animation="wave"

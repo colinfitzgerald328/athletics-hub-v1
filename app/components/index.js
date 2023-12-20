@@ -27,7 +27,7 @@ export default class MainComponent extends React.Component {
       user_collections: [],
       collections_local_copy: [],
       loadingCollections: true,
-      shouldFadeOut: false
+      shouldFadeOut: false,
     };
   }
 
@@ -173,13 +173,13 @@ export default class MainComponent extends React.Component {
 
   showCollections() {
     this.setState({
-      showingCollections: true
+      showingCollections: true,
     });
   }
 
   closeCollections() {
     this.setState({
-      showingCollections: false
+      showingCollections: false,
     });
   }
 
@@ -211,40 +211,40 @@ export default class MainComponent extends React.Component {
             logOutUser={this.logOutUser.bind(this)}
             logInUser={this.logInUser.bind(this)}
           />
-            <div className={styles.mainDisplay}>
-              <LeftSide
-                setAthlete={this.setAthlete.bind(this)}
-                loggedIn={this.state.loggedIn}
-                showCollections={this.showCollections.bind(this)}
-                loadingCollections={this.state.loadingCollections}
-              />
-              <Collections
-                closeCollections={this.closeCollections.bind(this)}
-                getCollectionsForUser={this.getCollectionsForUser.bind(this)}
-                user_collections={this.state.user_collections}
-                collections_local_copy={this.state.collections_local_copy}
-                showingCollections={this.state.showingCollections}
-              />
-              <AthleteBreakDown
-                athlete={this.state.athlete}
-                loadingNewAthlete={this.state.loadingNewAthlete}
-                athlete_data={this.state.athlete_data}
-                top_competitors={this.state.top_competitors}
-                setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
-                  this,
-                )}
-                height={this.state.height}
-                showingCollections={this.state.showingCollections}
-              />
-              <RightSide
-                athlete={this.state.athlete}
-                similar_athletes={this.state.similar_athletes}
-                setAthlete={this.setAthlete.bind(this)}
-                loadingNewAthlete={this.state.loadingNewAthlete}
-                athlete_data={this.state.athlete_data}
-                showingCollections={this.state.showingCollections}
-              />
-            </div>
+          <div className={styles.mainDisplay}>
+            <LeftSide
+              setAthlete={this.setAthlete.bind(this)}
+              loggedIn={this.state.loggedIn}
+              showCollections={this.showCollections.bind(this)}
+              loadingCollections={this.state.loadingCollections}
+            />
+            <Collections
+              closeCollections={this.closeCollections.bind(this)}
+              getCollectionsForUser={this.getCollectionsForUser.bind(this)}
+              user_collections={this.state.user_collections}
+              collections_local_copy={this.state.collections_local_copy}
+              showingCollections={this.state.showingCollections}
+            />
+            <AthleteBreakDown
+              athlete={this.state.athlete}
+              loadingNewAthlete={this.state.loadingNewAthlete}
+              athlete_data={this.state.athlete_data}
+              top_competitors={this.state.top_competitors}
+              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
+                this,
+              )}
+              height={this.state.height}
+              showingCollections={this.state.showingCollections}
+            />
+            <RightSide
+              athlete={this.state.athlete}
+              similar_athletes={this.state.similar_athletes}
+              setAthlete={this.setAthlete.bind(this)}
+              loadingNewAthlete={this.state.loadingNewAthlete}
+              athlete_data={this.state.athlete_data}
+              showingCollections={this.state.showingCollections}
+            />
+          </div>
         </div>
       );
     }

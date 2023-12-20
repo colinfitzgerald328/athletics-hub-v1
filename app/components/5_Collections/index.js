@@ -10,7 +10,7 @@ import AddToCollectionModal from "./2_Add_To_Collection_Modal";
 import DeleteOptionMenu from "./3_DeleteOption";
 import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { toaster } from "evergreen-ui";
 import * as API from "/app/api/api.js";
 
@@ -144,27 +144,27 @@ export default function Collections(props) {
   }
 
   function handleCloseCollections() {
-    var element = document.getElementsByClassName(styles.basic)[0]
+    var element = document.getElementsByClassName(styles.basic)[0];
     element.classList.add(styles.dismiss);
-    props.closeCollections()
-    setTimeout(()=> {
+    props.closeCollections();
+    setTimeout(() => {
       element.classList.remove(styles.dismiss);
       element.classList.remove(styles.show);
-    }, 300)
+    }, 300);
   }
 
   function handleShowCollections() {
-    setTimeout(()=> {
-      var element = document.getElementsByClassName(styles.basic)[0]
-      element.classList.add(styles.show)
-    }, 300)
+    setTimeout(() => {
+      var element = document.getElementsByClassName(styles.basic)[0];
+      element.classList.add(styles.show);
+    }, 300);
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     if (props.showingCollections) {
-      handleShowCollections()
+      handleShowCollections();
     }
-  }, [props.showingCollections])
+  }, [props.showingCollections]);
 
   return (
     <div className={styles.basic}>

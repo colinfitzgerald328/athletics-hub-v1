@@ -24,7 +24,7 @@ export default function PeformanceGraph(props) {
         <OpenInFullIcon onClick={openModal} sx={{ cursor: "pointer" }} />
       </div>
 
-      {(props.loadingNewAthlete || props.athlete_data.length == 0) ? (
+      {props.loadingNewAthlete || props.athlete_data.length == 0 ? (
         <Skeleton height={200} animation="wave" variant="rectangulat" />
       ) : (
         <CardGraph athlete_data={props.athlete_data} />
