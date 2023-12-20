@@ -136,10 +136,11 @@
 }
 
 .basicContainer {
-  height: calc(100vh - 180px);
-  display: flex;
-  align-items: flex-end;
   overflow-y: scroll;
+  position: absolute;
+  width: 100%; 
+  bottom: 0;
+  animation: slideUp 2s;
 }
 
 .pageCredit {
@@ -150,6 +151,14 @@
 .basicImageWithSlightMargin {
   max-height: 25px;
   margin-right: 10px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.basicImageWithSlightMargin:hover {
+  cursor: pointer;
+  border-bottom: 2px solid #1095e5;
+  transition: border-bottom 0.5s ease;
 }
 
 .poweredBy {
@@ -164,4 +173,14 @@
 
 .basicContainer::-webkit-scrollbar-thumb {
   background-color: transparent; /* Set the thumb color to transparent */
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(130%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
 }
