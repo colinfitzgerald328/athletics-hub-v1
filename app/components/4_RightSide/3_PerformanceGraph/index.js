@@ -17,6 +17,8 @@ export default function PeformanceGraph(props) {
     setGraphModalOpen(false);
   }
 
+  console.log(props.athlete_data)
+
   return (
     <div className={styles.socialProfiles}>
       <div className={styles.labelHolder}>
@@ -24,7 +26,7 @@ export default function PeformanceGraph(props) {
         <OpenInFullIcon onClick={openModal} sx={{ cursor: "pointer" }} />
       </div>
 
-      {props.loadingNewAthlete ? (
+      {(props.loadingNewAthlete || props.athlete_data.length == 0) ? (
         <Skeleton height={200} animation="wave" variant="rectangulat" />
       ) : (
         <CardGraph athlete_data={props.athlete_data} />
