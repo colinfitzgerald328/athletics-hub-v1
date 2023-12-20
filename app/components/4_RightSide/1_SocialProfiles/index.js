@@ -60,8 +60,6 @@ export default function SocialProfiles(props) {
     }
   }
 
-  console.log(props.loadingNewAthlete);
-
   return (
     <div>
       {(twitterHandle || instagramHandle) && (

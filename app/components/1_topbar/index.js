@@ -152,9 +152,9 @@ export default function TopBar(props) {
 
   return (
     <div className={styles.topBarHolder}>
-              <div className={styles.pageIcon}>
+      <div className={styles.pageIcon}>
         <HubIcon sx={{ color: "#1095E5", fontSize: "30px" }} />
-        </div>
+      </div>
       <div className={styles.leftItems}>
         <div className={styles.pageLabel}>athletics hub</div>
         <div className={styles.pageAction}>
@@ -163,33 +163,33 @@ export default function TopBar(props) {
       </div>
       <div className={styles.rightItems}>
         <div className={styles.textItems}>
-        {props.loggedIn && (
-          <div className={styles.welcomeForUser}>
-            Welcome{" "}
-            <div className={styles.userName}>
-              {localStorage.getItem("userName")}
+          {props.loggedIn && (
+            <div className={styles.welcomeForUser}>
+              Welcome{" "}
+              <div className={styles.userName}>
+                {localStorage.getItem("userName")}
+              </div>
             </div>
-          </div>
-        )}
+          )}
         </div>
         <div className={styles.button}>
-        {props.loggedIn ? (
-          <Button
-            className={styles.fullWidthLogin}
-            onClick={() => props.logOutUser()}
-            type="primary"
-          >
-            Log out
-          </Button>
-        ) : (
-          <Button
-            className={styles.fullWidthLogin}
-            onClick={openModal}
-            type="primary"
-          >
-            Sign in
-          </Button>
-        )}
+          {props.loggedIn ? (
+            <Button
+              className={styles.fullWidthLogin}
+              onClick={() => props.logOutUser()}
+              type="primary"
+            >
+              Log out
+            </Button>
+          ) : (
+            <Button
+              className={styles.fullWidthLogin}
+              onClick={openModal}
+              type="primary"
+            >
+              Sign in
+            </Button>
+          )}
         </div>
       </div>
       <Modal
