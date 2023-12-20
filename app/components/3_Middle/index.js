@@ -25,7 +25,7 @@ export default function AthleteBreakDown(props) {
         element.classList.remove(styles.fadeOut)
         setTimeout(()=> {
           element.classList.add(styles.fadeIn)
-      }, 200)
+      }, 10)
       }, 300)
   }
   

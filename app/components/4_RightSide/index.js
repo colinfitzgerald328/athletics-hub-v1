@@ -23,7 +23,7 @@ export default function RightSide(props) {
       element.classList.remove(styles.fadeOut)
         setTimeout(()=> {
           element.classList.add(styles.fadeIn)
-      }, 200)
+      }, 10)
     }, 300)
   }
   

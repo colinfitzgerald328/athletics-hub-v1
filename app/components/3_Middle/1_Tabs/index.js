@@ -190,7 +190,7 @@ export default function BasicTabs(props) {
             }}
           />
           <Tab
-            label="Personal Bests"
+            label="PBs"
             {...a11yProps(2)}
             sx={{
               fontFamily: 'Bricolage Grotesque, sans-serif',
