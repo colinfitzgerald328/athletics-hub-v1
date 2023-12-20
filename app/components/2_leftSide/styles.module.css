@@ -136,7 +136,6 @@
 }
 
 .basicContainer {
-  overflow-y: scroll;
   position: absolute;
   width: 100%; 
   bottom: 0;
@@ -146,6 +145,8 @@
 .pageCredit {
   margin-top: auto;
   display: flex;
+  overflow-y: scroll;
+  width: calc(100% - 20px)
 }
 
 .basicImageWithSlightMargin {
@@ -167,11 +168,11 @@
   margin-bottom: 10px;
 }
 
-.basicContainer::-webkit-scrollbar {
+.pageCredit::-webkit-scrollbar {
   width: 12px; /* Adjust the width as needed */
 }
 
-.basicContainer::-webkit-scrollbar-thumb {
+.pageCredit::-webkit-scrollbar-thumb {
   background-color: transparent; /* Set the thumb color to transparent */
 }
 
