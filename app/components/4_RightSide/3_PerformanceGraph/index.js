@@ -17,8 +17,6 @@ export default function PeformanceGraph(props) {
     setGraphModalOpen(false);
   }
 
-  console.log(props.athlete_data)
-
   return (
     <div className={styles.socialProfiles}>
       <div className={styles.labelHolder}>

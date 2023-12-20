@@ -58,7 +58,11 @@ export default function RightSide(props) {
         loadingNewAthlete={props.loadingNewAthlete}
         athlete={props.athlete}
       />
-      <SocialProfiles athlete={props.athlete}></SocialProfiles>
+      <SocialProfiles
+      athlete={props.athlete}
+      loadingNewAthlete={props.loadingNewAthlete}
+      >
+      </SocialProfiles>
       <Recommended
         similar_athletes={props.similar_athletes}
         setAthlete={props.setAthlete}

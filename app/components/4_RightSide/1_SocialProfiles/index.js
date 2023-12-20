@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
+import { Skeleton } from "@mui/material";
 
 export default function SocialProfiles(props) {
   const [twitterHandle, setTwitterHandle] = useState(null);
@@ -58,12 +59,18 @@ export default function SocialProfiles(props) {
       return null;
     }
   }
+
+  console.log(props.loadingNewAthlete)
+
   return (
     <div>
       {(twitterHandle || instagramHandle) && (
         <div className={styles.socialProfiles}>
           <div className={styles.label}>Social Profiles</div>
           {twitterHandle && (
+            props.loadingNewAthlete ? 
+            <Skeleton width={120} animation="wave"></Skeleton>
+            :
             <div className={styles.socialItem}>
               <img
                 className={styles.socialIcon}
@@ -82,6 +89,9 @@ export default function SocialProfiles(props) {
             </div>
           )}
           {instagramHandle && (
+                        props.loadingNewAthlete ? 
+                        <Skeleton width={120} animation="wave"></Skeleton>
+                        :
             <div className={styles.socialItem}>
               <img
                 className={styles.socialIcon}
