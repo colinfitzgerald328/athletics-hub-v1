@@ -134,3 +134,34 @@
     transform: translateX(0%);
   }
 }
+
+.basicContainer {
+  height: calc(100vh - 180px);
+  display: flex;
+  align-items: flex-end;
+  overflow-y: scroll;
+}
+
+.pageCredit {
+  margin-top: auto;
+  display: flex;
+}
+
+.basicImageWithSlightMargin {
+  max-height: 25px;
+  margin-right: 10px;
+}
+
+.poweredBy {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.basicContainer::-webkit-scrollbar {
+  width: 12px; /* Adjust the width as needed */
+}
+
+.basicContainer::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Set the thumb color to transparent */
+}

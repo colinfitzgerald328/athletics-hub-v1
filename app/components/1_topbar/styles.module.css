@@ -10,7 +10,6 @@
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  justify-content: space-between;
 }
 
 .leftItems {
@@ -19,8 +18,9 @@
 }
 
 .pageAction {
-  margin-left: 10px;
+  margin-left: 5px;
   font-style: italic;
+  font-size: 16px;
 }
 
 .basicInput {
@@ -46,10 +46,12 @@
 
 .fullWidthLogin {
   background-color: #1095e5;
-  border-radius: 15px;
-  font-size: 16px;
+  border-radius: 20px;
+}
+
+.button {
   display: flex;
-  align-items: center;
+  align-items: last baseline;
 }
 
 .fullWidthBackButton {
@@ -91,12 +93,20 @@
 
 .rightItems {
   display: flex;
-  align-items: center;
+  margin-left: auto;
+}
+
+.textItems {
+  height: 36px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: last baseline;
 }
 
 .welcomeForUser {
   margin-right: 5px;
   display: flex;
+  font-size: 16px;
   align-items: last baseline;
 }
 
@@ -163,4 +173,10 @@
 
 .fadeIn {
   opacity: 1;
+}
+
+.pageIcon {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
 }

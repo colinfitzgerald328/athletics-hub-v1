@@ -166,6 +166,21 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
+      <div className={styles.basicContainer}>
+        <div className={styles.anotherContainer}>
+        <div className={styles.poweredBy}>
+          Brought to you by:
+        </div>
+      <div className={styles.pageCredit}>
+      <img className={styles.basicImageWithSlightMargin} src="https://media.aws.iaaf.org/logos/wa-logo.svg"/>
+        <img className={styles.basicImageWithSlightMargin} src="https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg?auto=format%252Ccompress"/>
+        <img className={styles.basicImageWithSlightMargin} src="https://d7umqicpi7263.cloudfront.net/img/product/738798c3-eeca-494a-a2a9-161bee9450b2/310429fb-2ce8-4186-adea-cc619511ac3c.png"/>
+        <img className={styles.basicImageWithSlightMargin} src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png"/>
+        <img className={styles.basicImageWithSlightMargin} src="https://miro.medium.com/v2/resize:fit:720/1*icemCezVMahlyIQB31tzpA.png"/>
+        <img className={styles.basicImageWithSlightMargin} src="https://deepinfra.com/_next/static/media/logo.4a03fd3d.svg"/>
+      </div>
+      </div>
+      </div>
     </div>
   );
 }

@@ -152,6 +152,9 @@ export default function TopBar(props) {
 
   return (
     <div className={styles.topBarHolder}>
+              <div className={styles.pageIcon}>
+        <HubIcon sx={{ color: "#1095E5", fontSize: "30px" }} />
+        </div>
       <div className={styles.leftItems}>
         <div className={styles.pageLabel}>athletics hub</div>
         <div className={styles.pageAction}>
@@ -159,6 +162,7 @@ export default function TopBar(props) {
         </div>
       </div>
       <div className={styles.rightItems}>
+        <div className={styles.textItems}>
         {props.loggedIn && (
           <div className={styles.welcomeForUser}>
             Welcome{" "}
@@ -167,6 +171,8 @@ export default function TopBar(props) {
             </div>
           </div>
         )}
+        </div>
+        <div className={styles.button}>
         {props.loggedIn ? (
           <Button
             className={styles.fullWidthLogin}
@@ -184,6 +190,7 @@ export default function TopBar(props) {
             Sign in
           </Button>
         )}
+        </div>
       </div>
       <Modal
         className={styles.modalWithHeight}
