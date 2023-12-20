@@ -124,6 +124,7 @@ export default function ComparisonModal() {
           fontWeight: "bold",
           display: "flex",
           alignItems: "center",
+          fontFamily: 'Bricolage Grotesque, sans-serif',
         }}
         onClick={openModal}
       >

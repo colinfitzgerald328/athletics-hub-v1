@@ -156,6 +156,7 @@ export default function LeftSide(props) {
             fontWeight: "bold",
             display: "flex",
             alignItems: "center",
+            fontFamily: 'Bricolage Grotesque, sans-serif',
           }}
           className={styles.animatedButton}
           onClick={() => props.showCollections()}

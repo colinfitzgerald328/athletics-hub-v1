@@ -122,7 +122,7 @@ export default function CollectionTabs(props) {
           aria-label="basic tabs example"
           sx={{
             marginTop: "10px", 
-            fontFamily: "SF Pro Display, sans-serif",
+            fontFamily: 'Bricolage Grotesque, sans-serif',
             '& .MuiTabs-indicator': {
               display: 'flex',
               justifyContent: 'center',
@@ -139,7 +139,7 @@ export default function CollectionTabs(props) {
             label="Summary"
             {...a11yProps(0)}
             sx={{
-              fontFamily: "SF Pro Display, sans-serif",
+              fontFamily: 'Bricolage Grotesque, sans-serif',
               color: "black", 
               width: "20%",
               fontSize: "14px",
@@ -161,7 +161,7 @@ export default function CollectionTabs(props) {
             label="Competition"
             {...a11yProps(1)}
             sx={{
-              fontFamily: "SF Pro Display, sans-serif",
+              fontFamily: 'Bricolage Grotesque, sans-serif',
               color: "black", 
               width: "20%",
               fontSize: "14px",
@@ -183,7 +183,7 @@ export default function CollectionTabs(props) {
             label="Personal Bests"
             {...a11yProps(2)}
             sx={{
-              fontFamily: "SF Pro Display, sans-serif",
+              fontFamily: 'Bricolage Grotesque, sans-serif',
               color: "black", 
               width: "20%",
               fontSize: "14px",
@@ -205,7 +205,7 @@ export default function CollectionTabs(props) {
             label="Accolades"
             {...a11yProps(3)}
             sx={{
-              fontFamily: "SF Pro Display, sans-serif",
+              fontFamily: 'Bricolage Grotesque, sans-serif',
               color: "black", 
               width: "20%",
               fontSize: "14px",
@@ -227,7 +227,7 @@ export default function CollectionTabs(props) {
             label="Results"
             {...a11yProps(4)}
             sx={{
-              fontFamily: "SF Pro Display, sans-serif",
+              fontFamily: 'Bricolage Grotesque, sans-serif',
               color: "black", 
               width: "20%",
               fontSize: "14px",
