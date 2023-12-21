@@ -163,6 +163,8 @@ export default function Collections(props) {
   useEffect(() => {
     if (props.showingCollections) {
       handleShowCollections();
+    } else if (!props.showingCollections) {
+      handleCloseCollections()
     }
   }, [props.showingCollections]);
 
