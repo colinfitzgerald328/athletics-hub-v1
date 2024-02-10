@@ -164,7 +164,7 @@ export default function Collections(props) {
     if (props.showingCollections) {
       handleShowCollections();
     } else if (!props.showingCollections) {
-      handleCloseCollections()
+      handleCloseCollections();
     }
   }, [props.showingCollections]);
 
@@ -180,7 +180,7 @@ export default function Collections(props) {
           <IconButton
             size="small"
             sx={{
-              marginLeft: "10px"
+              marginLeft: "10px",
             }}
           >
             <ArrowDownwardIcon />

@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HubIcon from "@mui/icons-material/Hub";
 import * as API from "/app/api/api.js";
+import SummaryModal from "./1_SummaryModal";
 
 const style = {
   position: "absolute",
@@ -41,6 +42,7 @@ export default function TopBar(props) {
   const [loggingIn, setLoggingIn] = useState(false);
   const [dangerAlertOpen, setDangerAlertOpen] = useState(false);
   const [accountFailedOpen, setAccountFailedOpen] = useState(false);
+  const [summaryModalOpen, setSummaryModalOpen] = useState(false);
 
   function handleLogin() {
     setLoggingIn(true);
@@ -150,6 +152,14 @@ export default function TopBar(props) {
     }, 1000);
   }
 
+  function openSummaryModal() {
+    setSummaryModalOpen(true);
+  }
+
+  function closeSummaryModal() {
+    setSummaryModalOpen(false);
+  }
+
   return (
     <div className={styles.topBarHolder}>
       <div className={styles.pageIcon}>
@@ -159,6 +169,9 @@ export default function TopBar(props) {
         <div className={styles.pageLabel}>athletics hub</div>
         <div className={styles.pageAction}>
           Stay up to date on your favorite track and field athletes
+        </div>
+        <div onClick={() => openSummaryModal()} className={styles.dailySummary}>
+          Daily Summary
         </div>
       </div>
       <div className={styles.rightItems}>
@@ -357,6 +370,11 @@ export default function TopBar(props) {
           again.
         </Alert>
       </Snackbar>
+      <SummaryModal
+        summaryModalOpen={summaryModalOpen}
+        closeSummaryModal={closeSummaryModal}
+        dailySummary={props.dailySummary}
+      />
     </div>
   );
 }

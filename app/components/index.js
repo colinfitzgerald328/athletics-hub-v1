@@ -19,6 +19,7 @@ export default class MainComponent extends React.Component {
       athlete_data: [],
       athlete_accolades: [],
       similar_athletes: [],
+      dailySummary: null,
       width: 0,
       height: 0,
       pageLoaded: false,
@@ -43,6 +44,7 @@ export default class MainComponent extends React.Component {
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
     this.updateWindowDimensions();
     this.fetchRandomAthlete();
+    this.getLetsRunDailySummary();
   }
 
   getCollectionsForUser() {
@@ -171,6 +173,14 @@ export default class MainComponent extends React.Component {
     });
   }
 
+  getLetsRunDailySummary() {
+    API.getLetsRunDailySummary((data) => {
+      this.setState({
+        dailySummary: data["summary"],
+      });
+    });
+  }
+
   showCollections() {
     this.setState({
       showingCollections: true,
@@ -210,6 +220,7 @@ export default class MainComponent extends React.Component {
             loggedIn={this.state.loggedIn}
             logOutUser={this.logOutUser.bind(this)}
             logInUser={this.logInUser.bind(this)}
+            dailySummary={this.state.dailySummary}
           />
           <div className={styles.mainDisplay}>
             <LeftSide

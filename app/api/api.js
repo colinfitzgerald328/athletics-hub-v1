@@ -441,3 +441,22 @@ export async function updateCollectionName(collectionId, newName, callback) {
       console.log(error);
     });
 }
+
+export async function getLetsRunDailySummary(callback) {
+  var url = new URL(API_URL + "/v1/letsrun/summary");
+  url.search = new URLSearchParams().toString();
+  fetch(url)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Something went wrong ...");
+      }
+    })
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

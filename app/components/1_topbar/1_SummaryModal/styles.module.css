@@ -1,0 +1,5 @@
+.summaryHolder {
+  height: calc(100%);
+  overflow-y: scroll;
+  line-height: 30px;
+}
