@@ -49,6 +49,13 @@
   align-items: center;
 }
 
+.topItemsForMenu {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+
 .goBack {
   width: fit-content;
   padding: 5px;

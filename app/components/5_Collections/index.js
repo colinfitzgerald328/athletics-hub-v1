@@ -170,21 +170,21 @@ export default function Collections(props) {
 
   return (
     <div className={styles.basic}>
-      <div className={styles.topItems}>
-        <div onClick={() => handleCloseCollections()}>
-          <IconButton
-            size="small"
-            sx={{
-              padding: 1,
-            }}
-          >
-            <ArrowDownwardIcon />
-          </IconButton>
-        </div>
+      <div className={styles.topItemsForMenu}>
         <div className={styles.createCollection}>
           <CreateCollectionModal
             getCollectionsForUser={props.getCollectionsForUser}
           />
+        </div>
+        <div onClick={() => handleCloseCollections()}>
+          <IconButton
+            size="small"
+            sx={{
+              marginLeft: "10px"
+            }}
+          >
+            <ArrowDownwardIcon />
+          </IconButton>
         </div>
       </div>
       <div className={styles.contentHolder}>
