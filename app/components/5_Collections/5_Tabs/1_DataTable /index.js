@@ -62,7 +62,7 @@ export default function DataTable(props) {
         <div className={styles.labeledItem}>Date</div>
       </div>
       <div className={styles.table}>
-        {props.loadingNewAthlete ? (
+        {props.loadingNewAthlete || props.athlete_data.length == 0 ? (
           <div>
             <Skeleton height={70} animation="wave" />
             <Skeleton height={70} animation="wave" />
