@@ -25,15 +25,15 @@ const style = {
 export default function SummaryModal(props) {
   let result = ""; // Define result outside if block
 
-  if (props.dailySummary) {
+  if (props.athleteSummary) {
     const md = markdownit();
-    result = md.render(props.dailySummary); // Assign result inside if block
+    result = md.render(props.athleteSummary); // Assign result inside if block
   }
 
   return (
     <Modal
-      open={props.summaryModalOpen}
-      onCancel={props.closeSummaryModal}
+      open={props.markdownModalOpen}
+      onCancel={props.closeMarkdownModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
       footer={null}

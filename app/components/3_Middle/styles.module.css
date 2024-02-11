@@ -99,3 +99,27 @@
   font-weight: 600;
   margin-right: 5px;
 }
+
+.betaHolder {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.markdownSummary {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.markdownSummary:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.beta {
+  background-color: #ffc107; /* Amber */
+  margin-left: 5px;
+  border-radius: inherit;
+  padding: 5px 10px 5px 10px;
+}

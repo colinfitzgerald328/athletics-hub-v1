@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CustomTabPanel from "./1_Tabs";
 import styles from "./styles.module.css";
-import { Skeleton } from "@mui/material";
+import SummaryModal from "./2_SummaryModal";
+import { Button, Skeleton } from "@mui/material";
 
 export default function AthleteBreakDown(props) {
+  const [markdownModalOpen, setMarkdownModalOpen] = useState(false);
+
   const disciplinesArr =
     props.athlete.length !== 0
       ? props.athlete.disciplines.split(", ")
@@ -37,8 +40,21 @@ export default function AthleteBreakDown(props) {
     }
   }, [props.showingCollections]);
 
+  function openMarkdownModal() {
+    setMarkdownModalOpen(true);
+  }
+
+  function closeMarkdownModal() {
+    setMarkdownModalOpen(false);
+  }
+
   return (
     <div className={styles.athleteBreakdown}>
+      <SummaryModal
+        markdownModalOpen={markdownModalOpen}
+        closeMarkdownModal={closeMarkdownModal}
+        athleteSummary={props.athlete.markdown_summary}
+      />
       <div className={styles.itemsContainer}>
         {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
           <Skeleton
@@ -76,7 +92,18 @@ export default function AthleteBreakDown(props) {
                 variant="rectangular"
               ></Skeleton>
             ) : (
-              <div className={styles.fullName}>{props.athlete.full_name}</div>
+              <div className={styles.betaHolder}>
+                <div className={styles.fullName}>{props.athlete.full_name}</div>
+                {props.athlete.markdown_summary && (
+                  <Button
+                    className={styles.markdownSummary}
+                    variant="outlined"
+                    onClick={() => openMarkdownModal()}
+                  >
+                    Markdown summary (beta)
+                  </Button>
+                )}
+              </div>
             )}
             {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
               <Skeleton
