@@ -100,7 +100,7 @@ export default function AthleteBreakDown(props) {
                     variant="outlined"
                     onClick={() => openMarkdownModal()}
                   >
-                    Markdown summary (beta)
+                    Athlete bio (beta)
                   </Button>
                 )}
               </div>
