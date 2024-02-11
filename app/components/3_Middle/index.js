@@ -99,8 +99,9 @@ export default function AthleteBreakDown(props) {
                     className={styles.markdownSummary}
                     variant="outlined"
                     onClick={() => openMarkdownModal()}
+                    sx={{"marginLeft": "5px"}}
                   >
-                    Athlete bio (beta)
+                    Athlete bio
                   </Button>
                 )}
               </div>
