@@ -1,7 +1,8 @@
 import React from "react";
-import Markdown from "react-markdown";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
+import { Modal } from "antd";
+import markdownit from 'markdown-it';
+
 import styles from "./styles.module.css";
 
 const style = {
@@ -22,19 +23,29 @@ const style = {
 };
 
 export default function SummaryModal(props) {
+  let result = ""; // Define result outside if block
+
+  if (props.dailySummary) {
+    const md = markdownit();
+    result = md.render(props.dailySummary); // Assign result inside if block
+  }
+
   return (
     <Modal
       open={props.summaryModalOpen}
-      onClose={props.closeSummaryModal}
+      onCancel={props.closeSummaryModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
-      closeButton
+      footer={null}
+      centered
+      width={"800px"}
+      scroll
     >
-      <Box sx={style}>
-        <div className={styles.summaryHolder}>
-          <Markdown>{props.dailySummary}</Markdown>
-        </div>
-      </Box>
+      <div className={styles.container}>
+      <div className={styles.summaryHolder} dangerouslySetInnerHTML={{ __html: result }} />
+      </div>
+        {/* Render parsed HTML content inside div */}
     </Modal>
   );
 }
+
