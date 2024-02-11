@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import CustomTabPanel from "./1_Tabs";
 import styles from "./styles.module.css";
 import SummaryModal from "./2_SummaryModal";
-import { Button, Skeleton } from "@mui/material";
+import { Skeleton } from "@mui/material";
+import Button from '@mui/joy/Button';
 
 export default function AthleteBreakDown(props) {
   const [markdownModalOpen, setMarkdownModalOpen] = useState(false);
@@ -96,13 +97,13 @@ export default function AthleteBreakDown(props) {
                 <div className={styles.fullName}>{props.athlete.full_name}</div>
                 {props.athlete.markdown_summary && (
                   <Button
-                    className={styles.markdownSummary}
-                    variant="outlined"
+                  color="success"
+                  variant="soft"
                     onClick={() => openMarkdownModal()}
-                    sx={{"marginLeft": "5px"}}
+                    sx={{"marginLeft": "10px"}}
                   >
                     Bio
-                  </Button>
+                    </Button>
                 )}
               </div>
             )}

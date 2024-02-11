@@ -117,7 +117,7 @@ export default function BasicTabs(props) {
         width: "100%",
         borderRadius: "25px",
         backgroundColor: "white",
-        height: "calc(100% - 360px)",
+        height: "calc(100% - 310px)",
         overflowY: "scroll",
         marginTop: "10px",
         position: "relative",
@@ -145,7 +145,7 @@ export default function BasicTabs(props) {
             },
           }}
         >
-          <Tab
+          {/* <Tab
             label="Summary"
             {...a11yProps(0)}
             sx={{
@@ -166,14 +166,14 @@ export default function BasicTabs(props) {
                 borderRadius: "25px",
               },
             }}
-          />
+          /> */}
           <Tab
             label="Competition"
             {...a11yProps(1)}
             sx={{
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
-              width: "20%",
+              width: "25%",
               fontSize: "14px",
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
@@ -195,7 +195,7 @@ export default function BasicTabs(props) {
             sx={{
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
-              width: "20%",
+              width: "25%",
               fontSize: "14px",
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
@@ -217,7 +217,7 @@ export default function BasicTabs(props) {
             sx={{
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
-              width: "20%",
+              width: "25%",
               fontSize: "14px",
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
@@ -239,7 +239,7 @@ export default function BasicTabs(props) {
             sx={{
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
-              width: "20%",
+              width: "25%",
               fontSize: "14px",
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
@@ -257,7 +257,7 @@ export default function BasicTabs(props) {
           />
         </Tabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
+      {/* <CustomTabPanel value={value} index={0}> */}
         {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
           <Button
             onClick={() => scrollIntoView()}
@@ -285,7 +285,7 @@ export default function BasicTabs(props) {
         ) : (
           ""
         )} */}
-        {props.loadingNewAthlete || props.athlete.summary == undefined ? (
+        {/* {props.loadingNewAthlete || props.athlete.summary == undefined ? (
           <div>
             <Skeleton animation="wave" />
             <Skeleton animation="wave" />
@@ -307,8 +307,8 @@ export default function BasicTabs(props) {
         ) : (
           <div className={styles.summary}>{props.athlete.summary}</div>
         )}
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1} dir={theme.direction}>
+      </CustomTabPanel> */}
+      <CustomTabPanel value={value} index={0} dir={theme.direction}>
         {topCompetitors &&
           (topCompetitors.length == 0 ? (
             <div className={styles.nothingHereYet}>
@@ -405,7 +405,7 @@ export default function BasicTabs(props) {
             ))
           ))}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
+      <CustomTabPanel value={value} index={1}>
         {props.athlete.personal_bests &&
           props.athlete.personal_bests.map(
             (item, index) =>
@@ -461,7 +461,7 @@ export default function BasicTabs(props) {
               ),
           )}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={3}>
+      <CustomTabPanel value={value} index={2}>
         {props.athlete.accomplishments &&
           (props.athlete.accomplishments.length == 0 ? (
             <div className={styles.nothingHereYet}>
@@ -487,7 +487,7 @@ export default function BasicTabs(props) {
             ))
           ))}
       </CustomTabPanel>
-      <CustomTabPanel value={value} index={4}>
+      <CustomTabPanel value={value} index={3}>
         <DataTable
           athlete_data={props.athlete_data}
           loadingNewAthlete={props.loadingNewAthlete}
