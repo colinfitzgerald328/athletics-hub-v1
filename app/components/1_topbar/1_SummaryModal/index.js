@@ -30,6 +30,7 @@ export default function SummaryModal(props) {
     result = md.render(props.dailySummary); // Assign result inside if block
   }
 
+
   return (
     <Modal
       open={props.summaryModalOpen}
