@@ -75,7 +75,6 @@ export default class MainComponent extends React.Component {
 
     try {
       await Promise.all([
-        this.getResultsForAthlete(athlete.aaAthleteId),
         this.getSimilarAthletes(athlete.aaAthleteId),
         this.getTopCompetitors(athlete.aaAthleteId),
       ]);
@@ -86,6 +85,7 @@ export default class MainComponent extends React.Component {
           this.setState({
             loadingNewAthlete: false,
             pageLoaded: true,
+            athlete_data: athlete.results
           });
         });
       }, 0);
@@ -97,23 +97,6 @@ export default class MainComponent extends React.Component {
       });
     }
   };
-
-  getResultsForAthlete(athlete_id) {
-    return new Promise((resolve, reject) => {
-      API.getResultsForAthlete(
-        athlete_id,
-        (results) => {
-          this.setState({
-            athlete_data: results["athlete_data"],
-          });
-          resolve(results); // Resolve the promise with the data
-        },
-        (error) => {
-          reject(error); // Reject the promise with the error
-        },
-      );
-    });
-  }
 
   getSimilarAthletes(athlete_id) {
     return new Promise((resolve, reject) => {

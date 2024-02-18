@@ -1,28 +1,5 @@
 var API_URL = "https://athletics-hub.uc.r.appspot.com";
 
-export async function getResultsForAthlete(athlete_code, callback) {
-  var data = {
-    athlete_id: athlete_code,
-  };
-
-  var url = new URL(API_URL + "/athletes/results");
-  url.search = new URLSearchParams(data).toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
 export async function getSearchResultsForQuery(search, callback) {
   var data = {
     search_term: search,

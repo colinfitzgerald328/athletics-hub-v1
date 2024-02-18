@@ -29,7 +29,7 @@ export default function Collections(props) {
       theItem.height = newScrollHeight;
       setCollections([...currentCollections]);
       const data_fetch_results = await getDataForAthlete(athlete);
-      theItem.athlete_results = data_fetch_results.athlete_results;
+      console.log(athlete)
       theItem.top_competitors = data_fetch_results.top_competitors;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
@@ -49,16 +49,13 @@ export default function Collections(props) {
 
   async function getDataForAthlete(athlete) {
     try {
-      const athleteResultsPromise = getResultsForAthlete(athlete.aaAthleteId);
       const topCompetitorsPromise = getTopCompetitors(athlete.aaAthleteId);
 
-      const [athleteResults, topCompetitors] = await Promise.all([
-        athleteResultsPromise,
+      const [topCompetitors] = await Promise.all([
         topCompetitorsPromise,
       ]);
 
       return {
-        athlete_results: athleteResults,
         top_competitors: topCompetitors,
       };
     } catch (error) {
@@ -82,19 +79,6 @@ export default function Collections(props) {
     });
   }
 
-  function getResultsForAthlete(athlete_id) {
-    return new Promise((resolve, reject) => {
-      API.getResultsForAthlete(
-        athlete_id,
-        (results) => {
-          resolve(results["athlete_data"]); // Resolve the promise with the data
-        },
-        (error) => {
-          reject(error); // Reject the promise with the error
-        },
-      );
-    });
-  }
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -323,7 +307,7 @@ export default function Collections(props) {
                     <CollectionTabs
                       athlete={athlete}
                       loadingNewAthlete={false}
-                      athlete_data={athlete.athlete_results || []}
+                      athlete_data={athlete.results || []}
                       top_competitors={athlete.top_competitors}
                     />
                   </div>
