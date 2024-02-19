@@ -62,7 +62,7 @@ export default function RightSide(props) {
       ></SocialProfiles>
       <Recommended
         similar_athletes={props.similar_athletes}
-        setAthlete={props.setAthlete}
+        setAthleteFromTopCompetitors={props.setAthleteFromTopCompetitors}
         loadingNewAthlete={props.loadingNewAthlete}
       />
     </div>

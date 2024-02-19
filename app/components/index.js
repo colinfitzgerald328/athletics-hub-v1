@@ -68,6 +68,7 @@ export default class MainComponent extends React.Component {
   }
 
   setAthlete = async (athlete) => {
+    console.log(athlete)
     this.setState({
       athlete: athlete,
       loadingNewAthlete: true,
@@ -75,7 +76,6 @@ export default class MainComponent extends React.Component {
 
     try {
       await Promise.all([
-        this.getSimilarAthletes(athlete.aaAthleteId),
         this.getTopCompetitors(athlete.aaAthleteId),
       ]);
 
@@ -85,7 +85,8 @@ export default class MainComponent extends React.Component {
           this.setState({
             loadingNewAthlete: false,
             pageLoaded: true,
-            athlete_data: athlete.results
+            athlete_data: athlete.results, 
+            similar_athletes: athlete.similar_athletes
           });
         });
       }, 0);
@@ -149,6 +150,7 @@ export default class MainComponent extends React.Component {
 
   setAthleteFromTopCompetitors(athlete_id) {
     API.getAthleteById(athlete_id, (athlete) => {
+      console.log(athlete)
       this.setState({
         athlete: athlete.found_athlete,
       });
@@ -237,6 +239,7 @@ export default class MainComponent extends React.Component {
               loadingNewAthlete={this.state.loadingNewAthlete}
               athlete_data={this.state.athlete_data}
               showingCollections={this.state.showingCollections}
+              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(this)}
             />
           </div>
         </div>
