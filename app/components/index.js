@@ -209,7 +209,7 @@ export default class MainComponent extends React.Component {
           />
           <div className={styles.mainDisplay}>
             <LeftSide
-              setAthlete={this.setAthlete.bind(this)}
+              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(this)}
               loggedIn={this.state.loggedIn}
               showCollections={this.showCollections.bind(this)}
               loadingCollections={this.state.loadingCollections}

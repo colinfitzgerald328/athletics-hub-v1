@@ -79,7 +79,7 @@ export default function LeftSide(props) {
   }, [searchTerm]);
 
   function handleChooseAthlete(athlete) {
-    props.setAthlete(athlete), setSearchResults([]), setSearchTerm("");
+    props.setAthleteFromTopCompetitors(athlete.aaAthleteId), setSearchResults([]), setSearchTerm("");
     setShowSearchResults(false);
   }
 
