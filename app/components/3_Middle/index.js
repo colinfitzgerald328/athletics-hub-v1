@@ -3,7 +3,8 @@ import CustomTabPanel from "./1_Tabs";
 import styles from "./styles.module.css";
 import SummaryModal from "./2_SummaryModal";
 import { Skeleton } from "@mui/material";
-import Button from '@mui/joy/Button';
+import Button from "@mui/joy/Button";
+import { Carousel } from "antd";
 
 export default function AthleteBreakDown(props) {
   const [markdownModalOpen, setMarkdownModalOpen] = useState(false);
@@ -63,10 +64,16 @@ export default function AthleteBreakDown(props) {
             height={230}
             variant="rectangular"
           ></Skeleton>
+        ) : props.athlete.hq_images ? (
+          <Carousel autoplay>
+            {props.athlete.hq_images.map((image, index) => (
+              <img className={styles.athleteImage} src={image} key={index} />
+            ))}
+          </Carousel>
         ) : (
           <img
-            src={props.athlete.hq_image_url}
             className={styles.athleteImage}
+            src={props.athlete.hq_image_url}
           />
         )}
         <div className={styles.athleteNameHolder}>
@@ -97,13 +104,13 @@ export default function AthleteBreakDown(props) {
                 <div className={styles.fullName}>{props.athlete.full_name}</div>
                 {props.athlete.markdown_summary && (
                   <Button
-                  color="success"
-                  variant="soft"
+                    color="success"
+                    variant="soft"
                     onClick={() => openMarkdownModal()}
-                    sx={{"marginLeft": "10px"}}
+                    sx={{ marginLeft: "10px" }}
                   >
                     Bio
-                    </Button>
+                  </Button>
                 )}
               </div>
             )}
