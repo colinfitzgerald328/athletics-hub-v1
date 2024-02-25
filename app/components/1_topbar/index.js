@@ -299,7 +299,8 @@ export default function TopBar(props) {
               <Button
                 loading={loggingIn}
                 onClick={handleLogin}
-                className={styles.fullWidth}
+                variant="soft"
+                sx={{"width": "100%", marginTop: "20px", borderRadius: "25px", height: "50px"}}
                 type="primary"
               >
                 {loggingIn ? "Logging you in" : "Log in"}
