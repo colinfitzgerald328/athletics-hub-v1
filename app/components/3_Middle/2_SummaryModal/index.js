@@ -51,7 +51,7 @@ export default function SummaryModal(props) {
             {props.athlete.full_name}
           </div>
           <div className={styles.rightItems}>
-          <Button color="primary" variant="soft" className={styles.openButton}  onClick={()=> window.open(props.athlete.wikipedia_url)}>
+          <Button color="primary" variant="soft" sx={{"borderRadius": "25px"}} className={styles.openButton}  onClick={()=> window.open(props.athlete.wikipedia_url)}>
             Read more
           </Button>
           <div onClick={()=> props.closeMarkdownModal()} className={styles.closeButton}>
