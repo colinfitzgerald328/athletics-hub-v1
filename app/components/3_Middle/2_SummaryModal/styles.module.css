@@ -12,6 +12,7 @@
 
 .summaryHolder h2 {
   margin-bottom: 10px;
+  font-size: 25px;
 }
 
 .summaryHolder li {
@@ -19,7 +20,7 @@
 
 .summaryHolder ul {
   border-left: 2px solid dodgerblue;
-  padding-left: 20px;
+  padding-left: 25px;
 }
 
 .summaryHolder li:last-child {
