@@ -1,1 +1,1 @@
-alias push_with_commit_message='diff_output=$(git diff) && git add . && git commit -m "$(echo "$diff_output" | curl -X POST -d @- http://127.0.0.1:8080/api/generate-commit-message -H "Content-Type: text/plain")" && git push origin main'
+alias push_with_commit_message='diff_output=$(git diff) && git add . && git commit -m "$(echo "$diff_output" | curl -X POST -d @- https://athletics-hub.uc.r.appspot.com/api/generate-commit-message -H "Content-Type: text/plain")" && git push origin main'
