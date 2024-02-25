@@ -41,10 +41,9 @@ export default class MainComponent extends React.Component {
       this.logInUser();
     }
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
-    this.updateWindowDimensions();
-    this.fetchRandomAthlete();
-    this.getLetsRunDailySummary();
-    // here is a sample commit line
+    // this.updateWindowDimensions();
+    // this.fetchRandomAthlete();
+    // this.getLetsRunDailySummary();
   }
 
   getCollectionsForUser() {
