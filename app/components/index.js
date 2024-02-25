@@ -40,10 +40,10 @@ export default class MainComponent extends React.Component {
     ) {
       this.logInUser();
     }
-    // window.addEventListener("resize", this.updateWindowDimensions.bind(this));
-    // this.updateWindowDimensions();
-    // this.fetchRandomAthlete();
-    // this.getLetsRunDailySummary();
+    window.addEventListener("resize", this.updateWindowDimensions.bind(this));
+    this.updateWindowDimensions();
+    this.fetchRandomAthlete();
+    this.getLetsRunDailySummary();
   }
 
   getCollectionsForUser() {
