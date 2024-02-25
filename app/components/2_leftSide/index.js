@@ -79,7 +79,9 @@ export default function LeftSide(props) {
   }, [searchTerm]);
 
   function handleChooseAthlete(athlete) {
-    props.setAthleteFromTopCompetitors(athlete.aaAthleteId), setSearchResults([]), setSearchTerm("");
+    props.setAthleteFromTopCompetitors(athlete.aaAthleteId),
+      setSearchResults([]),
+      setSearchTerm("");
     setShowSearchResults(false);
   }
 
@@ -124,7 +126,9 @@ export default function LeftSide(props) {
                 className={styles.singleResult}
               >
                 <img
-                  src={result.hq_image_url}
+                  src={
+                    result.hq_images ? result.hq_images[0] : result.hq_image_url
+                  }
                   className={styles.searchResultImage}
                 />
                 <div className={styles.textDisplay}>

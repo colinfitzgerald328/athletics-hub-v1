@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import CustomTabPanel from "./1_Tabs";
 import styles from "./styles.module.css";
 import SummaryModal from "./2_SummaryModal";
-import { Skeleton } from "@mui/material";
+import CarouselModal from "./3_CarouselModal";
+import { IconButton, Skeleton } from "@mui/material";
 import Button from "@mui/joy/Button";
-import { Carousel } from "antd";
 
 export default function AthleteBreakDown(props) {
   const [markdownModalOpen, setMarkdownModalOpen] = useState(false);
+  const [carouselModalOpen, setCarouselModalOpen] = useState(false);
 
   const disciplinesArr =
     props.athlete.length !== 0
@@ -50,6 +51,14 @@ export default function AthleteBreakDown(props) {
     setMarkdownModalOpen(false);
   }
 
+  function openCarouselModal() {
+    setCarouselModalOpen(true);
+  }
+
+  function closeCarouselModal() {
+    setCarouselModalOpen(false);
+  }
+
   return (
     <div className={styles.athleteBreakdown}>
       <SummaryModal
@@ -61,15 +70,26 @@ export default function AthleteBreakDown(props) {
         {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
           <Skeleton
             animation="wave"
-            height={230}
+            height={350}
             variant="rectangular"
           ></Skeleton>
         ) : props.athlete.hq_images ? (
-          <Carousel autoplay>
-            {props.athlete.hq_images.map((image, index) => (
-              <img className={styles.athleteImage} src={image} key={index} />
-            ))}
-          </Carousel>
+          <>
+            <img
+              className={styles.athleteImage}
+              src={props.athlete.hq_images[0]}
+            />
+            <img
+              onClick={() => openCarouselModal()}
+              className={styles.expandImage}
+              src={"expand.png"}
+            ></img>{" "}
+            <CarouselModal
+              carouselModalOpen={carouselModalOpen}
+              closeCarouselModal={closeCarouselModal}
+              athlete_images={props.athlete.hq_images}
+            />
+          </>
         ) : (
           <img
             className={styles.athleteImage}
@@ -85,6 +105,11 @@ export default function AthleteBreakDown(props) {
               width={150}
               height={150}
             ></Skeleton>
+          ) : props.athlete.hq_images ? (
+            <img
+              src={props.athlete.hq_images[0]}
+              className={styles.profileImage}
+            />
           ) : (
             <img
               src={props.athlete.hq_image_url}
@@ -107,7 +132,15 @@ export default function AthleteBreakDown(props) {
                     color="success"
                     variant="soft"
                     onClick={() => openMarkdownModal()}
-                    sx={{ marginLeft: "10px" }}
+                    sx={{
+                      marginLeft: "15px",
+                      paddingLeft: "40px",
+                      paddingRight: "40px",
+                      paddingTop: "5px",
+                      paddingBottom: "5px",
+                      borderRadius: "25px"
+                    }}
+                    className={styles.generalButton}
                   >
                     Bio
                   </Button>

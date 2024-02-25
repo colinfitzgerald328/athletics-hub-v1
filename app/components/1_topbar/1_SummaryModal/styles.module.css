@@ -14,8 +14,12 @@
 }
 
 .summaryHolder p {
-  border-left: 4px solid dodgerblue;
+  border-left: 2px solid dodgerblue;
   padding-left: 10px;
   margin-bottom: 5px;
   font-size: 16px;
+}
+
+.summaryHolder h2 {
+  font-size: 25px;
 }

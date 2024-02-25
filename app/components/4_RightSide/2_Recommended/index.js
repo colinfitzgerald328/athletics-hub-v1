@@ -7,7 +7,9 @@ export default function Recommended(props) {
     (similar_athlete, index) => (
       <div
         className={styles.similarAthlete}
-        onClick={() => props.setAthleteFromTopCompetitors(similar_athlete.aaAthleteId)}
+        onClick={() =>
+          props.setAthleteFromTopCompetitors(similar_athlete.aaAthleteId)
+        }
         key={index}
       >
         {props.loadingNewAthlete ? (
@@ -20,7 +22,11 @@ export default function Recommended(props) {
           />
         ) : (
           <img
-            src={similar_athlete.hq_image_url}
+            src={
+              similar_athlete.hq_images
+                ? similar_athlete.hq_images[0]
+                : similar_athlete.hq_image_url
+            }
             className={styles.athleteImage}
           />
         )}

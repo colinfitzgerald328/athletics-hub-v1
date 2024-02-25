@@ -11,12 +11,15 @@
 }
 
 .summaryHolder h2 {
-  border-bottom: 0.5px solid #808080;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .summaryHolder li {
-  margin-left: 35px;
+}
+
+.summaryHolder ul {
+  border-left: 2px solid dodgerblue;
+  padding-left: 20px;
 }
 
 .summaryHolder li:last-child {
@@ -25,4 +28,6 @@
 
 .summaryHolder p {
   margin-bottom: 20px;
+  border-left: 2px solid dodgerblue;
+  padding-left: 10px;
 }

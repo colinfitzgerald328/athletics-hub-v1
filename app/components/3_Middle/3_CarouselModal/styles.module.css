@@ -1,0 +1,22 @@
+.carouselItem {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.carouselImage {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+
+.generalItem {
+  background-color: blue;
+  width: 100%;
+  height: 100%;
+}
+
+.generalModal {
+  width: 500px;
+  height: 500px;
+}

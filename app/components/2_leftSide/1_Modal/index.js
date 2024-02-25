@@ -190,7 +190,11 @@ export default function ComparisonModal() {
                       className={styles.singleResult}
                     >
                       <img
-                        src={result.hq_image_url}
+                        src={
+                          result.hq_images
+                            ? result.hq_images[0]
+                            : result.hq_image_url
+                        }
                         className={styles.searchResultImage}
                       />
                       <div className={styles.textDisplay}>
@@ -219,7 +223,11 @@ export default function ComparisonModal() {
                     <div className={styles.itemsContainer}>
                       <div className={styles.gradient}></div>
                       <img
-                        src={athlete.hq_image_url}
+                        src={
+                          athlete.hq_images
+                            ? athlete.hq_images[0]
+                            : athlete.hq_image_url
+                        }
                         className={styles.athleteImage}
                       />
                       <div className={styles.athleteNameHolder}>

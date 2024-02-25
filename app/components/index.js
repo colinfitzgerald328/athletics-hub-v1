@@ -38,8 +38,7 @@ export default class MainComponent extends React.Component {
       localStorage.getItem("password") &&
       localStorage.getItem("account_id")
     ) {
-      this.setState({ loggedIn: true });
-      this.getCollectionsForUser();
+      this.logInUser();
     }
     window.addEventListener("resize", this.updateWindowDimensions.bind(this));
     this.updateWindowDimensions();
@@ -68,28 +67,20 @@ export default class MainComponent extends React.Component {
   }
 
   setAthlete = async (athlete) => {
-    console.log(athlete)
     this.setState({
-      athlete: athlete,
       loadingNewAthlete: true,
     });
 
     try {
-      await Promise.all([
-        this.getTopCompetitors(athlete.aaAthleteId),
-      ]);
+      await Promise.all([this.getTopCompetitors(athlete.aaAthleteId)]);
 
-      // Use setTimeout and requestAnimationFrame to wait for the next render cycle
-      setTimeout(() => {
-        requestAnimationFrame(() => {
-          this.setState({
-            loadingNewAthlete: false,
-            pageLoaded: true,
-            athlete_data: athlete.results, 
-            similar_athletes: athlete.similar_athletes
-          });
-        });
-      }, 0);
+      this.setState({
+        athlete: athlete,
+        loadingNewAthlete: false,
+        pageLoaded: true,
+        athlete_data: athlete.results,
+        similar_athletes: athlete.similar_athletes,
+      });
     } catch (error) {
       console.error("Error occurred:", error);
 
@@ -99,29 +90,12 @@ export default class MainComponent extends React.Component {
     }
   };
 
-  getSimilarAthletes(athlete_id) {
-    return new Promise((resolve, reject) => {
-      API.getSimilarAthletes(
-        athlete_id,
-        (data) => {
-          this.setState({
-            similar_athletes: data["similar_athletes"],
-          });
-          resolve(data); // Resolve the promise with the data
-        },
-        (error) => {
-          console.log(error);
-          reject(error); // Reject the promise with the error
-        },
-      );
-    });
-  }
-
   fetchRandomAthlete() {
+    this.setState({
+      loadingNewAthlete: true,
+    });
+    this.setState({ fetching: true });
     API.getRandomDoc((athlete) => {
-      this.setState({
-        athlete: athlete.random_doc,
-      });
       this.setAthlete(athlete.random_doc);
     });
   }
@@ -150,7 +124,7 @@ export default class MainComponent extends React.Component {
 
   setAthleteFromTopCompetitors(athlete_id) {
     API.getAthleteById(athlete_id, (athlete) => {
-      console.log(athlete)
+      console.log(athlete);
       this.setState({
         athlete: athlete.found_athlete,
       });
@@ -209,7 +183,9 @@ export default class MainComponent extends React.Component {
           />
           <div className={styles.mainDisplay}>
             <LeftSide
-              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(this)}
+              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
+                this,
+              )}
               loggedIn={this.state.loggedIn}
               showCollections={this.showCollections.bind(this)}
               loadingCollections={this.state.loadingCollections}
@@ -239,7 +215,9 @@ export default class MainComponent extends React.Component {
               loadingNewAthlete={this.state.loadingNewAthlete}
               athlete_data={this.state.athlete_data}
               showingCollections={this.state.showingCollections}
-              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(this)}
+              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
+                this,
+              )}
             />
           </div>
         </div>

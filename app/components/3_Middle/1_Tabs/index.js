@@ -258,7 +258,7 @@ export default function BasicTabs(props) {
         </Tabs>
       </Box>
       {/* <CustomTabPanel value={value} index={0}> */}
-        {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
+      {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
           <Button
             onClick={() => scrollIntoView()}
             sx={{
@@ -285,7 +285,7 @@ export default function BasicTabs(props) {
         ) : (
           ""
         )} */}
-        {/* {props.loadingNewAthlete || props.athlete.summary == undefined ? (
+      {/* {props.loadingNewAthlete || props.athlete.summary == undefined ? (
           <div>
             <Skeleton animation="wave" />
             <Skeleton animation="wave" />
@@ -330,7 +330,11 @@ export default function BasicTabs(props) {
                   ) : (
                     <img
                       className={styles.competitorImage}
-                      src={competitor.hq_image_url}
+                      src={
+                        competitor.hq_images
+                          ? competitor.hq_images[0]
+                          : competitor.hq_image_url
+                      }
                     />
                   )}
                   <div className={styles.criticalInfo}>
