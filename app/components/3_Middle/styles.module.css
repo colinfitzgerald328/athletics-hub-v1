@@ -137,3 +137,10 @@
   padding: 5px 10px 5px 10px;
 }
 
+.athleteImageContained {
+  width: 100%;
+  height: calc(100% - 150px);
+  object-fit: contain;
+  border-radius: 25px;
+}
+

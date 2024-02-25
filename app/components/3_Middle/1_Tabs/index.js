@@ -334,6 +334,8 @@ export default function BasicTabs(props) {
                         competitor.hq_images
                           ? competitor.hq_images[0]
                           : competitor.hq_image_url
+                            ? competitor.hq_image_url
+                            : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                       }
                     />
                   )}

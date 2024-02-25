@@ -90,10 +90,17 @@ export default function AthleteBreakDown(props) {
               athlete_images={props.athlete.hq_images}
             />
           </>
-        ) : (
+        ) : props.athlete.hq_image_url ? (
           <img
             className={styles.athleteImage}
             src={props.athlete.hq_image_url}
+          />
+        ) : (
+          <img
+            className={styles.athleteImageContained}
+            src={
+              "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
+            }
           />
         )}
         <div className={styles.athleteNameHolder}>
@@ -110,11 +117,13 @@ export default function AthleteBreakDown(props) {
               src={props.athlete.hq_images[0]}
               className={styles.profileImage}
             />
-          ) : (
+          ) : props.athlete.hq_image_url ? (
             <img
               src={props.athlete.hq_image_url}
               className={styles.profileImage}
             />
+          ) : (
+            ''
           )}
           <div className={styles.nameVariables}>
             {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
@@ -138,7 +147,7 @@ export default function AthleteBreakDown(props) {
                       paddingRight: "40px",
                       paddingTop: "5px",
                       paddingBottom: "5px",
-                      borderRadius: "25px"
+                      borderRadius: "25px",
                     }}
                     className={styles.generalButton}
                   >
