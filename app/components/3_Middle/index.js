@@ -145,8 +145,6 @@ export default function AthleteBreakDown(props) {
                     onClick={() => openMarkdownModal()}
                     sx={{
                       marginLeft: "15px",
-                      paddingLeft: "40px",
-                      paddingRight: "40px",
                       borderRadius: "25px",
                     }}
                     className={styles.generalButton}

@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { Button } from "antd";
+import Button from "@mui/joy/Button";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import styles from "./styles.module.css";
@@ -170,9 +170,9 @@ export default function TopBar(props) {
         <div className={styles.pageAction}>
           Stay up to date on your favorite track and field athletes
         </div>
-        <div onClick={() => openSummaryModal()} className={styles.dailySummary}>
+        <Button sx={{"marginLeft": "15px", "borderRadius": "25px"}} variant="soft" color="primary" onClick={() => openSummaryModal()}>
           Daily Summary
-        </div>
+        </Button>
       </div>
       <div className={styles.rightItems}>
         <div className={styles.textItems}>
@@ -188,7 +188,7 @@ export default function TopBar(props) {
         <div className={styles.button}>
           {props.loggedIn ? (
             <Button
-              className={styles.fullWidthLogin}
+            sx={{"borderRadius": "25px"}}
               onClick={() => props.logOutUser()}
               type="primary"
             >
@@ -196,7 +196,7 @@ export default function TopBar(props) {
             </Button>
           ) : (
             <Button
-              className={styles.fullWidthLogin}
+            sx={{"borderRadius": "25px"}}
               onClick={openModal}
               type="primary"
             >
