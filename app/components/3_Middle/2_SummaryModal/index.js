@@ -1,9 +1,11 @@
 import React from "react";
-import Box from "@mui/material/Box";
+import { IconButton } from "@mui/material";
+import Button from "@mui/joy/Button";
 import { Modal } from "antd";
 import markdownit from "markdown-it";
 
 import styles from "./styles.module.css";
+import Close from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -30,9 +32,11 @@ export default function SummaryModal(props) {
     result = md.render(props.athleteSummary); // Assign result inside if block
   }
 
+
   return (
     <Modal
       open={props.markdownModalOpen}
+      closeIcon={false}
       onCancel={props.closeMarkdownModal}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
@@ -42,12 +46,26 @@ export default function SummaryModal(props) {
       scroll
     >
       <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.fullName}>
+            {props.athlete.full_name}
+          </div>
+          <div className={styles.rightItems}>
+          <Button color="primary" variant="soft" className={styles.openButton}  onClick={()=> window.open(props.athlete.wikipedia_url)}>
+            Read more
+          </Button>
+          <div onClick={()=> props.closeMarkdownModal()} className={styles.closeButton}>
+            <IconButton>
+              <Close/>
+            </IconButton>
+          </div>
+          </div>
+        </div>
         <div
           className={styles.summaryHolder}
           dangerouslySetInnerHTML={{ __html: result }}
         />
       </div>
-      {/* Render parsed HTML content inside div */}
     </Modal>
   );
 }

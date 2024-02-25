@@ -28,12 +28,14 @@ export default function CarouselModal(props) {
     <Modal
       className={styles.generalModal}
       open={props.carouselModalOpen}
+      closeIcon={false}
       onCancel={props.closeCarouselModal}
       height={"500px"}
       width={800}
       footer={false}
       centered
     >
+      <div className={styles.generalHolder}>
       <Carousel>
         {props.athlete_images.map((image, index) => (
           <Carousel.Item className={styles.generalItem} key={index}>
@@ -41,6 +43,7 @@ export default function CarouselModal(props) {
           </Carousel.Item>
         ))}
       </Carousel>
+      </div>
     </Modal>
   );
 }

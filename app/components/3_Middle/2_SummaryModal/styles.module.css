@@ -32,3 +32,30 @@
   border-left: 2px solid dodgerblue;
   padding-left: 10px;
 }
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.openButton {
+  border-radius: 25px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.fullName {
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.rightItems {
+  display: flex;
+  align-items: center;
+}
+
+.closeButton {
+  margin-left: 10px;
+}

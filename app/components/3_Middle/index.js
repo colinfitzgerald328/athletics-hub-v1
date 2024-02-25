@@ -65,6 +65,8 @@ export default function AthleteBreakDown(props) {
         markdownModalOpen={markdownModalOpen}
         closeMarkdownModal={closeMarkdownModal}
         athleteSummary={props.athlete.markdown_summary}
+        athlete={props.athlete}
+        
       />
       <div className={styles.itemsContainer}>
         {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
@@ -138,15 +140,13 @@ export default function AthleteBreakDown(props) {
                 <div className={styles.fullName}>{props.athlete.full_name}</div>
                 {props.athlete.markdown_summary && (
                   <Button
+                  variant="soft"
                     color="success"
-                    variant="soft"
                     onClick={() => openMarkdownModal()}
                     sx={{
                       marginLeft: "15px",
                       paddingLeft: "40px",
                       paddingRight: "40px",
-                      paddingTop: "5px",
-                      paddingBottom: "5px",
                       borderRadius: "25px",
                     }}
                     className={styles.generalButton}
