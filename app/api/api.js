@@ -1,4 +1,4 @@
-var API_URL = "https://athletics-hub.uc.r.appspot.com";
+var API_URL = "http://35.188.51.59";
 
 export async function getSearchResultsForQuery(search, callback) {
   var data = {
