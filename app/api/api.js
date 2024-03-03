@@ -1,4 +1,4 @@
-var API_URL = "http://35.188.51.59";
+var API_URL = "https://athleticshub.cloud";
 
 export async function getSearchResultsForQuery(search, callback) {
   var data = {
