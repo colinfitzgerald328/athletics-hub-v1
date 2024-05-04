@@ -48,7 +48,7 @@ export default function SummaryModal(props) {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.fullName}>
-            {props.athlete.full_name}
+            {props.athlete.first_name} {props.athlete.last_name}
           </div>
           <div className={styles.rightItems}>
           <Button color="primary" variant="soft" sx={{"borderRadius": "25px"}} className={styles.openButton}  onClick={()=> window.open(props.athlete.wikipedia_url)}>

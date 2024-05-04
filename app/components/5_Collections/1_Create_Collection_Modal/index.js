@@ -65,11 +65,11 @@ export default function CreateCollectionModal(props) {
     }, [ref]);
   }
 
-  function getAndSetTop20Results() {
-    API.getTopRecords((data) => {
-      setSearchResults(data.records);
-    });
-  }
+  // function getAndSetTop20Results() {
+  //   API.getTopRecords((data) => {
+  //     setSearchResults(data.records);
+  //   });
+  // }
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -193,7 +193,7 @@ export default function CreateCollectionModal(props) {
                       className={styles.searchResultImage}
                     />
                     <div className={styles.textDisplay}>
-                      <div className={styles.fullName}>{result.full_name}</div>
+                      <div className={styles.fullName}>{result.first_name} {result.last_name}</div>
                       <div className={styles.disciplines}>
                         {result.disciplines}
                       </div>
@@ -220,7 +220,7 @@ export default function CreateCollectionModal(props) {
                       className={styles.athleteImage}
                     />
                     <div className={styles.athleteNameHolder}>
-                      <div className={styles.fullName}>{athlete.full_name}</div>
+                      <div className={styles.fullName}>{athlete.first_name} {athlete.last_name}</div>
                       <div className={styles.disciplines}>
                         {athlete.disciplines}
                       </div>

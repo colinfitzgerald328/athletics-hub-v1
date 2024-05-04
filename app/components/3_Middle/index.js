@@ -12,7 +12,7 @@ export default function AthleteBreakDown(props) {
 
   const disciplinesArr =
     props.athlete.length !== 0
-      ? props.athlete.disciplines.split(", ")
+      ? props.athlete.primary_disciplines.split(", ")
       : undefined;
 
   function handleFadeOut() {
@@ -58,6 +58,8 @@ export default function AthleteBreakDown(props) {
   function closeCarouselModal() {
     setCarouselModalOpen(false);
   }
+
+
 
   return (
     <div className={styles.athleteBreakdown}>
@@ -137,7 +139,7 @@ export default function AthleteBreakDown(props) {
               ></Skeleton>
             ) : (
               <div className={styles.betaHolder}>
-                <div className={styles.fullName}>{props.athlete.full_name}</div>
+                <div className={styles.fullName}>{props.athlete.first_name} {props.athlete.last_name}</div>
                 {props.athlete.markdown_summary && (
                   <Button
                   variant="soft"
@@ -179,7 +181,7 @@ export default function AthleteBreakDown(props) {
         loadingNewAthlete={props.loadingNewAthlete}
         athlete_data={props.athlete_data}
         top_competitors={props.top_competitors}
-        setAthleteFromTopCompetitors={props.setAthleteFromTopCompetitors}
+        fetchAthleteById={props.fetchAthleteById}
         height={props.height}
       />
     </div>

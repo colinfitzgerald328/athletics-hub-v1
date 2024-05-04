@@ -25,7 +25,7 @@ export default function ComparisonModal() {
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
       setShowSearchResults(true);
-      setSearchResults(data.search_results);
+      setSearchResults(data);
       setLoadingSearchResults(false);
     });
   }
@@ -64,11 +64,11 @@ export default function ComparisonModal() {
     }, [ref]);
   }
 
-  function getAndSetTop20Results() {
-    API.getTopRecords((data) => {
-      setSearchResults(data.records);
-    });
-  }
+  // function getAndSetTop20Results() {
+  //   API.getTopRecords((data) => {
+  //     setSearchResults(data.records);
+  //   });
+  // }
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -191,18 +191,18 @@ export default function ComparisonModal() {
                     >
                       <img
                         src={
-                          result.hq_images
-                            ? result.hq_images[0]
-                            : result.hq_image_url
+                          result.json_data.athlete.hq_images
+                            ? result.json_data.athlete.hq_images[0]
+                            : result.json_data.athlete.hq_image_url
                         }
                         className={styles.searchResultImage}
                       />
                       <div className={styles.textDisplay}>
                         <div className={styles.fullName}>
-                          {result.full_name}
+                          {result.json_data.athlete.first_name} {result.json_data.athlete.last_name}
                         </div>
                         <div className={styles.disciplines}>
-                          {result.disciplines}
+                          {result.json_data.athlete.primary_disciplines}
                         </div>
                       </div>
                     </div>
@@ -224,18 +224,18 @@ export default function ComparisonModal() {
                       <div className={styles.gradient}></div>
                       <img
                         src={
-                          athlete.hq_images
-                            ? athlete.hq_images[0]
-                            : athlete.hq_image_url
+                          athlete.json_data.athlete.hq_images
+                            ? athlete.json_data.athlete.hq_images[0]
+                            : athlete.json_data.athlete.hq_image_url
                         }
                         className={styles.athleteImage}
                       />
                       <div className={styles.athleteNameHolder}>
                         <div className={styles.fullName}>
-                          {athlete.full_name}
+                          {athlete.json_data.athlete.first_name} {athlete.json_data.athlete.last_name}
                         </div>
                         <div className={styles.disciplines}>
-                          {athlete.disciplines}
+                          {athlete.json_data.athlete.primary_disciplines}
                         </div>
                       </div>
                       <div
@@ -250,7 +250,7 @@ export default function ComparisonModal() {
                         Personal Bests
                       </div>
                       <div className={styles.personalBestsHolder}>
-                        {athlete.personal_bests.map((pb, index) => (
+                        {athlete.json_data.athlete.personal_bests.map((pb, index) => (
                           <div key={index}>
                             <div className={styles.pbEvent}>
                               {pb.discipline}

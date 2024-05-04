@@ -21,7 +21,7 @@ export default function LeftSide(props) {
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
       setShowSearchResults(true);
-      setSearchResults(data.search_results);
+      setSearchResults(data);
       setLoadingSearchResults(false);
     });
   }
@@ -60,11 +60,11 @@ export default function LeftSide(props) {
     }, [ref]);
   }
 
-  function getAndSetTop20Results() {
-    API.getTopRecords((data) => {
-      setSearchResults(data.records);
-    });
-  }
+  // function getAndSetTop20Results() {
+  //   API.getTopRecords((data) => {
+  //     setSearchResults(data.records);
+  //   });
+  // }
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -79,7 +79,7 @@ export default function LeftSide(props) {
   }, [searchTerm]);
 
   function handleChooseAthlete(athlete) {
-    props.setAthleteFromTopCompetitors(athlete.aaAthleteId),
+    props.fetchAthleteById(athlete.athlete_id),
       setSearchResults([]),
       setSearchTerm("");
     setShowSearchResults(false);
@@ -127,13 +127,13 @@ export default function LeftSide(props) {
               >
                 <img
                   src={
-                    result.hq_images ? result.hq_images[0] : result.hq_image_url
+                    result.json_data.athlete.hq_images ? result.json_data.athlete.hq_images[0] : result.json_data.athlete.hq_image_url
                   }
                   className={styles.searchResultImage}
                 />
                 <div className={styles.textDisplay}>
-                  <div className={styles.fullName}>{result.full_name}</div>
-                  <div className={styles.disciplines}>{result.disciplines}</div>
+                  <div className={styles.fullName}>{result.json_data.athlete.first_name} {result.json_data.athlete.last_name}</div>
+                  <div className={styles.disciplines}>{result.json_data.athlete.primary_disciplines}</div>
                 </div>
               </div>
             ))}

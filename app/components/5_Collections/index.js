@@ -244,7 +244,7 @@ export default function Collections(props) {
                     <div className={styles.criticalInfo}>
                       <div className={styles.leftItems}>
                         <div className={styles.competitorName}>
-                          {athlete.full_name}
+                          {athlete.first_name} {athlete.last_name}
                         </div>
                         <div className={styles.disciplines}>
                           {athlete.disciplines}

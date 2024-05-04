@@ -351,13 +351,13 @@ export default function BasicTabs(props) {
                       ) : (
                         <div
                           onClick={() =>
-                            props.setAthleteFromTopCompetitors(
-                              competitor.aaAthleteId,
+                            props.fetchAthleteById(
+                              competitor.athlete_id,
                             )
                           }
                           className={styles.competitorName}
                         >
-                          {competitor.full_name}
+                          {competitor.first_name} {competitor.last_name}
                         </div>
                       )}
                       {props.loadingNewAthlete ? (
@@ -370,7 +370,7 @@ export default function BasicTabs(props) {
                         />
                       ) : (
                         <div className={styles.disciplines}>
-                          {competitor.disciplines}
+                          {competitor.primary_disciplines}
                         </div>
                       )}
                     </div>

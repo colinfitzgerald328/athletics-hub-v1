@@ -40,7 +40,7 @@ export default function Recommended(props) {
             />
           ) : (
             <div className={styles.athleteName}>
-              {similar_athlete.full_name}
+              {similar_athlete.first_name} {similar_athlete.last_name}
             </div>
           )}
           {props.loadingNewAthlete ? (

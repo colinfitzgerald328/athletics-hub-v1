@@ -12,9 +12,11 @@ import {
 import styles from "./styles.module.css";
 
 export default function CardGraph(props) {
+  console.log("PROPS", props)
   const filteredResults = props.athlete_data
-    .filter((result) => result.resultScore !== 0)
+    .filter((result) => result.result_score !== 0)
     .reverse();
+  console.log("filtered results", filteredResults)
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -65,7 +67,7 @@ export default function CardGraph(props) {
         <Line
           name="Result Score"
           type="monotone"
-          dataKey="resultScore"
+          dataKey="result_score"
           activeDot={{ r: 8 }}
         />
       </LineChart>

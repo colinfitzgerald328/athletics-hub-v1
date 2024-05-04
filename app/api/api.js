@@ -1,11 +1,11 @@
-var API_URL = "https://athletics-hub.uc.r.appspot.com";
+var API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com/";
 
 export async function getSearchResultsForQuery(search, callback) {
   var data = {
-    search_term: search,
+    search_query: search,
   };
 
-  var url = new URL(API_URL + "/v1/query/results");
+  var url = new URL(API_URL + "/athlete/search");
   url.search = new URLSearchParams(data).toString();
   fetch(url)
     .then((response) => {
@@ -24,7 +24,7 @@ export async function getSearchResultsForQuery(search, callback) {
 }
 
 export async function getRandomDoc(callback) {
-  var url = new URL(API_URL + "/v1/query/random");
+  var url = new URL(API_URL + "/athlete/random");
   url.search = new URLSearchParams().toString();
   fetch(url)
     .then((response) => {
@@ -42,24 +42,7 @@ export async function getRandomDoc(callback) {
     });
 }
 
-export async function getTopRecords(callback) {
-  var url = new URL(API_URL + "/v1/query/top");
-  url.search = new URLSearchParams().toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
+
 
 export async function getPBSForAthlete(athlete_code, callback) {
   var data = {
@@ -112,7 +95,7 @@ export async function getAthleteById(athlete_id, callback) {
     athlete_id: athlete_id,
   };
 
-  var url = new URL(API_URL + "/v1/athlete/byId");
+  var url = new URL(API_URL + `/athletes/${athlete_id}`);
   url.search = new URLSearchParams(data).toString();
   fetch(url)
     .then((response) => {
@@ -278,7 +261,7 @@ export async function getCollectionsForAccount(callback) {
     account_id: localStorage.getItem("account_id"),
   };
 
-  var url = new URL(API_URL + "/v1/account/collections");
+  var url = new URL(API_URL + "/collections/user");
   url.search = new URLSearchParams(data).toString();
   fetch(url)
     .then((response) => {
@@ -420,7 +403,7 @@ export async function updateCollectionName(collectionId, newName, callback) {
 }
 
 export async function getLetsRunDailySummary(callback) {
-  var url = new URL(API_URL + "/v1/letsrun/summary");
+  var url = new URL(API_URL + "/letsrun/daily_summary");
   url.search = new URLSearchParams().toString();
   fetch(url)
     .then((response) => {

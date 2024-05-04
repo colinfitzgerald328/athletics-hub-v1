@@ -341,7 +341,7 @@ export default function CollectionTabs(props) {
                           }
                           className={styles.competitorName}
                         >
-                          {competitor.full_name}
+                          {competitor.first_name} {competitor.last_name}
                         </div>
                       )}
                       {props.loadingNewAthlete ? (

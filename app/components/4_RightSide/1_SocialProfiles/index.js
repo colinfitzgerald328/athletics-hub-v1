@@ -17,22 +17,25 @@ export default function SocialProfiles(props) {
   }, [props.athlete.social_urls]);
 
   function getTwitterHandle(socialUrls) {
-    if (!socialUrls) {
-      return;
+    try {
+      const twitterObject = socialUrls.find((urlObject) =>
+        urlObject.hasOwnProperty("twitter_url"),
+      );
+      if (twitterObject) {
+        const twitterUrl = twitterObject.twitter_url;
+        const twitterHandle = twitterUrl.split("/").pop();
+        return twitterHandle;
+
     }
-    const twitterObject = socialUrls.find((urlObject) =>
-      urlObject.hasOwnProperty("twitter_url"),
-    );
-    if (twitterObject) {
-      const twitterUrl = twitterObject.twitter_url;
-      const twitterHandle = twitterUrl.split("/").pop();
-      return twitterHandle;
-    } else {
-      return null;
+    } catch (error) {
+      console.log(error);
     }
   }
 
   function getInstagramHandle(socialUrls) {
+    try {
+
+
     if (!socialUrls) {
       return;
     }
@@ -58,6 +61,9 @@ export default function SocialProfiles(props) {
     } else {
       return null;
     }
+  } catch (error) {
+    console.log(error);
+  }
   }
 
   return (

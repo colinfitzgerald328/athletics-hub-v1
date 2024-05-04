@@ -19,6 +19,7 @@ export default class MainComponent extends React.Component {
       athlete_data: [],
       athlete_accolades: [],
       similar_athletes: [],
+      top_competitors: [],
       dailySummary: null,
       width: 0,
       height: 0,
@@ -66,29 +67,6 @@ export default class MainComponent extends React.Component {
     window.localStorage.clear();
   }
 
-  setAthlete = async (athlete) => {
-    this.setState({
-      loadingNewAthlete: true,
-    });
-
-    try {
-      await Promise.all([this.getTopCompetitors(athlete.aaAthleteId)]);
-
-      this.setState({
-        athlete: athlete,
-        loadingNewAthlete: false,
-        pageLoaded: true,
-        athlete_data: athlete.results,
-        similar_athletes: athlete.similar_athletes,
-      });
-    } catch (error) {
-      console.error("Error occurred:", error);
-
-      this.setState({
-        loadingNewAthlete: false,
-      });
-    }
-  };
 
   fetchRandomAthlete() {
     this.setState({
@@ -96,7 +74,31 @@ export default class MainComponent extends React.Component {
     });
     this.setState({ fetching: true });
     API.getRandomDoc((athlete) => {
-      this.setAthlete(athlete.random_doc);
+      this.setState({
+        athlete: athlete.json_data.athlete,
+        loadingNewAthlete: false,
+        pageLoaded: true,
+        athlete_data: athlete.json_data.results,
+        similar_athletes: [],
+        top_competitors: athlete.json_data.top_competitors
+      });
+    });
+  }
+
+  fetchAthleteById(athlete_id) {
+    this.setState({
+      loadingNewAthlete: true,
+    });
+    this.setState({ fetching: true });
+    API.getAthleteById(athlete_id, (athlete) => {
+      this.setState({
+        athlete: athlete.json_data.athlete,
+        loadingNewAthlete: false,
+        pageLoaded: true,
+        athlete_data: athlete.json_data.results,
+        similar_athletes: [],
+        top_competitors: athlete.json_data.top_competitors
+      });
     });
   }
 
@@ -104,33 +106,6 @@ export default class MainComponent extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
-  getTopCompetitors(athlete_id) {
-    return new Promise((resolve, reject) => {
-      API.getTopCompetitors(
-        athlete_id,
-        (data) => {
-          this.setState({
-            top_competitors: data["top_competitors"],
-          });
-          resolve(data); // Resolve the promise with the data
-        },
-        (error) => {
-          console.log(error);
-          reject(error); // Reject the promise with the error
-        },
-      );
-    });
-  }
-
-  setAthleteFromTopCompetitors(athlete_id) {
-    API.getAthleteById(athlete_id, (athlete) => {
-      console.log(athlete);
-      this.setState({
-        athlete: athlete.found_athlete,
-      });
-      this.setAthlete(athlete.found_athlete);
-    });
-  }
 
   getLetsRunDailySummary() {
     API.getLetsRunDailySummary((data) => {
@@ -183,12 +158,10 @@ export default class MainComponent extends React.Component {
           />
           <div className={styles.mainDisplay}>
             <LeftSide
-              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
-                this,
-              )}
               loggedIn={this.state.loggedIn}
               showCollections={this.showCollections.bind(this)}
               loadingCollections={this.state.loadingCollections}
+              fetchAthleteById={this.fetchAthleteById.bind(this)}
             />
             <Collections
               closeCollections={this.closeCollections.bind(this)}
@@ -202,22 +175,16 @@ export default class MainComponent extends React.Component {
               loadingNewAthlete={this.state.loadingNewAthlete}
               athlete_data={this.state.athlete_data}
               top_competitors={this.state.top_competitors}
-              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
-                this,
-              )}
               height={this.state.height}
               showingCollections={this.state.showingCollections}
+              fetchAthleteById={this.fetchAthleteById.bind(this)}
             />
             <RightSide
               athlete={this.state.athlete}
               similar_athletes={this.state.similar_athletes}
-              setAthlete={this.setAthlete.bind(this)}
               loadingNewAthlete={this.state.loadingNewAthlete}
               athlete_data={this.state.athlete_data}
               showingCollections={this.state.showingCollections}
-              setAthleteFromTopCompetitors={this.setAthleteFromTopCompetitors.bind(
-                this,
-              )}
             />
           </div>
         </div>
