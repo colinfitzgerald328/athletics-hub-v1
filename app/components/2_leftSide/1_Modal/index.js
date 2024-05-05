@@ -1,14 +1,42 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Modal, ConfigProvider } from "antd";
-import { Button } from "@mui/material";
+import { Button, Input } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
 import SportsMmaIcon from "@mui/icons-material/SportsMma";
 import RectangleIcon from "@mui/icons-material/Rectangle";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 import * as API from "/app/api/api.js";
+import CircularProgress from "@mui/material/CircularProgress";
+import SendIcon from "@mui/icons-material/Send";
+
+const trackAndFieldEvents = [
+  "100m Dash",
+  "200m Dash",
+  "400m Dash",
+  "800m Run",
+  "1500m Run",
+  "5000m Run",
+  "10,000m Run",
+  "110m Hurdles",
+  "400m Hurdles",
+  "4x100m Relay",
+  "4x400m Relay",
+  "High Jump",
+  "Long Jump",
+  "Triple Jump",
+  "Pole Vault",
+  "Shot Put",
+  "Discus Throw",
+  "Javelin Throw",
+  "Hammer Throw",
+  "Decathlon",
+  "Heptathlon",
+];
 
 export default function ComparisonModal() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,6 +49,10 @@ export default function ComparisonModal() {
   const searchResultsRef = useRef(null);
   useOutsideAlerter(inputRef);
   const xButtonRef = useRef(null);
+  const [loadingComparison, setLoadingComparison] = useState(false);
+  const [value, setValue] = React.useState(trackAndFieldEvents[0]);
+  const [inputValue, setInputValue] = React.useState("");
+  const [comparisonSummary, setComparisonSummary] = useState("");
 
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
@@ -64,12 +96,6 @@ export default function ComparisonModal() {
     }, [ref]);
   }
 
-  // function getAndSetTop20Results() {
-  //   API.getTopRecords((data) => {
-  //     setSearchResults(data.records);
-  //   });
-  // }
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm == "") {
@@ -83,6 +109,10 @@ export default function ComparisonModal() {
   }, [searchTerm]);
 
   function handleChooseAthlete(athlete) {
+    if (athletes.length >= 2) {
+      alert("You can only choose 2 athletes");
+      return;
+    }
     athletes.push(athlete);
     setSearchResults([]);
     setSearchTerm("");
@@ -108,6 +138,22 @@ export default function ComparisonModal() {
     }
 
     setAthletes(currentAthletes);
+  }
+
+  function getResponse() {
+    setLoadingComparison(true);
+    const athlete_id_1 = athletes[0].athlete_id;
+    const athlete_id_2 = athletes[1].athlete_id;
+    const comparison_distance = value;
+    API.compareTwoAthletes(
+      athlete_id_1,
+      athlete_id_2,
+      comparison_distance,
+      (response) => {
+        setComparisonSummary(response.comparison_summary);
+        setLoadingComparison(false);
+      },
+    );
   }
 
   return (
@@ -199,7 +245,8 @@ export default function ComparisonModal() {
                       />
                       <div className={styles.textDisplay}>
                         <div className={styles.fullName}>
-                          {result.json_data.athlete.first_name} {result.json_data.athlete.last_name}
+                          {result.json_data.athlete.first_name}{" "}
+                          {result.json_data.athlete.last_name}
                         </div>
                         <div className={styles.disciplines}>
                           {result.json_data.athlete.primary_disciplines}
@@ -216,53 +263,85 @@ export default function ComparisonModal() {
             ) : (
               ""
             )}
-            <div className={styles.athletesHolder}>
-              {athletes &&
-                athletes.map((athlete, index) => (
-                  <div key={index} className={styles.athlete}>
-                    <div className={styles.itemsContainer}>
-                      <div className={styles.gradient}></div>
-                      <img
-                        src={
-                          athlete.json_data.athlete.hq_images
-                            ? athlete.json_data.athlete.hq_images[0]
-                            : athlete.json_data.athlete.hq_image_url
-                        }
-                        className={styles.athleteImage}
-                      />
-                      <div className={styles.athleteNameHolder}>
-                        <div className={styles.fullName}>
-                          {athlete.json_data.athlete.first_name} {athlete.json_data.athlete.last_name}
-                        </div>
-                        <div className={styles.disciplines}>
-                          {athlete.json_data.athlete.primary_disciplines}
-                        </div>
-                      </div>
-                      <div
-                        onClick={() => spliceItem(athlete)}
-                        className={styles.xButtonHolder}
-                      >
-                        <CloseIcon />
-                      </div>
-                    </div>
-                    <div className={styles.otherItems}>
-                      <div className={styles.personalBestsLabel}>
-                        Personal Bests
-                      </div>
-                      <div className={styles.personalBestsHolder}>
-                        {athlete.json_data.athlete.personal_bests.map((pb, index) => (
-                          <div key={index}>
-                            <div className={styles.pbEvent}>
-                              {pb.discipline}
-                            </div>
-                            <div className={styles.pbMark}>{pb.result}</div>
+            <div className={styles.flexJimmy}>
+              <div className={styles.athletesHolder}>
+                {athletes &&
+                  athletes.map((athlete, index) => (
+                    <div key={index} className={styles.athlete}>
+                      <div className={styles.itemsContainer}>
+                        <div className={styles.gradient}></div>
+                        <img
+                          src={
+                            athlete.json_data.athlete.hq_images
+                              ? athlete.json_data.athlete.hq_images[0]
+                              : athlete.json_data.athlete.hq_image_url
+                          }
+                          className={styles.athleteImage}
+                        />
+                        <div className={styles.athleteNameHolder}>
+                          <div className={styles.fullName}>
+                            {athlete.json_data.athlete.first_name}{" "}
+                            {athlete.json_data.athlete.last_name}
                           </div>
-                        ))}
+                          <div className={styles.disciplines}>
+                            {athlete.json_data.athlete.primary_disciplines}
+                          </div>
+                        </div>
+                        <div
+                          onClick={() => spliceItem(athlete)}
+                          className={styles.xButtonHolder}
+                        >
+                          <CloseIcon />
+                        </div>
+                      </div>
+                      <div className={styles.otherItems}>
+                        <div className={styles.personalBestsLabel}>
+                          Personal Bests
+                        </div>
+                        <div className={styles.personalBestsHolder}>
+                          {athlete.json_data.athlete.personal_bests.map(
+                            (pb, index) => (
+                              <div key={index}>
+                                <div className={styles.pbEvent}>
+                                  {pb.discipline}
+                                </div>
+                                <div className={styles.pbMark}>{pb.result}</div>
+                              </div>
+                            ),
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+              </div>
+              <div className={styles.basic}>
+                <div className={styles.disclosure}>
+                  Comparison Result (Generated by AI)
+                </div>
+                {comparisonSummary}
+              </div>
             </div>
+          </div>
+          <div className={styles.bottomHolder}>
+            <Autocomplete
+              value={value}
+              onChange={(event, newValue) => {
+                setValue(newValue);
+              }}
+              inputValue={inputValue}
+              onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+              }}
+              id="controllable-states-demo"
+              options={trackAndFieldEvents}
+              renderInput={(params) => (
+                <TextField {...params} label="Comparison Distance" />
+              )}
+              sx={{ width: "calc(100% - 100px);" }}
+            />
+            <Button onClick={getResponse} type="primary">
+              {loadingComparison ? <CircularProgress /> : <SendIcon />}
+            </Button>
           </div>
         </Modal>
       </ConfigProvider>

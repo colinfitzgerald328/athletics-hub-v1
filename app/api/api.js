@@ -42,8 +42,6 @@ export async function getRandomDoc(callback) {
     });
 }
 
-
-
 export async function getPBSForAthlete(athlete_code, callback) {
   var data = {
     athlete_id: athlete_code,
@@ -418,5 +416,30 @@ export async function getLetsRunDailySummary(callback) {
     })
     .catch((error) => {
       console.log(error);
+    });
+}
+
+export async function compareTwoAthletes(
+  athlete_id_1,
+  athlete_id_2,
+  comparison_distance,
+  callback,
+) {
+  fetch(
+    API_URL +
+      `/athletes/compare?athlete_id_1=${athlete_id_1}&athlete_id_2=${athlete_id_2}&comparison_distance=${comparison_distance}`,
+    {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+      },
+    },
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
     });
 }

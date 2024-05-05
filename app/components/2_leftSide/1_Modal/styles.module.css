@@ -129,19 +129,19 @@
   border-radius: 20px;
   margin-top: 10px;
   display: flex;
-  overflow-x: scroll;
-  height: calc(100% - 50px);
+  height: calc(100% - 100px);
+  width: 70%;
 }
 
 .athlete {
-  min-width: 300px;
-  max-width: 300px;
+  width: 50%;
   background-color: white;
   border-radius: 20px;
-  margin-right: 10px;
   height: fit-content;
   box-shadow: 2px 2px 5px slategray;
+  margin-right: 10px;
 }
+
 
 .athleteName {
   font-size: 25px;
@@ -258,4 +258,32 @@
   margin-bottom: 10px;
   display: flex;
   align-items: center;
+}
+
+.flexJimmy {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.bottomHolder {
+  border-radius: 20px;
+  margin-top: 10px;
+  display: flex;
+  width: 63%;
+}
+
+.basic {
+  width: 40%;
+  height: calc(100% - 10px);
+  overflow-y: scroll;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  padding-left: 15px;
+}
+
+.disclosure {
+font-size: 18px;
 }
