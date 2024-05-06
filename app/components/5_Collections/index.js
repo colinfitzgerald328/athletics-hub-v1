@@ -29,7 +29,7 @@ export default function Collections(props) {
       theItem.height = newScrollHeight;
       setCollections([...currentCollections]);
       const data_fetch_results = await getDataForAthlete(athlete);
-      console.log(athlete)
+      console.log(athlete);
       theItem.top_competitors = data_fetch_results.top_competitors;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
@@ -51,9 +51,7 @@ export default function Collections(props) {
     try {
       const topCompetitorsPromise = getTopCompetitors(athlete.aaAthleteId);
 
-      const [topCompetitors] = await Promise.all([
-        topCompetitorsPromise,
-      ]);
+      const [topCompetitors] = await Promise.all([topCompetitorsPromise]);
 
       return {
         top_competitors: topCompetitors,
@@ -78,7 +76,6 @@ export default function Collections(props) {
       );
     });
   }
-
 
   function useOutsideAlerter(ref) {
     useEffect(() => {
@@ -115,7 +112,7 @@ export default function Collections(props) {
       props.collections_local_copy[currentIndex].collection_name
     ) {
       API.updateCollectionName(
-        collections[currentIndex]["_id"],
+        collections[currentIndex]["id"],
         collections[currentIndex].collection_name,
         (data) => {
           toaster.success("Collection name updated");
@@ -187,12 +184,12 @@ export default function Collections(props) {
                     {collection.collection_name}
                   </div>
                   <div className={styles.collectionCreated}>
-                    Created {moment.unix(collection.created_at).fromNow()}
+                    Created {moment(collection.created_at).fromNow()}
                   </div>
                 </div>
                 <div>
                   <CollectionDeleteOption
-                    collection_id={collection["_id"]}
+                    collection_id={collection["id"]}
                     getCollectionsForUser={props.getCollectionsForUser}
                     currentIndex={currentIndex}
                     itemIndex={index}
@@ -239,23 +236,24 @@ export default function Collections(props) {
                   <div className={styles.topItems}>
                     <img
                       className={styles.competitorImage}
-                      src={athlete.hq_image_url}
+                      src={athlete.json_data.athlete.hq_images[0] || ""}
                     />
                     <div className={styles.criticalInfo}>
                       <div className={styles.leftItems}>
                         <div className={styles.competitorName}>
-                          {athlete.first_name} {athlete.last_name}
+                          {athlete.json_data.athlete.first_name}{" "}
+                          {athlete.json_data.athlete.last_name}
                         </div>
                         <div className={styles.disciplines}>
-                          {athlete.disciplines}
+                          {athlete.json_data.athlete.primary_disciplines}
                         </div>
                       </div>
                       <div className={styles.rightItemsContainer}>
                         <DeleteOptionMenu
-                          athlete_id={athlete.aaAthleteId}
+                          athlete_id={athlete.athlete_id}
                           collection_id={
                             props.user_collections.length > 0 &&
-                            props.user_collections[currentIndex]["_id"]
+                            props.user_collections[currentIndex]["id"]
                           }
                           getCollectionsForUser={props.getCollectionsForUser}
                         />
@@ -263,7 +261,7 @@ export default function Collections(props) {
                           onClick={() => updateSummaryStyle(athlete, index)}
                           className={styles.rightItems}
                         >
-                          {athlete.summary &&
+                          {athlete.json_data.athlete.markdown_summary &&
                             (athlete.height && athlete.height != "0px" ? (
                               <IconButton
                                 size="small"
@@ -305,10 +303,10 @@ export default function Collections(props) {
                     style={{ height: athlete.height, overflow: "scroll" }}
                   >
                     <CollectionTabs
-                      athlete={athlete}
+                      athlete={athlete.json_data.athlete}
                       loadingNewAthlete={false}
-                      athlete_data={athlete.results || []}
-                      top_competitors={athlete.top_competitors}
+                      athlete_data={athlete.json_data.results || []}
+                      top_competitors={athlete.json_data.top_competitors}
                     />
                   </div>
                 </div>

@@ -275,7 +275,8 @@ export default function CollectionTabs(props) {
         ) : (
           ""
         )} */}
-        {props.loadingNewAthlete || props.athlete.summary == undefined ? (
+        {props.loadingNewAthlete ||
+        props.athlete.markdown_summary == undefined ? (
           <div>
             <Skeleton animation="wave" />
             <Skeleton animation="wave" />
@@ -295,7 +296,7 @@ export default function CollectionTabs(props) {
             <Skeleton animation="wave" />
           </div>
         ) : (
-          <div className={styles.summary}>{props.athlete.summary}</div>
+          <div className={styles.summary}>{props.athlete.markdown_summary}</div>
         )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
@@ -320,7 +321,7 @@ export default function CollectionTabs(props) {
                   ) : (
                     <img
                       className={styles.competitorImage}
-                      src={competitor.hq_image_url}
+                      src={competitor.hq_images ? competitor.hq_images[0] : ""}
                     />
                   )}
                   <div className={styles.criticalInfo}>
@@ -354,7 +355,7 @@ export default function CollectionTabs(props) {
                         />
                       ) : (
                         <div className={styles.disciplines}>
-                          {competitor.disciplines}
+                          {competitor.primary_disciplines}
                         </div>
                       )}
                     </div>
@@ -362,7 +363,7 @@ export default function CollectionTabs(props) {
                       onClick={() => updateSummaryStyle(competitor)}
                       className={styles.rightItems}
                     >
-                      {competitor.summary &&
+                      {competitor.markdown_summary &&
                         (competitor.height && competitor.height != "0px" ? (
                           <IconButton
                             size="small"
@@ -389,7 +390,7 @@ export default function CollectionTabs(props) {
                   className={styles.competitorSummary}
                   style={{ height: competitor.height }}
                 >
-                  {competitor.summary}
+                  {competitor.markdown_summary}
                 </div>
               </div>
             ))

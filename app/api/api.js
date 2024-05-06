@@ -1,4 +1,4 @@
-var API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
+var API_URL = "http://127.0.0.1:8000";
 
 export async function getSearchResultsForQuery(search, callback) {
   var data = {
@@ -175,7 +175,7 @@ export async function loginUser(username, password, callback) {
     }),
   };
 
-  fetch(API_URL + "/v1/account/login", options)
+  fetch(API_URL + "/account/login", options)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -204,7 +204,7 @@ export async function createAccount(username, password, callback) {
     }),
   };
 
-  fetch(API_URL + "/v1/account/create", options)
+  fetch(API_URL + "/account/create", options)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -233,12 +233,12 @@ export async function createCollection(
     },
     body: JSON.stringify({
       collection_name: collectionName,
-      collection_athletes: collectionAthletes,
-      account_id: parseInt(localStorage.getItem("account_id")),
+      account_id: localStorage.getItem("account_id"),
+      athlete_ids: collectionAthletes,
     }),
   };
 
-  fetch(API_URL + "/v1/collections/insert", options)
+  fetch(API_URL + "/collections/create", options)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -310,9 +310,12 @@ export async function addAthletesToCollection(
     });
 }
 
-export async function deleteAthleteFromCollection(
+export async function modifyCollection(
+  newName,
+  action,
   collectionId,
   athleteId,
+  athleteIds,
   callback,
 ) {
   const options = {
@@ -322,12 +325,16 @@ export async function deleteAthleteFromCollection(
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
+      new_name: newName,
+      action: action,
       collection_id: collectionId,
       athlete_id: athleteId,
+      athlete_ids: athleteIds,
     }),
   };
+  console.log("OPTIONS, ", options);
 
-  fetch(API_URL + "/v1/collection/athlete/remove", options)
+  fetch(API_URL + "/collections/modify", options)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -355,7 +362,7 @@ export async function deleteCollection(collectionId, callback) {
     }),
   };
 
-  fetch(API_URL + "/v1/collections/delete", options)
+  fetch(API_URL + "/collections/delete", options)
     .then((response) => {
       if (response.ok) {
         return response.json();

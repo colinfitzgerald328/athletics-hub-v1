@@ -50,8 +50,8 @@ export default class MainComponent extends React.Component {
   getCollectionsForUser() {
     API.getCollectionsForAccount((data) => {
       this.setState({
-        user_collections: JSON.parse(data["collections"]),
-        collections_local_copy: JSON.parse(data["collections"]),
+        user_collections: data,
+        collections_local_copy: data,
         loadingCollections: false,
       });
     });
@@ -67,7 +67,6 @@ export default class MainComponent extends React.Component {
     window.localStorage.clear();
   }
 
-
   fetchRandomAthlete() {
     this.setState({
       loadingNewAthlete: true,
@@ -80,7 +79,7 @@ export default class MainComponent extends React.Component {
         pageLoaded: true,
         athlete_data: athlete.json_data.results,
         similar_athletes: [],
-        top_competitors: athlete.json_data.top_competitors
+        top_competitors: athlete.json_data.top_competitors,
       });
     });
   }
@@ -97,7 +96,7 @@ export default class MainComponent extends React.Component {
         pageLoaded: true,
         athlete_data: athlete.json_data.results,
         similar_athletes: [],
-        top_competitors: athlete.json_data.top_competitors
+        top_competitors: athlete.json_data.top_competitors,
       });
     });
   }
@@ -105,7 +104,6 @@ export default class MainComponent extends React.Component {
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
-
 
   getLetsRunDailySummary() {
     API.getLetsRunDailySummary((data) => {

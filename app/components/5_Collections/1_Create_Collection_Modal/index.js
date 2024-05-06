@@ -26,7 +26,7 @@ export default function CreateCollectionModal(props) {
   function handleSearchTermChange(searchTerm) {
     API.getSearchResultsForQuery(searchTerm, (data) => {
       setShowSearchResults(true);
-      setSearchResults(data.search_results);
+      setSearchResults(data);
       setLoadingSearchResults(false);
     });
   }
@@ -116,7 +116,9 @@ export default function CreateCollectionModal(props) {
   function saveCollection() {
     setSavingCollection(true);
     const athlete_ids = [];
-    athletes.forEach((athlete) => athlete_ids.push(athlete.aaAthleteId));
+    athletes.forEach((athlete) =>
+      athlete_ids.push(athlete.json_data.athlete.athlete_id),
+    );
     setTimeout(() => {
       API.createCollection(collectionName, athlete_ids, (data) => {
         setSavingCollection(false);
@@ -189,13 +191,16 @@ export default function CreateCollectionModal(props) {
                     className={styles.singleResult}
                   >
                     <img
-                      src={result.hq_image_url}
+                      src={result.json_data.athlete.hq_images[0] || ""}
                       className={styles.searchResultImage}
                     />
                     <div className={styles.textDisplay}>
-                      <div className={styles.fullName}>{result.first_name} {result.last_name}</div>
+                      <div className={styles.fullName}>
+                        {result.json_data.athlete.first_name}{" "}
+                        {result.json_data.athlete.last_name}
+                      </div>
                       <div className={styles.disciplines}>
-                        {result.disciplines}
+                        {result.json_data.athlete.primary_disciplines}
                       </div>
                     </div>
                   </div>
@@ -216,13 +221,16 @@ export default function CreateCollectionModal(props) {
                   <div className={styles.itemsContainer}>
                     <div className={styles.gradient}></div>
                     <img
-                      src={athlete.hq_image_url}
+                      src={athlete.json_data.athlete.hq_images[0] || ""}
                       className={styles.athleteImage}
                     />
                     <div className={styles.athleteNameHolder}>
-                      <div className={styles.fullName}>{athlete.first_name} {athlete.last_name}</div>
+                      <div className={styles.fullName}>
+                        {athlete.json_data.athlete.first_name}{" "}
+                        {athlete.json_data.athlete.last_name}
+                      </div>
                       <div className={styles.disciplines}>
-                        {athlete.disciplines}
+                        {athlete.json_data.athlete.primary_disciplines}
                       </div>
                     </div>
                     <div

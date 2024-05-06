@@ -16,7 +16,9 @@ export default function DeleteOptionMenu(props) {
   };
 
   const handleDelete = () => {
-    API.deleteAthleteFromCollection(
+    API.modifyCollection(
+      null,
+      "DELETE",
       props.collection_id,
       props.athlete_id,
       (data) => {

@@ -48,20 +48,12 @@ export default function TopBar(props) {
     setLoggingIn(true);
     setTimeout(() => {
       API.loginUser(userName, password, (data) => {
-        if (data["operation"] === "success") {
-          localStorage.setItem("userName", userName);
-          localStorage.setItem("password", password);
-          localStorage.setItem(
-            "account_id",
-            data["account_data"]["account_id"],
-          );
-          setOpen(true);
-          props.logInUser();
-          cancelModal();
-        } else {
-          setDangerAlertOpen(true);
-          setLoggingIn(false);
-        }
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("password", password);
+        localStorage.setItem("account_id", data["id"]);
+        setOpen(true);
+        props.logInUser();
+        cancelModal();
       });
     }, 1000);
   }
@@ -74,15 +66,13 @@ export default function TopBar(props) {
     setLoggingIn(true);
     setTimeout(() => {
       API.createAccount(userName, password, (data) => {
-        if (data["operation"] === "success") {
-          setLoggingIn(false);
-          localStorage.setItem("userName", userName);
-          localStorage.setItem("password", password);
-          localStorage.setItem("account_id", data["account_id"]);
-          setCreatedAccountOpen(true);
-          props.logInUser();
-          cancelModal();
-        }
+        setLoggingIn(false);
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("password", password);
+        localStorage.setItem("account_id", data["id"]);
+        setCreatedAccountOpen(true);
+        props.logInUser();
+        cancelModal();
       });
     }, 1000);
   }
@@ -170,7 +160,12 @@ export default function TopBar(props) {
         <div className={styles.pageAction}>
           Stay up to date on your favorite track and field athletes
         </div>
-        <Button sx={{"marginLeft": "15px", "borderRadius": "25px"}} variant="soft" color="primary" onClick={() => openSummaryModal()}>
+        <Button
+          sx={{ marginLeft: "15px", borderRadius: "25px" }}
+          variant="soft"
+          color="primary"
+          onClick={() => openSummaryModal()}
+        >
           Daily Summary
         </Button>
       </div>
@@ -188,7 +183,7 @@ export default function TopBar(props) {
         <div className={styles.button}>
           {props.loggedIn ? (
             <Button
-            sx={{"borderRadius": "25px"}}
+              sx={{ borderRadius: "25px" }}
               onClick={() => props.logOutUser()}
               type="primary"
             >
@@ -196,7 +191,7 @@ export default function TopBar(props) {
             </Button>
           ) : (
             <Button
-            sx={{"borderRadius": "25px"}}
+              sx={{ borderRadius: "25px" }}
               onClick={openModal}
               type="primary"
             >
@@ -300,7 +295,12 @@ export default function TopBar(props) {
                 loading={loggingIn}
                 onClick={handleLogin}
                 variant="soft"
-                sx={{"width": "100%", marginTop: "20px", borderRadius: "25px", height: "50px"}}
+                sx={{
+                  width: "100%",
+                  marginTop: "20px",
+                  borderRadius: "25px",
+                  height: "50px",
+                }}
                 type="primary"
               >
                 {loggingIn ? "Logging you in" : "Log in"}
