@@ -108,7 +108,7 @@ export default class MainComponent extends React.Component {
   getLetsRunDailySummary() {
     API.getLetsRunDailySummary((data) => {
       this.setState({
-        dailySummary: data["summary"],
+        dailySummary: data["summary_text"],
       });
     });
   }
