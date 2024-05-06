@@ -187,7 +187,11 @@ export default function AddToCollectionModal(props) {
                     className={styles.singleResult}
                   >
                     <img
-                      src={result.json_data.athlete.hq_images[0] || ""}
+                      src={
+                        result.json_data.athlete.hq_images
+                          ? result.json_data.athlete.hq_images[0]
+                          : ""
+                      }
                       className={styles.searchResultImage}
                     />
                     <div className={styles.textDisplay}>
@@ -217,7 +221,11 @@ export default function AddToCollectionModal(props) {
                   <div className={styles.itemsContainer}>
                     <div className={styles.gradient}></div>
                     <img
-                      src={athlete.json_data.athlete.hq_images[0] || ""}
+                      src={
+                        athlete.json_data.athlete.hq_images
+                          ? athlete.json_data.athlete.hq_images[0]
+                          : ""
+                      }
                       className={styles.athleteImage}
                     />
                     <div className={styles.athleteNameHolder}>

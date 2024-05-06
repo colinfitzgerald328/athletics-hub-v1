@@ -1,4 +1,4 @@
-var API_URL = "http://127.0.0.1:8000";
+var API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
 
 export async function getSearchResultsForQuery(search, callback) {
   var data = {

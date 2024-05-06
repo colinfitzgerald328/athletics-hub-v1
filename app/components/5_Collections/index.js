@@ -236,7 +236,11 @@ export default function Collections(props) {
                   <div className={styles.topItems}>
                     <img
                       className={styles.competitorImage}
-                      src={athlete.json_data.athlete.hq_images[0] || ""}
+                      src={
+                        athlete.json_data.athlete.hq_images
+                          ? athlete.json_data.athlete.hq_images[0]
+                          : ""
+                      }
                     />
                     <div className={styles.criticalInfo}>
                       <div className={styles.leftItems}>
