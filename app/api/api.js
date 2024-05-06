@@ -212,6 +212,8 @@ export async function createAccount(username, password, callback) {
     .then((response) => {
       if (response.ok) {
         return response.json();
+      } else if (response.status == 400) {
+        throw new Error("Username already exists");
       } else {
         throw new Error("Something went wrong ...");
       }
@@ -220,6 +222,7 @@ export async function createAccount(username, password, callback) {
       callback(data);
     })
     .catch((error) => {
+      callback(error);
       console.log(error);
     });
 }

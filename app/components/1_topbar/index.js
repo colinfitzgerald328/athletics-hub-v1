@@ -71,6 +71,12 @@ export default function TopBar(props) {
     setLoggingIn(true);
     setTimeout(() => {
       API.createAccount(userName, password, (data) => {
+        console.log("DATA, ", data == "Error: Username already exists");
+        if (data == "Error: Username already exists") {
+          setAccountFailedOpen(true);
+          setLoggingIn(false);
+          return;
+        }
         setLoggingIn(false);
         localStorage.setItem("userName", userName);
         localStorage.setItem("password", password);
@@ -372,8 +378,7 @@ export default function TopBar(props) {
           severity="error"
           sx={{ width: "100%" }}
         >
-          Error creating account. Please enter a username and password and try
-          again.
+          Error: Account already exists. Please try again.
         </Alert>
       </Snackbar>
       <SummaryModal
