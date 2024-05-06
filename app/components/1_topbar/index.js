@@ -48,6 +48,11 @@ export default function TopBar(props) {
     setLoggingIn(true);
     setTimeout(() => {
       API.loginUser(userName, password, (data) => {
+        if (data == "Error: Invalid username or password") {
+          setDangerAlertOpen(true);
+          setLoggingIn(false);
+          return;
+        }
         localStorage.setItem("userName", userName);
         localStorage.setItem("password", password);
         localStorage.setItem("account_id", data["id"]);

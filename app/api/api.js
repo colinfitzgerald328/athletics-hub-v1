@@ -177,8 +177,11 @@ export async function loginUser(username, password, callback) {
 
   fetch(API_URL + "/account/login", options)
     .then((response) => {
+      console.log("response, ", response);
       if (response.ok) {
         return response.json();
+      } else if (response.status === 400) {
+        throw new Error("Invalid username or password");
       } else {
         throw new Error("Something went wrong ...");
       }
@@ -187,6 +190,7 @@ export async function loginUser(username, password, callback) {
       callback(data);
     })
     .catch((error) => {
+      callback(error);
       console.log(error);
     });
 }
