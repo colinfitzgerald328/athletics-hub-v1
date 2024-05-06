@@ -21,6 +21,7 @@ export default function DeleteOptionMenu(props) {
       "DELETE",
       props.collection_id,
       props.athlete_id,
+      null,
       (data) => {
         props.getCollectionsForUser();
       },

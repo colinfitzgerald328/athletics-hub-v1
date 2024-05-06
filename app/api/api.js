@@ -339,7 +339,6 @@ export async function modifyCollection(
       athlete_ids: athleteIds,
     }),
   };
-  console.log("OPTIONS, ", options);
 
   fetch(API_URL + "/collections/modify", options)
     .then((response) => {

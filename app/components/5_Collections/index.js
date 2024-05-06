@@ -15,7 +15,8 @@ import { toaster } from "evergreen-ui";
 import * as API from "/app/api/api.js";
 
 export default function Collections(props) {
-  const [collections, setCollections] = useState([]);
+  const [collections, setCollections] = useState(props.user_collections);
+  const [localCopy, setLocalCopy] = useState(props.user_collections);
   const [currentIndex, setCurrentIndex] = useState(0);
   const editingRef = useRef(null);
   useOutsideAlerter(editingRef);
@@ -47,36 +48,6 @@ export default function Collections(props) {
     setCollections(props.user_collections);
   }, [props.user_collections]);
 
-  async function getDataForAthlete(athlete) {
-    try {
-      const topCompetitorsPromise = getTopCompetitors(athlete.aaAthleteId);
-
-      const [topCompetitors] = await Promise.all([topCompetitorsPromise]);
-
-      return {
-        top_competitors: topCompetitors,
-      };
-    } catch (error) {
-      console.error("Error fetching data for athlete:", error);
-      throw error; // Rethrow the error to handle it further up the call stack
-    }
-  }
-
-  function getTopCompetitors(athlete_id) {
-    return new Promise((resolve, reject) => {
-      API.getTopCompetitors(
-        athlete_id,
-        (data) => {
-          resolve(data["top_competitors"]);
-        },
-        (error) => {
-          console.error("Error fetching top competitors:", error);
-          reject(error);
-        },
-      );
-    });
-  }
-
   function useOutsideAlerter(ref) {
     useEffect(() => {
       /**
@@ -97,12 +68,14 @@ export default function Collections(props) {
   }
 
   function handleChangeName(newName) {
-    let collectionsCopy = [...collections];
-    collectionsCopy[currentIndex].collection_name = newName;
-    setCollections(collectionsCopy);
+    const newCollections = [...collections];
+    newCollections[currentIndex].collection_name = newName;
+    setCollections(newCollections);
   }
 
   function checkForNameChangeAndSendAPICall(collections, currentIndex) {
+    console.log("local copy, ", localCopy);
+    console.log(localCopy[currentIndex].collection_name);
     if (collections.length == 0) {
       // if there are no collections, do nothing
       return;

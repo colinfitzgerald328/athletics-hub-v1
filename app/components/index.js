@@ -27,7 +27,6 @@ export default class MainComponent extends React.Component {
       loggedIn: false,
       showingCollections: false,
       user_collections: [],
-      collections_local_copy: [],
       loadingCollections: true,
       shouldFadeOut: false,
     };
@@ -51,7 +50,7 @@ export default class MainComponent extends React.Component {
     API.getCollectionsForAccount((data) => {
       this.setState({
         user_collections: data,
-        collections_local_copy: data,
+        dummy_copy: data,
         loadingCollections: false,
       });
     });
@@ -165,7 +164,6 @@ export default class MainComponent extends React.Component {
               closeCollections={this.closeCollections.bind(this)}
               getCollectionsForUser={this.getCollectionsForUser.bind(this)}
               user_collections={this.state.user_collections}
-              collections_local_copy={this.state.collections_local_copy}
               showingCollections={this.state.showingCollections}
             />
             <AthleteBreakDown
