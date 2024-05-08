@@ -44,6 +44,7 @@ export default function Collections(props) {
 
   useEffect(() => {
     setCollections(props.user_collections);
+    console.log("collections are, ", props.user_collections);
   }, [props.user_collections]);
 
   function useOutsideAlerter(ref) {
@@ -159,6 +160,7 @@ export default function Collections(props) {
                     collection_id={collection["id"]}
                     getCollectionsForUser={props.getCollectionsForUser}
                     currentIndex={currentIndex}
+                    handleSelect={handleSelect}
                     itemIndex={index}
                   />
                 </div>

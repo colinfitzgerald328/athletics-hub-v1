@@ -22,6 +22,9 @@ export default function CollectionDeleteOption(props) {
 
   const handleDelete = () => {
     API.deleteCollection(props.collection_id, (data) => {
+      if (props.currentIndex >= 1) {
+        props.handleSelect(props.currentIndex - 1);
+      }
       props.getCollectionsForUser();
     });
     setAnchorEl(null);

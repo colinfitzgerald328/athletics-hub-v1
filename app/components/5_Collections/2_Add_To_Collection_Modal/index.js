@@ -64,12 +64,6 @@ export default function AddToCollectionModal(props) {
     }, [ref]);
   }
 
-  // function getAndSetTop20Results() {
-  //   API.getTopRecords((data) => {
-  //     setSearchResults(data.records);
-  //   });
-  // }
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm == "") {
@@ -118,7 +112,6 @@ export default function AddToCollectionModal(props) {
     athletes.forEach((athlete) =>
       athlete_ids.push(athlete.json_data.athlete.athlete_id),
     );
-    console.log(athlete_ids);
     setTimeout(() => {
       API.modifyCollection(
         null,
