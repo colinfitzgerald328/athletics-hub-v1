@@ -42,52 +42,6 @@ export async function getRandomDoc(callback) {
     });
 }
 
-export async function getPBSForAthlete(athlete_code, callback) {
-  var data = {
-    athlete_id: athlete_code,
-  };
-
-  var url = new URL(API_URL + "/athlete/pbs");
-  url.search = new URLSearchParams(data).toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-export async function getAccoladesForAthlete(url_slug, callback) {
-  var data = {
-    url_slug: url_slug,
-  };
-
-  var url = new URL(API_URL + "/athlete/accolades");
-  url.search = new URLSearchParams(data).toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
 export async function getAthleteById(athlete_id, callback) {
   var data = {
     athlete_id: athlete_id,
@@ -139,29 +93,6 @@ export async function getSimilarAthletes(athlete_id, callback) {
     });
 }
 
-export async function getTopCompetitors(athlete_id, callback) {
-  var data = {
-    athlete_id: athlete_id,
-  };
-
-  var url = new URL(API_URL + "/v1/athlete/competitors");
-  url.search = new URLSearchParams(data).toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
 export async function loginUser(username, password, callback) {
   const options = {
     method: "POST",
@@ -177,7 +108,6 @@ export async function loginUser(username, password, callback) {
 
   fetch(API_URL + "/account/login", options)
     .then((response) => {
-      console.log("response, ", response);
       if (response.ok) {
         return response.json();
       } else if (response.status === 400) {
@@ -284,39 +214,6 @@ export async function getCollectionsForAccount(callback) {
     });
 }
 
-export async function addAthletesToCollection(
-  collectionId,
-  athleteIds,
-  callback,
-) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      collection_id: collectionId,
-      athlete_ids: athleteIds,
-    }),
-  };
-
-  fetch(API_URL + "/v1/collections/update", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
 export async function modifyCollection(
   newName,
   action,
@@ -369,35 +266,6 @@ export async function deleteCollection(collectionId, callback) {
   };
 
   fetch(API_URL + "/collections/delete", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-export async function updateCollectionName(collectionId, newName, callback) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      collection_id: collectionId,
-      new_name: newName,
-    }),
-  };
-
-  fetch(API_URL + "/v1/collections/name/update", options)
     .then((response) => {
       if (response.ok) {
         return response.json();

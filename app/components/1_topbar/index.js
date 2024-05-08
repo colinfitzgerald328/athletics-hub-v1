@@ -71,7 +71,6 @@ export default function TopBar(props) {
     setLoggingIn(true);
     setTimeout(() => {
       API.createAccount(userName, password, (data) => {
-        console.log("DATA, ", data == "Error: Username already exists");
         if (data == "Error: Username already exists") {
           setAccountFailedOpen(true);
           setLoggingIn(false);

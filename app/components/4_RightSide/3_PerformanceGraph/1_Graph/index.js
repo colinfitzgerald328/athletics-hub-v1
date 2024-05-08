@@ -12,11 +12,9 @@ import {
 import styles from "./styles.module.css";
 
 export default function CardGraph(props) {
-  console.log("PROPS", props)
   const filteredResults = props.athlete_data
     .filter((result) => result.result_score !== 0)
     .reverse();
-  console.log("filtered results", filteredResults)
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {

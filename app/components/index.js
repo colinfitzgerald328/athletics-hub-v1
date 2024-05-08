@@ -50,7 +50,6 @@ export default class MainComponent extends React.Component {
     API.getCollectionsForAccount((data) => {
       this.setState({
         user_collections: data,
-        dummy_copy: data,
         loadingCollections: false,
       });
     });

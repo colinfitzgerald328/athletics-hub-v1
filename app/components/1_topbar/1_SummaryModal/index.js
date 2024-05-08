@@ -28,7 +28,6 @@ export default function SummaryModal(props) {
   if (props.dailySummary) {
     const md = markdownit();
     result = md.render(props.dailySummary); // Assign result inside if block
-    console.log(result)
   }
 
 

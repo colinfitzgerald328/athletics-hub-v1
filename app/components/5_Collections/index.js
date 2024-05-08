@@ -16,7 +16,6 @@ import * as API from "/app/api/api.js";
 
 export default function Collections(props) {
   const [collections, setCollections] = useState(props.user_collections);
-  const [localCopy, setLocalCopy] = useState(props.user_collections);
   const [currentIndex, setCurrentIndex] = useState(0);
   const editingRef = useRef(null);
   useOutsideAlerter(editingRef);
@@ -30,7 +29,6 @@ export default function Collections(props) {
       theItem.height = newScrollHeight;
       setCollections([...currentCollections]);
       const data_fetch_results = await getDataForAthlete(athlete);
-      console.log(athlete);
       theItem.top_competitors = data_fetch_results.top_competitors;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
@@ -74,27 +72,23 @@ export default function Collections(props) {
   }
 
   function checkForNameChangeAndSendAPICall(collections, currentIndex) {
-    console.log("local copy, ", localCopy);
-    console.log(localCopy[currentIndex].collection_name);
     if (collections.length == 0) {
       // if there are no collections, do nothing
       return;
     }
-    if (
-      collections[currentIndex].collection_name !==
-      props.collections_local_copy[currentIndex].collection_name
-    ) {
-      API.updateCollectionName(
-        collections[currentIndex]["id"],
-        collections[currentIndex].collection_name,
-        (data) => {
+    API.modifyCollection(
+      collections[currentIndex].collection_name,
+      "UPDATE_NAME",
+      collections[currentIndex]["id"],
+      null,
+      null,
+      (response) => {
+        if (response.name_was_updated) {
           toaster.success("Collection name updated");
           props.getCollectionsForUser();
-        },
-      );
-    } else {
-      return;
-    }
+        }
+      },
+    );
   }
 
   function handleCloseCollections() {
