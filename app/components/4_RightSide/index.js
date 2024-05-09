@@ -49,6 +49,7 @@ export default function RightSide(props) {
         similar_athletes={props.similar_athletes}
         setAthleteFromTopCompetitors={props.setAthleteFromTopCompetitors}
         loadingNewAthlete={props.loadingNewAthlete}
+        fetchAthleteById={props.fetchAthleteById}
       />
     </div>
   );

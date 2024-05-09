@@ -8,7 +8,7 @@ export default function Recommended(props) {
       <div
         className={styles.similarAthlete}
         onClick={() =>
-          props.setAthleteFromTopCompetitors(similar_athlete.aaAthleteId)
+          props.fetchAthleteById(similar_athlete.athlete_id)
         }
         key={index}
       >
@@ -53,7 +53,7 @@ export default function Recommended(props) {
             />
           ) : (
             <div className={styles.athleteDisciplines}>
-              {similar_athlete.disciplines}
+              {similar_athlete.primary_disciplines}
             </div>
           )}
         </div>

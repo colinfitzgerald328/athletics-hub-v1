@@ -76,7 +76,7 @@ export default class MainComponent extends React.Component {
         loadingNewAthlete: false,
         pageLoaded: true,
         athlete_data: athlete.json_data.results,
-        similar_athletes: [],
+        similar_athletes: athlete.similar_athletes,
         top_competitors: athlete.json_data.top_competitors,
       });
     });
@@ -93,7 +93,7 @@ export default class MainComponent extends React.Component {
         loadingNewAthlete: false,
         pageLoaded: true,
         athlete_data: athlete.json_data.results,
-        similar_athletes: [],
+        similar_athletes: athlete.similar_athletes,
         top_competitors: athlete.json_data.top_competitors,
       });
     });
@@ -180,6 +180,7 @@ export default class MainComponent extends React.Component {
               loadingNewAthlete={this.state.loadingNewAthlete}
               athlete_data={this.state.athlete_data}
               showingCollections={this.state.showingCollections}
+              fetchAthleteById={this.fetchAthleteById.bind(this)}
             />
           </div>
         </div>
