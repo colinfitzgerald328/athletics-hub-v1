@@ -12,6 +12,8 @@ import DataTable from "./1_DataTable ";
 import styles from "./styles.module.css";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import markdownit from "markdown-it";
+const md = markdownit();
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -105,6 +107,10 @@ export default function CollectionTabs(props) {
     var element = document.getElementsByClassName(styles.summary)[0];
     element.scrollIntoView({ behavior: "smooth" });
     setScrolled(true);
+  }
+
+  function renderSummary(summary) {
+    return md.render(summary); // Assign result inside if block
   }
 
   return (
@@ -296,7 +302,12 @@ export default function CollectionTabs(props) {
             <Skeleton animation="wave" />
           </div>
         ) : (
-          <div className={styles.summary}>{props.athlete.markdown_summary}</div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: renderSummary(props.athlete.markdown_summary),
+            }}
+            className={styles.summary}
+          ></div>
         )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
@@ -363,7 +374,7 @@ export default function CollectionTabs(props) {
                       onClick={() => updateSummaryStyle(competitor)}
                       className={styles.rightItems}
                     >
-                      {competitor.markdown_summary &&
+                      {/* {competitor.markdown_summary &&
                         (competitor.height && competitor.height != "0px" ? (
                           <IconButton
                             size="small"
@@ -382,15 +393,18 @@ export default function CollectionTabs(props) {
                           >
                             <KeyboardArrowDownIcon />
                           </IconButton>
-                        ))}
+                        ))} */}
                     </div>
                   </div>
                 </div>
                 <div
                   className={styles.competitorSummary}
                   style={{ height: competitor.height }}
+                  dangerouslySetInnerHTML={{
+                    __html: renderSummary(competitor.markdown_summary),
+                  }}
                 >
-                  {competitor.markdown_summary}
+                  {/* {competitor.markdown_summary} */}
                 </div>
               </div>
             ))

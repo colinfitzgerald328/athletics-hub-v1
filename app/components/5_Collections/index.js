@@ -28,8 +28,8 @@ export default function Collections(props) {
     if (theItem.height == undefined) {
       theItem.height = newScrollHeight;
       setCollections([...currentCollections]);
-      const data_fetch_results = await getDataForAthlete(athlete);
-      theItem.top_competitors = data_fetch_results.top_competitors;
+      // const data_fetch_results = await getDataForAthlete(athlete);
+      // theItem.top_competitors = data_fetch_results.top_competitors;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
     } else {
