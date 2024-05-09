@@ -114,15 +114,27 @@ export default function CreateCollectionModal(props) {
   }
 
   function saveCollection() {
-    setSavingCollection(true);
+    if (collectionName === "") {
+      alert("Please enter a name for your collection");
+      return;
+    }
+
     const athlete_ids = [];
     athletes.forEach((athlete) =>
       athlete_ids.push(athlete.json_data.athlete.athlete_id),
     );
+
+    if (athlete_ids.length === 0) {
+      alert("Please add at least one athlete to your collection!");
+      return;
+    }
+
+    setSavingCollection(true);
     setTimeout(() => {
       API.createCollection(collectionName, athlete_ids, (data) => {
         setSavingCollection(false);
         setModalOpen(false);
+        setCollectionName("");
         setAthletes([]);
         props.getCollectionsForUser();
       });

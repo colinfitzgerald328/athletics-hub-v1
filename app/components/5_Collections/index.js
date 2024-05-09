@@ -152,7 +152,8 @@ export default function Collections(props) {
                     {collection.collection_name}
                   </div>
                   <div className={styles.collectionCreated}>
-                    Created {moment(collection.created_at).fromNow()}
+                    Created{" "}
+                    {moment.utc(collection.created_at).local().fromNow()}
                   </div>
                 </div>
                 <div>

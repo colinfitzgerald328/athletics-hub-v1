@@ -292,9 +292,12 @@
 }
 
 .buttonsHolder {
-  margin-top: 10px;
   display: flex;
   justify-content: flex-end;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin-left: auto;
 }
 
 .saveButton {
