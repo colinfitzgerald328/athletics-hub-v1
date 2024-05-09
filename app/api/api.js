@@ -1,4 +1,4 @@
-var API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
+var API_URL = "http://127.0.0.1:8000";
 
 export async function getSearchResultsForQuery(search, callback) {
   var data = {
@@ -43,12 +43,8 @@ export async function getRandomDoc(callback) {
 }
 
 export async function getAthleteById(athlete_id, callback) {
-  var data = {
-    athlete_id: athlete_id,
-  };
-
   var url = new URL(API_URL + `/athletes/${athlete_id}`);
-  url.search = new URLSearchParams(data).toString();
+  url.search = new URLSearchParams().toString();
   fetch(url)
     .then((response) => {
       if (response.ok) {

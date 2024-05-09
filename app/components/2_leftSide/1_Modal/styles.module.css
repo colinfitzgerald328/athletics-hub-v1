@@ -268,14 +268,13 @@
 
 .bottomHolder {
   border-radius: 20px;
-  margin-top: 10px;
   display: flex;
   width: 63%;
 }
 
 .basic {
   width: 40%;
-  height: calc(100% - 10px);
+  height: calc(100% - 2.5px);
   overflow-y: scroll;
   background-color: white;
   border-radius: 10px;

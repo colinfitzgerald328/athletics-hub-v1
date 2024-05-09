@@ -126,6 +126,8 @@ export default function ComparisonModal() {
 
   function closeModal() {
     setModalOpen(false);
+    setComparisonSummary("");
+    setAthletes([]);
   }
 
   function spliceItem(item) {
@@ -328,6 +330,7 @@ export default function ComparisonModal() {
           </div>
           <div className={styles.bottomHolder}>
             <Autocomplete
+              variant="contained"
               value={value}
               onChange={(event, newValue) => {
                 setValue(newValue);
@@ -341,10 +344,18 @@ export default function ComparisonModal() {
               renderInput={(params) => (
                 <TextField {...params} label="Comparison Distance" />
               )}
-              sx={{ width: "calc(100% - 100px);" }}
+              sx={{ width: "calc(100% - 50px);" }}
             />
-            <Button onClick={getResponse} type="primary">
-              {loadingComparison ? <CircularProgress /> : <SendIcon />}
+            <Button
+              onClick={getResponse}
+              sx={{ marginLeft: "5px" }}
+              variant="contained"
+            >
+              {loadingComparison ? (
+                <CircularProgress color="inherit" />
+              ) : (
+                <SendIcon />
+              )}
             </Button>
           </div>
         </Modal>
