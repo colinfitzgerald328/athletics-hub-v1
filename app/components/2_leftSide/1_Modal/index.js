@@ -13,6 +13,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import * as API from "/app/api/api.js";
 import CircularProgress from "@mui/material/CircularProgress";
 import SendIcon from "@mui/icons-material/Send";
+import { toaster } from "evergreen-ui";
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -141,6 +142,10 @@ export default function ComparisonModal() {
   }
 
   function getResponse() {
+    if (athletes.length < 2) {
+      alert("You need to choose 2 athletes to compare");
+      return;
+    }
     setLoadingComparison(true);
     const athlete_id_1 = athletes[0].athlete_id;
     const athlete_id_2 = athletes[1].athlete_id;
@@ -191,9 +196,8 @@ export default function ComparisonModal() {
             Head to head <SportsMmaIcon />
           </div>
           <div className={styles.explanation}>
-            <RectangleIcon /> Search for an athlete, click, and it will add it
-            to the display. Repeat to compare the personal bests of as many
-            athletes as you would like 😊
+            <RectangleIcon /> Search for 2 athletes to compare their
+            performance!
           </div>
           <div className={styles.content}>
             <input
