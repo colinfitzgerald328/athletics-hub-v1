@@ -137,5 +137,5 @@ export async function compareTwoAthletes(
   callback,
 ) {
   var subRoute = `/athletes/compare?athlete_id_1=${athlete_id_1}&athlete_id_2=${athlete_id_2}&comparison_distance=${comparison_distance}`;
-  return genericPost(subRoute, callback);
+  return genericPost(subRoute, null, callback);
 }
