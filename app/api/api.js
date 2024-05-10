@@ -1,156 +1,76 @@
 var API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
 
-export async function getSearchResultsForQuery(search, callback) {
-  var data = {
-    search_query: search,
-  };
-
-  var url = new URL(API_URL + "/athlete/search");
-  url.search = new URLSearchParams(data).toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
+function genericPost(subRoute, data, callback) {
+  fetch(API_URL + subRoute, {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
     .then((data) => {
       callback(data);
     })
     .catch((error) => {
-      console.log(error);
+      console.error("Error:", error);
+      callback(error);
     });
+}
+
+function genericGet(subRoute, callback) {
+  fetch(API_URL + subRoute, {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      callback(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      callback(error);
+    });
+}
+
+export async function getSearchResultsForQuery(search, callback) {
+  var subRoute = `/athlete/search?search_query=${search}`;
+  return genericGet(subRoute, callback);
 }
 
 export async function getRandomDoc(callback) {
-  var url = new URL(API_URL + "/athlete/random");
-  url.search = new URLSearchParams().toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = "/athlete/random";
+  return genericGet(subRoute, callback);
 }
 
 export async function getAthleteById(athlete_id, callback) {
-  var url = new URL(API_URL + `/athletes/${athlete_id}`);
-  url.search = new URLSearchParams().toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
-
-export async function getSimilarAthletes(athlete_id, callback) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      athlete_id: athlete_id,
-    }),
-  };
-
-  fetch(API_URL + "/athlete/similar", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = `/athletes/${athlete_id}`;
+  return genericGet(subRoute, callback);
 }
 
 export async function loginUser(username, password, callback) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: username,
-      password: password,
-    }),
+  var data = {
+    username: username,
+    password: password,
   };
 
-  fetch(API_URL + "/account/login", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else if (response.status === 400) {
-        throw new Error("Invalid username or password");
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      callback(error);
-      console.log(error);
-    });
+  var subRoute = "/account/login";
+
+  return genericPost(subRoute, data, callback);
 }
 
 export async function createAccount(username, password, callback) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: username,
-      password: password,
-    }),
+  var data = {
+    username: username,
+    password: password,
   };
 
-  fetch(API_URL + "/account/create", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else if (response.status == 400) {
-        throw new Error("Username already exists");
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      callback(error);
-      console.log(error);
-    });
+  var subRoute = "/account/create";
+
+  return genericPost(subRoute, data, callback);
 }
 
 export async function createCollection(
@@ -158,56 +78,22 @@ export async function createCollection(
   collectionAthletes,
   callback,
 ) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      collection_name: collectionName,
-      account_id: localStorage.getItem("account_id"),
-      athlete_ids: collectionAthletes,
-    }),
+  var data = {
+    collection_name: collectionName,
+    account_id: localStorage.getItem("account_id"),
+    athlete_ids: collectionAthletes,
   };
 
-  fetch(API_URL + "/collections/create", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = "/collections/create";
+
+  return genericPost(subRoute, data, callback);
 }
 
 export async function getCollectionsForAccount(callback) {
-  var data = {
-    account_id: localStorage.getItem("account_id"),
-  };
-
-  var url = new URL(API_URL + "/collections/user");
-  url.search = new URLSearchParams(data).toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = `/collections/user?account_id=${localStorage.getItem(
+    "account_id",
+  )}`;
+  return genericGet(subRoute, callback);
 }
 
 export async function modifyCollection(
@@ -218,82 +104,30 @@ export async function modifyCollection(
   athleteIds,
   callback,
 ) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      new_name: newName,
-      action: action,
-      collection_id: collectionId,
-      athlete_id: athleteId,
-      athlete_ids: athleteIds,
-    }),
+  var data = {
+    new_name: newName,
+    action: action,
+    collection_id: collectionId,
+    athlete_id: athleteId,
+    athlete_ids: athleteIds,
   };
 
-  fetch(API_URL + "/collections/modify", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = "/collections/modify";
+  return genericPost(subRoute, data, callback);
 }
 
 export async function deleteCollection(collectionId, callback) {
-  const options = {
-    method: "POST",
-    headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      collection_id: collectionId,
-    }),
+  var data = {
+    collection_id: collectionId,
   };
 
-  fetch(API_URL + "/collections/delete", options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = "/collections/delete";
+  return genericPost(subRoute, data, callback);
 }
 
 export async function getLetsRunDailySummary(callback) {
-  var url = new URL(API_URL + "/letsrun/daily_summary");
-  url.search = new URLSearchParams().toString();
-  fetch(url)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error("Something went wrong ...");
-      }
-    })
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  var subRoute = "/letsrun/daily_summary";
+  return genericGet(subRoute, callback);
 }
 
 export async function compareTwoAthletes(
@@ -302,21 +136,6 @@ export async function compareTwoAthletes(
   comparison_distance,
   callback,
 ) {
-  fetch(
-    API_URL +
-      `/athletes/compare?athlete_id_1=${athlete_id_1}&athlete_id_2=${athlete_id_2}&comparison_distance=${comparison_distance}`,
-    {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-      },
-    },
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      callback(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  var subRoute = `/athletes/compare?athlete_id_1=${athlete_id_1}&athlete_id_2=${athlete_id_2}&comparison_distance=${comparison_distance}`;
+  return genericPost(subRoute, callback);
 }
