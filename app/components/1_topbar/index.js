@@ -43,14 +43,26 @@ export default function TopBar(props) {
   const [dangerAlertOpen, setDangerAlertOpen] = useState(false);
   const [accountFailedOpen, setAccountFailedOpen] = useState(false);
   const [summaryModalOpen, setSummaryModalOpen] = useState(false);
+  const [errMessage, setErrMessage] = useState(null);
 
   function handleLogin() {
+    if (userName === "" || password === "") {
+      setDangerAlertOpen(true);
+      return;
+    }
     setLoggingIn(true);
     setTimeout(() => {
       API.loginUser(userName, password, (data) => {
-        if (data == "Error: Invalid username or password") {
-          setDangerAlertOpen(true);
+        if (data.detail) {
+          setErrMessage(data.detail);
           setLoggingIn(false);
+          setDangerAlertOpen(true);
+          setTimeout(() => {
+            setDangerAlertOpen(false);
+            setTimeout(() => {
+              setErrMessage(null);
+            }, 2000);
+          }, 2000);
           return;
         }
         localStorage.setItem("userName", userName);
@@ -71,9 +83,16 @@ export default function TopBar(props) {
     setLoggingIn(true);
     setTimeout(() => {
       API.createAccount(userName, password, (data) => {
-        if (data == "Error: Username already exists") {
+        if (data.detail) {
+          setErrMessage(data.detail);
           setAccountFailedOpen(true);
           setLoggingIn(false);
+          setTimeout(() => {
+            setAccountFailedOpen(false);
+            setTimeout(() => {
+              setErrMessage(null);
+            }, 2000);
+          }, 2000);
           return;
         }
         setLoggingIn(false);
@@ -363,7 +382,7 @@ export default function TopBar(props) {
           severity="error"
           sx={{ width: "100%" }}
         >
-          Error logging you in. Please check your username and password.
+          {errMessage || "Please type in your username and password"}
         </Alert>
       </Snackbar>
       <Snackbar
@@ -377,7 +396,7 @@ export default function TopBar(props) {
           severity="error"
           sx={{ width: "100%" }}
         >
-          Error: Account already exists. Please try again.
+          {errMessage || "Please choose a username and password first"}
         </Alert>
       </Snackbar>
       <SummaryModal

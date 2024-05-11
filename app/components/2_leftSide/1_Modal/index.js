@@ -156,11 +156,9 @@ export default function ComparisonModal() {
       athlete_id_1,
       athlete_id_2,
       comparison_distance,
-      (response) => {
-        setComparisonSummary(response.comparison_summary);
-        setLoadingComparison(false);
-      },
-    );
+    ).then((response) => {
+      console.log("response, ", response);
+    });
   }
 
   return (

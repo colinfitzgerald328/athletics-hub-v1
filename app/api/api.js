@@ -15,7 +15,7 @@ function genericPost(subRoute, data, callback) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      callback(error);
+      throw new Error(error);
     });
 }
 
@@ -32,7 +32,7 @@ function genericGet(subRoute, callback) {
     })
     .catch((error) => {
       console.error("Error:", error);
-      callback(error);
+      throw new Error(error);
     });
 }
 
