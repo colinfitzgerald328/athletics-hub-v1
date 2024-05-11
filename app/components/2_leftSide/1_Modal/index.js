@@ -156,9 +156,11 @@ export default function ComparisonModal() {
       athlete_id_1,
       athlete_id_2,
       comparison_distance,
-    ).then((response) => {
-      console.log("response, ", response);
-    });
+      (response) => {
+        setComparisonSummary(response.comparison_summary);
+        setLoadingComparison(false);
+      },
+    );
   }
 
   return (
@@ -243,7 +245,7 @@ export default function ComparisonModal() {
                         src={
                           result.json_data.athlete.hq_images
                             ? result.json_data.athlete.hq_images[0]
-                            : result.json_data.athlete.hq_image_url
+                            : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                         }
                         className={styles.searchResultImage}
                       />
