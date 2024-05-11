@@ -206,7 +206,7 @@ export default function CreateCollectionModal(props) {
                       src={
                         result.json_data.athlete.hq_images
                           ? result.json_data.athlete.hq_images[0]
-                          : ""
+                          : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                       }
                       className={styles.searchResultImage}
                     />
@@ -240,7 +240,7 @@ export default function CreateCollectionModal(props) {
                       src={
                         athlete.json_data.athlete.hq_images
                           ? athlete.json_data.athlete.hq_images[0]
-                          : ""
+                          : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                       }
                       className={styles.athleteImage}
                     />

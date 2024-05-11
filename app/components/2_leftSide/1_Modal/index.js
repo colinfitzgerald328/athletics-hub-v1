@@ -278,7 +278,7 @@ export default function ComparisonModal() {
                           src={
                             athlete.json_data.athlete.hq_images
                               ? athlete.json_data.athlete.hq_images[0]
-                              : athlete.json_data.athlete.hq_image_url
+                              : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                           }
                           className={styles.athleteImage}
                         />
