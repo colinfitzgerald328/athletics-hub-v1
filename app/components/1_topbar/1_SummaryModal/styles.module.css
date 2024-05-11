@@ -5,6 +5,16 @@
   line-height: 30px;
 }
 
+.containerCenter {
+  width: 100%;
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: scroll;
+  line-height: 30px;
+}
+
 
 .summaryHolder h2 {
 }
@@ -33,4 +43,20 @@
 
 .summaryHolder h2 {
   font-size: 25px;
+}
+
+.topItemsHolder {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.indicator {
+  background-color: dodgerblue;
+  color: white;
+  padding: 2.5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 20px;
 }

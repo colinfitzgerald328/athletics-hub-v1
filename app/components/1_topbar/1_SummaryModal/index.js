@@ -1,9 +1,11 @@
 import React from "react";
-import Box from "@mui/material/Box";
 import { Modal } from "antd";
 import markdownit from "markdown-it";
+import moment from "moment";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 import styles from "./styles.module.css";
+import { Box } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -25,11 +27,10 @@ const style = {
 export default function SummaryModal(props) {
   let result = ""; // Define result outside if block
 
-  if (props.dailySummary) {
+  if (props.summaryResponse?.summary_text) {
     const md = markdownit();
-    result = md.render(props.dailySummary); // Assign result inside if block
+    result = md.render(props.summaryResponse.summary_text); // Assign result inside if block
   }
-
 
   return (
     <Modal
@@ -42,13 +43,24 @@ export default function SummaryModal(props) {
       width={"800px"}
       scroll
     >
-      <div className={styles.container}>
-        <div
-          className={styles.summaryHolder}
-          dangerouslySetInnerHTML={{ __html: result }}
-        />
-      </div>
-      {/* Render parsed HTML content inside div */}
+      {props.summaryResponse ? (
+        <div className={styles.container}>
+          <div className={styles.topItemsHolder}>
+            <h1 className={styles.title}>Today in Track and Field</h1>
+            <div className={styles.indicator}>
+              Created {moment.utc(props.summaryResponse?.created_at).fromNow()}
+            </div>
+          </div>
+          <div
+            className={styles.summaryHolder}
+            dangerouslySetInnerHTML={{ __html: result }}
+          />
+        </div>
+      ) : (
+        <div className={styles.containerCenter}>
+          <CircularProgress />
+        </div>
+      )}
     </Modal>
   );
 }

@@ -20,7 +20,7 @@ export default class MainComponent extends React.Component {
       athlete_accolades: [],
       similar_athletes: [],
       top_competitors: [],
-      dailySummary: null,
+      summaryResponse: null, 
       width: 0,
       height: 0,
       pageLoaded: false,
@@ -106,7 +106,7 @@ export default class MainComponent extends React.Component {
   getLetsRunDailySummary() {
     API.getLetsRunDailySummary((data) => {
       this.setState({
-        dailySummary: data["summary_text"],
+        summaryResponse: data,
       });
     });
   }
@@ -150,7 +150,7 @@ export default class MainComponent extends React.Component {
             loggedIn={this.state.loggedIn}
             logOutUser={this.logOutUser.bind(this)}
             logInUser={this.logInUser.bind(this)}
-            dailySummary={this.state.dailySummary}
+            summaryResponse={this.state.summaryResponse}
           />
           <div className={styles.mainDisplay}>
             <LeftSide

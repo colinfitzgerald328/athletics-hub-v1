@@ -406,7 +406,7 @@ export default function TopBar(props) {
       <SummaryModal
         summaryModalOpen={summaryModalOpen}
         closeSummaryModal={closeSummaryModal}
-        dailySummary={props.dailySummary}
+        summaryResponse={props.summaryResponse}
       />
     </div>
   );
