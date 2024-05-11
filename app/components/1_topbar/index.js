@@ -181,21 +181,20 @@ export default function TopBar(props) {
 
   return (
     <div className={styles.topBarHolder}>
-      <div className={styles.pageIcon}>
-        <HubIcon sx={{ color: "#1095E5", fontSize: "30px" }} />
-      </div>
       <div className={styles.leftItems}>
-        <div className={styles.pageLabel}>athletics hub</div>
-        <div className={styles.pageAction}>
-          Stay up to date on your favorite track and field athletes
-        </div>
+        <div className={styles.pageLabel}>Track and Field Hub</div>
         <Button
-          sx={{ marginLeft: "15px", borderRadius: "25px" }}
+          sx={{
+            marginLeft: "15px",
+            borderRadius: "25px",
+            marginTop: "auto",
+            marginBottom: "auto",
+          }}
           variant="soft"
           color="primary"
           onClick={() => openSummaryModal()}
         >
-          Daily Summary
+          Daily News
         </Button>
       </div>
       <div className={styles.rightItems}>

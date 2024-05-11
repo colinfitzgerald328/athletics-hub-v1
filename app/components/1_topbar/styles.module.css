@@ -14,7 +14,7 @@
 
 .leftItems {
   display: flex;
-  align-items: last baseline;
+  align-items: center;  
 }
 
 .pageAction {
