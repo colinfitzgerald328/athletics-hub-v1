@@ -17,11 +17,11 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   width: 450,
-  height: 550,
+  height: 570,
   bgcolor: "background.paper",
   boxShadow: 24,
   paddingTop: "30px",
-  paddingBottom: "30px",
+  paddingBottom: "100px",
   paddingLeft: "30px",
   paddingRight: "30px",
   borderRadius: "10px",
@@ -271,9 +271,14 @@ export default function TopBar(props) {
               ></input>
               <Button
                 onClick={createAccount}
-                className={styles.fullWidth}
-                type="primary"
                 loading={loggingIn}
+                variant="solid"
+                sx={{
+                  width: "100%",
+                  marginTop: "20px",
+                  borderRadius: "25px",
+                  height: "50px",
+                }}
               >
                 {loggingIn ? "Creating your account" : "Create account"}
               </Button>
