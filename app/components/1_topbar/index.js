@@ -242,7 +242,7 @@ export default function TopBar(props) {
               <h1 className={styles.callOut}>Sign up</h1>
               <div className={styles.subMessageHolder}>
                 <div className={styles.subMessage}>
-                  Welcome to the athletics hub!
+                  Welcome to the track and field hub!
                 </div>
                 <div className={styles.subMessageWithMargin}>
                   Enter your details below to create your account and get
