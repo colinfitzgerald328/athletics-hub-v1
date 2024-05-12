@@ -57,6 +57,7 @@ export default function DataTable(props) {
       )} */}
       <div className={styles.tableHeader}>
         <div className={styles.markLabel}>Mark</div>
+        <div className={styles.markLabel}>Place</div>
         <div className={styles.markLabel}>Discipline</div>
         <div className={styles.venueLabel}>Venue</div>
         <div className={styles.labeledItem}>Date</div>
@@ -84,6 +85,7 @@ export default function DataTable(props) {
               }
             >
               <div className={styles.mark}>{row.mark}</div>
+              <div className={styles.mark}>{row.place ? row.place.split(".")[0] : "N/A"}</div>
               <div className={styles.mark}>{row.discipline}</div>
               <div className={styles.venue}>{row.venue}</div>
               <div className={styles.result}>{row.date}</div>

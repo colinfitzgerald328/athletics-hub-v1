@@ -59,8 +59,6 @@ export default function AthleteBreakDown(props) {
     setCarouselModalOpen(false);
   }
 
-
-
   return (
     <div className={styles.athleteBreakdown}>
       <SummaryModal
@@ -68,7 +66,6 @@ export default function AthleteBreakDown(props) {
         closeMarkdownModal={closeMarkdownModal}
         athleteSummary={props.athlete.markdown_summary}
         athlete={props.athlete}
-        
       />
       <div className={styles.itemsContainer}>
         {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
@@ -127,7 +124,7 @@ export default function AthleteBreakDown(props) {
               className={styles.profileImage}
             />
           ) : (
-            ''
+            ""
           )}
           <div className={styles.nameVariables}>
             {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
@@ -139,10 +136,12 @@ export default function AthleteBreakDown(props) {
               ></Skeleton>
             ) : (
               <div className={styles.betaHolder}>
-                <div className={styles.fullName}>{props.athlete.first_name} {props.athlete.last_name}</div>
+                <div className={styles.fullName}>
+                  {props.athlete.first_name} {props.athlete.last_name}
+                </div>
                 {props.athlete.markdown_summary && (
                   <Button
-                  variant="soft"
+                    variant="soft"
                     color="success"
                     onClick={() => openMarkdownModal()}
                     sx={{
@@ -162,6 +161,7 @@ export default function AthleteBreakDown(props) {
                 animation="wave"
                 width={300}
                 height={35}
+                
               ></Skeleton>
             ) : (
               <div className={styles.disciplines}>
