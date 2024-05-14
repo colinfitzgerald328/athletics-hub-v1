@@ -20,7 +20,7 @@ export default class MainComponent extends React.Component {
       athlete_accolades: [],
       similar_athletes: [],
       top_competitors: [],
-      summaryResponse: null, 
+      summaryResponse: null,
       width: 0,
       height: 0,
       pageLoaded: false,
@@ -126,18 +126,52 @@ export default class MainComponent extends React.Component {
   render() {
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
-        <div className={styles.underConstruction}>
-          <ConstructionIcon sx={{ fontSize: "50px" }} />
-          <div className={styles.commentary}>
-            Our engineering team is hard at work building out mobile. It will be
-            ready soon 😊. For now you can visit the desktop version.
+        <div>
+          <Head>
+            <meta property="og:image" content="/icon.png" />
+          </Head>
+          <TopBar
+            loggedIn={this.state.loggedIn}
+            logOutUser={this.logOutUser.bind(this)}
+            logInUser={this.logInUser.bind(this)}
+            summaryResponse={this.state.summaryResponse}
+            isMobile={true}
+          />
+          <div className={styles.mainDisplayMobile}>
+            <LeftSide
+              loggedIn={this.state.loggedIn}
+              showCollections={this.showCollections.bind(this)}
+              loadingCollections={this.state.loadingCollections}
+              fetchAthleteById={this.fetchAthleteById.bind(this)}
+              isMobile={true}
+            />
+            <Collections
+              closeCollections={this.closeCollections.bind(this)}
+              getCollectionsForUser={this.getCollectionsForUser.bind(this)}
+              user_collections={this.state.user_collections}
+              showingCollections={this.state.showingCollections}
+              isMobile={true}
+            />
+            <AthleteBreakDown
+              athlete={this.state.athlete}
+              loadingNewAthlete={this.state.loadingNewAthlete}
+              athlete_data={this.state.athlete_data}
+              top_competitors={this.state.top_competitors}
+              height={this.state.height}
+              showingCollections={this.state.showingCollections}
+              fetchAthleteById={this.fetchAthleteById.bind(this)}
+              isMobile={true}
+            />
+            <RightSide
+              athlete={this.state.athlete}
+              similar_athletes={this.state.similar_athletes}
+              loadingNewAthlete={this.state.loadingNewAthlete}
+              athlete_data={this.state.athlete_data}
+              showingCollections={this.state.showingCollections}
+              fetchAthleteById={this.fetchAthleteById.bind(this)}
+              isMobile={true}
+            />
           </div>
-          <Link
-            className={styles.hoverUnderline}
-            href="https://athletics-hub-v1.vercel.app"
-          >
-            Open in browser
-          </Link>
         </div>
       );
     } else {

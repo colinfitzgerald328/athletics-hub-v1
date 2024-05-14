@@ -7,7 +7,9 @@ import styles from "./styles.module.css";
 
 export default function RightSide(props) {
   function handleFadeOut() {
-    var element = document.getElementsByClassName(styles.rightSide)[0];
+    var element = document.getElementsByClassName(
+      props.isMobile ? styles.mobileRightSide : styles.rightSide,
+    )[0];
     element.classList.add(styles.fadeOut);
     setTimeout(() => {
       element.classList.add(styles.removeDisplay);
@@ -16,7 +18,9 @@ export default function RightSide(props) {
   }
 
   function handleFadeIn() {
-    var element = document.getElementsByClassName(styles.rightSide)[0];
+    var element = document.getElementsByClassName(
+      props.isMobile ? styles.mobileRightSide : styles.rightSide,
+    )[0];
     setTimeout(() => {
       element.classList.remove(styles.removeDisplay);
       element.classList.remove(styles.fadeOut);
@@ -32,10 +36,10 @@ export default function RightSide(props) {
     } else if (!props.showingCollections) {
       handleFadeIn();
     }
-  }, [props.showingCollections]);
+  }, [props.showingCollections, props.isMobile]);
 
   return (
-    <div className={styles.rightSide}>
+    <div className={props.isMobile ? styles.mobileRightSide : styles.rightSide}>
       <PeformanceGraph
         athlete_data={props.athlete_data}
         loadingNewAthlete={props.loadingNewAthlete}

@@ -4,6 +4,13 @@
   display: none;
 }
 
+.mobileBasic {
+  width: 100%;
+  margin-top: 10px;
+  animation: slideUp 0.5s;
+  display: none;
+}
+
 .show {
   display: block;
 }

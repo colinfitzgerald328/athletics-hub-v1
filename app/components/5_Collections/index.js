@@ -93,7 +93,9 @@ export default function Collections(props) {
   }
 
   function handleCloseCollections() {
-    var element = document.getElementsByClassName(styles.basic)[0];
+    var element = document.getElementsByClassName(
+      props.isMobile ? styles.mobileBasic : styles.basic,
+    )[0];
     element.classList.add(styles.dismiss);
     props.closeCollections();
     setTimeout(() => {
@@ -104,7 +106,9 @@ export default function Collections(props) {
 
   function handleShowCollections() {
     setTimeout(() => {
-      var element = document.getElementsByClassName(styles.basic)[0];
+      var element = document.getElementsByClassName(
+        props.isMobile ? styles.mobileBasic : styles.basic,
+      )[0];
       element.classList.add(styles.show);
     }, 300);
   }
@@ -118,11 +122,12 @@ export default function Collections(props) {
   }, [props.showingCollections]);
 
   return (
-    <div className={styles.basic}>
+    <div className={props.isMobile ? styles.mobileBasic : styles.basic}>
       <div className={styles.topItemsForMenu}>
         <div className={styles.createCollection}>
           <CreateCollectionModal
             getCollectionsForUser={props.getCollectionsForUser}
+            isMobile={props.isMobile}
           />
         </div>
         <div onClick={() => handleCloseCollections()}>
@@ -188,6 +193,7 @@ export default function Collections(props) {
                 collectionName={
                   props.user_collections[currentIndex].collection_name
                 }
+                isMobile={props.isMobile}
               />
             </div>
           ) : (

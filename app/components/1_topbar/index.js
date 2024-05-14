@@ -201,10 +201,11 @@ export default function TopBar(props) {
         <div className={styles.textItems}>
           {props.loggedIn && (
             <div className={styles.welcomeForUser}>
-              Welcome{" "}
-              <div className={styles.userName}>
-                {localStorage.getItem("userName")}
-              </div>
+              {!props.isMobile && (
+                <div className={styles.userName}>
+                  Welcome {localStorage.getItem("userName")}
+                </div>
+              )}
             </div>
           )}
         </div>

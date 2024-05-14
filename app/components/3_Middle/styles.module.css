@@ -9,6 +9,13 @@
   display: block;
 }
 
+.mobileBreakdown {
+  padding-top: 10px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .fadeIn {
   opacity: 1;
 }
@@ -81,6 +88,11 @@
   font-weight: bold;
 }
 
+.mobileFullName {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .disciplines {
   display: flex;
   margin-top: 5px;
@@ -113,9 +125,23 @@
   margin-right: 5px;
 }
 
+.mobileTag {
+  background-color: #eeeeee;
+  color: black;
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+
 .betaHolder {
   display: flex;
-  margin-bottom: 5px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .markdownSummary {

@@ -134,7 +134,12 @@ export default function AddToCollectionModal(props) {
       <Button type="primary" onClick={openModal} className={styles.addIcon}>
         <AddIcon />
       </Button>
-      <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
+      <Modal
+        footer=""
+        open={modalOpen}
+        onCancel={closeModal}
+        width={props.isMobile ? "" : "40vw"}
+      >
         <div className={styles.modalLabel}>
           Add to Collection: {props.collectionName}
         </div>

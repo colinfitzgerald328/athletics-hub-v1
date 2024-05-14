@@ -86,7 +86,7 @@ export default function LeftSide(props) {
   }
 
   return (
-    <div className={styles.leftSide}>
+    <div className={props.isMobile ? styles.mobileLeftSide : styles.leftSide}>
       <input
         className={
           showSearchResults || (loadingSearchResults && searchTerm.length > 0)
@@ -153,7 +153,7 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
-      <ComparisonModal />
+      <ComparisonModal isMobile={props.isMobile} />
       {props.loggedIn && !props.loadingCollections ? (
         <Button
           variant="contained"

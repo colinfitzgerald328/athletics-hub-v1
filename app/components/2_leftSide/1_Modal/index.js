@@ -39,7 +39,7 @@ const trackAndFieldEvents = [
   "Heptathlon",
 ];
 
-export default function ComparisonModal() {
+export default function ComparisonModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
   const [athletes, setAthletes] = useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -193,7 +193,12 @@ export default function ComparisonModal() {
           },
         }}
       >
-        <Modal footer="" open={modalOpen} onCancel={closeModal} width={"60vw"}>
+        <Modal
+          footer=""
+          open={modalOpen}
+          onCancel={closeModal}
+          width={props.isMobile ? "" : "60vw"}
+        >
           <div className={styles.modalLabel}>
             Head to head <SportsMmaIcon />
           </div>

@@ -5,6 +5,14 @@
   position: sticky;
 }
 
+.mainDisplayMobile {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 70px);
+  width: 100vw;
+  position: sticky;
+}
+
 .underConstruction {
   display: flex;
   flex-direction: column;

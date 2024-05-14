@@ -150,7 +150,12 @@ export default function CreateCollectionModal(props) {
       >
         New Collection
       </Button>
-      <Modal footer="" open={modalOpen} onCancel={closeModal} width={"40vw"}>
+      <Modal
+        footer=""
+        open={modalOpen}
+        onCancel={closeModal}
+        width={props.isMobile ? "" : "40vw"}
+      >
         <div className={styles.modalLabel}>Create New Collection</div>
         <div className={styles.collectionName}>
           Step 1: Name your collection

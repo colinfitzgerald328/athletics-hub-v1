@@ -8,6 +8,13 @@
   display: block;
 }
 
+.mobileRightSide {
+  padding-top: 10px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .fadeIn {
   opacity: 1;
 }

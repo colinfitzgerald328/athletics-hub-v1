@@ -117,7 +117,7 @@ export default function BasicTabs(props) {
         width: "100%",
         borderRadius: "25px",
         backgroundColor: "white",
-        height: "calc(100% - 310px)",
+        // height: "calc(100% - 310px)",
         overflowY: "scroll",
         marginTop: "10px",
         position: "relative",

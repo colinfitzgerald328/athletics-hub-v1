@@ -16,7 +16,9 @@ export default function AthleteBreakDown(props) {
       : undefined;
 
   function handleFadeOut() {
-    var element = document.getElementsByClassName(styles.athleteBreakdown)[0];
+    var element = document.getElementsByClassName(
+      props.isMobile ? styles.mobileBreakdown : styles.athleteBreakdown,
+    )[0];
     element.classList.add(styles.fadeOut);
     setTimeout(() => {
       element.classList.add(styles.removeDisplay);
@@ -25,7 +27,9 @@ export default function AthleteBreakDown(props) {
   }
 
   function handleFadeIn() {
-    var element = document.getElementsByClassName(styles.athleteBreakdown)[0];
+    var element = document.getElementsByClassName(
+      props.isMobile ? styles.mobileBreakdown : styles.athleteBreakdown,
+    )[0];
     setTimeout(() => {
       element.classList.remove(styles.removeDisplay);
       element.classList.remove(styles.fadeOut);
@@ -41,7 +45,7 @@ export default function AthleteBreakDown(props) {
     } else if (!props.showingCollections) {
       handleFadeIn();
     }
-  }, [props.showingCollections]);
+  }, [props.showingCollections, props.isMobile]);
 
   function openMarkdownModal() {
     setMarkdownModalOpen(true);
@@ -60,7 +64,11 @@ export default function AthleteBreakDown(props) {
   }
 
   return (
-    <div className={styles.athleteBreakdown}>
+    <div
+      className={
+        props.isMobile ? styles.mobileBreakdown : styles.athleteBreakdown
+      }
+    >
       <SummaryModal
         markdownModalOpen={markdownModalOpen}
         closeMarkdownModal={closeMarkdownModal}
@@ -136,7 +144,11 @@ export default function AthleteBreakDown(props) {
               ></Skeleton>
             ) : (
               <div className={styles.betaHolder}>
-                <div className={styles.fullName}>
+                <div
+                  className={
+                    props.isMobile ? styles.mobileFullName : styles.fullName
+                  }
+                >
                   {props.athlete.first_name} {props.athlete.last_name}
                 </div>
                 {props.athlete.markdown_summary && (
@@ -161,13 +173,15 @@ export default function AthleteBreakDown(props) {
                 animation="wave"
                 width={300}
                 height={35}
-                
               ></Skeleton>
             ) : (
               <div className={styles.disciplines}>
                 {disciplinesArr &&
                   disciplinesArr.map((discipline, index) => (
-                    <div key={index} className={styles.tag}>
+                    <div
+                      key={index}
+                      className={props.isMobile ? styles.mobileTag : styles.tag}
+                    >
                       {discipline}
                     </div>
                   ))}
@@ -183,6 +197,7 @@ export default function AthleteBreakDown(props) {
         top_competitors={props.top_competitors}
         fetchAthleteById={props.fetchAthleteById}
         height={props.height}
+        isMobile={props.isMobile}
       />
     </div>
   );
