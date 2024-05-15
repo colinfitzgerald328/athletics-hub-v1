@@ -47,9 +47,12 @@ export default function SummaryModal(props) {
         <div className={styles.container}>
           <div className={styles.topItemsHolder}>
             <h1 className={styles.title}>Today in Track and Field</h1>
-            <div className={styles.indicator}>
-              Created {moment.utc(props.summaryResponse?.created_at).fromNow()}
-            </div>
+            {!props.isMobile && (
+              <div className={styles.indicator}>
+                Created $
+                {moment.utc(props.summaryResponse?.created_at).fromNow()}
+              </div>
+            )}
           </div>
           <div
             className={styles.summaryHolder}

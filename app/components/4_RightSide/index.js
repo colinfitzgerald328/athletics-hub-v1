@@ -44,6 +44,7 @@ export default function RightSide(props) {
         athlete_data={props.athlete_data}
         loadingNewAthlete={props.loadingNewAthlete}
         athlete={props.athlete}
+        isMobile={props.isMobile}
       />
       <SocialProfiles
         athlete={props.athlete}

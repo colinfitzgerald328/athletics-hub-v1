@@ -211,25 +211,27 @@ export default function TopBar(props) {
             </div>
           )}
         </div>
-        <div className={styles.button}>
-          {props.loggedIn ? (
-            <Button
-              sx={{ borderRadius: "25px" }}
-              onClick={() => props.logOutUser()}
-              type="primary"
-            >
-              Log out
-            </Button>
-          ) : (
-            <Button
-              sx={{ borderRadius: "25px" }}
-              onClick={openModal}
-              type="primary"
-            >
-              Sign in
-            </Button>
-          )}
-        </div>
+        {!props.isMobile && (
+          <div className={styles.button}>
+            {props.loggedIn ? (
+              <Button
+                sx={{ borderRadius: "25px" }}
+                onClick={() => props.logOutUser()}
+                type="primary"
+              >
+                Log out
+              </Button>
+            ) : (
+              <Button
+                sx={{ borderRadius: "25px" }}
+                onClick={openModal}
+                type="primary"
+              >
+                Sign in
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       <Modal
         className={styles.modalWithHeight}
@@ -410,6 +412,7 @@ export default function TopBar(props) {
         summaryModalOpen={summaryModalOpen}
         closeSummaryModal={closeSummaryModal}
         summaryResponse={props.summaryResponse}
+        isMobile={props.isMobile}
       />
     </div>
   );

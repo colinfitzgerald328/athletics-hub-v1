@@ -177,7 +177,7 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
-      <div className={styles.basicContainer}>
+      {/* <div className={styles.basicContainer}>
         <div className={styles.anotherContainer}>
           <div className={styles.poweredBy}>Brought to you by:</div>
           <div className={styles.pageCredit}>
@@ -220,7 +220,7 @@ export default function LeftSide(props) {
             />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

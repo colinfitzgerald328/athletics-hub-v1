@@ -60,7 +60,7 @@
 .athleteNameHolder {
   position: absolute;
   display: flex;
-  bottom: 20px;
+  bottom: 30px;
   left: 10px;
   font-size: 40px;
   font-weight: bold;

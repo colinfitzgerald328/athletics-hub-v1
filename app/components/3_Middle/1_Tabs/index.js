@@ -111,6 +111,11 @@ export default function BasicTabs(props) {
     setValue(index);
   };
 
+  var fontSizeForTabs = 14;
+  if (props.isMobile) {
+    var fontSizeForTabs = 10;
+  }
+
   return (
     <Box
       sx={{
@@ -174,7 +179,7 @@ export default function BasicTabs(props) {
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
               width: "25%",
-              fontSize: "14px",
+              fontSize: `${fontSizeForTabs}px`,
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
@@ -196,7 +201,7 @@ export default function BasicTabs(props) {
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
               width: "25%",
-              fontSize: "14px",
+              fontSize: `${fontSizeForTabs}px`,
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
@@ -218,7 +223,7 @@ export default function BasicTabs(props) {
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
               width: "25%",
-              fontSize: "14px",
+              fontSize: `${fontSizeForTabs}px`,
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
@@ -240,7 +245,7 @@ export default function BasicTabs(props) {
               fontFamily: "Bricolage Grotesque, sans-serif",
               color: "black",
               width: "25%",
-              fontSize: "14px",
+              fontSize: `${fontSizeForTabs}px`,
               borderRadius: "25px",
               transition: "background-color 0.5s ease-in-out",
               "&.Mui-selected": {
@@ -351,9 +356,7 @@ export default function BasicTabs(props) {
                       ) : (
                         <div
                           onClick={() =>
-                            props.fetchAthleteById(
-                              competitor.athlete_id,
-                            )
+                            props.fetchAthleteById(competitor.athlete_id)
                           }
                           className={styles.competitorName}
                         >

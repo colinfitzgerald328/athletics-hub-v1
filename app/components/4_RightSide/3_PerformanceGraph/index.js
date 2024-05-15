@@ -21,7 +21,9 @@ export default function PeformanceGraph(props) {
     <div className={styles.socialProfiles}>
       <div className={styles.labelHolder}>
         <div className={styles.label}>Performance Graph</div>
-        <OpenInFullIcon onClick={openModal} sx={{ cursor: "pointer" }} />
+        {!props.isMobile && (
+          <OpenInFullIcon onClick={openModal} sx={{ cursor: "pointer" }} />
+        )}
       </div>
 
       {props.loadingNewAthlete || props.athlete_data.length == 0 ? (

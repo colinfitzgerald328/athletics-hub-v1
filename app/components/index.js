@@ -21,8 +21,8 @@ export default class MainComponent extends React.Component {
       similar_athletes: [],
       top_competitors: [],
       summaryResponse: null,
-      width: 0,
-      height: 0,
+      width: null,
+      height: null,
       pageLoaded: false,
       loggedIn: false,
       showingCollections: false,
@@ -124,6 +124,9 @@ export default class MainComponent extends React.Component {
   }
 
   render() {
+    if (!this.state.width) {
+      return <div></div>;
+    }
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
         <div>
@@ -174,7 +177,7 @@ export default class MainComponent extends React.Component {
           </div>
         </div>
       );
-    } else {
+    } else if (this.state.width > 1000 && this.state.pageLoaded) {
       return (
         <div>
           <Head>

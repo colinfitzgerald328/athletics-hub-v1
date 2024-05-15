@@ -113,7 +113,8 @@ export default function AthleteBreakDown(props) {
           />
         )}
         <div className={styles.athleteNameHolder}>
-          {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
+          {(!props.isMobile && props.loadingNewAthlete) ||
+          props.loadingNewAthlete == undefined ? (
             <Skeleton
               sx={{ zIndex: 1000 }}
               animation="wave"
