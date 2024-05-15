@@ -209,10 +209,6 @@ export default function ComparisonModal(props) {
           <div className={styles.modalLabel}>
             Head to head <SportsMmaIcon />
           </div>
-          <div className={styles.explanation}>
-            <RectangleIcon /> Search for 2 athletes to compare their
-            performance!
-          </div>
           <div className={styles.content}>
             <input
               className={
@@ -283,7 +279,7 @@ export default function ComparisonModal(props) {
             )}
             <div className={styles.flexJimmy}>
               <div className={styles.athletesHolder}>
-                {athletes &&
+                {athletes.length > 0 ? (
                   athletes.map((athlete, index) => (
                     <div key={index} className={styles.athlete}>
                       <div className={styles.itemsContainer}>
@@ -330,7 +326,12 @@ export default function ComparisonModal(props) {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div>
+                    Search for two athletes and place them here to compare!{" "}
+                  </div>
+                )}
               </div>
               <BottomDrawer
                 comparisonSummary={comparisonSummary}

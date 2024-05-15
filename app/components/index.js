@@ -7,8 +7,6 @@ import RightSide from "./4_RightSide";
 import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
-import ConstructionIcon from "@mui/icons-material/Construction";
-import Link from "next/link";
 import * as API from "/app/api/api.js";
 
 export default class MainComponent extends React.Component {
@@ -125,7 +123,7 @@ export default class MainComponent extends React.Component {
 
   render() {
     if (!this.state.width) {
-      return <div></div>;
+      return <div>Loading...</div>;
     }
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
