@@ -1,11 +1,11 @@
 import React from "react";
 import { IconButton } from "@mui/material";
+import Close from "@mui/icons-material/Close";
 import Button from "@mui/joy/Button";
 import { Modal } from "antd";
 import markdownit from "markdown-it";
-
 import styles from "./styles.module.css";
-import Close from "@mui/icons-material/Close";
+
 
 const style = {
   position: "absolute",

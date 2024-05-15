@@ -13,7 +13,8 @@ import Autocomplete from "@mui/material/Autocomplete";
 import * as API from "/app/api/api.js";
 import CircularProgress from "@mui/material/CircularProgress";
 import SendIcon from "@mui/icons-material/Send";
-import { toaster } from "evergreen-ui";
+import { IconButton } from "@mui/material";
+import Close from "@mui/icons-material/Close";
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -387,7 +388,9 @@ export function BottomDrawer(props) {
             onClick={() => props.toggleDrawer(false)}
             className={styles.closeButton}
           >
-            Close
+            <IconButton>
+              <Close />
+            </IconButton>
           </div>
         </div>
         {props.comparisonSummary}
