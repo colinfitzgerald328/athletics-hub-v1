@@ -3,6 +3,11 @@
   font-size: 30px;
 }
 
+.mobileLabel {
+  font-weight: bold;
+  font-size: 16px;
+}
+
 .topBarHolder {
   display: flex;
   width: 100vw;

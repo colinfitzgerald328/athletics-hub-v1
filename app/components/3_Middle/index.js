@@ -121,12 +121,12 @@ export default function AthleteBreakDown(props) {
               width={150}
               height={150}
             ></Skeleton>
-          ) : props.athlete.hq_images ? (
+          ) : !props.isMobile && props.athlete.hq_images ? (
             <img
               src={props.athlete.hq_images[0]}
               className={styles.profileImage}
             />
-          ) : props.athlete.hq_image_url ? (
+          ) : !props.isMobile && props.athlete.hq_image_url ? (
             <img
               src={props.athlete.hq_image_url}
               className={styles.profileImage}
@@ -134,7 +134,7 @@ export default function AthleteBreakDown(props) {
           ) : (
             ""
           )}
-          <div className={styles.nameVariables}>
+          <div className={props.isMobile ? "" : styles.nameVariables}>
             {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
               <Skeleton
                 animation="wave"

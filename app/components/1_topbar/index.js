@@ -182,7 +182,9 @@ export default function TopBar(props) {
   return (
     <div className={styles.topBarHolder}>
       <div className={styles.leftItems}>
-        <div className={styles.pageLabel}>Track and Field Hub</div>
+        <div className={props.isMobile ? styles.mobileLabel : styles.pageLabel}>
+          Track and Field Hub
+        </div>
         <Button
           sx={{
             marginLeft: "15px",
