@@ -49,7 +49,7 @@ export default function SummaryModal(props) {
             <h1 className={styles.title}>Today in Track and Field</h1>
             {!props.isMobile && (
               <div className={styles.indicator}>
-                Created $
+                Created
                 {moment.utc(props.summaryResponse?.created_at).fromNow()}
               </div>
             )}
