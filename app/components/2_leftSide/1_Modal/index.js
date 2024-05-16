@@ -342,6 +342,7 @@ export default function ComparisonModal(props) {
           </div>
           <div className={styles.bottomHolder}>
             <Autocomplete
+              freeSolo
               variant="contained"
               value={value}
               onChange={(event, newValue) => {
