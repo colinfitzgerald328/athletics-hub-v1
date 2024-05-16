@@ -188,7 +188,7 @@ export default function ComparisonModal(props) {
         }}
         onClick={openModal}
       >
-        Head to head <SportsMmaIcon />
+        Head to head
       </Button>
       <ConfigProvider
         theme={{
@@ -308,7 +308,7 @@ export default function ComparisonModal(props) {
                           <CloseIcon />
                         </div>
                       </div>
-                      <div className={styles.otherItems}>
+                      {/* <div className={styles.otherItems}>
                         <div className={styles.personalBestsLabel}>
                           Personal Bests
                         </div>
@@ -324,7 +324,7 @@ export default function ComparisonModal(props) {
                             ),
                           )}
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   ))
                 ) : (
