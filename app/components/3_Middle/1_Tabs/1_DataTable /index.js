@@ -55,7 +55,13 @@ export default function DataTable(props) {
       ) : (
         ""
       )} */}
-      <div className={styles.tableHeader}>
+      <div
+        className={
+          props.isMobile
+            ? `${styles.tableHeader} ${styles.mobileHeader}`
+            : styles.tableHeader
+        }
+      >
         <div className={styles.markLabel}>Mark</div>
         <div className={styles.markLabel}>Place</div>
         <div className={styles.markLabel}>Discipline</div>
@@ -81,11 +87,21 @@ export default function DataTable(props) {
             <div
               key={index}
               className={
-                index % 2 == 0 ? styles.tableRow : styles.tableRowAlternate
+                props.isMobile
+                  ? `${styles.mobile} ${
+                      index % 2 === 0
+                        ? styles.tableRow
+                        : styles.tableRowAlternate
+                    }`
+                  : index % 2 === 0
+                    ? styles.tableRow
+                    : styles.tableRowAlternate
               }
             >
               <div className={styles.mark}>{row.mark}</div>
-              <div className={styles.mark}>{row.place ? row.place.split(".")[0] : "N/A"}</div>
+              <div className={styles.mark}>
+                {row.place ? row.place.split(".")[0] : "N/A"}
+              </div>
               <div className={styles.mark}>{row.discipline}</div>
               <div className={styles.venue}>{row.venue}</div>
               <div className={styles.result}>{row.date}</div>

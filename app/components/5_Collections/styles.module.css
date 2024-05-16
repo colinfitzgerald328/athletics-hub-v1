@@ -1,5 +1,5 @@
 .basic {
-  width: calc(100% - calc(100% / 3.5));
+  width: calc(calc(100% / 4) + calc(100% / 1.5));
   animation: slideUp 0.5s;
   display: none;
 }

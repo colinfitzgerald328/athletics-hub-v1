@@ -10,6 +10,10 @@
   border-top-left-radius: 20px;
 }
 
+.mobileHeader {
+  font-size: 12px;
+}
+
 .labeledItem {
   width: calc(100% / 4);
   font-weight: 600;
@@ -55,6 +59,10 @@
   height: 70px;
   border-bottom: 1px solid gray;
   font-size: 16px;
+}
+
+.mobile {
+  font-size: 12px;
 }
 
 .tableRow:last-child {

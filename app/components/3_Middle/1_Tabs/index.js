@@ -501,6 +501,7 @@ export default function BasicTabs(props) {
           athlete_data={props.athlete_data}
           loadingNewAthlete={props.loadingNewAthlete}
           height={props.height}
+          isMobile={props.isMobile}
         />
       </CustomTabPanel>
     </Box>
