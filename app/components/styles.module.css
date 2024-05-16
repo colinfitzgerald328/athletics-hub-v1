@@ -5,6 +5,17 @@
   position: sticky;
 }
 
+.loadingDisplay {
+  width: 100%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px);
+  width: 100vw;
+  position: sticky; */
+}
+
 .mainDisplayMobile {
   display: flex;
   flex-direction: column;

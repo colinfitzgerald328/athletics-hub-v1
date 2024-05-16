@@ -7,13 +7,14 @@ import RightSide from "./4_RightSide";
 import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
+import LinearProgress from "@mui/material/LinearProgress";
 import * as API from "/app/api/api.js";
 
 export default class MainComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      athlete: [],
+      athlete: null,
       athlete_data: [],
       athlete_accolades: [],
       similar_athletes: [],
@@ -122,8 +123,14 @@ export default class MainComponent extends React.Component {
   }
 
   render() {
-    if (!this.state.width) {
-      return <div>Loading...</div>;
+    if (!this.state.athlete) {
+      return (
+        <div className={styles.loadingDisplay}>
+          <div>
+            <LinearProgress />
+          </div>
+        </div>
+      );
     }
     if (this.state.width < 1000 && this.state.pageLoaded) {
       return (
