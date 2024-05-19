@@ -86,7 +86,13 @@ export default function LeftSide(props) {
         {loadingSearchResults ? (
           <CircularProgress size={20} className={styles.linearProgress} />
         ) : (
-          <CloseIcon className={styles.closeIcon} />
+          searchTerm.length > 0 && (
+            <CloseIcon
+              style={{ cursor: "pointer" }}
+              onClick={() => handleClearSearch()}
+              className={styles.closeIcon}
+            />
+          )
         )}
 
         <input
