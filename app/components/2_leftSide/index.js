@@ -84,17 +84,32 @@ export default function LeftSide(props) {
       <div className={styles.inputHolder}>
         <SearchIcon className={styles.searchIcon} />
         {loadingSearchResults ? (
-          <CircularProgress size={20} className={styles.linearProgress} />
+          <CircularProgress
+            size={20}
+            sx={{
+              position: "absolute",
+              zIndex: "1000",
+              color: "gray",
+              marginLeft: "calc(100% - 40px)",
+              height: "100%",
+              top: "15px",
+            }}
+          />
         ) : (
           searchTerm.length > 0 && (
             <CloseIcon
-              style={{ cursor: "pointer" }}
+              sx={{
+                position: "absolute",
+                zIndex: "1000",
+                color: "gray",
+                marginLeft: "calc(100% - 40px)",
+                height: "100%",
+              }}
               onClick={() => handleClearSearch()}
               className={styles.closeIcon}
             />
           )
         )}
-
         <input
           className={
             showSearchResults ? styles.searchBarFocused : styles.searchBar
