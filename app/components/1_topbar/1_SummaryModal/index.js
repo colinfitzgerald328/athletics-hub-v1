@@ -3,26 +3,11 @@ import { Modal } from "antd";
 import markdownit from "markdown-it";
 import moment from "moment";
 import CircularProgress from "@mui/joy/CircularProgress";
-
+import Drawer from "@mui/material/Drawer";
 import styles from "./styles.module.css";
 import { Box } from "@mui/material";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 800,
-  height: 600,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  paddingTop: "30px",
-  paddingBottom: "30px",
-  paddingLeft: "30px",
-  paddingRight: "30px",
-  borderRadius: "10px",
-  outline: "none",
-};
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function SummaryModal(props) {
   let result = ""; // Define result outside if block
@@ -31,38 +16,57 @@ export default function SummaryModal(props) {
     const md = markdownit();
     result = md.render(props.summaryResponse.summary_text); // Assign result inside if block
   }
-
-  return (
-    <Modal
-      open={props.summaryModalOpen}
-      onCancel={props.closeSummaryModal}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-      footer={null}
-      centered
-      width={"800px"}
-      scroll
+  const DrawerList = (
+    <Box
+      style={{ padding: "20px" }}
+      role="presentation"
+      onClick={() => props.closeSummaryModal()}
     >
       {props.summaryResponse ? (
         <div className={styles.container}>
           <div className={styles.topItemsHolder}>
             <h1 className={styles.title}>Today in Track and Field</h1>
-            {!props.isMobile && (
-              <div className={styles.indicator}>
-                Created {moment.utc(props.summaryResponse?.created_at).fromNow()}
+            <div className={styles.rightItems}>
+              {!props.isMobile && (
+                <div className={styles.indicator}>
+                  Created{" "}
+                  {moment.utc(props.summaryResponse?.created_at).fromNow()}
+                </div>
+              )}
+              <div
+                onClick={() => props.toggleDrawer(false)}
+                className={styles.closeButton}
+              >
+                <IconButton>
+                  <CloseIcon />
+                </IconButton>
               </div>
-            )}
+            </div>
           </div>
-          <div
-            className={styles.summaryHolder}
-            dangerouslySetInnerHTML={{ __html: result }}
-          />
+          <div className={styles.summaryJamison}>
+            <div
+              className={styles.summaryHolder}
+              dangerouslySetInnerHTML={{ __html: result }}
+            />
+          </div>
         </div>
       ) : (
         <div className={styles.containerCenter}>
           <CircularProgress />
         </div>
       )}
-    </Modal>
+    </Box>
+  );
+
+  return (
+    <div>
+      <Drawer
+        anchor="bottom"
+        open={props.summaryModalOpen}
+        onClose={() => props.closeSummaryModal()}
+      >
+        {DrawerList}
+      </Drawer>
+    </div>
   );
 }
