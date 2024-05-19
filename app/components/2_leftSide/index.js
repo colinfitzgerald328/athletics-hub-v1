@@ -82,7 +82,15 @@ export default function LeftSide(props) {
   return (
     <div className={props.isMobile ? styles.mobileLeftSide : styles.leftSide}>
       <div className={styles.inputHolder}>
-        <SearchIcon className={styles.searchIcon} />
+        <SearchIcon
+          sx={{
+            position: "absolute",
+            zIndex: "1000",
+            color: "gray",
+            marginLeft: "20px",
+            height: "100%",
+          }}
+        />
         {loadingSearchResults ? (
           <CircularProgress
             size={20}
