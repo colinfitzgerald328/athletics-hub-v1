@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
-import LinearProgress from "@mui/material/LinearProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useRef } from "react";
 import * as API from "/app/api/api.js";
 import ComparisonModal from "./1_Modal";
@@ -60,12 +60,6 @@ export default function LeftSide(props) {
     }, [ref]);
   }
 
-  // function getAndSetTop20Results() {
-  //   API.getTopRecords((data) => {
-  //     setSearchResults(data.records);
-  //   });
-  // }
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm == "") {
@@ -87,28 +81,26 @@ export default function LeftSide(props) {
 
   return (
     <div className={props.isMobile ? styles.mobileLeftSide : styles.leftSide}>
-      <input
-        className={
-          showSearchResults || (loadingSearchResults && searchTerm.length > 0)
-            ? styles.searchBarFocused
-            : styles.searchBar
-        }
-        placeholder="Search for an athlete..."
-        value={searchTerm}
-        ref={inputRef}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        spellCheck="false"
-      ></input>
-      <SearchIcon className={styles.searchIcon} />
-      {searchTerm && (
-        <div
-          className={styles.xButton}
-          onClick={() => handleClearSearch()}
-          ref={xButtonRef}
-        >
-          <CloseIcon />
-        </div>
-      )}
+      <div className={styles.inputHolder}>
+        <SearchIcon className={styles.searchIcon} />
+        {loadingSearchResults ? (
+          <CircularProgress size={20} className={styles.linearProgress} />
+        ) : (
+          <CloseIcon className={styles.closeIcon} />
+        )}
+
+        <input
+          className={
+            showSearchResults ? styles.searchBarFocused : styles.searchBar
+          }
+          placeholder="Search for an athlete..."
+          value={searchTerm}
+          ref={inputRef}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          spellCheck="false"
+        ></input>
+      </div>
+
       {showSearchResults || searchResults.length > 0 ? (
         searchResults.length == 0 ? (
           <div className={styles.searchResults} ref={searchResultsRef}>
@@ -118,7 +110,6 @@ export default function LeftSide(props) {
           </div>
         ) : (
           <div className={styles.searchResults} ref={searchResultsRef}>
-            {loadingSearchResults && <LinearProgress />}
             {searchResults.map((result) => (
               <div
                 key={result.aaAthleteId}
@@ -146,10 +137,6 @@ export default function LeftSide(props) {
             ))}
           </div>
         )
-      ) : loadingSearchResults && searchTerm.length > 0 ? (
-        <div className={styles.searchResults}>
-          <LinearProgress />
-        </div>
       ) : (
         ""
       )}
@@ -177,50 +164,6 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
-      {/* <div className={styles.basicContainer}>
-        <div className={styles.anotherContainer}>
-          <div className={styles.poweredBy}>Brought to you by:</div>
-          <div className={styles.pageCredit}>
-            <img
-              onClick={() => window.open("https://worldathletics.org")}
-              className={styles.basicImageWithSlightMargin}
-              src="https://media.aws.iaaf.org/logos/wa-logo.svg"
-            />
-            <img
-              onClick={() => window.open("https://www.mongodb.com")}
-              className={styles.basicImageWithSlightMargin}
-              src="https://webimages.mongodb.com/_com_assets/cms/kuyjf3vea2hg34taa-horizontal_default_slate_blue.svg?auto=format%252Ccompress"
-            />
-            <img
-              onClick={() => window.open("https://www.pinecone.io")}
-              className={styles.basicImageWithSlightMargin}
-              src="https://d7umqicpi7263.cloudfront.net/img/product/738798c3-eeca-494a-a2a9-161bee9450b2/310429fb-2ce8-4186-adea-cc619511ac3c.png"
-            />
-            <img
-              onClick={() => window.open("https://cloud.google.com/?hl=en")}
-              className={styles.basicImageWithSlightMargin}
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/2560px-Google_Cloud_logo.svg.png"
-            />
-            <img
-              onClick={() =>
-                window.open("https://cloud.google.com/vertex-ai?hl=en")
-              }
-              className={styles.basicImageWithSlightMargin}
-              src="https://miro.medium.com/v2/resize:fit:513/1*aeXlwnOS3DvVHiMVgBZbpQ.png"
-            />
-            <img
-              onClick={() => window.open("https://aws.amazon.com/ec2/")}
-              className={styles.basicImageWithSlightMargin}
-              src="https://miro.medium.com/v2/resize:fit:720/1*icemCezVMahlyIQB31tzpA.png"
-            />
-            <img
-              onClick={() => window.open("https://deepinfra.com")}
-              className={styles.basicImageWithSlightMargin}
-              src="https://deepinfra.com/_next/static/media/logo.4a03fd3d.svg"
-            />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

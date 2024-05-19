@@ -14,7 +14,7 @@
 .searchBar {
   width: 100%;
   height: 50px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 25px;
   font-size: 20px;
   padding-left: 50px;
@@ -23,14 +23,14 @@
 }
 
 .searchBar:focus {
-  border: none;
+  border: 2px solid dodgerblue;
   outline: none;
 }
 
 .searchBarFocused {
   width: 100%;
   height: 50px;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 25px;
   font-size: 20px;
   padding-left: 50px;
@@ -41,23 +41,24 @@
   border-bottom-right-radius: 0px;
 }
 
+.searchBarFocused:focus {
+  border: 2px solid dodgerblue;
+  border-bottom: none;
+  outline: none;
+}
+
 .searchIcon {
   position: absolute;
-  left: 32px;
-  margin-top: 13px;
+  z-index: 1000;
   color: gray;
+  margin-left: 20px;
+  height: 100%;
 }
 
 .xButton {
+  background-color: red;
   position: absolute;
-  transform: translateY(-42px);
-  left: calc(100% - 55px);
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: gray;
+  margin-bottom: 50px;
 }
 
 .xButton:hover {
@@ -75,6 +76,8 @@
   position: absolute;
   z-index: 1000;
   width: calc(100% - 20px);
+  border-top: none; 
+  border: 2px solid dodgerblue;
 }
 
 .singleResult {
@@ -191,3 +194,26 @@
     transform: translateY(0%);
   }
 }
+
+.inputHolder {
+  height: 50px;
+  width: 100%;
+  position: relative;
+}
+
+.linearProgress {
+  position: absolute;
+  z-index: 1000;
+  color: gray;
+  margin-left: calc(100% - 40px);
+  height: 100%;
+  top: 15px; 
+}
+
+.closeIcon {
+  position: absolute;
+  z-index: 1000;
+  color: gray;
+  margin-left: calc(100% - 40px);
+  height: 100%;
+} 
