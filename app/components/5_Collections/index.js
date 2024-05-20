@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Button } from "@mui/joy";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
@@ -141,10 +141,10 @@ export default function Collections(props) {
           </IconButton>
         </div>
       </div>
-      <div className={styles.contentHolder}>
-        <div className={styles.collections}>
-          {props.user_collections.length > 0 &&
-            props.user_collections.map((collection, index) => (
+      {props.user_collections.length > 0 ? (
+        <div className={styles.contentHolder}>
+          <div className={styles.collections}>
+            {props.user_collections.map((collection, index) => (
               <div
                 onClick={() => handleSelect(index)}
                 key={index}
@@ -172,9 +172,8 @@ export default function Collections(props) {
                 </div>
               </div>
             ))}
-        </div>
-        <div className={styles.panel}>
-          {props.user_collections.length > 0 ? (
+          </div>
+          <div className={styles.panel}>
             <div className={styles.textLabels}>
               <input
                 ref={editingRef}
@@ -196,17 +195,8 @@ export default function Collections(props) {
                 isMobile={props.isMobile}
               />
             </div>
-          ) : (
-            <div className={styles.noCollectionsYet}>
-              <div>
-                It&apos;s a blank canvas for now. Click{" "}
-                <strong>New Collection</strong> to create your first collection
-                🖼️
-              </div>
-            </div>
-          )}
-          {collections.length > 0 &&
-            collections[currentIndex].detailed_athletes.map(
+
+            {collections[currentIndex].detailed_athletes.map(
               (athlete, index) => (
                 <div key={index} className={styles.competitor}>
                   <div className={styles.topItems}>
@@ -292,8 +282,13 @@ export default function Collections(props) {
                 </div>
               ),
             )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className={styles.contentHolderClone}>
+          <Button>+ Create Collection</Button>
+        </div>
+      )}
     </div>
   );
 }

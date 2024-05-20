@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
-import { Button, Modal, ConfigProvider } from "antd";
+import { Modal } from "antd";
+import { Button } from "@mui/joy";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
-import CreateIcon from "@mui/icons-material/Create";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import * as API from "/app/api/api.js";
 
 export default function CreateCollectionModal(props) {
@@ -65,12 +64,6 @@ export default function CreateCollectionModal(props) {
     }, [ref]);
   }
 
-  // function getAndSetTop20Results() {
-  //   API.getTopRecords((data) => {
-  //     setSearchResults(data.records);
-  //   });
-  // }
-
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
       if (searchTerm == "") {
@@ -88,10 +81,6 @@ export default function CreateCollectionModal(props) {
     setSearchResults([]);
     setSearchTerm("");
     setShowSearchResults(false);
-  }
-
-  function openModal() {
-    setModalOpen(true);
   }
 
   function closeModal() {
@@ -143,13 +132,13 @@ export default function CreateCollectionModal(props) {
 
   return (
     <>
-      <Button
+      {/* <Button
         type="primary"
         className={styles.createCollectionLabel}
         onClick={openModal}
       >
         New Collection
-      </Button>
+      </Button> */}
       <Modal
         footer=""
         open={modalOpen}

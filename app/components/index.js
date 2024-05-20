@@ -153,13 +153,13 @@ export default class MainComponent extends React.Component {
               fetchAthleteById={this.fetchAthleteById.bind(this)}
               isMobile={true}
             />
-            <Collections
+            {/* <Collections
               closeCollections={this.closeCollections.bind(this)}
               getCollectionsForUser={this.getCollectionsForUser.bind(this)}
               user_collections={this.state.user_collections}
               showingCollections={this.state.showingCollections}
               isMobile={true}
-            />
+            /> */}
             <AthleteBreakDown
               athlete={this.state.athlete}
               loadingNewAthlete={this.state.loadingNewAthlete}

@@ -60,6 +60,7 @@ export default function AthleteBreakDown(props) {
   }
 
   function closeCarouselModal() {
+    console.log("trying to close");
     setCarouselModalOpen(false);
   }
 
@@ -80,6 +81,7 @@ export default function AthleteBreakDown(props) {
           <Skeleton
             animation="wave"
             height={350}
+            style={{ borderRadius: "25px" }}
             variant="rectangular"
           ></Skeleton>
         ) : props.athlete.hq_images ? (
