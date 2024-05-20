@@ -1,4 +1,4 @@
-import { Modal } from "@mui/joy";
+import { Modal, Box } from "@mui/joy";
 import styles from "./styles.module.css";
 import { Example } from "./example";
 
@@ -7,15 +7,21 @@ export default function CarouselModal(props) {
     return { original: image, thumbnail: image };
   });
 
+  const style = {
+    display: "flex",
+    alignItems: "center",
+  };
+
   return (
     <Modal
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       open={props.carouselModalOpen}
       onClose={() => props.closeCarouselModal()}
     >
-      <div className={styles.exampleContainer}>
-        <Example athlete_images={props.athlete_images} />
-      </div>
+      <Box onClick={() => props.closeCarouselModal()} sx={style}>
+        <div className={styles.exampleContainer}>
+          <Example athlete_images={props.athlete_images} />
+        </div>
+      </Box>
     </Modal>
   );
 }

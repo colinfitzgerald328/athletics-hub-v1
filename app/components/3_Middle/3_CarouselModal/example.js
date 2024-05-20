@@ -69,10 +69,22 @@ export const Example = (props) => {
           }}
         />
       </AnimatePresence>
-      <div className={styles.next} onClick={() => paginate(1)}>
+      <div
+        className={styles.next}
+        onClick={(e) => {
+          e.stopPropagation();
+          paginate(1);
+        }}
+      >
         {"‣"}
       </div>
-      <div className={styles.prev} onClick={() => paginate(-1)}>
+      <div
+        className={styles.prev}
+        onClick={(e) => {
+          e.stopPropagation();
+          paginate(-1);
+        }}
+      >
         {"‣"}
       </div>
     </>
