@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Skeleton, Button } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 export default function DataTable(props) {
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -27,88 +34,34 @@ export default function DataTable(props) {
     setScrolled(true);
   }
   return (
-    <div className={styles.tableContainer}>
-      {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
-        <Button
-          onClick={() => scrollIntoView()}
-          sx={{
-            width: "150px",
-            height: "50px",
-            backgroundColor: "#323232",
-            fontWeight: "bold",
-            borderRadius: "25px",
-            paddingTop: "10px",
-            paddingBottom: "10px",
-            fontSize: "18px",
-            color: "white",
-          }}
-          variant="contained"
-          style={{
-            position: "absolute",
-            top: props.height - 600 + "px",
-            zIndex: "1000",
-            right: 0,
-          }}
-        >
-          Scroll
-        </Button>
-      ) : (
-        ""
-      )} */}
-      <div
-        className={
-          props.isMobile
-            ? `${styles.tableHeader} ${styles.mobileHeader}`
-            : styles.tableHeader
-        }
-      >
-        <div className={styles.markLabel}>Mark</div>
-        <div className={styles.markLabel}>Place</div>
-        <div className={styles.markLabel}>Discipline</div>
-        <div className={styles.venueLabel}>Venue</div>
-        <div className={styles.labeledItem}>Date</div>
-      </div>
-      <div className={styles.table}>
-        {props.loadingNewAthlete ? (
-          <div>
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-            <Skeleton height={70} animation="wave" />
-          </div>
-        ) : (
-          props.athlete_data.map((row, index) => (
-            <div
-              key={index}
-              className={
-                props.isMobile
-                  ? `${styles.mobile} ${
-                      index % 2 === 0
-                        ? styles.tableRow
-                        : styles.tableRowAlternate
-                    }`
-                  : index % 2 === 0
-                    ? styles.tableRow
-                    : styles.tableRowAlternate
-              }
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Mark</TableCell>
+            <TableCell align="right">Place</TableCell>
+            <TableCell align="right">Discipline</TableCell>
+            <TableCell align="right">Venue</TableCell>
+            <TableCell align="right">Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {props.athlete_data.map((row) => (
+            <TableRow
+              key={row.name}
+              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <div className={styles.mark}>{row.mark}</div>
-              <div className={styles.mark}>
+              <TableCell align="right">{row.mark}</TableCell>
+              <TableCell align="right">
                 {row.place ? row.place.split(".")[0] : "N/A"}
-              </div>
-              <div className={styles.mark}>{row.discipline}</div>
-              <div className={styles.venue}>{row.venue}</div>
-              <div className={styles.result}>{row.date}</div>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
+              </TableCell>
+              <TableCell align="right">{row.discipline}</TableCell>
+              <TableCell align="right">{row.venue}</TableCell>
+              <TableCell align="right">{row.date}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 }
