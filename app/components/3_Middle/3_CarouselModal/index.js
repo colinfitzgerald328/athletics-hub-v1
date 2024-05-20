@@ -3,10 +3,6 @@ import styles from "./styles.module.css";
 import { Example } from "./example";
 
 export default function CarouselModal(props) {
-  const athleteImages = props.athlete_images.map((image) => {
-    return { original: image, thumbnail: image };
-  });
-
   const style = {
     display: "flex",
     alignItems: "center",
