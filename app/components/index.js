@@ -47,6 +47,7 @@ export default class MainComponent extends React.Component {
 
   getCollectionsForUser() {
     API.getCollectionsForAccount((data) => {
+      console.log("recevied data, ", data);
       this.setState({
         user_collections: data,
         loadingCollections: false,

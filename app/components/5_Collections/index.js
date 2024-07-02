@@ -196,7 +196,7 @@ export default function Collections(props) {
               />
             </div>
 
-            {collections[currentIndex].detailed_athletes.map(
+            {collections[currentIndex]?.detailed_athletes.map(
               (athlete, index) => (
                 <div key={index} className={styles.competitor}>
                   <div className={styles.topItems}>
@@ -285,9 +285,10 @@ export default function Collections(props) {
           </div>
         </div>
       ) : (
-        <div className={styles.contentHolderClone}>
-          <Button>+ Create Collection</Button>
-        </div>
+        <CreateCollectionModal
+          isMobile={props.isMobile}
+          getCollectionsForUser={props.getCollectionsForUser}
+        />
       )}
     </div>
   );

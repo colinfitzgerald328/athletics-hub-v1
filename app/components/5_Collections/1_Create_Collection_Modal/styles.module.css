@@ -317,3 +317,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.contentHolderClone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: calc(100% - 50px);
+  margin-left: 5px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px slategray;
+}
+

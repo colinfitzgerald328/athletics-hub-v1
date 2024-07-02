@@ -130,15 +130,15 @@ export default function CreateCollectionModal(props) {
     }, 1000);
   }
 
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <>
-      {/* <Button
-        type="primary"
-        className={styles.createCollectionLabel}
-        onClick={openModal}
-      >
-        New Collection
-      </Button> */}
+      <div className={styles.contentHolderClone}>
+        <Button onClick={openModal}>+ Create Collection</Button>
+      </div>
       <Modal
         footer=""
         open={modalOpen}
