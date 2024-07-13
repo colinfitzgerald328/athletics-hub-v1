@@ -70,14 +70,14 @@ export default class MainComponent extends React.Component {
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    API.getRandomDoc((athlete) => {
+    API.getRandomDoc((data) => {
       this.setState({
-        athlete: athlete.json_data.athlete,
+        athlete: data.athlete,
         loadingNewAthlete: false,
         pageLoaded: true,
-        athlete_data: athlete.json_data.results,
-        similar_athletes: athlete.similar_athletes,
-        top_competitors: athlete.json_data.top_competitors,
+        athlete_data: data.results,
+        similar_athletes: data.similar_athletes,
+        top_competitors: data.top_competitors,
       });
     });
   }
@@ -87,14 +87,14 @@ export default class MainComponent extends React.Component {
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    API.getAthleteById(athlete_id, (athlete) => {
+    API.getAthleteById(athlete_id, (data) => {
       this.setState({
-        athlete: athlete.json_data.athlete,
+        athlete: data.athlete,
         loadingNewAthlete: false,
         pageLoaded: true,
-        athlete_data: athlete.json_data.results,
-        similar_athletes: athlete.similar_athletes,
-        top_competitors: athlete.json_data.top_competitors,
+        athlete_data: data.results,
+        similar_athletes: data.similar_athletes,
+        top_competitors: data.top_competitors,
       });
     });
   }
