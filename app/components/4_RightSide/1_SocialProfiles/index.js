@@ -17,53 +17,58 @@ export default function SocialProfiles(props) {
   }, [props.athlete.social_urls]);
 
   function getTwitterHandle(socialUrls) {
-    try {
-      const twitterObject = socialUrls.find((urlObject) =>
-        urlObject.hasOwnProperty("twitter_url"),
-      );
-      if (twitterObject) {
-        const twitterUrl = twitterObject.twitter_url;
-        const twitterHandle = twitterUrl.split("/").pop();
-        return twitterHandle;
 
+    if (Object.keys(socialUrls).length == 0) {
+      return; 
     }
-    } catch (error) {
-      console.log(error);
+
+    if (!socialUrls.length) {
+      return; 
     }
+    
+    const twitterObject = socialUrls.find((urlObject) =>
+        urlObject.hasOwnProperty("twitter_url"),
+    );
+
+    if (!twitterObject) {
+      return; 
+    }
+
+    const twitterUrl = twitterObject.twitter_url;
+    const twitterHandle = twitterUrl.split("/").pop();
+    return twitterHandle;
   }
 
   function getInstagramHandle(socialUrls) {
-    try {
-
-
-    if (!socialUrls) {
-      return;
+    if (Object.keys(socialUrls).length == 0) {
+      return; 
     }
+
+    if (!socialUrls.length) {
+      return; 
+    }
+
     const instagramObject = socialUrls.find((urlObject) =>
       urlObject.hasOwnProperty("instagram_url"),
     );
 
-    if (instagramObject) {
-      const instagramUrl = instagramObject.instagram_url;
-
-      const regex = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([^\/?]+)/i;
-
-      const match = instagramUrl.match(regex);
-
-      if (match) {
-        // Extract the username from the matched part
-        const instagramHandle = match[1];
-        return instagramHandle;
-      } else {
-        // If the URL doesn't match the expected format, return null
-        return null;
-      }
-    } else {
-      return null;
+    if (!instagramObject) {
+      return 
     }
-  } catch (error) {
-    console.log(error);
-  }
+
+    const instagramUrl = instagramObject.instagram_url;
+
+    const regex = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([^\/?]+)/i;
+
+    const match = instagramUrl.match(regex);
+
+    if (!match) {
+      return; 
+    }
+
+    const instagramHandle = match[1];
+    return instagramHandle;
+
   }
 
   return (

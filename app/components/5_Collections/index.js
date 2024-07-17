@@ -44,7 +44,6 @@ export default function Collections(props) {
 
   useEffect(() => {
     setCollections(props.user_collections);
-    console.log("collections are, ", props.user_collections);
   }, [props.user_collections]);
 
   function useOutsideAlerter(ref) {
@@ -52,6 +51,10 @@ export default function Collections(props) {
       /**
        * Alert if clicked on outside of element
        */
+      if (!props.showingCollections) {
+        return
+      }
+      
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           checkForNameChangeAndSendAPICall(collections, currentIndex);
@@ -73,6 +76,7 @@ export default function Collections(props) {
   }
 
   function checkForNameChangeAndSendAPICall(collections, currentIndex) {
+    console.log("called from here")
     if (collections.length == 0) {
       // if there are no collections, do nothing
       return;
