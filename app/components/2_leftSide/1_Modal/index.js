@@ -61,12 +61,11 @@ export default function ComparisonModal(props) {
     setDrawerOpen(openState);
   }
 
-  function handleSearchTermChange(searchTerm) {
-    API.getSearchResultsForQuery(searchTerm, (data) => {
-      setShowSearchResults(true);
-      setSearchResults(data);
-      setLoadingSearchResults(false);
-    });
+  async function handleSearchTermChange(searchTerm) {
+    const results = await getSearchResultsForQuery(searchTerm)
+    setShowSearchResults(true);
+    setSearchResults(results);
+    setLoadingSearchResults(false);
   }
 
   function handleClearSearch() {
@@ -149,7 +148,7 @@ export default function ComparisonModal(props) {
     setAthletes(currentAthletes);
   }
 
-  function getResponse() {
+  async function getResponse() {
     if (athletes.length < 2) {
       alert("You need to choose 2 athletes to compare");
       return;
@@ -158,16 +157,14 @@ export default function ComparisonModal(props) {
     const athlete_id_1 = athletes[0].athlete_id;
     const athlete_id_2 = athletes[1].athlete_id;
     const comparison_distance = value;
-    API.compareTwoAthletes(
+    const result = await compareTwoAthletes(
       athlete_id_1,
       athlete_id_2,
-      comparison_distance,
-      (response) => {
-        setComparisonSummary(response.comparison_summary);
-        setLoadingComparison(false);
-        toggleDrawer(true);
-      },
-    );
+      comparison_distance
+    )
+    setComparisonSummary(result.comparison_summary);
+    setLoadingComparison(false);
+    toggleDrawer(true);
   }
 
   return (
@@ -379,6 +376,7 @@ export default function ComparisonModal(props) {
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
+import { compareTwoAthletes, getSearchResultsForQuery } from "/app/api/api.js";
 
 export function BottomDrawer(props) {
   const DrawerList = (

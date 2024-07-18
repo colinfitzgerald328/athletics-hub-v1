@@ -10,6 +10,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HubIcon from "@mui/icons-material/Hub";
 import * as API from "/app/api/api.js";
 import SummaryModal from "./1_SummaryModal";
+import { loginUser } from "/app/api/api.js";
 
 const style = {
   position: "absolute",
@@ -45,65 +46,59 @@ export default function TopBar(props) {
   const [summaryModalOpen, setSummaryModalOpen] = useState(false);
   const [errMessage, setErrMessage] = useState(null);
 
-  function handleLogin() {
+  async function handleLogin() {
     if (userName === "" || password === "") {
       setDangerAlertOpen(true);
       return;
     }
     setLoggingIn(true);
-    setTimeout(() => {
-      API.loginUser(userName, password, (data) => {
-        if (data.detail) {
-          setErrMessage(data.detail);
-          setLoggingIn(false);
-          setDangerAlertOpen(true);
+    const result = await loginUser(userName, password)
+    if (result.detail) {
+      setErrMessage(result.detail);
+      setLoggingIn(false);
+      setDangerAlertOpen(true);
+      setTimeout(() => {
+          setDangerAlertOpen(false);
           setTimeout(() => {
-            setDangerAlertOpen(false);
-            setTimeout(() => {
-              setErrMessage(null);
-            }, 2000);
+            setErrMessage(null);
           }, 2000);
-          return;
-        }
-        localStorage.setItem("userName", userName);
-        localStorage.setItem("password", password);
-        localStorage.setItem("account_id", data["id"]);
-        setOpen(true);
-        props.logInUser();
-        cancelModal();
-      });
-    }, 1000);
+        }, 2000);
+        return;
+    }
+    localStorage.setItem("userName", userName);
+    localStorage.setItem("password", password);
+    localStorage.setItem("account_id", result["id"]);
+    setOpen(true);
+    props.logInUser();
+    cancelModal();
   }
 
-  function createAccount() {
+  async function createAccount() {
     if (userName == "" || password == "") {
       setAccountFailedOpen(true);
       return;
     }
     setLoggingIn(true);
-    setTimeout(() => {
-      API.createAccount(userName, password, (data) => {
-        if (data.detail) {
-          setErrMessage(data.detail);
-          setAccountFailedOpen(true);
-          setLoggingIn(false);
+    const result = await createAccount(userName, password)
+    if (result.detail) {
+      setErrMessage(result.detail);
+      setAccountFailedOpen(true);
+      setLoggingIn(false);
+      setTimeout(() => {
+          setAccountFailedOpen(false);
           setTimeout(() => {
-            setAccountFailedOpen(false);
-            setTimeout(() => {
-              setErrMessage(null);
-            }, 2000);
+            setErrMessage(null);
           }, 2000);
-          return;
-        }
-        setLoggingIn(false);
-        localStorage.setItem("userName", userName);
-        localStorage.setItem("password", password);
-        localStorage.setItem("account_id", data["id"]);
-        setCreatedAccountOpen(true);
-        props.logInUser();
-        cancelModal();
-      });
-    }, 1000);
+        }, 2000);
+        return;
+    }
+    setLoggingIn(false);
+    localStorage.setItem("userName", userName);
+    localStorage.setItem("password", password);
+    localStorage.setItem("account_id", data["id"]);
+    setCreatedAccountOpen(true);
+    props.logInUser();
+    cancelModal();
   }
 
   const handleClose = (event, reason) => {

@@ -13,6 +13,7 @@ import moment from "moment";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { toaster } from "evergreen-ui";
 import * as API from "/app/api/api.js";
+import { modifyCollection } from "/app/api/api.js";
 
 export default function Collections(props) {
   const [collections, setCollections] = useState(props.user_collections);
@@ -75,25 +76,23 @@ export default function Collections(props) {
     setCollections(newCollections);
   }
 
-  function checkForNameChangeAndSendAPICall(collections, currentIndex) {
+  async function checkForNameChangeAndSendAPICall(collections, currentIndex) {
     console.log("called from here")
     if (collections.length == 0) {
       // if there are no collections, do nothing
       return;
     }
-    API.modifyCollection(
+    const response = await modifyCollection(
       collections[currentIndex].collection_name,
       "UPDATE_NAME",
       collections[currentIndex]["id"],
       null,
-      null,
-      (response) => {
-        if (response.name_was_updated) {
-          toaster.success("Collection name updated");
-          props.getCollectionsForUser();
-        }
-      },
-    );
+      null
+    )
+    if (response.name_was_updated) {
+      toaster.success("Collection name updated");
+      props.getCollectionsForUser();
+    }
   }
 
   function handleCloseCollections() {

@@ -4,6 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import styles from "./styles.module.css";
 import * as API from "/app/api/api.js";
 import { TrashIcon } from "evergreen-ui";
+import { modifyCollection } from "/app/api/api.js";
 
 export default function DeleteOptionMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,19 +16,18 @@ export default function DeleteOptionMenu(props) {
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
-    API.modifyCollection(
+  async function handleDelete() {
+    await modifyCollection(
       null,
       "DELETE",
       props.collection_id,
       props.athlete_id,
-      null,
-      (data) => {
-        props.getCollectionsForUser();
-      },
-    );
+      null
+    )
+    props.getCollectionsForUser();
     setAnchorEl(null);
-  };
+  }
+
   return (
     <React.Fragment>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>

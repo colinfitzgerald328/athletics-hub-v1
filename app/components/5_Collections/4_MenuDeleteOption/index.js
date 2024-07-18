@@ -7,6 +7,7 @@ import { MoreVert } from "@mui/icons-material";
 import * as API from "/app/api/api.js";
 import styles from "./styles.module.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { deleteCollection } from "/app/api/api.js";
 
 export default function CollectionDeleteOption(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -20,15 +21,14 @@ export default function CollectionDeleteOption(props) {
     setAnchorEl(null);
   };
 
-  const handleDelete = () => {
-    API.deleteCollection(props.collection_id, (data) => {
-      if (props.currentIndex >= 1) {
+  async function handleDelete() {
+    await deleteCollection(props.collection_id)
+    if (props.currentIndex >= 1) {
         props.handleSelect(props.currentIndex - 1);
       }
-      props.getCollectionsForUser();
-    });
+    props.getCollectionsForUser();
     setAnchorEl(null);
-  };
+  }
 
   return (
     <React.Fragment>

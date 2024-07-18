@@ -8,7 +8,7 @@ import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
 import LinearProgress from "@mui/material/LinearProgress";
-import * as API from "/app/api/api.js";
+import { getAthleteById, getCollectionsForAccount, getRandomDoc, getLetsRunDailySummary } from "/app/api/api.js";
 
 export default class MainComponent extends React.Component {
   constructor(props) {
@@ -45,14 +45,12 @@ export default class MainComponent extends React.Component {
     this.getLetsRunDailySummary();
   }
 
-  getCollectionsForUser() {
-    API.getCollectionsForAccount((data) => {
-      console.log("recevied data, ", data);
+  async getCollectionsForUser() {
+    const collections = await getCollectionsForAccount()
       this.setState({
-        user_collections: data,
+        user_collections: collections,
         loadingCollections: false,
       });
-    });
   }
 
   logInUser() {
@@ -65,50 +63,47 @@ export default class MainComponent extends React.Component {
     window.localStorage.clear();
   }
 
-  fetchRandomAthlete() {
+  async fetchRandomAthlete() {
     this.setState({
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    API.getRandomDoc((data) => {
+    const randomDoc = await getRandomDoc()
       this.setState({
-        athlete: data.athlete,
+        athlete: randomDoc.athlete,
         loadingNewAthlete: false,
         pageLoaded: true,
-        athlete_data: data.results,
-        similar_athletes: data.similar_athletes,
-        top_competitors: data.top_competitors,
+        athlete_data: randomDoc.results,
+        similar_athletes: randomDoc.similar_athletes,
+        top_competitors: randomDoc.top_competitors,
       });
-    });
   }
 
-  fetchAthleteById(athlete_id) {
+  async fetchAthleteById(athlete_id) {
     this.setState({
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    API.getAthleteById(athlete_id, (data) => {
+    const athlete = await getAthleteById(athlete_id)
       this.setState({
-        athlete: data.athlete,
+        athlete: athlete.athlete,
         loadingNewAthlete: false,
         pageLoaded: true,
-        athlete_data: data.results,
-        similar_athletes: data.similar_athletes,
-        top_competitors: data.top_competitors,
+        athlete_data: athlete.results,
+        similar_athletes: athlete.similar_athletes,
+        top_competitors: athlete.top_competitors,
       });
-    });
   }
 
   updateWindowDimensions() {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
-  getLetsRunDailySummary() {
-    API.getLetsRunDailySummary((data) => {
+  async getLetsRunDailySummary() {
+    const summary = await getLetsRunDailySummary()
       this.setState({
-        summaryResponse: data,
+        summaryResponse: summary,
       });
-    });
   }
 
   showCollections() {

@@ -7,6 +7,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import * as API from "/app/api/api.js";
+import { getSearchResultsForQuery, modifyCollection } from "/app/api/api.js";
 
 export default function AddToCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,12 +23,11 @@ export default function AddToCollectionModal(props) {
   const [collectionName, setCollectionName] = useState("");
   const [savingCollection, setSavingCollection] = useState(false);
 
-  function handleSearchTermChange(searchTerm) {
-    API.getSearchResultsForQuery(searchTerm, (data) => {
-      setShowSearchResults(true);
-      setSearchResults(data);
-      setLoadingSearchResults(false);
-    });
+  async function handleSearchTermChange(searchTerm) {
+    const searchResults = await getSearchResultsForQuery(searchTerm)
+    setShowSearchResults(true);
+    setSearchResults(searchResults);
+    setLoadingSearchResults(false);
   }
 
   function handleClearSearch() {
@@ -105,28 +105,24 @@ export default function AddToCollectionModal(props) {
     setAthletes(currentAthletes);
   }
 
-  function saveCollection() {
+  async function saveCollection() {
     const collectionId = props.user_collections[props.currentIndex]["id"];
     setSavingCollection(true);
     const athlete_ids = [];
     athletes.forEach((athlete) =>
       athlete_ids.push(athlete.json_data.athlete.athlete_id),
     );
-    setTimeout(() => {
-      API.modifyCollection(
+    await modifyCollection(
         null,
         "ADD",
         collectionId,
         null,
-        athlete_ids,
-        (data) => {
-          setSavingCollection(false);
-          setModalOpen(false);
-          setAthletes([]);
-          props.getCollectionsForUser();
-        },
-      );
-    }, 300);
+        athlete_ids
+    )
+    setSavingCollection(false);
+    setModalOpen(false);
+    setAthletes([]);
+    props.getCollectionsForUser();
   }
 
   return (

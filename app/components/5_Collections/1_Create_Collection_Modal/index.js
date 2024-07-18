@@ -7,6 +7,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { useRef } from "react";
 import * as API from "/app/api/api.js";
+import { createCollection, getSearchResultsForQuery } from "/app/api/api.js";
 
 export default function CreateCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,12 +23,11 @@ export default function CreateCollectionModal(props) {
   const [collectionName, setCollectionName] = useState("");
   const [savingCollection, setSavingCollection] = useState(false);
 
-  function handleSearchTermChange(searchTerm) {
-    API.getSearchResultsForQuery(searchTerm, (data) => {
-      setShowSearchResults(true);
-      setSearchResults(data);
-      setLoadingSearchResults(false);
-    });
+  async function handleSearchTermChange(searchTerm) {
+    const results = await getSearchResultsForQuery(searchTerm)
+    setShowSearchResults(true);
+    setSearchResults(results);
+    setLoadingSearchResults(false);
   }
 
   function handleClearSearch() {
@@ -102,7 +102,7 @@ export default function CreateCollectionModal(props) {
     setAthletes(currentAthletes);
   }
 
-  function saveCollection() {
+  async function saveCollection() {
     if (collectionName === "") {
       alert("Please enter a name for your collection");
       return;
@@ -119,15 +119,12 @@ export default function CreateCollectionModal(props) {
     }
 
     setSavingCollection(true);
-    setTimeout(() => {
-      API.createCollection(collectionName, athlete_ids, (data) => {
-        setSavingCollection(false);
-        setModalOpen(false);
-        setCollectionName("");
-        setAthletes([]);
-        props.getCollectionsForUser();
-      });
-    }, 1000);
+    await createCollection(collectionName, athlete_ids)
+    setSavingCollection(false);
+    setModalOpen(false);
+    setCollectionName("");
+    setAthletes([]);
+    props.getCollectionsForUser();
   }
 
   const openModal = () => {

@@ -7,6 +7,7 @@ import * as API from "/app/api/api.js";
 import ComparisonModal from "./1_Modal";
 import styles from "./styles.module.css";
 import { Button } from "@mui/material";
+import { getSearchResultsForQuery } from "/app/api/api.js";
 
 export default function LeftSide(props) {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -18,12 +19,11 @@ export default function LeftSide(props) {
   useOutsideAlerter(inputRef);
   const xButtonRef = useRef(null);
 
-  function handleSearchTermChange(searchTerm) {
-    API.getSearchResultsForQuery(searchTerm, (data) => {
-      setShowSearchResults(true);
-      setSearchResults(data);
-      setLoadingSearchResults(false);
-    });
+  async function handleSearchTermChange(searchTerm) {
+    const searchResults = await getSearchResultsForQuery(searchTerm)
+    setShowSearchResults(true);
+    setSearchResults(searchResults);
+    setLoadingSearchResults(false);
   }
 
   function handleClearSearch() {
