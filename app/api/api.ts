@@ -7,6 +7,7 @@ import { components } from "@/src/lib/api/v1";
 type CreateCollectionPayload = components['schemas']['CreateCollectionPayload'];
 type CreateAccountPayload = components['schemas']['CreateAccountPayload']
 type LoginPayload = components['schemas']['LoginPayload']
+type ModifyCollectionPayload = components['schemas']['ModifyCollectionPayload']
 
 
 const client = createClient<paths>({ baseUrl: API_URL });
@@ -69,10 +70,10 @@ export async function loginUser(payload: LoginPayload) {
 
 }
 
-export async function createAccount(body: CreateAccountPayload) {
+export async function createAccount(payload: CreateAccountPayload) {
   const { data, error } = await client.POST("/account/create", {
     params: {}, 
-    body: body // Remove the extra nested "body" key
+    body: payload 
   });
 
   if (error) {
@@ -101,51 +102,81 @@ export async function createCollection(
 
 
 
-export async function getCollectionsForAccount() {
-  const subRoute = `/collections/user?account_id=${localStorage.getItem(
-    "account_id"
-  )}`;
-  return genericGet(subRoute);
+export async function getCollectionsForAccount(account_id: number) {
+  const { data, error } = await client.GET("/collections/user", {
+    params: {
+      query: {
+        account_id: account_id
+      }
+    }
+  })
+
+  if (error) {
+    return error
+  }
+  return data 
 }
 
-export async function modifyCollection(
-  newName,
-  action,
-  collectionId,
-  athleteId,
-  athleteIds,
+export async function modifyCollection(payload: ModifyCollectionPayload
 ) {
-  const data = {
-    new_name: newName,
-    action: action,
-    collection_id: collectionId,
-    athlete_id: athleteId,
-    athlete_ids: athleteIds
-  };
+  const { data, error } = await client.POST("/collections/modify", 
+  {
+    params: {}, 
+    body: payload
+  })
 
-  const subRoute = "/collections/modify";
-  return genericPost(subRoute, data);
+  if (error) {
+    return error
+  }
+
+  return data 
 }
 
-export async function deleteCollection(collectionId) {
-  const data = {
-    collection_id: collectionId
-  };
+export async function deleteCollection(collection_id: number) {
+  const { data, error } = await client.POST("/collections/delete", 
+  {
+    params: {}, 
+    body: {
+      collection_id: collection_id
+    }
+  })
 
-  const subRoute = "/collections/delete";
-  return genericPost(subRoute, data);
+  if (error) {
+    return error
+  }
+
+  return data 
+
 }
 
 export async function getLetsRunDailySummary() {
-  const subRoute = "/letsrun/daily_summary";
-  return genericGet(subRoute);
+  const { data, error } = await client.GET("/letsrun/daily_summary", {
+    params: {}
+  })
+
+  if (error) {
+    return error
+  }
+
+  return data 
+
 }
 
-export async function compareTwoAthletes(
-  athlete_id_1,
-  athlete_id_2,
-  comparison_distance,
-) {
-  const subRoute = `/athletes/compare?athlete_id_1=${athlete_id_1}&athlete_id_2=${athlete_id_2}&comparison_distance=${comparison_distance}`;
-  return genericPost(subRoute, null);
+export async function compareTwoAthletes(athlete_id_1: number, athlete_id_2: number, comparison_distance: number | string) {
+  const { data, error } = await client.POST("/athletes/compare", {
+    params: {
+      query: {
+        athlete_id_1: athlete_id_1, 
+        athlete_id_2: athlete_id_2, 
+        comparison_distance: comparison_distance
+      }
+    }
+  })
+  
+  if (error) {
+    return error
+  }
+
+  return data 
 }
+
