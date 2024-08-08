@@ -131,134 +131,130 @@ export default function BasicTabs(props) {
         },
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          paddingLeft: "25px",
+          marginTop: "10px",
+          marginBottom: "10px",
+          borderBottom: 1,
+          borderColor: "divider",
+        }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          sx={{
-            fontFamily: "Bricolage Grotesque, sans-serif",
-            "& .MuiTabs-indicator": {
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: "transparent",
-            },
-            "& .MuiTabs-indicatorSpan": {
-              maxWidth: 40,
-              width: "100%",
-              backgroundColor: "#635ee7",
-            },
-          }}
+          sx={
+            {
+              // fontFamily: "Bricolage Grotesque, sans-serif",
+              // "& .MuiTabs-indicator": {
+              //   display: "flex",
+              //   justifyContent: "center",
+              //   backgroundColor: "transparent",
+              // },
+              // "& .MuiTabs-indicatorSpan": {
+              //   maxWidth: 40,
+              //   width: "100%",
+              //   backgroundColor: "#635ee7",
+              // },
+            }
+          }
         >
-          {/* <Tab
-            label="Summary"
-            {...a11yProps(0)}
-            sx={{
-              fontFamily: "Bricolage Grotesque, sans-serif",
-              color: "black",
-              width: "20%",
-              fontSize: "14px",
-              borderRadius: "25px",
-              transition: "background-color 0.5s ease-in-out",
-              "&.Mui-selected": {
-                borderRadius: "25px",
-                backgroundColor: "#E7E7E7",
-                color: "black",
-                fontWeight: "bold",
-              },
-              "&:hover": {
-                backgroundColor: "#E7E7E7",
-                borderRadius: "25px",
-              },
-            }}
-          /> */}
           <Tab
             label="Competition"
             {...a11yProps(1)}
-            sx={{
-              fontFamily: "Bricolage Grotesque, sans-serif",
-              color: "black",
-              width: "25%",
-              fontSize: `${fontSizeForTabs}px`,
-              borderRadius: "25px",
-              transition: "background-color 0.5s ease-in-out",
-              "&.Mui-selected": {
-                borderRadius: "25px",
-                backgroundColor: "#E7E7E7",
-                color: "black",
-                fontWeight: "bold",
-              },
-              "&:hover": {
-                backgroundColor: "#E7E7E7",
-                borderRadius: "25px",
-              },
-            }}
+            sx={
+              {
+                // fontFamily: "Bricolage Grotesque, sans-serif",
+                // color: "black",
+                // width: "25%",
+                // fontSize: `${fontSizeForTabs}px`,
+                // borderRadius: "25px",
+                // transition: "background-color 0.5s ease-in-out",
+                // "&.Mui-selected": {
+                //   borderRadius: "25px",
+                //   backgroundColor: "#E7E7E7",
+                //   color: "black",
+                //   fontWeight: "bold",
+                // },
+                // "&:hover": {
+                //   backgroundColor: "#E7E7E7",
+                //   borderRadius: "25px",
+                // },
+              }
+            }
           />
           <Tab
             label="PBs"
             {...a11yProps(2)}
-            sx={{
-              fontFamily: "Bricolage Grotesque, sans-serif",
-              color: "black",
-              width: "25%",
-              fontSize: `${fontSizeForTabs}px`,
-              borderRadius: "25px",
-              transition: "background-color 0.5s ease-in-out",
-              "&.Mui-selected": {
-                borderRadius: "25px",
-                backgroundColor: "#E7E7E7",
-                color: "black",
-                fontWeight: "bold",
-              },
-              "&:hover": {
-                backgroundColor: "#E7E7E7",
-                borderRadius: "25px",
-              },
-            }}
+            sx={
+              {
+                // fontFamily: "Bricolage Grotesque, sans-serif",
+                // color: "black",
+                // width: "25%",
+                // fontSize: `${fontSizeForTabs}px`,
+                // borderRadius: "25px",
+                // transition: "background-color 0.5s ease-in-out",
+                // "&.Mui-selected": {
+                //   borderRadius: "25px",
+                //   backgroundColor: "#E7E7E7",
+                //   color: "black",
+                //   fontWeight: "bold",
+                // },
+                // "&:hover": {
+                //   backgroundColor: "#E7E7E7",
+                //   borderRadius: "25px",
+                // },
+              }
+            }
           />
           <Tab
             label="Accolades"
             {...a11yProps(3)}
-            sx={{
-              fontFamily: "Bricolage Grotesque, sans-serif",
-              color: "black",
-              width: "25%",
-              fontSize: `${fontSizeForTabs}px`,
-              borderRadius: "25px",
-              transition: "background-color 0.5s ease-in-out",
-              "&.Mui-selected": {
-                borderRadius: "25px",
-                backgroundColor: "#E7E7E7",
-                color: "black",
-                fontWeight: "bold",
-              },
-              "&:hover": {
-                backgroundColor: "#E7E7E7",
-                borderRadius: "25px",
-              },
-            }}
+            sx={
+              {
+                // fontFamily: "Bricolage Grotesque, sans-serif",
+                // color: "black",
+                // width: "25%",
+                // fontSize: `${fontSizeForTabs}px`,
+                // borderRadius: "25px",
+                // transition: "background-color 0.5s ease-in-out",
+                // "&.Mui-selected": {
+                //   borderRadius: "25px",
+                //   backgroundColor: "#E7E7E7",
+                //   color: "black",
+                //   fontWeight: "bold",
+                // },
+                // "&:hover": {
+                //   backgroundColor: "#E7E7E7",
+                //   borderRadius: "25px",
+                // },
+              }
+            }
           />
           <Tab
             label="Results"
             {...a11yProps(4)}
-            sx={{
-              fontFamily: "Bricolage Grotesque, sans-serif",
-              color: "black",
-              width: "25%",
-              fontSize: `${fontSizeForTabs}px`,
-              borderRadius: "25px",
-              transition: "background-color 0.5s ease-in-out",
-              "&.Mui-selected": {
-                borderRadius: "25px",
-                backgroundColor: "#E7E7E7",
-                color: "black",
-                fontWeight: "bold",
-              },
-              "&:hover": {
-                backgroundColor: "#E7E7E7",
-                borderRadius: "25px",
-              },
-            }}
+            sx={
+              {
+                // fontFamily: "Bricolage Grotesque, sans-serif",
+                // color: "black",
+                // width: "25%",
+                // fontSize: `${fontSizeForTabs}px`,
+                // borderRadius: "25px",
+                // transition: "background-color 0.5s ease-in-out",
+                // "&.Mui-selected": {
+                //   borderRadius: "25px",
+                //   backgroundColor: "#E7E7E7",
+                //   color: "black",
+                //   fontWeight: "bold",
+                // },
+                // "&:hover": {
+                //   backgroundColor: "#E7E7E7",
+                //   borderRadius: "25px",
+                // },
+              }
+            }
           />
         </Tabs>
       </Box>

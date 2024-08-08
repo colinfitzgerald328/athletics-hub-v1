@@ -169,7 +169,6 @@ export default function LeftSide(props) {
       ) : (
         ""
       )}
-      <ComparisonModal isMobile={props.isMobile} />
       {props.loggedIn && !props.loadingCollections && !props.isMobile ? (
         <Button
           variant="contained"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { Modal, ConfigProvider } from "antd";
-import { Button, Input } from "@mui/material";
+import Button from "@mui/joy/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -62,7 +62,7 @@ export default function ComparisonModal(props) {
   }
 
   async function handleSearchTermChange(searchTerm) {
-    const results = await getSearchResultsForQuery(searchTerm)
+    const results = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
     setSearchResults(results);
     setLoadingSearchResults(false);
@@ -160,8 +160,8 @@ export default function ComparisonModal(props) {
     const result = await compareTwoAthletes(
       athlete_id_1,
       athlete_id_2,
-      comparison_distance
-    )
+      comparison_distance,
+    );
     setComparisonSummary(result.comparison_summary);
     setLoadingComparison(false);
     toggleDrawer(true);
@@ -170,22 +170,17 @@ export default function ComparisonModal(props) {
   return (
     <>
       <Button
-        variant="contained"
         sx={{
-          width: "100%",
-          marginTop: "10px",
+          marginLeft: "15px",
           borderRadius: "25px",
-          height: "50px",
-          fontSize: "20px",
-          backgroundColor: "lightslategray",
-          fontWeight: "bold",
-          display: "flex",
-          alignItems: "center",
-          fontFamily: "Bricolage Grotesque, sans-serif",
+          marginTop: "auto",
+          marginBottom: "auto",
         }}
+        variant="soft"
+        color="primary"
         onClick={openModal}
       >
-        Head to head
+        Head to head 
       </Button>
       <ConfigProvider
         theme={{

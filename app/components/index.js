@@ -8,7 +8,12 @@ import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
 import LinearProgress from "@mui/material/LinearProgress";
-import { getAthleteById, getCollectionsForAccount, getRandomDoc, getLetsRunDailySummary } from "/app/api/api.js";
+import {
+  getAthleteById,
+  getCollectionsForAccount,
+  getRandomDoc,
+  getLetsRunDailySummary,
+} from "/app/api/api.js";
 
 export default class MainComponent extends React.Component {
   constructor(props) {
@@ -46,11 +51,11 @@ export default class MainComponent extends React.Component {
   }
 
   async getCollectionsForUser() {
-    const collections = await getCollectionsForAccount()
-      this.setState({
-        user_collections: collections,
-        loadingCollections: false,
-      });
+    const collections = await getCollectionsForAccount();
+    this.setState({
+      user_collections: collections,
+      loadingCollections: false,
+    });
   }
 
   logInUser() {
@@ -68,15 +73,15 @@ export default class MainComponent extends React.Component {
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    const randomDoc = await getRandomDoc()
-      this.setState({
-        athlete: randomDoc.athlete,
-        loadingNewAthlete: false,
-        pageLoaded: true,
-        athlete_data: randomDoc.results,
-        similar_athletes: randomDoc.similar_athletes,
-        top_competitors: randomDoc.top_competitors,
-      });
+    const randomDoc = await getRandomDoc();
+    this.setState({
+      athlete: randomDoc.athlete,
+      loadingNewAthlete: false,
+      pageLoaded: true,
+      athlete_data: randomDoc.results,
+      similar_athletes: randomDoc.similar_athletes,
+      top_competitors: randomDoc.top_competitors,
+    });
   }
 
   async fetchAthleteById(athlete_id) {
@@ -84,15 +89,15 @@ export default class MainComponent extends React.Component {
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    const athlete = await getAthleteById(athlete_id)
-      this.setState({
-        athlete: athlete.athlete,
-        loadingNewAthlete: false,
-        pageLoaded: true,
-        athlete_data: athlete.results,
-        similar_athletes: athlete.similar_athletes,
-        top_competitors: athlete.top_competitors,
-      });
+    const athlete = await getAthleteById(athlete_id);
+    this.setState({
+      athlete: athlete.athlete,
+      loadingNewAthlete: false,
+      pageLoaded: true,
+      athlete_data: athlete.results,
+      similar_athletes: athlete.similar_athletes,
+      top_competitors: athlete.top_competitors,
+    });
   }
 
   updateWindowDimensions() {
@@ -100,10 +105,10 @@ export default class MainComponent extends React.Component {
   }
 
   async getLetsRunDailySummary() {
-    const summary = await getLetsRunDailySummary()
-      this.setState({
-        summaryResponse: summary,
-      });
+    const summary = await getLetsRunDailySummary();
+    this.setState({
+      summaryResponse: summary,
+    });
   }
 
   showCollections() {
@@ -149,13 +154,6 @@ export default class MainComponent extends React.Component {
               fetchAthleteById={this.fetchAthleteById.bind(this)}
               isMobile={true}
             />
-            {/* <Collections
-              closeCollections={this.closeCollections.bind(this)}
-              getCollectionsForUser={this.getCollectionsForUser.bind(this)}
-              user_collections={this.state.user_collections}
-              showingCollections={this.state.showingCollections}
-              isMobile={true}
-            /> */}
             <AthleteBreakDown
               athlete={this.state.athlete}
               loadingNewAthlete={this.state.loadingNewAthlete}
@@ -191,27 +189,23 @@ export default class MainComponent extends React.Component {
             summaryResponse={this.state.summaryResponse}
           />
           <div className={styles.mainDisplay}>
-            <LeftSide
-              loggedIn={this.state.loggedIn}
-              showCollections={this.showCollections.bind(this)}
-              loadingCollections={this.state.loadingCollections}
-              fetchAthleteById={this.fetchAthleteById.bind(this)}
-            />
-            <Collections
-              closeCollections={this.closeCollections.bind(this)}
-              getCollectionsForUser={this.getCollectionsForUser.bind(this)}
-              user_collections={this.state.user_collections}
-              showingCollections={this.state.showingCollections}
-            />
-            <AthleteBreakDown
-              athlete={this.state.athlete}
-              loadingNewAthlete={this.state.loadingNewAthlete}
-              athlete_data={this.state.athlete_data}
-              top_competitors={this.state.top_competitors}
-              height={this.state.height}
-              showingCollections={this.state.showingCollections}
-              fetchAthleteById={this.fetchAthleteById.bind(this)}
-            />
+            <div className={styles.tempWrapper}>
+              <LeftSide
+                loggedIn={this.state.loggedIn}
+                showCollections={this.showCollections.bind(this)}
+                loadingCollections={this.state.loadingCollections}
+                fetchAthleteById={this.fetchAthleteById.bind(this)}
+              />
+              <AthleteBreakDown
+                athlete={this.state.athlete}
+                loadingNewAthlete={this.state.loadingNewAthlete}
+                athlete_data={this.state.athlete_data}
+                top_competitors={this.state.top_competitors}
+                height={this.state.height}
+                showingCollections={this.state.showingCollections}
+                fetchAthleteById={this.fetchAthleteById.bind(this)}
+              />
+            </div>
             <RightSide
               athlete={this.state.athlete}
               similar_athletes={this.state.similar_athletes}

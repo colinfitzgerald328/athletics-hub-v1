@@ -11,6 +11,7 @@ import HubIcon from "@mui/icons-material/Hub";
 import * as API from "/app/api/api.js";
 import SummaryModal from "./1_SummaryModal";
 import { loginUser } from "/app/api/api.js";
+import ComparisonModal from "../2_leftSide/1_Modal";
 
 const style = {
   position: "absolute",
@@ -52,18 +53,18 @@ export default function TopBar(props) {
       return;
     }
     setLoggingIn(true);
-    const result = await loginUser(userName, password)
+    const result = await loginUser(userName, password);
     if (result.detail) {
       setErrMessage(result.detail);
       setLoggingIn(false);
       setDangerAlertOpen(true);
       setTimeout(() => {
-          setDangerAlertOpen(false);
-          setTimeout(() => {
-            setErrMessage(null);
-          }, 2000);
+        setDangerAlertOpen(false);
+        setTimeout(() => {
+          setErrMessage(null);
         }, 2000);
-        return;
+      }, 2000);
+      return;
     }
     localStorage.setItem("userName", userName);
     localStorage.setItem("password", password);
@@ -79,18 +80,18 @@ export default function TopBar(props) {
       return;
     }
     setLoggingIn(true);
-    const result = await createAccount(userName, password)
+    const result = await createAccount(userName, password);
     if (result.detail) {
       setErrMessage(result.detail);
       setAccountFailedOpen(true);
       setLoggingIn(false);
       setTimeout(() => {
-          setAccountFailedOpen(false);
-          setTimeout(() => {
-            setErrMessage(null);
-          }, 2000);
+        setAccountFailedOpen(false);
+        setTimeout(() => {
+          setErrMessage(null);
         }, 2000);
-        return;
+      }, 2000);
+      return;
     }
     setLoggingIn(false);
     localStorage.setItem("userName", userName);
@@ -180,19 +181,22 @@ export default function TopBar(props) {
         <div className={props.isMobile ? styles.mobileLabel : styles.pageLabel}>
           Track and Field Hub
         </div>
-        <Button
-          sx={{
-            marginLeft: "15px",
-            borderRadius: "25px",
-            marginTop: "auto",
-            marginBottom: "auto",
-          }}
-          variant="soft"
-          color="primary"
-          onClick={() => openSummaryModal()}
-        >
-          Daily News
-        </Button>
+        <div className={styles.stupidWrapper}>
+          <Button
+            sx={{
+              marginLeft: "15px",
+              borderRadius: "25px",
+              marginTop: "auto",
+              marginBottom: "auto",
+            }}
+            variant="soft"
+            color="primary"
+            onClick={() => openSummaryModal()}
+          >
+            Daily News
+          </Button>
+          <ComparisonModal isMobile={props.isMobile} />
+        </div>
       </div>
       <div className={styles.rightItems}>
         <div className={styles.textItems}>
@@ -206,7 +210,7 @@ export default function TopBar(props) {
             </div>
           )}
         </div>
-        {!props.isMobile && (
+        {/* {!props.isMobile && (
           <div className={styles.button}>
             {props.loggedIn ? (
               <Button
@@ -226,7 +230,7 @@ export default function TopBar(props) {
               </Button>
             )}
           </div>
-        )}
+        )} */}
       </div>
       <Modal
         className={styles.modalWithHeight}

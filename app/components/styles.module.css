@@ -16,6 +16,12 @@
   position: sticky; */
 }
 
+.tempWrapper {
+  width: calc(100% / 1.2);
+  display: flex;
+  flex-direction: column;
+}
+
 .mainDisplayMobile {
   display: flex;
   flex-direction: column;
