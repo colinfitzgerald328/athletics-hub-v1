@@ -15,155 +15,93 @@ const client = createClient<paths>({ baseUrl: API_URL });
 
 
 export async function getSearchResultsForQuery(search: string) {
-  const { data, error } = await client.GET("/athlete/search", {
+  return await client.GET("/athlete/search", {
     params: {
       query: { search_query: search },
     },
   });
-
-  if (error) {
-    return error
-  } 
-  return data
 }
 
 export async function getRandomDoc() {
-  const { data, error } = await client.GET("/athlete/random", {
+  return await client.GET("/athlete/random", {
     params: {
     },
   });
-
-  if (error) {
-    return error
-  } 
-  return data
 }
 
 export async function getAthleteById(athlete_id: number) {
-  const { data, error } = await client.GET("/athletes/{athlete_id}", {
+  return await client.GET("/athletes/{athlete_id}", {
     params: {
       path: {
         athlete_id: athlete_id
       }
     },
   });
-
-  if (error) {
-    return error
-  } 
-
-  return data 
-
 }
 
 export async function loginUser(payload: LoginPayload) {
-  const { data, error } = await client.POST("/account/login", {
+  return await client.POST("/account/login", {
     params: {}, 
     body: payload
   })
-
-  if (error) {
-    return error
-  } 
-
-  return data 
-
 }
 
 export async function createAccount(payload: CreateAccountPayload) {
-  const { data, error } = await client.POST("/account/create", {
+  return await client.POST("/account/create", {
     params: {}, 
     body: payload 
   });
-
-  if (error) {
-    return error;
-  } 
-
-  return data;
 }
 
 
 export async function createCollection(
   payload: CreateCollectionPayload
 ) {
-  const { data, error } = await client.POST("/collections/create", {
+  return await client.POST("/collections/create", {
     params: {}, 
     body: payload
   })
-
-  if (error) {
-    return error
-  }
-
-  return data 
-
 } 
 
 
 
 export async function getCollectionsForAccount(account_id: number) {
-  const { data, error } = await client.GET("/collections/user", {
+  return await client.GET("/collections/user", {
     params: {
       query: {
         account_id: account_id
       }
     }
   })
-
-  if (error) {
-    return error
-  }
-  return data 
 }
 
 export async function modifyCollection(payload: ModifyCollectionPayload
 ) {
-  const { data, error } = await client.POST("/collections/modify", 
+  return await client.POST("/collections/modify", 
   {
     params: {}, 
     body: payload
   })
-
-  if (error) {
-    return error
-  }
-
-  return data 
-}
+ }
 
 export async function deleteCollection(collection_id: number) {
-  const { data, error } = await client.POST("/collections/delete", 
+  return await client.POST("/collections/delete", 
   {
     params: {}, 
     body: {
       collection_id: collection_id
     }
   })
-
-  if (error) {
-    return error
-  }
-
-  return data 
-
 }
 
 export async function getLetsRunDailySummary() {
-  const { data, error } = await client.GET("/letsrun/daily_summary", {
+  return await client.GET("/letsrun/daily_summary", {
     params: {}
   })
-
-  if (error) {
-    return error
-  }
-
-  return data 
-
 }
 
 export async function compareTwoAthletes(athlete_id_1: number, athlete_id_2: number, comparison_distance: number | string) {
-  const { data, error } = await client.POST("/athletes/compare", {
+  return await client.POST("/athletes/compare", {
     params: {
       query: {
         athlete_id_1: athlete_id_1, 
@@ -172,11 +110,5 @@ export async function compareTwoAthletes(athlete_id_1: number, athlete_id_2: num
       }
     }
   })
-  
-  if (error) {
-    return error
-  }
-
-  return data 
 }
 
