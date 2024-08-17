@@ -4,7 +4,6 @@ import TopBar from "./1_topbar";
 import LeftSide from "./2_leftSide";
 import AthleteBreakDown from "./3_Middle";
 import RightSide from "./4_RightSide";
-import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -154,13 +153,6 @@ export default class MainComponent extends React.Component {
               fetchAthleteById={this.fetchAthleteById.bind(this)}
               isMobile={true}
             />
-            {/* <Collections
-              closeCollections={this.closeCollections.bind(this)}
-              getCollectionsForUser={this.getCollectionsForUser.bind(this)}
-              user_collections={this.state.user_collections}
-              showingCollections={this.state.showingCollections}
-              isMobile={true}
-            /> */}
             <AthleteBreakDown
               athlete={this.state.athlete}
               loadingNewAthlete={this.state.loadingNewAthlete}
@@ -196,27 +188,23 @@ export default class MainComponent extends React.Component {
             summaryResponse={this.state.summaryResponse}
           />
           <div className={styles.mainDisplay}>
-            <LeftSide
-              loggedIn={this.state.loggedIn}
-              showCollections={this.showCollections.bind(this)}
-              loadingCollections={this.state.loadingCollections}
-              fetchAthleteById={this.fetchAthleteById.bind(this)}
-            />
-            <Collections
-              closeCollections={this.closeCollections.bind(this)}
-              getCollectionsForUser={this.getCollectionsForUser.bind(this)}
-              user_collections={this.state.user_collections}
-              showingCollections={this.state.showingCollections}
-            />
-            <AthleteBreakDown
-              athlete={this.state.athlete}
-              loadingNewAthlete={this.state.loadingNewAthlete}
-              athlete_data={this.state.athlete_data}
-              top_competitors={this.state.top_competitors}
-              height={this.state.height}
-              showingCollections={this.state.showingCollections}
-              fetchAthleteById={this.fetchAthleteById.bind(this)}
-            />
+            <div className={styles.tempWrapper}>
+              <LeftSide
+                loggedIn={this.state.loggedIn}
+                showCollections={this.showCollections.bind(this)}
+                loadingCollections={this.state.loadingCollections}
+                fetchAthleteById={this.fetchAthleteById.bind(this)}
+              />
+              <AthleteBreakDown
+                athlete={this.state.athlete}
+                loadingNewAthlete={this.state.loadingNewAthlete}
+                athlete_data={this.state.athlete_data}
+                top_competitors={this.state.top_competitors}
+                height={this.state.height}
+                showingCollections={this.state.showingCollections}
+                fetchAthleteById={this.fetchAthleteById.bind(this)}
+              />
+            </div>
             <RightSide
               athlete={this.state.athlete}
               similar_athletes={this.state.similar_athletes}

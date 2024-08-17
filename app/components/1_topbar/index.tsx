@@ -9,18 +9,19 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HubIcon from "@mui/icons-material/Hub";
 import SummaryModal from "./1_SummaryModal";
 import { loginUser, createAccount } from "@/app/api/api";
-import { components } from "@/src/lib/api/v1";
+import ComparisonModal from "../2_leftSide/1_Modal";
 import styles from "./styles.module.css";
+import { components } from "@/src/lib/api/v1";
 
-type CreateAccountPayload = components["schemas"]["CreateAccountPayload"];
-type LoginPayload = components["schemas"]["LoginPayload"];
+type CreateAccountPayload = components['schemas']['CreateAccountPayload']
+type LoginPayload = components['schemas']['LoginPayload']
 
 interface TopBarProps {
   isMobile: boolean;
   loggedIn: boolean;
   logInUser: () => void;
   logOutUser: () => void;
-  summaryResponse: any; // Replace `any` with the appropriate type if known
+  summaryResponse: string; // Replace `any` with the appropriate type if known
 }
 
 const style = {
@@ -60,13 +61,11 @@ const TopBar: React.FC<TopBarProps> = (props) => {
     }
     setLoggingIn(true);
     const loginData: LoginPayload = {
-      username: userName,
-      password: password,
-    };
-    const { data, error } = await loginUser(loginData);
-    console.log("data", data);
-    console.log("error, ", error);
-    if (error) {
+      username: userName, 
+      password: password
+    }
+    const {data, error} = await loginUser(loginData);
+    if (error.detail) {
       setErrMessage(error.detail);
       setLoggingIn(false);
       setDangerAlertOpen(true);
@@ -92,12 +91,12 @@ const TopBar: React.FC<TopBarProps> = (props) => {
       return;
     }
     setLoggingIn(true);
-    const createAccountData: CreateAccountPayload = {
-      username: userName,
-      password: password,
-    };
-    const { data, error } = await createAccount(createAccountData);
-    if (error) {
+    const createAccountPayload: CreateAccountPayload = {
+      username: userName, 
+      password: password
+    }
+    const {data, error } = await createAccount(createAccountPayload);
+    if (error.detail) {
       setErrMessage(error.detail);
       setAccountFailedOpen(true);
       setLoggingIn(false);
@@ -206,19 +205,22 @@ const TopBar: React.FC<TopBarProps> = (props) => {
         <div className={props.isMobile ? styles.mobileLabel : styles.pageLabel}>
           Track and Field Hub
         </div>
-        <Button
-          sx={{
-            marginLeft: "15px",
-            borderRadius: "25px",
-            marginTop: "auto",
-            marginBottom: "auto",
-          }}
-          variant="soft"
-          color="primary"
-          onClick={openSummaryModal}
-        >
-          Daily News
-        </Button>
+        <div className={styles.stupidWrapper}>
+          <Button
+            sx={{
+              marginLeft: "15px",
+              borderRadius: "25px",
+              marginTop: "auto",
+              marginBottom: "auto",
+            }}
+            variant="soft"
+            color="primary"
+            onClick={() => openSummaryModal()}
+          >
+            Daily News
+          </Button>
+          <ComparisonModal isMobile={props.isMobile} />
+        </div>
       </div>
       <div className={styles.rightItems}>
         <div className={styles.textItems}>
@@ -232,7 +234,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
             </div>
           )}
         </div>
-        {!props.isMobile && (
+        {/* {!props.isMobile && (
           <div className={styles.button}>
             {props.loggedIn ? (
               <Button
@@ -252,7 +254,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
               </Button>
             )}
           </div>
-        )}
+        )} */}
       </div>
       <Modal
         className={styles.modalWithHeight}

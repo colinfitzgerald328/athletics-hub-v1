@@ -62,7 +62,11 @@ export default function ComparisonModal(props) {
   }
 
   async function handleSearchTermChange(searchTerm) {
+<<<<<<< HEAD
     const { data, error } = await getSearchResultsForQuery(searchTerm);
+=======
+    const results = await getSearchResultsForQuery(searchTerm);
+>>>>>>> 4de2bf16e43bcafe873abd71c8cd35da70141dd1
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);
@@ -170,22 +174,17 @@ export default function ComparisonModal(props) {
   return (
     <>
       <Button
-        variant="contained"
         sx={{
-          width: "100%",
-          marginTop: "10px",
+          marginLeft: "15px",
           borderRadius: "25px",
-          height: "50px",
-          fontSize: "20px",
-          backgroundColor: "lightslategray",
-          fontWeight: "bold",
-          display: "flex",
-          alignItems: "center",
-          fontFamily: "Bricolage Grotesque, sans-serif",
+          marginTop: "auto",
+          marginBottom: "auto",
         }}
+        variant="soft"
+        color="primary"
         onClick={openModal}
       >
-        Head to head
+        Head to head 
       </Button>
       <ConfigProvider
         theme={{
