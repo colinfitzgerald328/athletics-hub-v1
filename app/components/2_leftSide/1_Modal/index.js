@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 import { Modal, ConfigProvider } from "antd";
-import { Button } from "@mui/material";
+import Button from "@mui/joy/Button";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -62,11 +62,7 @@ export default function ComparisonModal(props) {
   }
 
   async function handleSearchTermChange(searchTerm) {
-<<<<<<< HEAD
     const { data, error } = await getSearchResultsForQuery(searchTerm);
-=======
-    const results = await getSearchResultsForQuery(searchTerm);
->>>>>>> 4de2bf16e43bcafe873abd71c8cd35da70141dd1
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);
@@ -184,7 +180,7 @@ export default function ComparisonModal(props) {
         color="primary"
         onClick={openModal}
       >
-        Head to head 
+        Head to head
       </Button>
       <ConfigProvider
         theme={{

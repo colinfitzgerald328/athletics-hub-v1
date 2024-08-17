@@ -66,7 +66,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
     }
     const {data, error} = await loginUser(loginData);
     if (error.detail) {
-      setErrMessage(error.detail);
+      setErrMessage(error.detail.toString());
       setLoggingIn(false);
       setDangerAlertOpen(true);
       setTimeout(() => {
@@ -97,7 +97,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
     }
     const {data, error } = await createAccount(createAccountPayload);
     if (error.detail) {
-      setErrMessage(error.detail);
+      setErrMessage(error.detail.toString());
       setAccountFailedOpen(true);
       setLoggingIn(false);
       setTimeout(() => {
@@ -350,7 +350,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
                 className={styles.createAccountButton}
                 onClick={openCreateDiv}
               >
-                Don't have an account? Sign up here.
+                Don&apos;t have an account? Sign up here.
               </div>
             </div>
           )}
