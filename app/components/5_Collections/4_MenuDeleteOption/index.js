@@ -4,10 +4,9 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
 import { MoreVert } from "@mui/icons-material";
-import * as API from "/app/api/api.js";
 import styles from "./styles.module.css";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import { deleteCollection } from "/app/api/api.js";
+import { deleteCollection } from "@/app/api/api";
 
 export default function CollectionDeleteOption(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,10 +21,10 @@ export default function CollectionDeleteOption(props) {
   };
 
   async function handleDelete() {
-    await deleteCollection(props.collection_id)
+    await deleteCollection(props.collection_id);
     if (props.currentIndex >= 1) {
-        props.handleSelect(props.currentIndex - 1);
-      }
+      props.handleSelect(props.currentIndex - 1);
+    }
     props.getCollectionsForUser();
     setAnchorEl(null);
   }

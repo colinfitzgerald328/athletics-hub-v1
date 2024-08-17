@@ -8,7 +8,12 @@ import Collections from "./5_Collections";
 import styles from "./styles.module.css";
 import Head from "next/head";
 import LinearProgress from "@mui/material/LinearProgress";
-import { getAthleteById, getCollectionsForAccount, getRandomDoc, getLetsRunDailySummary } from "/app/api/api.js";
+import {
+  getAthleteById,
+  getCollectionsForAccount,
+  getRandomDoc,
+  getLetsRunDailySummary,
+} from "../api/api";
 
 export default class MainComponent extends React.Component {
   constructor(props) {
@@ -46,11 +51,11 @@ export default class MainComponent extends React.Component {
   }
 
   async getCollectionsForUser() {
-    const collections = await getCollectionsForAccount()
-      this.setState({
-        user_collections: collections,
-        loadingCollections: false,
-      });
+    const { data, error } = await getCollectionsForAccount();
+    this.setState({
+      user_collections: data,
+      loadingCollections: false,
+    });
   }
 
   logInUser() {
@@ -68,15 +73,15 @@ export default class MainComponent extends React.Component {
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    const randomDoc = await getRandomDoc()
-      this.setState({
-        athlete: randomDoc.athlete,
-        loadingNewAthlete: false,
-        pageLoaded: true,
-        athlete_data: randomDoc.results,
-        similar_athletes: randomDoc.similar_athletes,
-        top_competitors: randomDoc.top_competitors,
-      });
+    const { data, error } = await getRandomDoc();
+    this.setState({
+      athlete: data.athlete,
+      loadingNewAthlete: false,
+      pageLoaded: true,
+      athlete_data: data.results,
+      similar_athletes: data.similar_athletes,
+      top_competitors: data.top_competitors,
+    });
   }
 
   async fetchAthleteById(athlete_id) {
@@ -84,15 +89,15 @@ export default class MainComponent extends React.Component {
       loadingNewAthlete: true,
     });
     this.setState({ fetching: true });
-    const athlete = await getAthleteById(athlete_id)
-      this.setState({
-        athlete: athlete.athlete,
-        loadingNewAthlete: false,
-        pageLoaded: true,
-        athlete_data: athlete.results,
-        similar_athletes: athlete.similar_athletes,
-        top_competitors: athlete.top_competitors,
-      });
+    const { data, error } = await getAthleteById(athlete_id);
+    this.setState({
+      athlete: data.athlete,
+      loadingNewAthlete: false,
+      pageLoaded: true,
+      athlete_data: data.results,
+      similar_athletes: data.similar_athletes,
+      top_competitors: data.top_competitors,
+    });
   }
 
   updateWindowDimensions() {
@@ -100,10 +105,10 @@ export default class MainComponent extends React.Component {
   }
 
   async getLetsRunDailySummary() {
-    const summary = await getLetsRunDailySummary()
-      this.setState({
-        summaryResponse: summary,
-      });
+    const { data, error } = await getLetsRunDailySummary();
+    this.setState({
+      summaryResponse: data.summary_text,
+    });
   }
 
   showCollections() {

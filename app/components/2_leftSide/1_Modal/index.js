@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 import { Modal, ConfigProvider } from "antd";
-import { Button, Input } from "@mui/material";
+import { Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useRef } from "react";
 import SportsMmaIcon from "@mui/icons-material/SportsMma";
-import RectangleIcon from "@mui/icons-material/Rectangle";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import * as API from "/app/api/api.js";
 import CircularProgress from "@mui/material/CircularProgress";
 import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 import Close from "@mui/icons-material/Close";
+import Box from "@mui/material/Box";
+import { compareTwoAthletes, getSearchResultsForQuery } from "@/app/api/api";
+import Drawer from "@mui/material/Drawer";
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -62,9 +62,9 @@ export default function ComparisonModal(props) {
   }
 
   async function handleSearchTermChange(searchTerm) {
-    const results = await getSearchResultsForQuery(searchTerm)
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
-    setSearchResults(results);
+    setSearchResults(data);
     setLoadingSearchResults(false);
   }
 
@@ -157,12 +157,12 @@ export default function ComparisonModal(props) {
     const athlete_id_1 = athletes[0].athlete_id;
     const athlete_id_2 = athletes[1].athlete_id;
     const comparison_distance = value;
-    const result = await compareTwoAthletes(
+    const { data, error } = await compareTwoAthletes(
       athlete_id_1,
       athlete_id_2,
-      comparison_distance
-    )
-    setComparisonSummary(result.comparison_summary);
+      comparison_distance,
+    );
+    setComparisonSummary(data.comparison_summary);
     setLoadingComparison(false);
     toggleDrawer(true);
   }
@@ -373,10 +373,6 @@ export default function ComparisonModal(props) {
     </>
   );
 }
-
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import { compareTwoAthletes, getSearchResultsForQuery } from "/app/api/api.js";
 
 export function BottomDrawer(props) {
   const DrawerList = (

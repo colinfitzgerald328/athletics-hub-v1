@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import CreateCollectionModal from "./1_Create_Collection_Modal";
-import { Button } from "@mui/joy";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import IconButton from "@mui/material/IconButton";
@@ -12,8 +11,7 @@ import CollectionDeleteOption from "./4_MenuDeleteOption";
 import moment from "moment";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { toaster } from "evergreen-ui";
-import * as API from "/app/api/api.js";
-import { modifyCollection } from "/app/api/api.js";
+import { modifyCollection } from "@/app/api/api";
 
 export default function Collections(props) {
   const [collections, setCollections] = useState(props.user_collections);
@@ -29,8 +27,6 @@ export default function Collections(props) {
     if (theItem.height == undefined) {
       theItem.height = newScrollHeight;
       setCollections([...currentCollections]);
-      // const data_fetch_results = await getDataForAthlete(athlete);
-      // theItem.top_competitors = data_fetch_results.top_competitors;
     } else if (theItem.height != "0px") {
       theItem.height = "0px";
     } else {
@@ -53,9 +49,9 @@ export default function Collections(props) {
        * Alert if clicked on outside of element
        */
       if (!props.showingCollections) {
-        return
+        return;
       }
-      
+
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           checkForNameChangeAndSendAPICall(collections, currentIndex);
@@ -77,19 +73,19 @@ export default function Collections(props) {
   }
 
   async function checkForNameChangeAndSendAPICall(collections, currentIndex) {
-    console.log("called from here")
+    console.log("called from here");
     if (collections.length == 0) {
       // if there are no collections, do nothing
       return;
     }
-    const response = await modifyCollection(
+    const { data, error } = await modifyCollection(
       collections[currentIndex].collection_name,
       "UPDATE_NAME",
       collections[currentIndex]["id"],
       null,
-      null
-    )
-    if (response.name_was_updated) {
+      null,
+    );
+    if (data.name_was_updated) {
       toaster.success("Collection name updated");
       props.getCollectionsForUser();
     }

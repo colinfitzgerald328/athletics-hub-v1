@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 import { Modal } from "antd";
 import { Button } from "@mui/joy";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useRef } from "react";
-import * as API from "/app/api/api.js";
-import { createCollection, getSearchResultsForQuery } from "/app/api/api.js";
+import { createCollection, getSearchResultsForQuery } from "@/app/api/api";
 
 export default function CreateCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -24,9 +22,9 @@ export default function CreateCollectionModal(props) {
   const [savingCollection, setSavingCollection] = useState(false);
 
   async function handleSearchTermChange(searchTerm) {
-    const results = await getSearchResultsForQuery(searchTerm)
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
-    setSearchResults(results);
+    setSearchResults(data);
     setLoadingSearchResults(false);
   }
 
@@ -119,7 +117,7 @@ export default function CreateCollectionModal(props) {
     }
 
     setSavingCollection(true);
-    await createCollection(collectionName, athlete_ids)
+    await createCollection(collectionName, athlete_ids);
     setSavingCollection(false);
     setModalOpen(false);
     setCollectionName("");

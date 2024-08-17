@@ -2,9 +2,8 @@ import React from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import styles from "./styles.module.css";
-import * as API from "/app/api/api.js";
 import { TrashIcon } from "evergreen-ui";
-import { modifyCollection } from "/app/api/api.js";
+import { modifyCollection } from "@/app/api/api";
 
 export default function DeleteOptionMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -22,8 +21,8 @@ export default function DeleteOptionMenu(props) {
       "DELETE",
       props.collection_id,
       props.athlete_id,
-      null
-    )
+      null,
+    );
     props.getCollectionsForUser();
     setAnchorEl(null);
   }

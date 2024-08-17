@@ -3,11 +3,10 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRef } from "react";
-import * as API from "/app/api/api.js";
 import ComparisonModal from "./1_Modal";
 import styles from "./styles.module.css";
 import { Button } from "@mui/material";
-import { getSearchResultsForQuery } from "/app/api/api.js";
+import { getSearchResultsForQuery } from "@/app/api/api";
 
 export default function LeftSide(props) {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -20,9 +19,9 @@ export default function LeftSide(props) {
   const xButtonRef = useRef(null);
 
   async function handleSearchTermChange(searchTerm) {
-    const searchResults = await getSearchResultsForQuery(searchTerm)
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
-    setSearchResults(searchResults);
+    setSearchResults(data);
     setLoadingSearchResults(false);
   }
 

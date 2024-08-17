@@ -1,19 +1,30 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import Button from "@mui/joy/Button";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import styles from "./styles.module.css";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import HubIcon from "@mui/icons-material/Hub";
-import * as API from "/app/api/api.js";
 import SummaryModal from "./1_SummaryModal";
-import { loginUser } from "/app/api/api.js";
+import { loginUser, createAccount } from "@/app/api/api";
+import { components } from "@/src/lib/api/v1";
+import styles from "./styles.module.css";
+
+type CreateAccountPayload = components["schemas"]["CreateAccountPayload"];
+type LoginPayload = components["schemas"]["LoginPayload"];
+
+interface TopBarProps {
+  isMobile: boolean;
+  loggedIn: boolean;
+  logInUser: () => void;
+  logOutUser: () => void;
+  summaryResponse: any; // Replace `any` with the appropriate type if known
+}
 
 const style = {
-  position: "absolute",
+  position: "absolute" as const,
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
@@ -29,22 +40,18 @@ const style = {
   outline: "none",
 };
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-export default function TopBar(props) {
+const TopBar: React.FC<TopBarProps> = (props) => {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [creatingAccount, setCreatingAccount] = useState(false);
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [createdAccountOpen, setCreatedAccountOpen] = useState(false);
   const [loggingIn, setLoggingIn] = useState(false);
   const [dangerAlertOpen, setDangerAlertOpen] = useState(false);
   const [accountFailedOpen, setAccountFailedOpen] = useState(false);
   const [summaryModalOpen, setSummaryModalOpen] = useState(false);
-  const [errMessage, setErrMessage] = useState(null);
+  const [errMessage, setErrMessage] = useState<string | null>(null);
 
   async function handleLogin() {
     if (userName === "" || password === "") {
@@ -52,80 +59,99 @@ export default function TopBar(props) {
       return;
     }
     setLoggingIn(true);
-    const result = await loginUser(userName, password)
-    if (result.detail) {
-      setErrMessage(result.detail);
+    const loginData: LoginPayload = {
+      username: userName,
+      password: password,
+    };
+    const { data, error } = await loginUser(loginData);
+    console.log("data", data);
+    console.log("error, ", error);
+    if (error) {
+      setErrMessage(error.detail);
       setLoggingIn(false);
       setDangerAlertOpen(true);
       setTimeout(() => {
-          setDangerAlertOpen(false);
-          setTimeout(() => {
-            setErrMessage(null);
-          }, 2000);
+        setDangerAlertOpen(false);
+        setTimeout(() => {
+          setErrMessage(null);
         }, 2000);
-        return;
+      }, 2000);
+      return;
     }
-    localStorage.setItem("userName", userName);
-    localStorage.setItem("password", password);
-    localStorage.setItem("account_id", result["id"]);
+    localStorage.setItem("userName", data.username);
+    localStorage.setItem("password", data.password);
+    localStorage.setItem("account_id", data.id);
     setOpen(true);
     props.logInUser();
     cancelModal();
   }
 
-  async function createAccount() {
-    if (userName == "" || password == "") {
+  async function createAccountForUser() {
+    if (userName === "" || password === "") {
       setAccountFailedOpen(true);
       return;
     }
     setLoggingIn(true);
-    const result = await createAccount(userName, password)
-    if (result.detail) {
-      setErrMessage(result.detail);
+    const createAccountData: CreateAccountPayload = {
+      username: userName,
+      password: password,
+    };
+    const { data, error } = await createAccount(createAccountData);
+    if (error) {
+      setErrMessage(error.detail);
       setAccountFailedOpen(true);
       setLoggingIn(false);
       setTimeout(() => {
-          setAccountFailedOpen(false);
-          setTimeout(() => {
-            setErrMessage(null);
-          }, 2000);
+        setAccountFailedOpen(false);
+        setTimeout(() => {
+          setErrMessage(null);
         }, 2000);
-        return;
+      }, 2000);
+      return;
     }
     setLoggingIn(false);
     localStorage.setItem("userName", userName);
     localStorage.setItem("password", password);
-    localStorage.setItem("account_id", data["id"]);
+    localStorage.setItem("account_id", data.id);
     setCreatedAccountOpen(true);
     props.logInUser();
     cancelModal();
   }
 
-  const handleClose = (event, reason) => {
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
 
-  const handleCloseCreate = (event, reason) => {
+  const handleCloseCreate = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }
-
     setCreatedAccountOpen(false);
   };
 
-  const handleCloseDanger = (event, reason) => {
+  const handleCloseDanger = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }
-
     setDangerAlertOpen(false);
   };
 
-  const handleCloseFailedCreate = (event, reason) => {
+  const handleCloseFailedCreate = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
     if (reason === "clickaway") {
       return;
     }
@@ -145,13 +171,13 @@ export default function TopBar(props) {
   }
 
   function openCreateDiv() {
-    var element = document.getElementsByClassName(styles.basicContainer)[0];
+    const element = document.getElementsByClassName(styles.basicContainer)[0];
     element.classList.add(styles.fade);
     setTimeout(() => {
       setCreatingAccount(true);
       setTimeout(() => {
-        var secondElement = document.getElementsByClassName(
-          styles.basicContainer1,
+        const secondElement = document.getElementsByClassName(
+          styles.basicContainer1
         )[0];
         secondElement.classList.add(styles.fadeIn);
       }, 10);
@@ -159,7 +185,7 @@ export default function TopBar(props) {
   }
 
   function closeCreateDiv() {
-    var element = document.getElementsByClassName(styles.basicContainer1)[0];
+    const element = document.getElementsByClassName(styles.basicContainer1)[0];
     element.classList.remove(styles.fadeIn);
     setTimeout(() => {
       setCreatingAccount(false);
@@ -189,7 +215,7 @@ export default function TopBar(props) {
           }}
           variant="soft"
           color="primary"
-          onClick={() => openSummaryModal()}
+          onClick={openSummaryModal}
         >
           Daily News
         </Button>
@@ -211,7 +237,7 @@ export default function TopBar(props) {
             {props.loggedIn ? (
               <Button
                 sx={{ borderRadius: "25px" }}
-                onClick={() => props.logOutUser()}
+                onClick={props.logOutUser}
                 type="primary"
               >
                 Log out
@@ -257,7 +283,7 @@ export default function TopBar(props) {
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   spellCheck="false"
-                ></input>
+                />
               </div>
               <div className={styles.inputLabel}>Password</div>
               <input
@@ -267,42 +293,28 @@ export default function TopBar(props) {
                 placeholder="enter password..."
                 spellCheck="false"
                 onChange={(e) => setPassword(e.target.value)}
-              ></input>
+              />
               <Button
-                onClick={createAccount}
-                loading={loggingIn}
-                variant="solid"
-                sx={{
-                  width: "100%",
-                  marginTop: "20px",
-                  borderRadius: "25px",
-                  height: "50px",
-                }}
+                onClick={createAccountForUser}
+                sx={{ borderRadius: "20px", marginTop: "20px" }}
+                fullWidth
+                disabled={loggingIn}
               >
-                {loggingIn ? "Creating your account" : "Create account"}
+                Create account
               </Button>
-              <IconButton
-                size="small"
-                sx={{
-                  padding: 1,
-                  marginTop: "10px",
-                  borderRadius: "25px",
-                }}
-                className={styles.fullWidthBackButton}
-                onClick={() => closeCreateDiv()}
-              >
+              <IconButton className={styles.backArrow} onClick={closeCreateDiv}>
                 <ArrowBackIcon />
               </IconButton>
             </div>
           ) : (
             <div className={styles.basicContainer}>
-              <h1 className={styles.callOut}>Welcome back</h1>
+              <h1 className={styles.callOut}>Sign in</h1>
               <div className={styles.subMessageHolder}>
                 <div className={styles.subMessage}>
-                  Glad to see you again 👋
+                  Welcome back to the track and field hub!
                 </div>
-                <div className={styles.subMessage}>
-                  Login to your account below
+                <div className={styles.subMessageWithMargin}>
+                  Enter your details below to get started.
                 </div>
               </div>
               <div className={styles.inputContainer}>
@@ -313,102 +325,92 @@ export default function TopBar(props) {
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
                   spellCheck="false"
-                ></input>
+                />
               </div>
               <div className={styles.inputLabel}>Password</div>
               <input
                 className={styles.basicInput}
                 type="password"
-                value={password}
                 placeholder="enter password..."
                 spellCheck="false"
+                value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              ></input>
+              />
               <Button
-                loading={loggingIn}
                 onClick={handleLogin}
-                variant="soft"
-                sx={{
-                  width: "100%",
-                  marginTop: "20px",
-                  borderRadius: "25px",
-                  height: "50px",
-                }}
-                type="primary"
+                sx={{ borderRadius: "20px", marginTop: "20px" }}
+                fullWidth
+                disabled={loggingIn}
               >
-                {loggingIn ? "Logging you in" : "Log in"}
+                Login
               </Button>
-              <div className={styles.noAccountYet}>
-                Don&apos;t have an account?
-                <div
-                  onClick={() => openCreateDiv()}
-                  className={styles.signUpButton}
-                >
-                  Sign up
-                </div>
+              <div
+                className={styles.createAccountButton}
+                onClick={openCreateDiv}
+              >
+                Don't have an account? Sign up here.
               </div>
             </div>
           )}
         </Box>
       </Modal>
-      <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={open}
-        autoHideDuration={3000}
-        onClose={handleClose}
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: "100%" }}>
-          Login success!
-        </Alert>
+      <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+        <MuiAlert
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Successfully logged in.
+        </MuiAlert>
       </Snackbar>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={createdAccountOpen}
         autoHideDuration={3000}
         onClose={handleCloseCreate}
       >
-        <Alert
+        <MuiAlert
           onClose={handleCloseCreate}
           severity="success"
           sx={{ width: "100%" }}
         >
-          Account created and now logged in!
-        </Alert>
+          Successfully created account.
+        </MuiAlert>
       </Snackbar>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={dangerAlertOpen}
         autoHideDuration={3000}
-        onClose={handleClose}
+        onClose={handleCloseDanger}
       >
-        <Alert
+        <MuiAlert
           onClose={handleCloseDanger}
           severity="error"
           sx={{ width: "100%" }}
         >
-          {errMessage || "Please type in your username and password"}
-        </Alert>
+          {errMessage || "Enter both username and password"}
+        </MuiAlert>
       </Snackbar>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={accountFailedOpen}
         autoHideDuration={3000}
         onClose={handleCloseFailedCreate}
       >
-        <Alert
+        <MuiAlert
           onClose={handleCloseFailedCreate}
           severity="error"
           sx={{ width: "100%" }}
         >
-          {errMessage || "Please choose a username and password first"}
-        </Alert>
+          {errMessage || "Failed to create account. Try again"}
+        </MuiAlert>
       </Snackbar>
-      <SummaryModal
-        summaryModalOpen={summaryModalOpen}
-        closeSummaryModal={closeSummaryModal}
-        summaryResponse={props.summaryResponse}
-        isMobile={props.isMobile}
-      />
+      {summaryModalOpen && (
+        <SummaryModal
+          open={summaryModalOpen}
+          closeSummaryModal={closeSummaryModal}
+          summaryResponse={props.summaryResponse}
+        />
+      )}
     </div>
   );
-}
+};
+
+export default TopBar;

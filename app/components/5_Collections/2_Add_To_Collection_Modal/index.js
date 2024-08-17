@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./styles.module.css";
-import { Button, Modal, ConfigProvider } from "antd";
+import { Button, Modal } from "antd";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
-import { useRef } from "react";
 import AddIcon from "@mui/icons-material/Add";
-import * as API from "/app/api/api.js";
-import { getSearchResultsForQuery, modifyCollection } from "/app/api/api.js";
+import { getSearchResultsForQuery, modifyCollection } from "@/app/api/api";
 
 export default function AddToCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -24,9 +22,9 @@ export default function AddToCollectionModal(props) {
   const [savingCollection, setSavingCollection] = useState(false);
 
   async function handleSearchTermChange(searchTerm) {
-    const searchResults = await getSearchResultsForQuery(searchTerm)
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
-    setSearchResults(searchResults);
+    setSearchResults(data);
     setLoadingSearchResults(false);
   }
 
@@ -112,13 +110,7 @@ export default function AddToCollectionModal(props) {
     athletes.forEach((athlete) =>
       athlete_ids.push(athlete.json_data.athlete.athlete_id),
     );
-    await modifyCollection(
-        null,
-        "ADD",
-        collectionId,
-        null,
-        athlete_ids
-    )
+    await modifyCollection(null, "ADD", collectionId, null, athlete_ids);
     setSavingCollection(false);
     setModalOpen(false);
     setAthletes([]);
