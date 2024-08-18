@@ -206,19 +206,11 @@ const TopBar: React.FC<TopBarProps> = (props) => {
           Track and Field Hub
         </div>
         <div className={styles.stupidWrapper}>
-          <Button
-            sx={{
-              marginLeft: "15px",
-              borderRadius: "25px",
-              marginTop: "auto",
-              marginBottom: "auto",
-            }}
-            variant="soft"
-            color="primary"
-            onClick={() => openSummaryModal()}
-          >
-            Daily News
-          </Button>
+          <SummaryModal
+            open={summaryModalOpen}
+            closeSummaryModal={closeSummaryModal}
+            summaryResponse={props.summaryResponse}
+          />
           <ComparisonModal isMobile={props.isMobile} />
         </div>
       </div>
@@ -234,27 +226,6 @@ const TopBar: React.FC<TopBarProps> = (props) => {
             </div>
           )}
         </div>
-        {/* {!props.isMobile && (
-          <div className={styles.button}>
-            {props.loggedIn ? (
-              <Button
-                sx={{ borderRadius: "25px" }}
-                onClick={props.logOutUser}
-                type="primary"
-              >
-                Log out
-              </Button>
-            ) : (
-              <Button
-                sx={{ borderRadius: "25px" }}
-                onClick={openModal}
-                type="primary"
-              >
-                Sign in
-              </Button>
-            )}
-          </div>
-        )} */}
       </div>
       <Modal
         className={styles.modalWithHeight}
@@ -404,13 +375,6 @@ const TopBar: React.FC<TopBarProps> = (props) => {
           {errMessage || "Failed to create account. Try again"}
         </MuiAlert>
       </Snackbar>
-      {summaryModalOpen && (
-        <SummaryModal
-          open={summaryModalOpen}
-          closeSummaryModal={closeSummaryModal}
-          summaryResponse={props.summaryResponse}
-        />
-      )}
     </div>
   );
 };

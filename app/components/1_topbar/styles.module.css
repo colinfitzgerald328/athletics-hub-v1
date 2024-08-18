@@ -207,3 +207,7 @@
   cursor: pointer;
   background-color: #4e5963;
 }
+
+.stupidWrapper {
+  display: flex;
+}
