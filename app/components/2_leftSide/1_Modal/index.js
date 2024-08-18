@@ -15,6 +15,7 @@ import Close from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import { compareTwoAthletes, getSearchResultsForQuery } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
+import { returnEmbeddedSearchTerm } from "@/app/api/cohere_util";
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -62,7 +63,10 @@ export default function ComparisonModal(props) {
   }
 
   async function handleSearchTermChange(searchTerm) {
-    const { data, error } = await getSearchResultsForQuery(searchTerm);
+    const embeddedSearchTerm = await returnEmbeddedSearchTerm(searchTerm);
+    const { data, error } = await getSearchResultsForQuery(
+      embeddedSearchTerm.embeddings.float[0],
+    );
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);

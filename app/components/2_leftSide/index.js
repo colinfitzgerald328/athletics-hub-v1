@@ -6,11 +6,7 @@ import { useRef } from "react";
 import styles from "./styles.module.css";
 import { Button } from "@mui/material";
 import { getSearchResultsForQuery } from "@/app/api/api";
-import { CohereClient, Cohere } from "cohere-ai";
-const client = new CohereClient({
-  token: "9KmzyG5gpHV1d4KT9OEv7N0pHyUmMu8l0xeRxmPl",
-  clientName: "General",
-});
+import { returnEmbeddedSearchTerm } from "@/app/api/cohere_util";
 
 export default function LeftSide(props) {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -23,13 +19,7 @@ export default function LeftSide(props) {
   const xButtonRef = useRef(null);
 
   async function handleSearchTermChange(searchTerm) {
-    const embeddedSearchTerm = await client.embed({
-      texts: [searchTerm],
-      model: "embed-english-v3.0",
-      inputType: Cohere.EmbedInputType.SearchDocument,
-      embeddingTypes: [Cohere.EmbeddingType.Float],
-      truncate: Cohere.EmbedRequestTruncate.None,
-    });
+    const embeddedSearchTerm = await returnEmbeddedSearchTerm(searchTerm);
     const { data, error } = await getSearchResultsForQuery(
       embeddedSearchTerm.embeddings.float[0],
     );
