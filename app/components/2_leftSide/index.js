@@ -3,10 +3,14 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRef } from "react";
-import ComparisonModal from "./1_Modal";
 import styles from "./styles.module.css";
 import { Button } from "@mui/material";
 import { getSearchResultsForQuery } from "@/app/api/api";
+import { CohereClient, Cohere } from "cohere-ai";
+const client = new CohereClient({
+  token: "9KmzyG5gpHV1d4KT9OEv7N0pHyUmMu8l0xeRxmPl",
+  clientName: "General",
+});
 
 export default function LeftSide(props) {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -19,7 +23,16 @@ export default function LeftSide(props) {
   const xButtonRef = useRef(null);
 
   async function handleSearchTermChange(searchTerm) {
-    const { data, error } = await getSearchResultsForQuery(searchTerm);
+    const embeddedSearchTerm = await client.embed({
+      texts: [searchTerm],
+      model: "embed-english-v3.0",
+      inputType: Cohere.EmbedInputType.SearchDocument,
+      embeddingTypes: [Cohere.EmbeddingType.Float],
+      truncate: Cohere.EmbedRequestTruncate.None,
+    });
+    const { data, error } = await getSearchResultsForQuery(
+      embeddedSearchTerm.embeddings.float[0],
+    );
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);

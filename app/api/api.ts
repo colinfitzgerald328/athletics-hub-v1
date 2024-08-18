@@ -13,19 +13,16 @@ type ModifyCollectionPayload = components['schemas']['ModifyCollectionPayload']
 const client = createClient<paths>({ baseUrl: API_URL });
 
 
-
-export async function getSearchResultsForQuery(search: string) {
-  return await client.GET("/athlete/search", {
-    params: {
-      query: { search_query: search },
-    },
-  });
+export async function getSearchResultsForQuery(search: number[]) {
+  return await client.POST("/athlete/search", {
+    params: {},
+    body: search
+  })
 }
 
 export async function getRandomDoc() {
   return await client.GET("/athlete/random", {
-    params: {
-    },
+    params: {},
   });
 }
 
