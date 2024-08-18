@@ -1,6 +1,6 @@
 import { CohereClient, Cohere } from "cohere-ai";
 const client = new CohereClient({
-  token: process.env.COHERE_API_KEY,
+  token: "wdlGUm5xd4xK4xP4HCEcJ4Ow68atOAdUr37ABR6Y",
   clientName: "General",
 });
 
