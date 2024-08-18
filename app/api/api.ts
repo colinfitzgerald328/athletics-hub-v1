@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
 
 import createClient from "openapi-fetch";
 import type { paths } from "@/src/lib/api/v1";
