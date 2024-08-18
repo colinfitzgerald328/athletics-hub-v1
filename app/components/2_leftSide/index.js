@@ -149,19 +149,16 @@ export default function LeftSide(props) {
               >
                 <img
                   src={
-                    result.json_data.athlete.hq_images
-                      ? result.json_data.athlete.hq_images[0]
+                    result.hq_images
+                      ? result.hq_images[0]
                       : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                   }
                   className={styles.searchResultImage}
                 />
                 <div className={styles.textDisplay}>
-                  <div className={styles.fullName}>
-                    {result.json_data.athlete.first_name}{" "}
-                    {result.json_data.athlete.last_name}
-                  </div>
+                  <div className={styles.fullName}>{result.full_name}</div>
                   <div className={styles.disciplines}>
-                    {result.json_data.athlete.primary_disciplines}
+                    {result.primary_disciplines}
                   </div>
                 </div>
               </div>

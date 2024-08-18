@@ -197,19 +197,16 @@ export default function CreateCollectionModal(props) {
                   >
                     <img
                       src={
-                        result.json_data.athlete.hq_images
-                          ? result.json_data.athlete.hq_images[0]
+                        result.hq_images
+                          ? result.hq_images[0]
                           : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                       }
                       className={styles.searchResultImage}
                     />
                     <div className={styles.textDisplay}>
-                      <div className={styles.fullName}>
-                        {result.json_data.athlete.first_name}{" "}
-                        {result.json_data.athlete.last_name}
-                      </div>
+                      <div className={styles.fullName}>{result.full_name}</div>
                       <div className={styles.disciplines}>
-                        {result.json_data.athlete.primary_disciplines}
+                        {result.primary_disciplines}
                       </div>
                     </div>
                   </div>
@@ -231,19 +228,16 @@ export default function CreateCollectionModal(props) {
                     <div className={styles.gradient}></div>
                     <img
                       src={
-                        athlete.json_data.athlete.hq_images
-                          ? athlete.json_data.athlete.hq_images[0]
+                        athlete.hq_images
+                          ? athlete.hq_images[0]
                           : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                       }
                       className={styles.athleteImage}
                     />
                     <div className={styles.athleteNameHolder}>
-                      <div className={styles.fullName}>
-                        {athlete.json_data.athlete.first_name}{" "}
-                        {athlete.json_data.athlete.last_name}
-                      </div>
+                      <div className={styles.fullName}>{athlete.full_name}</div>
                       <div className={styles.disciplines}>
-                        {athlete.json_data.athlete.primary_disciplines}
+                        {athlete.primary_disciplines}
                       </div>
                     </div>
                     <div

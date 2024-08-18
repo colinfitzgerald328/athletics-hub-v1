@@ -14,3 +14,12 @@ export const returnEmbeddedSearchTerm = async (search_query: string) => {
     });
 }
 
+export const getChatCompletion = async (question: string) => {
+  const response = await client.chat({
+      message: question,
+      promptTruncation: Cohere.ChatRequestPromptTruncation.Off,
+      temperature: 0.3
+  });
+  return response.text
+}
+
