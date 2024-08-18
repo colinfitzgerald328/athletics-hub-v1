@@ -140,7 +140,7 @@ export default function LeftSide(props) {
           <div className={styles.searchResults} ref={searchResultsRef}>
             {searchResults.map((result) => (
               <div
-                key={result.aaAthleteId}
+                key={result.athlete_id}
                 onClick={() => handleChooseAthlete(result)}
                 className={styles.singleResult}
               >

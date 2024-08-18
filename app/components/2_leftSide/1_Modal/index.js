@@ -300,23 +300,6 @@ export default function ComparisonModal(props) {
                           <CloseIcon />
                         </div>
                       </div>
-                      {/* <div className={styles.otherItems}>
-                        <div className={styles.personalBestsLabel}>
-                          Personal Bests
-                        </div>
-                        <div className={styles.personalBestsHolder}>
-                          {athlete.json_data.athlete.personal_bests.map(
-                            (pb, index) => (
-                              <div key={index}>
-                                <div className={styles.pbEvent}>
-                                  {pb.discipline}
-                                </div>
-                                <div className={styles.pbMark}>{pb.result}</div>
-                              </div>
-                            ),
-                          )}
-                        </div>
-                      </div> */}
                     </div>
                   ))
                 ) : (

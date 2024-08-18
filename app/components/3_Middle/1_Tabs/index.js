@@ -427,7 +427,9 @@ export default function BasicTabs(props) {
                       height={18}
                     />
                   ) : (
-                    <div className={styles.discipline}>{item.discipline}</div>
+                    <div key={index} className={styles.discipline}>
+                      {item.discipline}
+                    </div>
                   )}
                   {props.loadingNewAthlete ? (
                     <Skeleton
