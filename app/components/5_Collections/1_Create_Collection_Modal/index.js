@@ -6,7 +6,6 @@ import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import { createCollection, getSearchResultsForQuery } from "@/app/api/api";
-import { returnEmbeddedSearchTerm } from "@/app/api/cohere_util";
 
 export default function CreateCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,10 +22,7 @@ export default function CreateCollectionModal(props) {
   const [savingCollection, setSavingCollection] = useState(false);
 
   async function handleSearchTermChange(searchTerm) {
-    const embeddedSearchTerm = await returnEmbeddedSearchTerm(searchTerm);
-    const { data, error } = await getSearchResultsForQuery(
-      embeddedSearchTerm.embeddings.float[0],
-    );
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);

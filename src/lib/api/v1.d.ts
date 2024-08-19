@@ -86,10 +86,10 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
-        put?: never;
         /** Search For Athlete */
-        post: operations["search_for_athlete_athlete_search_post"];
+        get: operations["search_for_athlete_athlete_search_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -540,18 +540,16 @@ export interface operations {
             };
         };
     };
-    search_for_athlete_athlete_search_post: {
+    search_for_athlete_athlete_search_get: {
         parameters: {
-            query?: never;
+            query: {
+                search_query: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": number[];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {

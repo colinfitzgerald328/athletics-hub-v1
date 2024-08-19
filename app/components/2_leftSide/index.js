@@ -6,7 +6,6 @@ import { useRef } from "react";
 import styles from "./styles.module.css";
 import { Button } from "@mui/material";
 import { getSearchResultsForQuery } from "@/app/api/api";
-import { returnEmbeddedSearchTerm } from "@/app/api/cohere_util";
 
 export default function LeftSide(props) {
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -19,10 +18,7 @@ export default function LeftSide(props) {
   const xButtonRef = useRef(null);
 
   async function handleSearchTermChange(searchTerm) {
-    const embeddedSearchTerm = await returnEmbeddedSearchTerm(searchTerm);
-    const { data, error } = await getSearchResultsForQuery(
-      embeddedSearchTerm.embeddings.float[0],
-    );
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);

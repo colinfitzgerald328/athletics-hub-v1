@@ -6,7 +6,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import LinearProgress from "@mui/material/LinearProgress";
 import AddIcon from "@mui/icons-material/Add";
 import { getSearchResultsForQuery, modifyCollection } from "@/app/api/api";
-import { returnEmbeddedSearchTerm } from "@/app/api/cohere_util";
 
 export default function AddToCollectionModal(props) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -23,10 +22,7 @@ export default function AddToCollectionModal(props) {
   const [savingCollection, setSavingCollection] = useState(false);
 
   async function handleSearchTermChange(searchTerm) {
-    const embeddedSearchTerm = await returnEmbeddedSearchTerm(searchTerm);
-    const { data, error } = await getSearchResultsForQuery(
-      embeddedSearchTerm.embeddings.float[0],
-    );
+    const { data, error } = await getSearchResultsForQuery(searchTerm);
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);
@@ -111,9 +107,7 @@ export default function AddToCollectionModal(props) {
     const collectionId = props.user_collections[props.currentIndex]["id"];
     setSavingCollection(true);
     const athlete_ids = [];
-    athletes.forEach((athlete) =>
-      athlete_ids.push(athlete.athlete_id),
-    );
+    athletes.forEach((athlete) => athlete_ids.push(athlete.athlete_id));
     await modifyCollection(null, "ADD", collectionId, null, athlete_ids);
     setSavingCollection(false);
     setModalOpen(false);
