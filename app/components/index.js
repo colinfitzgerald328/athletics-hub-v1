@@ -35,7 +35,7 @@ export default function MainComponent() {
     updateWindowDimensions();
     fetchRandomAthlete();
     handleGetLetsRunDailySummary();
-  });
+  }, []);
 
   async function fetchRandomAthlete() {
     setLoadingNewAthlete(true);
@@ -48,9 +48,8 @@ export default function MainComponent() {
 
     setAthlete(data.athlete);
     setLoadingNewAthlete(false);
-    setAthleteData(data.results);
-    setAthleteAccolades(data.atholde_accolades);
-    setSimilarAthletes(data.similar_athletes);
+    setAthlete_data(data.results);
+    setSimilar_athletes(data.similar_athletes);
     setTop_competitors(data.top_competitors);
   }
 
@@ -65,9 +64,8 @@ export default function MainComponent() {
 
     setAthlete(data.athlete);
     setLoadingNewAthlete(false);
-    setAthleteData(data.results);
-    setAthleteAccolades(data.atholde_accolades);
-    setSimilarAthletes(data.similar_athletes);
+    setAthlete_data(data.results);
+    setSimilar_athletes(data.similar_athletes);
     setTop_competitors(data.top_competitors);
   }
 
@@ -95,7 +93,7 @@ export default function MainComponent() {
       </div>
     );
   }
-  if (width < 1000 && pageLoaded) {
+  if (width < 1000) {
     return (
       <div>
         <Head>
@@ -124,7 +122,7 @@ export default function MainComponent() {
         </div>
       </div>
     );
-  } else if (width > 1000 && pageLoaded) {
+  } else if (width > 1000) {
     return (
       <div>
         <Head>
@@ -148,7 +146,6 @@ export default function MainComponent() {
             similar_athletes={similar_athletes}
             loadingNewAthlete={loadingNewAthlete}
             athlete_data={athlete_data}
-            showingCollections={showingCollections}
             fetchAthleteById={fetchAthleteById}
           />
         </div>
