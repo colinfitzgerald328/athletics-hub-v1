@@ -3,7 +3,7 @@ const API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
 import createClient from "openapi-fetch";
 import type { paths } from "@/src/lib/api/v1";
 import { components } from "@/src/lib/api/v1";
-
+export type QueriedAthlete = components["schemas"]["QueriedAthlete"]
 type CreateCollectionPayload = components['schemas']['CreateCollectionPayload'];
 type CreateAccountPayload = components['schemas']['CreateAccountPayload']
 type LoginPayload = components['schemas']['LoginPayload']

@@ -12,32 +12,29 @@ import {
   getRandomDoc,
   getLetsRunDailySummary,
 } from "../api/api";
+import { components } from "@/src/lib/api/v1";
+import type { QueriedAthlete } from "@/app/api/api";
+type SummaryResponse = components["schemas"]["LetsrunSummaryForDay"]
+
 
 export default function MainComponent() {
-  const [athlete, setAthlete] = useState(null);
-  const [athlete_data, setAthlete_data] = useState([]);
-  const [similar_athletes, setSimilar_athletes] = useState([]);
-  const [top_competitors, setTop_competitors] = useState([]);
-  const [summaryResponse, setSummaryResponse] = useState(null);
-  const [width, setWidth] = useState(null);
-  const [height, setHeight] = useState(null);
-  const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
+  const [athlete, setAthlete] = useState<QueriedAthlete>(null);
+  const [summaryResponse, setSummaryResponse] = useState<SummaryResponse>(null);
+  const [width, setWidth] = useState<number>(null);
+  const [height, setHeight] = useState<number>(null);
+  const [loadingNewAthlete, setLoadingNewAthlete] = useState<boolean>(false);
 
   useEffect(() => {
-    if (
-      localStorage.getItem("userName") &&
-      localStorage.getItem("password") &&
-      localStorage.getItem("account_id")
-    ) {
-      logInUser();
-    }
     window.addEventListener("resize", updateWindowDimensions);
     updateWindowDimensions();
     fetchRandomAthlete();
     handleGetLetsRunDailySummary();
   }, []);
 
-  async function fetchRandomAthlete() {
+  /**
+   * Fetches a random athlete, and sets the state of the components to reflect the fetched athlete.
+   */
+  async function fetchRandomAthlete(): Promise<void> {
     setLoadingNewAthlete(true);
     const { data, error } = await getRandomDoc();
 
@@ -46,14 +43,15 @@ export default function MainComponent() {
       return;
     }
 
-    setAthlete(data.athlete);
+    setAthlete(data);
     setLoadingNewAthlete(false);
-    setAthlete_data(data.results);
-    setSimilar_athletes(data.similar_athletes);
-    setTop_competitors(data.top_competitors);
   }
 
-  async function fetchAthleteById(athlete_id) {
+  /**
+   * Fetches an athlete by their ID, and sets the state of the components to reflect the fetched athlete.
+   * @param athlete_id The ID of the athlete to fetch
+   */
+  async function fetchAthleteById(athlete_id: number): Promise<void> {
     setLoadingNewAthlete(true);
     const { data, error } = await getAthleteById(athlete_id);
 
@@ -62,11 +60,8 @@ export default function MainComponent() {
       return;
     }
 
-    setAthlete(data.athlete);
+    setAthlete(data);
     setLoadingNewAthlete(false);
-    setAthlete_data(data.results);
-    setSimilar_athletes(data.similar_athletes);
-    setTop_competitors(data.top_competitors);
   }
 
   function updateWindowDimensions() {
@@ -81,7 +76,7 @@ export default function MainComponent() {
       return;
     }
 
-    setSummaryResponse(data.summary_text);
+    setSummaryResponse(data);
   }
 
   if (!athlete) {
@@ -99,23 +94,19 @@ export default function MainComponent() {
         <Head>
           <meta property="og:image" content="/icon.png" />
         </Head>
-        <TopBar summaryResponse={summaryResponse} isMobile={true} />
+        <TopBar summaryResponse={summaryResponse.summary_text} isMobile={true} />
         <div className={styles.mainDisplayMobile}>
           <LeftSide fetchAthleteById={fetchAthleteById} isMobile={true} />
           <AthleteBreakDown
             athlete={athlete}
             loadingNewAthlete={loadingNewAthlete}
-            athlete_data={athlete_data}
-            top_competitors={top_competitors}
             height={height}
             fetchAthleteById={fetchAthleteById}
             isMobile={true}
           />
           <RightSide
             athlete={athlete}
-            similar_athletes={similar_athletes}
             loadingNewAthlete={loadingNewAthlete}
-            athlete_data={athlete_data}
             fetchAthleteById={fetchAthleteById}
             isMobile={true}
           />
@@ -128,24 +119,20 @@ export default function MainComponent() {
         <Head>
           <meta property="og:image" content="/icon.png" />
         </Head>
-        <TopBar summaryResponse={summaryResponse} />
+        <TopBar isMobile={false} summaryResponse={summaryResponse.summary_text} />
         <div className={styles.mainDisplay}>
           <div className={styles.tempWrapper}>
             <LeftSide fetchAthleteById={fetchAthleteById} />
             <AthleteBreakDown
               athlete={athlete}
               loadingNewAthlete={loadingNewAthlete}
-              athlete_data={athlete_data}
-              top_competitors={top_competitors}
               height={height}
               fetchAthleteById={fetchAthleteById}
             />
           </div>
           <RightSide
             athlete={athlete}
-            similar_athletes={similar_athletes}
             loadingNewAthlete={loadingNewAthlete}
-            athlete_data={athlete_data}
             fetchAthleteById={fetchAthleteById}
           />
         </div>

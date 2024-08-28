@@ -8,7 +8,11 @@ import markdownit from "markdown-it";
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
-export default function AnchorTemporaryDrawer(props) {
+interface SummaryModalProps {
+  summaryResponse: string
+}
+
+export default function AnchorTemporaryDrawer(props: Readonly<SummaryModalProps>) {
   let result: string; // Define result outside if block
 
   if (props.summaryResponse) {
@@ -40,7 +44,6 @@ export default function AnchorTemporaryDrawer(props) {
     <Box
       style={{ padding: "20px" }}
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
-      role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >

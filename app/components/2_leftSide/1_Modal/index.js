@@ -352,7 +352,7 @@ export default function ComparisonModal(props) {
 
 export function BottomDrawer(props) {
   const DrawerList = (
-    <Box role="presentation" onClick={() => props.toggleDrawer(false)}>
+    <Box alt="presentation" onClick={() => props.toggleDrawer(false)}>
       <div className={styles.basic}>
         <div className={styles.header}>
           <div className={styles.disclosure}>Comparison Result</div>
