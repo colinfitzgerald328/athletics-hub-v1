@@ -19,7 +19,7 @@ import {
 } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
 import Anthropic from "@anthropic-ai/sdk";
-const apiKey = process.env.ANTHROPIC_API_KEY;
+const apiKey = process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY;
 const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
 
 const trackAndFieldEvents = [
