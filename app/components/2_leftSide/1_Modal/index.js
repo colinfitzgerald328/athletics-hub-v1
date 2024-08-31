@@ -155,6 +155,7 @@ export default function ComparisonModal(props) {
   }
 
   async function getResponse() {
+    setComparisonSummary("");
     if (athletes.length < 2) {
       alert("You need to choose 2 athletes to compare");
       return;
