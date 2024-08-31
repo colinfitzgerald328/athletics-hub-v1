@@ -19,8 +19,7 @@ import {
 } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
 import Anthropic from "@anthropic-ai/sdk";
-const apiKey =
-  "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";
+const apiKey = process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY;
 const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
 
 const trackAndFieldEvents = [
