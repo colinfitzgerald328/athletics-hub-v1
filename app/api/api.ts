@@ -1,4 +1,4 @@
-const API_URL = "https://savvy-webbing-422303-r1.uc.r.appspot.com";
+const API_URL = "https://athletics-hub-engine-production.up.railway.app";
 
 import createClient from "openapi-fetch";
 import type { paths } from "@/src/lib/api/v1";
