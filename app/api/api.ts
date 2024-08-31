@@ -101,13 +101,12 @@ export async function getLetsRunDailySummary() {
   })
 }
 
-export async function compareTwoAthletes(athlete_id_1: number, athlete_id_2: number, comparison_distance: number | string) {
+export async function getInfoForAIComparison(athlete_id_1: number, athlete_id_2: number) {
   return await client.POST("/athletes/compare", {
     params: {
       query: {
         athlete_id_1: athlete_id_1, 
         athlete_id_2: athlete_id_2, 
-        comparison_distance: comparison_distance
       }
     }
   })

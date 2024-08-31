@@ -13,8 +13,15 @@ import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 import Close from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
-import { compareTwoAthletes, getSearchResultsForQuery } from "@/app/api/api";
+import {
+  getInfoForAIComparison,
+  getSearchResultsForQuery,
+} from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
+import Anthropic from "@anthropic-ai/sdk";
+const apiKey =
+  "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";
+const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -157,14 +164,46 @@ export default function ComparisonModal(props) {
     const athlete_id_1 = athletes[0].athlete_id;
     const athlete_id_2 = athletes[1].athlete_id;
     const comparison_distance = value;
-    const { data, error } = await compareTwoAthletes(
+    const { data, error } = await getInfoForAIComparison(
       athlete_id_1,
       athlete_id_2,
-      comparison_distance,
     );
-    setComparisonSummary(data.comparison_summary);
+    const { athlete_1, athlete_2 } = data;
+    const prompt = `Scenario: Head-to-Head Race over ${comparison_distance}
+
+    Two athletes, ${athlete_1.json_data["athlete"]["first_name"]} ${
+      athlete_1.json_data["athlete"]["last_name"]
+    }
+    and ${athlete_2.json_data["athlete"]["first_name"]} ${
+      athlete_2.json_data["athlete"]["last_name"]
+    }
+    have been asked to compete in a head-to-head race over a distance of ${comparison_distance}.
+    To provide a thorough analysis, let's examine the personal bests and performance history of each athlete:
+    
+    Athlete 1: ${JSON.stringify(athlete_1.json_data, null, 2)}
+    
+    Athlete 2: ${JSON.stringify(athlete_2.json_data, null, 2)}
+    
+    Based on the information provided, please analyze the potential outcome of this race. Consider factors such as the athletes' personal bests, recent performances, and any other relevant data that could influence the result. Provide a detailed explanation of your reasoning and a prediction of who is likely to win the race.
+    
+    Please take your time to thoroughly evaluate the scenario and provide a well-reasoned response.`;
     setLoadingComparison(false);
     toggleDrawer(true);
+    const stream = client.messages
+      .stream({
+        model: "claude-3-opus-20240229",
+        max_tokens: 1024,
+        messages: [
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
+      })
+      .on("text", (text) => {
+        setComparisonSummary((...prev) => prev + text);
+      });
+    await stream.finalMessage();
   }
 
   return (

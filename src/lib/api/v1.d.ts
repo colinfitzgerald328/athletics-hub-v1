@@ -266,23 +266,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/athlete/{athlete_id}_with_results": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Get Athlete By Id With Results */
-        get: operations["get_athlete_by_id_with_results_athlete__athlete_id__with_results_get"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -296,10 +279,79 @@ export interface components {
             /** Password */
             password: string;
         };
-        /** AthleteComparisonResult */
-        AthleteComparisonResult: {
-            /** Comparison Summary */
-            comparison_summary: string;
+        /** Athlete */
+        Athlete: {
+            /** Id */
+            id: string;
+            /** Athlete Id */
+            athlete_id: number;
+            /** First Name */
+            first_name: string;
+            /** Last Name */
+            last_name: string;
+            /** Date Of Birth */
+            date_of_birth?: string;
+            /** Country */
+            country: string;
+            /** Url Slug */
+            url_slug: string;
+            /** Primary Disciplines */
+            primary_disciplines: string;
+            /** Accomplishments */
+            accomplishments?: string[];
+            /** Personal Bests */
+            personal_bests?: unknown[];
+            /** Gender */
+            gender: string;
+            /** Wikipedia Url */
+            wikipedia_url?: string;
+            /** Social Urls */
+            social_urls?: Record<string, never> | unknown[];
+            /** Nickname */
+            nickname?: string;
+            /** Hq Images */
+            hq_images?: string[];
+            /** Markdown Summary */
+            markdown_summary?: string;
+        };
+        /** AthleteResult */
+        AthleteResult: {
+            /** Date */
+            date: string;
+            /** Competition */
+            competition: string;
+            /** Venue */
+            venue: string;
+            /** Indoor */
+            indoor?: boolean;
+            /** Discipline Code */
+            discipline_code?: string;
+            /** Discipline Name Url Slug */
+            discipline_name_url_slug?: string;
+            /** Type Name Url Slug */
+            type_name_url_slug?: string;
+            /** Discipline */
+            discipline: string;
+            /** Country */
+            country: string;
+            /** Category */
+            category: string;
+            /** Race */
+            race: string;
+            /** Place */
+            place: string;
+            /** Mark */
+            mark: string;
+            /** Wind */
+            wind?: string;
+            /** Not Legal */
+            not_legal?: boolean;
+            /** Result Score */
+            result_score?: number;
+            /** Remark */
+            remark?: string;
+            /** Timestamp */
+            timestamp: number;
         };
         /** CloseMatch */
         CloseMatch: {
@@ -401,6 +453,16 @@ export interface components {
             /** Name Was Updated */
             name_was_updated: boolean;
         };
+        /** QueriedAthlete */
+        QueriedAthlete: {
+            athlete: components["schemas"]["Athlete"];
+            /** Results */
+            results: components["schemas"]["AthleteResult"][];
+            /** Top Competitors */
+            top_competitors: components["schemas"]["TopCompetitor"][];
+            /** Similar Athletes */
+            similar_athletes?: components["schemas"]["CloseMatch"][];
+        };
         /** StoredQueriedAthlete */
         StoredQueriedAthlete: {
             /** Athlete Id */
@@ -409,6 +471,21 @@ export interface components {
             json_data: Record<string, never>;
             /** Similar Athletes */
             similar_athletes?: components["schemas"]["CloseMatch"][];
+        };
+        /** TopCompetitor */
+        TopCompetitor: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** Primary Disciplines */
+            primary_disciplines: string;
+            /** First Name */
+            first_name: string;
+            /** Last Name */
+            last_name: string;
+            /** Markdown Summary */
+            markdown_summary?: string;
+            /** Hq Images */
+            hq_images?: string[];
         };
         /** UserCollections */
         UserCollections: {
@@ -439,6 +516,17 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /** VectorSearchResult */
+        VectorSearchResult: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** Hq Images */
+            hq_images?: string[];
+            /** Full Name */
+            full_name: string;
+            /** Primary Disciplines */
+            primary_disciplines: string;
         };
     };
     responses: never;
@@ -506,7 +594,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["QueriedAthlete"];
                 };
             };
             /** @description Validation Error */
@@ -535,7 +623,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["QueriedAthlete"];
                 };
             };
         };
@@ -557,7 +645,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": unknown;
+                    "application/json": components["schemas"]["VectorSearchResult"][];
                 };
             };
             /** @description Validation Error */
@@ -576,7 +664,6 @@ export interface operations {
             query: {
                 athlete_id_1: number;
                 athlete_id_2: number;
-                comparison_distance: number | string;
             };
             header?: never;
             path?: never;
@@ -590,7 +677,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["AthleteComparisonResult"];
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */
@@ -867,37 +954,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": unknown;
-                };
-            };
-        };
-    };
-    get_athlete_by_id_with_results_athlete__athlete_id__with_results_get: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                athlete_id: number;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successful Response */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": unknown;
-                };
-            };
-            /** @description Validation Error */
-            422: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
