@@ -19,8 +19,13 @@ import {
 } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
 import Anthropic from "@anthropic-ai/sdk";
-const apiKey = process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY;
-const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
+// const apiKey = process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY;
+// const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
+import OpenAI from "openai";
+let apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
+import Markdown from "react-markdown";
+import { getAthleteById } from "@/app/api/api";
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -163,47 +168,70 @@ export default function ComparisonModal(props) {
     setLoadingComparison(true);
     const athlete_id_1 = athletes[0].athlete_id;
     const athlete_id_2 = athletes[1].athlete_id;
-    const comparison_distance = value;
-    const { data, error } = await getInfoForAIComparison(
-      athlete_id_1,
-      athlete_id_2,
-    );
-    const { athlete_1, athlete_2 } = data;
-    const prompt = `Scenario: Head-to-Head Race over ${comparison_distance}
+    const [res_1, res_2] = await Promise.all([
+      getAthleteById(athlete_id_1),
+      getAthleteById(athlete_id_2),
+    ]);
 
-    Two athletes, ${athlete_1.json_data["athlete"]["first_name"]} ${
-      athlete_1.json_data["athlete"]["last_name"]
-    }
-    and ${athlete_2.json_data["athlete"]["first_name"]} ${
-      athlete_2.json_data["athlete"]["last_name"]
-    }
+    const comparison_distance = value;
+    const prompt = `
+    
+    Scenario: Head-to-Head Race over ${comparison_distance}
+
+    Two athletes, ${res_1.data.athlete.full_name} and ${res_2.data.athlete.full_name},
     have been asked to compete in a head-to-head race over a distance of ${comparison_distance}.
     To provide a thorough analysis, let's examine the personal bests and performance history of each athlete:
     
-    Athlete 1: ${JSON.stringify(athlete_1.json_data, null, 2)}
+    Athlete 1:
     
-    Athlete 2: ${JSON.stringify(athlete_2.json_data, null, 2)}
+    <profile>${JSON.stringify(res_1.data.athlete, null, 2)}</profile>
+    <results>${JSON.stringify(res_1.data.results, null, 2)}</results>
     
-    Based on the information provided, please analyze the potential outcome of this race. Consider factors such as the athletes' personal bests, recent performances, and any other relevant data that could influence the result. Provide a detailed explanation of your reasoning and a prediction of who is likely to win the race.
-    
+    Athlete 2:
+
+    <profile>${JSON.stringify(res_2.data.athlete, null, 2)}</profile>
+    <results>${JSON.stringify(res_2.data.results, null, 2)}</results>
+
+    Provide a detailed explanation of your reasoning and a prediction of who is likely to win the race.
     Please take your time to thoroughly evaluate the scenario and provide a well-reasoned response.`;
-    setLoadingComparison(false);
-    toggleDrawer(true);
-    const stream = client.messages
-      .stream({
-        model: "claude-3-opus-20240229",
-        max_tokens: 1024,
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
-      })
-      .on("text", (text) => {
-        setComparisonSummary((...prev) => prev + text);
-      });
-    await stream.finalMessage();
+    let iterations = 0;
+    const stream = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
+      stream: true,
+    });
+    for await (const chunk of stream) {
+      if (iterations === 0) {
+        setLoadingComparison(false);
+        toggleDrawer(true);
+      }
+      iterations++;
+      setComparisonSummary(
+        (...prev) => prev + chunk.choices[0]?.delta?.content || "",
+      );
+      console.log(chunk.choices[0]?.delta?.content || "");
+    }
+    // const iteration = 0;
+    // const stream = client.messages
+    //   .stream({
+    //     model: "claude-3-opus-20240229",
+    //     max_tokens: 1024,
+    //     messages: [
+    //       {
+    //         role: "user",
+    //         content: prompt,
+    //       },
+    //     ],
+    //   })
+    //   .on("text", (text) => {
+    //     if (iteration === 0) {
+    //       setLoadingComparison(false);
+    //       toggleDrawer(true);
+    //     }
+    //     iteration++;
+    //     setComparisonSummary((...prev) => prev + text);
+    //   });
+    // await stream.finalMessage();
   }
 
   return (
@@ -404,7 +432,7 @@ export function BottomDrawer(props) {
             </IconButton>
           </div>
         </div>
-        {props.comparisonSummary}
+        <Markdown>{props.comparisonSummary}</Markdown>
       </div>
     </Box>
   );
