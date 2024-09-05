@@ -7,9 +7,7 @@ export default function Recommended(props) {
     (similar_athlete, index) => (
       <div
         className={styles.similarAthlete}
-        onClick={() =>
-          props.fetchAthleteById(similar_athlete.athlete_id)
-        }
+        onClick={() => props.fetchAthleteById(similar_athlete.athlete_id)}
         key={index}
       >
         {props.loadingNewAthlete ? (

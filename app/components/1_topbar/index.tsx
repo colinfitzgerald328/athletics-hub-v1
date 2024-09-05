@@ -13,8 +13,8 @@ import ComparisonModal from "../2_leftSide/1_Modal";
 import styles from "./styles.module.css";
 import { components } from "@/src/lib/api/v1";
 
-type CreateAccountPayload = components['schemas']['CreateAccountPayload']
-type LoginPayload = components['schemas']['LoginPayload']
+type CreateAccountPayload = components["schemas"]["CreateAccountPayload"];
+type LoginPayload = components["schemas"]["LoginPayload"];
 
 interface TopBarProps {
   isMobile: boolean;
@@ -61,10 +61,10 @@ const TopBar: React.FC<TopBarProps> = (props) => {
     }
     setLoggingIn(true);
     const loginData: LoginPayload = {
-      username: userName, 
-      password: password
-    }
-    const {data, error} = await loginUser(loginData);
+      username: userName,
+      password: password,
+    };
+    const { data, error } = await loginUser(loginData);
     if (error.detail) {
       setErrMessage(error.detail.toString());
       setLoggingIn(false);
@@ -92,10 +92,10 @@ const TopBar: React.FC<TopBarProps> = (props) => {
     }
     setLoggingIn(true);
     const createAccountPayload: CreateAccountPayload = {
-      username: userName, 
-      password: password
-    }
-    const {data, error } = await createAccount(createAccountPayload);
+      username: userName,
+      password: password,
+    };
+    const { data, error } = await createAccount(createAccountPayload);
     if (error.detail) {
       setErrMessage(error.detail.toString());
       setAccountFailedOpen(true);
@@ -119,7 +119,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     if (reason === "clickaway") {
       return;
@@ -129,7 +129,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
 
   const handleCloseCreate = (
     event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     if (reason === "clickaway") {
       return;
@@ -139,7 +139,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
 
   const handleCloseDanger = (
     event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     if (reason === "clickaway") {
       return;
@@ -149,7 +149,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
 
   const handleCloseFailedCreate = (
     event?: React.SyntheticEvent | Event,
-    reason?: string
+    reason?: string,
   ) => {
     if (reason === "clickaway") {
       return;
@@ -176,7 +176,7 @@ const TopBar: React.FC<TopBarProps> = (props) => {
       setCreatingAccount(true);
       setTimeout(() => {
         const secondElement = document.getElementsByClassName(
-          styles.basicContainer1
+          styles.basicContainer1,
         )[0];
         secondElement.classList.add(styles.fadeIn);
       }, 10);

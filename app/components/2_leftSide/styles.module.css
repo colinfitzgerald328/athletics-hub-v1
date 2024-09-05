@@ -75,7 +75,7 @@
   position: absolute;
   z-index: 1000;
   width: calc(100% - 20px);
-  border-top: none; 
+  border-top: none;
   border: 2px solid dodgerblue;
 }
 
@@ -201,7 +201,6 @@
 }
 
 .linearProgress {
-
 }
 
 .closeIcon {
@@ -210,4 +209,4 @@
   color: gray;
   margin-left: calc(100% - 40px);
   height: 100%;
-} 
+}

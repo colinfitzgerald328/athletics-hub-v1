@@ -178,20 +178,30 @@ export default function ComparisonModal(props) {
     
     Scenario: Head-to-Head Race over ${comparison_distance}
 
-    Two athletes, ${res_1.data.athlete.full_name} and ${res_2.data.athlete.full_name},
+    Two athletes, ${res_1.data.athlete.full_name} and ${
+      res_2.data.athlete.full_name
+    },
     have been asked to compete in a head-to-head race over a distance of ${comparison_distance}.
     To provide a thorough analysis, let's examine the personal bests and performance history of each athlete:
     
     Athlete 1:
     
     <profile>${JSON.stringify(res_1.data.athlete, null, 2)}</profile>
-    <personal_bests>${JSON.stringify(res_1.data.athlete.personal_bests, null, 2)}</personal_bests>
+    <personal_bests>${JSON.stringify(
+      res_1.data.athlete.personal_bests,
+      null,
+      2,
+    )}</personal_bests>
     <results>${JSON.stringify(res_1.data.results, null, 2)}</results>
     
     Athlete 2:
 
     <profile>${JSON.stringify(res_2.data.athlete, null, 2)}</profile>
-    <personal_bests>${JSON.stringify(res_2.data.athlete.personal_bests, null, 2)}</personal_bests>
+    <personal_bests>${JSON.stringify(
+      res_2.data.athlete.personal_bests,
+      null,
+      2,
+    )}</personal_bests>
     <results>${JSON.stringify(res_2.data.results, null, 2)}</results>
 
     Provide a detailed explanation of your reasoning and a prediction of who is likely to win the race.

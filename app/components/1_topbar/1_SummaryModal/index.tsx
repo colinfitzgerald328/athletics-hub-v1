@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
 import Button from "@mui/joy/Button";
 import styles from "./styles.module.css";
-import { CircularProgress } from '@mui/material';
+import { CircularProgress } from "@mui/material";
 import markdownit from "markdown-it";
 
-type Anchor = 'top' | 'left' | 'bottom' | 'right';
+type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function AnchorTemporaryDrawer(props) {
   let result: string; // Define result outside if block
@@ -26,9 +26,9 @@ export default function AnchorTemporaryDrawer(props) {
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === 'keydown' &&
-        ((event as React.KeyboardEvent).key === 'Tab' ||
-          (event as React.KeyboardEvent).key === 'Shift')
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
       ) {
         return;
       }
@@ -39,7 +39,7 @@ export default function AnchorTemporaryDrawer(props) {
   const list = (anchor: Anchor) => (
     <Box
       style={{ padding: "20px" }}
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -66,7 +66,7 @@ export default function AnchorTemporaryDrawer(props) {
 
   return (
     <div>
-      {(['bottom'] as const).map((anchor) => (
+      {(["bottom"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
             sx={{
@@ -77,7 +77,10 @@ export default function AnchorTemporaryDrawer(props) {
             }}
             variant="soft"
             color="primary"
-            onClick={toggleDrawer(anchor, true)}>Daily News</Button>
+            onClick={toggleDrawer(anchor, true)}
+          >
+            Daily News
+          </Button>
           <Drawer
             anchor={anchor}
             open={state[anchor]}
@@ -90,4 +93,3 @@ export default function AnchorTemporaryDrawer(props) {
     </div>
   );
 }
-

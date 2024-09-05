@@ -47,7 +47,8 @@ export default function BigGraph(props) {
   return (
     <>
       <h2 className={styles.graphName}>
-        Performance Graph for {props.athlete.first_name} {props.athlete.last_name}
+        Performance Graph for {props.athlete.first_name}{" "}
+        {props.athlete.last_name}
       </h2>
       <ResponsiveContainer className={styles.graphHolder}>
         <LineChart

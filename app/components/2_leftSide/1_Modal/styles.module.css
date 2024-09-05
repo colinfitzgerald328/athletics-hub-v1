@@ -132,7 +132,7 @@
   justify-content: center;
   font-size: 18px;
   height: 100%;
-  width: 100%; 
+  width: 100%;
 }
 
 .athlete {
@@ -142,7 +142,6 @@
   box-shadow: 2px 2px 5px slategray;
   margin-right: 10px;
 }
-
 
 .athleteName {
   font-size: 25px;
@@ -179,7 +178,7 @@
 
 .itemsContainer {
   width: 100%;
-  height: 100%; 
+  height: 100%;
   position: relative;
 }
 

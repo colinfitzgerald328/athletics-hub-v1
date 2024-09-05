@@ -6,7 +6,6 @@ import { Modal } from "antd";
 import markdownit from "markdown-it";
 import styles from "./styles.module.css";
 
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -32,7 +31,6 @@ export default function SummaryModal(props) {
     result = md.render(props.athleteSummary); // Assign result inside if block
   }
 
-
   return (
     <Modal
       open={props.markdownModalOpen}
@@ -51,14 +49,23 @@ export default function SummaryModal(props) {
             {props.athlete.first_name} {props.athlete.last_name}
           </div>
           <div className={styles.rightItems}>
-          <Button color="primary" variant="soft" sx={{"borderRadius": "25px"}} className={styles.openButton}  onClick={()=> window.open(props.athlete.wikipedia_url)}>
-            Read more
-          </Button>
-          <div onClick={()=> props.closeMarkdownModal()} className={styles.closeButton}>
-            <IconButton>
-              <Close/>
-            </IconButton>
-          </div>
+            <Button
+              color="primary"
+              variant="soft"
+              sx={{ borderRadius: "25px" }}
+              className={styles.openButton}
+              onClick={() => window.open(props.athlete.wikipedia_url)}
+            >
+              Read more
+            </Button>
+            <div
+              onClick={() => props.closeMarkdownModal()}
+              className={styles.closeButton}
+            >
+              <IconButton>
+                <Close />
+              </IconButton>
+            </div>
           </div>
         </div>
         <div
