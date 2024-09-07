@@ -17,11 +17,7 @@ export default function SocialProfiles(props) {
   }, [props.athlete.social_urls]);
 
   function getTwitterHandle(socialUrls) {
-    if (Object.keys(socialUrls).length == 0) {
-      return;
-    }
-
-    if (!socialUrls.length) {
+    if (Object.keys(socialUrls).length == 0 || !socialUrls.length) {
       return;
     }
 
@@ -33,17 +29,11 @@ export default function SocialProfiles(props) {
       return;
     }
 
-    const twitterUrl = twitterObject.twitter_url;
-    const twitterHandle = twitterUrl.split("/").pop();
-    return twitterHandle;
+    return twitterObject.twitter_url.split("/").pop();
   }
 
   function getInstagramHandle(socialUrls) {
-    if (Object.keys(socialUrls).length == 0) {
-      return;
-    }
-
-    if (!socialUrls.length) {
+    if (Object.keys(socialUrls).length == 0 || !socialUrls.length) {
       return;
     }
 
@@ -55,18 +45,15 @@ export default function SocialProfiles(props) {
       return;
     }
 
-    const instagramUrl = instagramObject.instagram_url;
-
     const regex = /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([^\/?]+)/i;
 
-    const match = instagramUrl.match(regex);
+    const match = instagramObject.instagram_url.match(regex);
 
     if (!match) {
       return;
     }
 
-    const instagramHandle = match[1];
-    return instagramHandle;
+    return match[1];
   }
 
   return (

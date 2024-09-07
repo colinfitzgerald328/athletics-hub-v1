@@ -15,10 +15,7 @@ import {
 
 export default function MainComponent() {
   const [athlete, setAthlete] = useState(null);
-  const [athleteData, setAthleteData] = useState([]);
   const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
-  const [similarAthletes, setSimilarAthletes] = useState([]);
-  const [topCompetitors, setTopCompetitors] = useState([]);
   const [summaryResponse, setSummaryResponse] = useState(null);
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
@@ -38,10 +35,7 @@ export default function MainComponent() {
       setLoadingNewAthlete(false);
       return;
     }
-    setAthlete(data.athlete);
-    setAthleteData(data.results);
-    setSimilarAthletes(data.similar_athletes);
-    setTopCompetitors(data.top_competitors);
+    setAthlete(data);
     setLoadingNewAthlete(false);
     setPageLoaded(true);
   }
@@ -53,10 +47,7 @@ export default function MainComponent() {
       setLoadingNewAthlete(false);
       return;
     }
-    setAthlete(data.athlete);
-    setAthleteData(data.results);
-    setSimilarAthletes(data.similar_athletes);
-    setTopCompetitors(data.top_competitors);
+    setAthlete(data);
     setLoadingNewAthlete(false);
     setPageLoaded(true);
   }
@@ -91,24 +82,17 @@ export default function MainComponent() {
         </Head>
         <TopBar summaryResponse={summaryResponse} isMobile={true} />
         <div className={styles.mainDisplayMobile}>
-          <LeftSide
-            fetchAthleteById={fetchAthleteById.bind(this)}
-            isMobile={true}
-          />
+          <LeftSide fetchAthleteById={fetchAthleteById} isMobile={true} />
           <AthleteBreakDown
             athlete={athlete}
             loadingNewAthlete={loadingNewAthlete}
-            athlete_data={athleteData}
-            top_competitors={topCompetitors}
             height={height}
             fetchAthleteById={fetchAthleteById}
             isMobile={true}
           />
           <RightSide
             athlete={athlete}
-            similar_athletes={similarAthletes}
             loadingNewAthlete={loadingNewAthlete}
-            athlete_data={athleteData}
             fetchAthleteById={fetchAthleteById}
             isMobile={true}
           />
@@ -128,17 +112,13 @@ export default function MainComponent() {
             <AthleteBreakDown
               athlete={athlete}
               loadingNewAthlete={loadingNewAthlete}
-              athlete_data={athleteData}
-              top_competitors={topCompetitors}
               height={height}
               fetchAthleteById={fetchAthleteById}
             />
           </div>
           <RightSide
             athlete={athlete}
-            similar_athletes={similarAthletes}
             loadingNewAthlete={loadingNewAthlete}
-            athlete_data={athleteData}
             fetchAthleteById={fetchAthleteById}
           />
         </div>
