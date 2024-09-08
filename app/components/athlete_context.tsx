@@ -3,14 +3,14 @@ import { createContext, useContext, ReactNode, useState, useCallback, useMemo, u
 import { getAthleteById, getRandomDoc, getLetsRunDailySummary } from "../api/api";
 import { components } from "@/src/lib/api/v1";
 
-// Define the Athlete type
-type Athlete = components["schemas"]["QueriedAthlete"]; // Changed QueriedAthlete to Athlete
 
-// Define the AthleteContextType interface
+type Athlete = components["schemas"]["QueriedAthlete"]; 
+
+
 export interface AthleteContextType {
   athlete: Athlete | null;
   loadingNewAthlete: boolean;
-  fetchAthleteById: (athleteId: number) => Promise<void>; // Changed string to number
+  fetchAthleteById: (athleteId: number) => Promise<void>; 
   fetchRandomAthlete: () => Promise<void>;
   getLetsRunDailySummaryFunction: () => Promise<void>;
   summaryResponse: string;
@@ -19,12 +19,11 @@ export interface AthleteContextType {
   isMobile: boolean;
 }
 
-// Create the AthleteContext
+
 const AthleteContext = createContext<AthleteContextType | undefined>(undefined);
 
-// Define the AthleteProvider component
+
 export const AthleteProvider = ({ children }: { children: ReactNode }) => {
-  // Initialize state for athlete and loadingNewAthlete
   const [athlete, setAthlete] = useState<Athlete | null>(null);
   const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
   const [summaryResponse, setSummaryResponse] = useState("");
@@ -48,7 +47,6 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   }
 
 
-  // Define the fetchAthleteById function
   const fetchAthleteById = useCallback(async (athleteId: number) => {
     setLoadingNewAthlete(true);
     try {
@@ -65,7 +63,6 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  // Define the fetchRandomAthlete function
   const fetchRandomAthlete = useCallback(async () => {
     setLoadingNewAthlete(true);
     try {
@@ -92,7 +89,6 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
 
 
 
-// Return the AthleteContext.Provider
 return (
   <AthleteContext.Provider
     value={useMemo(
@@ -105,7 +101,6 @@ return (
 );
 };
 
-// Define the useAthleteContext hook
 export const useAthleteContext = () => {
   const context = useContext(AthleteContext);
   if (context === undefined) {
