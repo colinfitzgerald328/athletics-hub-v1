@@ -28,29 +28,24 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   const [athlete, setAthlete] = useState<Athlete | null>(null);
   const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
   const [summaryResponse, setSummaryResponse] = useState("");
-  const [width, setWidth] = useState(window.innerWidth);
-  const [height, setHeight] = useState(window.innerHeight);
+  const [width, setWidth] = useState(null);
+  const [height, setHeight] = useState(null);
 
 
   useEffect(() => {
+    window.addEventListener("resize", updateWindowDimensions);
+    updateWindowDimensions();
     fetchRandomAthlete();
     getLetsRunDailySummaryFunction();
   }, []);
 
+
   const isMobile = width < 1000;
 
-  function handleWindowSizeChange() {
+  function updateWindowDimensions() {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
   }
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowSizeChange);
-    return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
-    }
-  }, []);
-
 
 
   // Define the fetchAthleteById function
@@ -95,12 +90,14 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   setSummaryResponse(data.summary_text);
 }, [setSummaryResponse]);
 
+
+
 // Return the AthleteContext.Provider
 return (
   <AthleteContext.Provider
     value={useMemo(
-      () => ({ athlete, loadingNewAthlete, fetchAthleteById, fetchRandomAthlete, getLetsRunDailySummaryFunction, summaryResponse, width, height, isMobile }),
-      [athlete, loadingNewAthlete, fetchAthleteById, fetchRandomAthlete, getLetsRunDailySummaryFunction, summaryResponse, width, height, isMobile]
+      () => ({ athlete, loadingNewAthlete, fetchAthleteById, fetchRandomAthlete, getLetsRunDailySummaryFunction, summaryResponse, width, height, isMobile}),
+      [athlete, loadingNewAthlete, fetchAthleteById, fetchRandomAthlete, getLetsRunDailySummaryFunction, summaryResponse, width, height, isMobile],
     )}
   >
     {children}

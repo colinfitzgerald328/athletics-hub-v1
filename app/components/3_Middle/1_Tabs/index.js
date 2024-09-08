@@ -94,7 +94,7 @@ export default function BasicTabs() {
           </div>
         ) : (
           athlete.top_competitors.map((competitor) => (
-            <div key={competitor} className={styles.competitor}>
+            <div key={competitor.athlete_id} className={styles.competitor}>
               <div className={styles.topItems}>
                 {loadingNewAthlete ? (
                   <Skeleton
@@ -191,7 +191,7 @@ export default function BasicTabs() {
               item &&
               item.discipline &&
               item.result && (
-                <div key={item} className={styles.pbItem}>
+                <div key={item.discipline} className={styles.pbItem}>
                   {loadingNewAthlete ? (
                     <Skeleton
                       sx={{ marginBottom: "5px" }}
@@ -201,7 +201,7 @@ export default function BasicTabs() {
                       height={18}
                     />
                   ) : (
-                    <div key={item} className={styles.discipline}>
+                    <div key={item.discipline} className={styles.discipline}>
                       {item.discipline}
                     </div>
                   )}
@@ -220,7 +220,7 @@ export default function BasicTabs() {
                       {item.result}{" "}
                       {item.records.length > 0 &&
                         item.records.map((record, index) => (
-                          <div key={item} className={styles.record}>
+                          <div key={record} className={styles.record}>
                             {index == item.records.length - 1
                               ? record
                               : record + ","}
