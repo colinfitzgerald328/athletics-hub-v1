@@ -5,15 +5,17 @@ import Button from "@mui/joy/Button";
 import styles from "./styles.module.css";
 import { CircularProgress } from "@mui/material";
 import markdownit from "markdown-it";
+import { useAthleteContext } from "../../athlete_context";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
-export default function AnchorTemporaryDrawer(props) {
+export default function AnchorTemporaryDrawer() {
+  const { summaryResponse } = useAthleteContext();
   let result: string; // Define result outside if block
 
-  if (props.summaryResponse) {
+  if (summaryResponse) {
     const md = markdownit();
-    result = md.render(props.summaryResponse); // Assign result inside if block
+    result = md.render(summaryResponse); // Assign result inside if block
   }
   const [state, setState] = React.useState({
     top: false,
@@ -44,7 +46,7 @@ export default function AnchorTemporaryDrawer(props) {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {props.summaryResponse ? (
+      {summaryResponse ? (
         <div className={styles.container}>
           <div className={styles.topItemsHolder}>
             <h1 className={styles.title}>Today in Track and Field</h1>

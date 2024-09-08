@@ -5,8 +5,10 @@ import { Skeleton } from "@mui/material";
 import OpenInFullIcon from "@mui/icons-material/OpenInFull";
 import { Modal } from "antd";
 import styles from "./styles.module.css";
+import { useAthleteContext } from "../../athlete_context";
 
-export default function PeformanceGraph(props) {
+export default function PeformanceGraph() {
+  const { athlete, isMobile, loadingNewAthlete } = useAthleteContext();
   const [graphModalOpen, setGraphModalOpen] = useState(false);
 
   function openModal() {
@@ -21,15 +23,15 @@ export default function PeformanceGraph(props) {
     <div className={styles.socialProfiles}>
       <div className={styles.labelHolder}>
         <div className={styles.label}>Performance Graph</div>
-        {!props.isMobile && (
+        {!isMobile && (
           <OpenInFullIcon onClick={openModal} sx={{ cursor: "pointer" }} />
         )}
       </div>
 
-      {props.loadingNewAthlete || props.athlete_data.length == 0 ? (
+      {loadingNewAthlete || athlete.results.length == 0 ? (
         <Skeleton height={200} animation="wave" variant="rectangulat" />
       ) : (
-        <CardGraph athlete_data={props.athlete_data} />
+        <CardGraph />
       )}
       <Modal
         open={graphModalOpen}
@@ -39,7 +41,7 @@ export default function PeformanceGraph(props) {
         centered
       >
         <div className={styles.divHolder}>
-          <BigGraph athlete={props.athlete} athlete_data={props.athlete_data} />
+          <BigGraph />
         </div>
       </Modal>
     </div>

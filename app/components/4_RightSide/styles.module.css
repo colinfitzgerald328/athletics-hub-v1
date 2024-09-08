@@ -3,8 +3,8 @@
   padding-left: 10px;
   padding-right: 10px;
   overflow-y: scroll;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  /* opacity: 0;
+  transition: opacity 0.3s ease; */
   display: block;
 }
 

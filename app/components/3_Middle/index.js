@@ -5,47 +5,16 @@ import SummaryModal from "./2_SummaryModal";
 import CarouselModal from "./3_CarouselModal";
 import { IconButton, Skeleton } from "@mui/material";
 import Button from "@mui/joy/Button";
+import { useAthleteContext } from "../athlete_context";
 
-export default function AthleteBreakDown(props) {
+export default function AthleteBreakDown() {
   const [markdownModalOpen, setMarkdownModalOpen] = useState(false);
   const [carouselModalOpen, setCarouselModalOpen] = useState(false);
+  const { athlete, isMobile, loadingNewAthlete } = useAthleteContext();
 
-  const disciplinesArr =
-    props.athlete.length !== 0
-      ? props.athlete.primary_disciplines.split(", ")
-      : undefined;
-
-  function handleFadeOut() {
-    var element = document.getElementsByClassName(
-      props.isMobile ? styles.mobileBreakdown : styles.athleteBreakdown,
-    )[0];
-    element.classList.add(styles.fadeOut);
-    setTimeout(() => {
-      element.classList.add(styles.removeDisplay);
-      element.classList.remove(styles.fadeIn);
-    }, 300);
-  }
-
-  function handleFadeIn() {
-    var element = document.getElementsByClassName(
-      props.isMobile ? styles.mobileBreakdown : styles.athleteBreakdown,
-    )[0];
-    setTimeout(() => {
-      element.classList.remove(styles.removeDisplay);
-      element.classList.remove(styles.fadeOut);
-      setTimeout(() => {
-        element.classList.add(styles.fadeIn);
-      }, 10);
-    }, 300);
-  }
-
-  useEffect(() => {
-    if (props.showingCollections) {
-      handleFadeOut();
-    } else if (!props.showingCollections) {
-      handleFadeIn();
-    }
-  }, [props.showingCollections, props.isMobile]);
+  const disciplinesArr = athlete
+    ? athlete.athlete.primary_disciplines.split(", ")
+    : [];
 
   function openMarkdownModal() {
     setMarkdownModalOpen(true);
@@ -60,35 +29,30 @@ export default function AthleteBreakDown(props) {
   }
 
   function closeCarouselModal() {
-    console.log("trying to close");
     setCarouselModalOpen(false);
   }
 
   return (
     <div
-      className={
-        props.isMobile ? styles.mobileBreakdown : styles.athleteBreakdown
-      }
+      className={isMobile ? styles.mobileBreakdown : styles.athleteBreakdown}
     >
       <SummaryModal
         markdownModalOpen={markdownModalOpen}
         closeMarkdownModal={closeMarkdownModal}
-        athleteSummary={props.athlete.markdown_summary}
-        athlete={props.athlete}
       />
       <div className={styles.itemsContainer}>
-        {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
+        {loadingNewAthlete ? (
           <Skeleton
             animation="wave"
             height={350}
             style={{ borderRadius: "25px" }}
             variant="rectangular"
           ></Skeleton>
-        ) : props.athlete.hq_images ? (
+        ) : athlete.athlete.hq_images ? (
           <>
             <img
               className={styles.athleteImage}
-              src={props.athlete.hq_images[0]}
+              src={athlete.athlete.hq_images[0]}
             />
             <img
               onClick={() => openCarouselModal()}
@@ -98,14 +62,8 @@ export default function AthleteBreakDown(props) {
             <CarouselModal
               carouselModalOpen={carouselModalOpen}
               closeCarouselModal={closeCarouselModal}
-              athlete_images={props.athlete.hq_images}
             />
           </>
-        ) : props.athlete.hq_image_url ? (
-          <img
-            className={styles.athleteImage}
-            src={props.athlete.hq_image_url}
-          />
         ) : (
           <img
             className={styles.athleteImageContained}
@@ -115,8 +73,7 @@ export default function AthleteBreakDown(props) {
           />
         )}
         <div className={styles.athleteNameHolder}>
-          {(!props.isMobile && props.loadingNewAthlete) ||
-          props.loadingNewAthlete == undefined ? (
+          {!isMobile && loadingNewAthlete ? (
             <Skeleton
               sx={{ zIndex: 1000 }}
               animation="wave"
@@ -124,21 +81,16 @@ export default function AthleteBreakDown(props) {
               width={150}
               height={150}
             ></Skeleton>
-          ) : !props.isMobile && props.athlete.hq_images ? (
+          ) : !isMobile && athlete.athlete.hq_images ? (
             <img
-              src={props.athlete.hq_images[0]}
-              className={styles.profileImage}
-            />
-          ) : !props.isMobile && props.athlete.hq_image_url ? (
-            <img
-              src={props.athlete.hq_image_url}
+              src={athlete.athlete.hq_images[0]}
               className={styles.profileImage}
             />
           ) : (
             ""
           )}
-          <div className={props.isMobile ? "" : styles.nameVariables}>
-            {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
+          <div className={isMobile ? "" : styles.nameVariables}>
+            {loadingNewAthlete ? (
               <Skeleton
                 animation="wave"
                 width={200}
@@ -148,13 +100,11 @@ export default function AthleteBreakDown(props) {
             ) : (
               <div className={styles.betaHolder}>
                 <div
-                  className={
-                    props.isMobile ? styles.mobileFullName : styles.fullName
-                  }
+                  className={isMobile ? styles.mobileFullName : styles.fullName}
                 >
-                  {props.athlete.first_name} {props.athlete.last_name}
+                  {athlete.athlete.first_name} {athlete.athlete.last_name}
                 </div>
-                {props.athlete.markdown_summary && (
+                {athlete.athlete.markdown_summary && (
                   <Button
                     variant="soft"
                     color="success"
@@ -170,7 +120,7 @@ export default function AthleteBreakDown(props) {
                 )}
               </div>
             )}
-            {props.loadingNewAthlete || props.loadingNewAthlete == undefined ? (
+            {loadingNewAthlete ? (
               <Skeleton
                 sx={{ marginTop: "5px" }}
                 animation="wave"
@@ -179,29 +129,20 @@ export default function AthleteBreakDown(props) {
               ></Skeleton>
             ) : (
               <div className={styles.disciplines}>
-                {disciplinesArr &&
-                  disciplinesArr.map((discipline, index) => (
-                    <div
-                      key={index}
-                      className={props.isMobile ? styles.mobileTag : styles.tag}
-                    >
-                      {discipline}
-                    </div>
-                  ))}
+                {disciplinesArr.map((discipline) => (
+                  <div
+                    key={discipline}
+                    className={isMobile ? styles.mobileTag : styles.tag}
+                  >
+                    {discipline}
+                  </div>
+                ))}
               </div>
             )}
           </div>
         </div>
       </div>
-      <CustomTabPanel
-        athlete={props.athlete}
-        loadingNewAthlete={props.loadingNewAthlete}
-        athlete_data={props.athlete_data}
-        top_competitors={props.top_competitors}
-        fetchAthleteById={props.fetchAthleteById}
-        height={props.height}
-        isMobile={props.isMobile}
-      />
+      <CustomTabPanel />
     </div>
   );
 }

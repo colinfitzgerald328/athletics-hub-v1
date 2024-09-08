@@ -5,30 +5,15 @@ import Button from "@mui/joy/Button";
 import { Modal } from "antd";
 import markdownit from "markdown-it";
 import styles from "./styles.module.css";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 800,
-  height: 600,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  paddingTop: "30px",
-  paddingBottom: "30px",
-  paddingLeft: "30px",
-  paddingRight: "30px",
-  borderRadius: "10px",
-  outline: "none",
-};
+import { useAthleteContext } from "../../athlete_context";
 
 export default function SummaryModal(props) {
+  const { athlete } = useAthleteContext();
   let result = ""; // Define result outside if block
 
-  if (props.athleteSummary) {
+  if (athlete.athlete.markdown_summary) {
     const md = markdownit();
-    result = md.render(props.athleteSummary); // Assign result inside if block
+    result = md.render(athlete.athlete.markdown_summary); // Assign result inside if block
   }
 
   return (
@@ -46,7 +31,7 @@ export default function SummaryModal(props) {
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.fullName}>
-            {props.athlete.first_name} {props.athlete.last_name}
+            {athlete.athlete.first_name} {athlete.athlete.last_name}
           </div>
           <div className={styles.rightItems}>
             <Button
@@ -54,7 +39,7 @@ export default function SummaryModal(props) {
               variant="soft"
               sx={{ borderRadius: "25px" }}
               className={styles.openButton}
-              onClick={() => window.open(props.athlete.wikipedia_url)}
+              onClick={() => window.open(athlete.athlete.wikipedia_url)}
             >
               Read more
             </Button>

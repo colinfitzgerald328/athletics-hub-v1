@@ -1,5 +1,6 @@
 import MainComponent from "./components";
 import styles from "./page.module.css";
+import { AthleteProvider } from "./components/athlete_context";
 
 export default function Home() {
   return (
@@ -10,7 +11,9 @@ export default function Home() {
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
         crossOrigin="anonymous"
       ></link>
-      <MainComponent />
+      <AthleteProvider>
+        <MainComponent />
+      </AthleteProvider>
     </main>
   );
 }

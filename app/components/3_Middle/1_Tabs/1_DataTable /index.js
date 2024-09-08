@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import styles from "./styles.module.css";
-import { Skeleton, Button } from "@mui/material";
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,31 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useAthleteContext } from "@/app/components/athlete_context";
 
-export default function DataTable(props) {
-  const [showScrollButton, setShowScrollButton] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    var element = document.getElementsByClassName(styles.tableContainer)[0];
-    if (element) {
-      var subtraction = props.height - 600 - element.scrollHeight;
-      if (subtraction < 20) {
-        setShowScrollButton(true);
-      } else {
-        setShowScrollButton(false);
-      }
-    }
-  });
-
-  useEffect(() => {
-    setScrolled(false);
-  }, [props.athlete]);
-
-  function scrollIntoView() {
-    var element = document.getElementsByClassName(styles.tableContainer)[0];
-    element.scrollIntoView({ behavior: "smooth" });
-    setScrolled(true);
-  }
+export default function DataTable() {
+  const { athlete } = useAthleteContext();
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -46,15 +23,13 @@ export default function DataTable(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {props.athlete_data.map((row) => (
+          {athlete.results.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.discipline_code}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
               <TableCell align="right">{row.mark}</TableCell>
-              <TableCell align="right">
-                {row.place ? row.place.split(".")[0] : "N/A"}
-              </TableCell>
+              <TableCell align="right">{row.place.split(".")[0]}</TableCell>
               <TableCell align="right">{row.discipline}</TableCell>
               <TableCell align="right">{row.venue}</TableCell>
               <TableCell align="right">{row.date}</TableCell>

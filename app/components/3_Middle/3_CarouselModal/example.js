@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import styles from "./styles.module.css";
+import { useAthleteContext } from "../../athlete_context";
 
 const variants = {
   enter: (direction) => {
@@ -30,10 +31,11 @@ const swipePower = (offset, velocity) => {
 };
 
 export const Example = (props) => {
+  const { athlete } = useAthleteContext();
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(0);
 
-  const imageIndex = wrap(0, props.athlete_images.length, page);
+  const imageIndex = wrap(0, athlete.athlete.hq_images?.length, page);
 
   const paginate = (newDirection) => {
     setPage(page + newDirection);
@@ -45,7 +47,7 @@ export const Example = (props) => {
       <AnimatePresence initial={false} custom={direction}>
         <motion.img
           key={page}
-          src={props.athlete_images[imageIndex]}
+          src={athlete.athlete.hq_images[imageIndex]}
           custom={direction}
           variants={variants}
           initial="enter"

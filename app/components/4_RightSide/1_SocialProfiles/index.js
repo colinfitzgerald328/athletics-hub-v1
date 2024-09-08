@@ -1,20 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { Skeleton } from "@mui/material";
+import { useAthleteContext } from "../../athlete_context";
 
-export default function SocialProfiles(props) {
-  const [twitterHandle, setTwitterHandle] = useState(null);
-  const [instagramHandle, setInstagramHandle] = useState(null);
+export default function SocialProfiles() {
+  const { athlete, loadingNewAthlete } = useAthleteContext();
 
-  useEffect(() => {
-    // Extract Twitter handle when props.athlete changes
-    const twitterHandle = getTwitterHandle(props.athlete.social_urls);
-    setTwitterHandle(twitterHandle);
-
-    // Extract Instagram handle when props.athlete changes
-    const instagramHandle = getInstagramHandle(props.athlete.social_urls);
-    setInstagramHandle(instagramHandle);
-  }, [props.athlete.social_urls]);
+  const twitterHandle = getTwitterHandle(athlete.athlete.social_urls);
+  const instagramHandle = getInstagramHandle(athlete.athlete.social_urls);
 
   function getTwitterHandle(socialUrls) {
     if (Object.keys(socialUrls).length == 0 || !socialUrls.length) {
@@ -62,7 +55,7 @@ export default function SocialProfiles(props) {
         <div className={styles.socialProfiles}>
           <div className={styles.label}>Social Profiles</div>
           {twitterHandle &&
-            (props.loadingNewAthlete ? (
+            (loadingNewAthlete ? (
               <Skeleton width={120} animation="wave"></Skeleton>
             ) : (
               <div className={styles.socialItem}>
@@ -83,7 +76,7 @@ export default function SocialProfiles(props) {
               </div>
             ))}
           {instagramHandle &&
-            (props.loadingNewAthlete ? (
+            (loadingNewAthlete ? (
               <Skeleton width={120} animation="wave"></Skeleton>
             ) : (
               <div className={styles.socialItem}>

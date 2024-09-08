@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import TopBar from "./1_topbar";
 import LeftSide from "./2_leftSide";
 import AthleteBreakDown from "./3_Middle";
@@ -7,63 +7,16 @@ import RightSide from "./4_RightSide";
 import styles from "./styles.module.css";
 import Head from "next/head";
 import LinearProgress from "@mui/material/LinearProgress";
-import {
-  getAthleteById,
-  getRandomDoc,
-  getLetsRunDailySummary,
-} from "../api/api";
+import { useAthleteContext } from "./athlete_context";
 
 export default function MainComponent() {
-  const [athlete, setAthlete] = useState(null);
-  const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
-  const [summaryResponse, setSummaryResponse] = useState(null);
-  const [width, setWidth] = useState(null);
-  const [height, setHeight] = useState(null);
-  const [pageLoaded, setPageLoaded] = useState(false);
+  const { athlete, fetchRandomAthlete, getLetsRunDailySummaryFunction, width } =
+    useAthleteContext();
 
   useEffect(() => {
-    window.addEventListener("resize", updateWindowDimensions);
-    updateWindowDimensions();
     fetchRandomAthlete();
     getLetsRunDailySummaryFunction();
   }, []);
-
-  async function fetchRandomAthlete() {
-    setLoadingNewAthlete(true);
-    const { data, error } = await getRandomDoc();
-    if (error) {
-      setLoadingNewAthlete(false);
-      return;
-    }
-    setAthlete(data);
-    setLoadingNewAthlete(false);
-    setPageLoaded(true);
-  }
-
-  async function fetchAthleteById(athlete_id) {
-    setLoadingNewAthlete(true);
-    const { data, error } = await getAthleteById(athlete_id);
-    if (error) {
-      setLoadingNewAthlete(false);
-      return;
-    }
-    setAthlete(data);
-    setLoadingNewAthlete(false);
-    setPageLoaded(true);
-  }
-
-  function updateWindowDimensions() {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }
-
-  async function getLetsRunDailySummaryFunction() {
-    const { data, error } = await getLetsRunDailySummary();
-    if (error) {
-      return;
-    }
-    setSummaryResponse(data.summary_text);
-  }
 
   if (!athlete) {
     return (
@@ -74,53 +27,33 @@ export default function MainComponent() {
       </div>
     );
   }
-  if (width < 1000 && pageLoaded) {
+  if (width < 1000) {
     return (
       <div>
         <Head>
           <meta property="og:image" content="/icon.png" />
         </Head>
-        <TopBar summaryResponse={summaryResponse} isMobile={true} />
+        <TopBar />
         <div className={styles.mainDisplayMobile}>
-          <LeftSide fetchAthleteById={fetchAthleteById} isMobile={true} />
-          <AthleteBreakDown
-            athlete={athlete}
-            loadingNewAthlete={loadingNewAthlete}
-            height={height}
-            fetchAthleteById={fetchAthleteById}
-            isMobile={true}
-          />
-          <RightSide
-            athlete={athlete}
-            loadingNewAthlete={loadingNewAthlete}
-            fetchAthleteById={fetchAthleteById}
-            isMobile={true}
-          />
+          <LeftSide />
+          <AthleteBreakDown />
+          <RightSide />
         </div>
       </div>
     );
-  } else if (width > 1000 && pageLoaded) {
+  } else if (width > 1000) {
     return (
       <div>
         <Head>
           <meta property="og:image" content="/icon.png" />
         </Head>
-        <TopBar summaryResponse={summaryResponse} />
+        <TopBar />
         <div className={styles.mainDisplay}>
           <div className={styles.tempWrapper}>
-            <LeftSide fetchAthleteById={fetchAthleteById} />
-            <AthleteBreakDown
-              athlete={athlete}
-              loadingNewAthlete={loadingNewAthlete}
-              height={height}
-              fetchAthleteById={fetchAthleteById}
-            />
+            <LeftSide />
+            <AthleteBreakDown />
           </div>
-          <RightSide
-            athlete={athlete}
-            loadingNewAthlete={loadingNewAthlete}
-            fetchAthleteById={fetchAthleteById}
-          />
+          <RightSide />
         </div>
       </div>
     );

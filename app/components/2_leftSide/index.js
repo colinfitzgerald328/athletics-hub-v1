@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import CloseIcon from "@mui/icons-material/Close";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useRef } from "react";
 import styles from "./styles.module.css";
-import { Button } from "@mui/material";
 import { getSearchResultsForQuery } from "@/app/api/api";
+import { useAthleteContext } from "../athlete_context";
 
-export default function LeftSide(props) {
+export default function LeftSide() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [searchResults, setSearchResults] = React.useState([]);
   const [showSearchResults, setShowSearchResults] = React.useState(false);
@@ -16,9 +15,13 @@ export default function LeftSide(props) {
   const searchResultsRef = useRef(null);
   useOutsideAlerter(inputRef);
   const xButtonRef = useRef(null);
+  const { isMobile, fetchAthleteById } = useAthleteContext();
 
   async function handleSearchTermChange(searchTerm) {
     const { data, error } = await getSearchResultsForQuery(searchTerm);
+    if (error) {
+      return;
+    }
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);
@@ -70,15 +73,15 @@ export default function LeftSide(props) {
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
-  function handleChooseAthlete(athlete) {
-    props.fetchAthleteById(athlete.athlete_id),
-      setSearchResults([]),
-      setSearchTerm("");
+  async function handleChooseAthlete(athlete) {
+    setSearchResults([]);
+    setSearchTerm("");
     setShowSearchResults(false);
+    await fetchAthleteById(athlete.athlete_id);
   }
 
   return (
-    <div className={props.isMobile ? styles.mobileLeftSide : styles.leftSide}>
+    <div className={isMobile ? styles.mobileLeftSide : styles.leftSide}>
       <div className={styles.inputHolder}>
         <SearchIcon
           sx={{
@@ -128,8 +131,9 @@ export default function LeftSide(props) {
         ></input>
       </div>
 
-      {showSearchResults || searchResults.length > 0 ? (
-        searchResults.length == 0 ? (
+      {showSearchResults &&
+        searchResults.length > 0 &&
+        (searchResults.length == 0 ? (
           <div className={styles.searchResults} ref={searchResultsRef}>
             <div className={styles.noResults}>
               😱 Unfortunately no search results for that query...
@@ -149,6 +153,7 @@ export default function LeftSide(props) {
                       ? result.hq_images[0]
                       : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                   }
+                  alt="Athlete Image"
                   className={styles.searchResultImage}
                 />
                 <div className={styles.textDisplay}>
@@ -160,33 +165,7 @@ export default function LeftSide(props) {
               </div>
             ))}
           </div>
-        )
-      ) : (
-        ""
-      )}
-      {props.loggedIn && !props.loadingCollections && !props.isMobile ? (
-        <Button
-          variant="contained"
-          sx={{
-            width: "100%",
-            marginTop: "10px",
-            borderRadius: "25px",
-            height: "50px",
-            fontSize: "20px",
-            backgroundColor: "lightslategray",
-            fontWeight: "bold",
-            display: "flex",
-            alignItems: "center",
-            fontFamily: "Bricolage Grotesque, sans-serif",
-          }}
-          className={styles.animatedButton}
-          onClick={() => props.showCollections()}
-        >
-          Collections
-        </Button>
-      ) : (
-        ""
-      )}
+        ))}
     </div>
   );
 }

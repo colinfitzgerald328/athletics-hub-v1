@@ -13,14 +13,12 @@ import SendIcon from "@mui/icons-material/Send";
 import { IconButton } from "@mui/material";
 import Close from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
+import { useAthleteContext } from "../../athlete_context";
 import {
   getInfoForAIComparison,
   getSearchResultsForQuery,
 } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
-import Anthropic from "@anthropic-ai/sdk";
-// const apiKey = process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY;
-// const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
 import OpenAI from "openai";
 let apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
 const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
@@ -51,7 +49,7 @@ const trackAndFieldEvents = [
   "Heptathlon",
 ];
 
-export default function ComparisonModal(props) {
+export default function ComparisonModal() {
   const [modalOpen, setModalOpen] = useState(false);
   const [athletes, setAthletes] = useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
@@ -67,6 +65,7 @@ export default function ComparisonModal(props) {
   const [inputValue, setInputValue] = React.useState("");
   const [comparisonSummary, setComparisonSummary] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { isMobile } = useAthleteContext();
 
   function toggleDrawer(openState) {
     setDrawerOpen(openState);
@@ -275,7 +274,7 @@ export default function ComparisonModal(props) {
           footer=""
           open={modalOpen}
           onCancel={closeModal}
-          width={props.isMobile ? "" : "60vw"}
+          width={isMobile ? "" : "60vw"}
         >
           <div className={styles.modalLabel}>
             Head to head <SportsMmaIcon />

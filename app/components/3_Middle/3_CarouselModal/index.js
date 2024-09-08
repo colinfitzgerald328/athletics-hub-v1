@@ -15,7 +15,7 @@ export default function CarouselModal(props) {
     >
       <Box onClick={() => props.closeCarouselModal()} sx={style}>
         <div className={styles.exampleContainer}>
-          <Example athlete_images={props.athlete_images} />
+          <Example />
         </div>
       </Box>
     </Modal>

@@ -11,6 +11,7 @@ import styles from "./styles.module.css";
 import { useTheme } from "@mui/material/styles";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import { useAthleteContext } from "../../athlete_context";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -41,80 +42,14 @@ function a11yProps(index) {
   };
 }
 
-export default function BasicTabs(props) {
+export default function BasicTabs() {
+  const { loadingNewAthlete, athlete, fetchAthleteById } = useAthleteContext();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
-  const [topCompetitors, setTopCompetitors] = useState(props.top_competitors);
-  const [showScrollButton, setShowScrollButton] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    setTopCompetitors(props.top_competitors);
-  }, [props.top_competitors]);
-
-  useEffect(() => {
-    setTopCompetitors(topCompetitors);
-  }, [topCompetitors]);
-
-  const handleChange = (event, newValue) => {
+  const handleChange = (_, newValue) => {
     setValue(newValue);
   };
-
-  function updateSummaryStyle(competitor) {
-    var elements = document.getElementsByClassName(styles.competitorSummary);
-    var newScrollHeight;
-
-    for (let item of elements) {
-      if (item.textContent == competitor.summary) {
-        newScrollHeight = item.scrollHeight + "px";
-      }
-    }
-
-    for (let i = 0; i < topCompetitors.length; i++) {
-      if (topCompetitors[i].aaAthleteId == competitor.aaAthleteId) {
-        if (topCompetitors[i].height == undefined) {
-          topCompetitors[i].height = newScrollHeight;
-        } else if (topCompetitors[i].height != "0px") {
-          topCompetitors[i].height = "0px";
-        } else {
-          topCompetitors[i].height = newScrollHeight;
-        }
-      }
-    }
-
-    setTopCompetitors([...topCompetitors]);
-  }
-
-  useEffect(() => {
-    var element = document.getElementsByClassName(styles.summary)[0];
-    if (element) {
-      var subtraction = props.height - 500 - element.scrollHeight;
-      if (subtraction < 20) {
-        setShowScrollButton(true);
-      } else {
-        setShowScrollButton(false);
-      }
-    }
-  });
-
-  useEffect(() => {
-    setScrolled(false);
-  }, [props.athlete]);
-
-  function scrollIntoView() {
-    var element = document.getElementsByClassName(styles.summary)[0];
-    element.scrollIntoView({ behavior: "smooth" });
-    setScrolled(true);
-  }
-
-  const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
-  var fontSizeForTabs = 14;
-  if (props.isMobile) {
-    var fontSizeForTabs = 10;
-  }
 
   return (
     <Box
@@ -144,281 +79,120 @@ export default function BasicTabs(props) {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          sx={
-            {
-              // fontFamily: "Bricolage Grotesque, sans-serif",
-              // "& .MuiTabs-indicator": {
-              //   display: "flex",
-              //   justifyContent: "center",
-              //   backgroundColor: "transparent",
-              // },
-              // "& .MuiTabs-indicatorSpan": {
-              //   maxWidth: 40,
-              //   width: "100%",
-              //   backgroundColor: "#635ee7",
-              // },
-            }
-          }
         >
-          <Tab
-            label="Competition"
-            {...a11yProps(1)}
-            sx={
-              {
-                // fontFamily: "Bricolage Grotesque, sans-serif",
-                // color: "black",
-                // width: "25%",
-                // fontSize: `${fontSizeForTabs}px`,
-                // borderRadius: "25px",
-                // transition: "background-color 0.5s ease-in-out",
-                // "&.Mui-selected": {
-                //   borderRadius: "25px",
-                //   backgroundColor: "#E7E7E7",
-                //   color: "black",
-                //   fontWeight: "bold",
-                // },
-                // "&:hover": {
-                //   backgroundColor: "#E7E7E7",
-                //   borderRadius: "25px",
-                // },
-              }
-            }
-          />
-          <Tab
-            label="PBs"
-            {...a11yProps(2)}
-            sx={
-              {
-                // fontFamily: "Bricolage Grotesque, sans-serif",
-                // color: "black",
-                // width: "25%",
-                // fontSize: `${fontSizeForTabs}px`,
-                // borderRadius: "25px",
-                // transition: "background-color 0.5s ease-in-out",
-                // "&.Mui-selected": {
-                //   borderRadius: "25px",
-                //   backgroundColor: "#E7E7E7",
-                //   color: "black",
-                //   fontWeight: "bold",
-                // },
-                // "&:hover": {
-                //   backgroundColor: "#E7E7E7",
-                //   borderRadius: "25px",
-                // },
-              }
-            }
-          />
-          <Tab
-            label="Accolades"
-            {...a11yProps(3)}
-            sx={
-              {
-                // fontFamily: "Bricolage Grotesque, sans-serif",
-                // color: "black",
-                // width: "25%",
-                // fontSize: `${fontSizeForTabs}px`,
-                // borderRadius: "25px",
-                // transition: "background-color 0.5s ease-in-out",
-                // "&.Mui-selected": {
-                //   borderRadius: "25px",
-                //   backgroundColor: "#E7E7E7",
-                //   color: "black",
-                //   fontWeight: "bold",
-                // },
-                // "&:hover": {
-                //   backgroundColor: "#E7E7E7",
-                //   borderRadius: "25px",
-                // },
-              }
-            }
-          />
-          <Tab
-            label="Results"
-            {...a11yProps(4)}
-            sx={
-              {
-                // fontFamily: "Bricolage Grotesque, sans-serif",
-                // color: "black",
-                // width: "25%",
-                // fontSize: `${fontSizeForTabs}px`,
-                // borderRadius: "25px",
-                // transition: "background-color 0.5s ease-in-out",
-                // "&.Mui-selected": {
-                //   borderRadius: "25px",
-                //   backgroundColor: "#E7E7E7",
-                //   color: "black",
-                //   fontWeight: "bold",
-                // },
-                // "&:hover": {
-                //   backgroundColor: "#E7E7E7",
-                //   borderRadius: "25px",
-                // },
-              }
-            }
-          />
+          <Tab label="Competition" {...a11yProps(1)} />
+          <Tab label="PBs" {...a11yProps(2)} />
+          <Tab label="Accolades" {...a11yProps(3)} />
+          <Tab label="Results" {...a11yProps(4)} />
         </Tabs>
       </Box>
-      {/* <CustomTabPanel value={value} index={0}> */}
-      {/* {showScrollButton && !scrolled && !props.loadingNewAthlete ? (
-          <Button
-            onClick={() => scrollIntoView()}
-            sx={{
-              width: "150px",
-              height: "50px",
-              backgroundColor: "#323232",
-              fontWeight: "bold",
-              borderRadius: "25px",
-              paddingTop: "10px",
-              paddingBottom: "10px",
-              fontSize: "18px",
-              color: "white",
-            }}
-            variant="contained"
-            style={{
-              position: "absolute",
-              top: props.height - 540 + "px",
-              zIndex: "1000",
-              right: 0,
-            }}
-          >
-            Scroll
-          </Button>
-        ) : (
-          ""
-        )} */}
-      {/* {props.loadingNewAthlete || props.athlete.summary == undefined ? (
-          <div>
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
-            <Skeleton animation="wave" />
+      <CustomTabPanel value={value} index={0} dir={theme.direction}>
+        {athlete.top_competitors.length == 0 ? (
+          <div className={styles.nothingHereYet}>
+            <ConstructionIcon /> Nothing here yet! As our data team improves,
+            top competitors will populate for this athlete.
           </div>
         ) : (
-          <div className={styles.summary}>{props.athlete.summary}</div>
-        )}
-      </CustomTabPanel> */}
-      <CustomTabPanel value={value} index={0} dir={theme.direction}>
-        {topCompetitors &&
-          (topCompetitors.length == 0 ? (
-            <div className={styles.nothingHereYet}>
-              <ConstructionIcon /> Nothing here yet! As our data team improves,
-              top competitors will populate for this athlete.
-            </div>
-          ) : (
-            topCompetitors.map((competitor, index) => (
-              <div key={index} className={styles.competitor}>
-                <div className={styles.topItems}>
-                  {props.loadingNewAthlete ? (
-                    <Skeleton
-                      sx={{ borderRadius: "15px" }}
-                      animation="wave"
-                      variant="rectangular"
-                      width={90}
-                      height={80}
-                    />
-                  ) : (
-                    <img
-                      className={styles.competitorImage}
-                      src={
-                        competitor.hq_images
-                          ? competitor.hq_images[0]
-                          : competitor.hq_image_url
-                            ? competitor.hq_image_url
-                            : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
-                      }
-                    />
-                  )}
-                  <div className={styles.criticalInfo}>
-                    <div className={styles.leftItems}>
-                      {props.loadingNewAthlete ? (
-                        <Skeleton
-                          animation="wave"
-                          variant="rectangular"
-                          width={150}
-                          height={18}
-                        />
-                      ) : (
-                        <div
-                          onClick={() =>
-                            props.fetchAthleteById(competitor.athlete_id)
-                          }
-                          className={styles.competitorName}
+          athlete.top_competitors.map((competitor) => (
+            <div key={competitor} className={styles.competitor}>
+              <div className={styles.topItems}>
+                {loadingNewAthlete ? (
+                  <Skeleton
+                    sx={{ borderRadius: "15px" }}
+                    animation="wave"
+                    variant="rectangular"
+                    width={90}
+                    height={80}
+                  />
+                ) : (
+                  <img
+                    className={styles.competitorImage}
+                    src={
+                      competitor.hq_images
+                        ? competitor.hq_images[0]
+                        : competitor.hq_image_url
+                          ? competitor.hq_image_url
+                          : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
+                    }
+                  />
+                )}
+                <div className={styles.criticalInfo}>
+                  <div className={styles.leftItems}>
+                    {loadingNewAthlete ? (
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={150}
+                        height={18}
+                      />
+                    ) : (
+                      <div
+                        onClick={() => fetchAthleteById(competitor.athlete_id)}
+                        className={styles.competitorName}
+                      >
+                        {competitor.first_name} {competitor.last_name}
+                      </div>
+                    )}
+                    {loadingNewAthlete ? (
+                      <Skeleton
+                        animation="wave"
+                        variant="rectangular"
+                        width={300}
+                        height={18}
+                        sx={{ marginTop: "5px" }}
+                      />
+                    ) : (
+                      <div className={styles.disciplines}>
+                        {competitor.primary_disciplines}
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    onClick={() => updateSummaryStyle(competitor)}
+                    className={styles.rightItems}
+                  >
+                    {competitor.summary &&
+                      (competitor.height && competitor.height != "0px" ? (
+                        <IconButton
+                          size="small"
+                          sx={{
+                            padding: 1,
+                          }}
                         >
-                          {competitor.first_name} {competitor.last_name}
-                        </div>
-                      )}
-                      {props.loadingNewAthlete ? (
-                        <Skeleton
-                          animation="wave"
-                          variant="rectangular"
-                          width={300}
-                          height={18}
-                          sx={{ marginTop: "5px" }}
-                        />
+                          <KeyboardArrowUpIcon sx={{ fontWeight: "bold" }} />
+                        </IconButton>
                       ) : (
-                        <div className={styles.disciplines}>
-                          {competitor.primary_disciplines}
-                        </div>
-                      )}
-                    </div>
-                    <div
-                      onClick={() => updateSummaryStyle(competitor)}
-                      className={styles.rightItems}
-                    >
-                      {competitor.summary &&
-                        (competitor.height && competitor.height != "0px" ? (
-                          <IconButton
-                            size="small"
-                            sx={{
-                              padding: 1,
-                            }}
-                          >
-                            <KeyboardArrowUpIcon sx={{ fontWeight: "bold" }} />
-                          </IconButton>
-                        ) : (
-                          <IconButton
-                            size="small"
-                            sx={{
-                              padding: 1,
-                            }}
-                          >
-                            <KeyboardArrowDownIcon />
-                          </IconButton>
-                        ))}
-                    </div>
+                        <IconButton
+                          size="small"
+                          sx={{
+                            padding: 1,
+                          }}
+                        >
+                          <KeyboardArrowDownIcon />
+                        </IconButton>
+                      ))}
                   </div>
                 </div>
-                <div
-                  className={styles.competitorSummary}
-                  style={{ height: competitor.height }}
-                >
-                  {competitor.summary}
-                </div>
               </div>
-            ))
-          ))}
+              <div
+                className={styles.competitorSummary}
+                style={{ height: competitor.height }}
+              >
+                {competitor.summary}
+              </div>
+            </div>
+          ))
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        {props.athlete.personal_bests &&
-          props.athlete.personal_bests.map(
+        {athlete.athlete.personal_bests &&
+          athlete.athlete.personal_bests.map(
             (item, index) =>
               item &&
               item.discipline &&
               item.result && (
-                <div key={index} className={styles.pbItem}>
-                  {props.loadingNewAthlete ? (
+                <div key={item} className={styles.pbItem}>
+                  {loadingNewAthlete ? (
                     <Skeleton
                       sx={{ marginBottom: "5px" }}
                       variant="rectangular"
@@ -427,11 +201,11 @@ export default function BasicTabs(props) {
                       height={18}
                     />
                   ) : (
-                    <div key={index} className={styles.discipline}>
+                    <div key={item} className={styles.discipline}>
                       {item.discipline}
                     </div>
                   )}
-                  {props.loadingNewAthlete ? (
+                  {loadingNewAthlete ? (
                     <Skeleton
                       variant="rectangular"
                       animation="wave"
@@ -446,7 +220,7 @@ export default function BasicTabs(props) {
                       {item.result}{" "}
                       {item.records.length > 0 &&
                         item.records.map((record, index) => (
-                          <div key={index} className={styles.record}>
+                          <div key={item} className={styles.record}>
                             {index == item.records.length - 1
                               ? record
                               : record + ","}
@@ -454,7 +228,7 @@ export default function BasicTabs(props) {
                         ))}
                     </div>
                   )}
-                  {props.loadingNewAthlete ? (
+                  {loadingNewAthlete ? (
                     <Skeleton
                       variant="rectangular"
                       animation="wave"
@@ -469,16 +243,16 @@ export default function BasicTabs(props) {
           )}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        {props.athlete.accomplishments &&
-          (props.athlete.accomplishments.length == 0 ? (
+        {athlete.athlete.accomplishments &&
+          (athlete.athlete.accomplishments.length == 0 ? (
             <div className={styles.nothingHereYet}>
               <ConstructionIcon /> Nothing here yet! As our data team improves,
               accomplishments will populate for this athlete.
             </div>
           ) : (
-            props.athlete.accomplishments.slice(0, 3).map((item, index) => (
-              <div key={index} className={styles.accomplishmentHolder}>
-                {props.loadingNewAthlete ? (
+            athlete.athlete.accomplishments.slice(0, 3).map((item) => (
+              <div key={item} className={styles.accomplishmentHolder}>
+                {loadingNewAthlete ? (
                   <Skeleton animation="wave" width={300} height={50} />
                 ) : (
                   <div style={{ display: "flex", alignItems: "last baseline" }}>
@@ -495,12 +269,7 @@ export default function BasicTabs(props) {
           ))}
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        <DataTable
-          athlete_data={props.athlete_data}
-          loadingNewAthlete={props.loadingNewAthlete}
-          height={props.height}
-          isMobile={props.isMobile}
-        />
+        <DataTable />
       </CustomTabPanel>
     </Box>
   );

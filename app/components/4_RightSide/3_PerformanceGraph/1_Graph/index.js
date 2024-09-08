@@ -10,9 +10,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styles from "./styles.module.css";
+import { useAthleteContext } from "@/app/components/athlete_context";
 
-export default function CardGraph(props) {
-  const filteredResults = props.athlete_data
+export default function CardGraph() {
+  const { athlete } = useAthleteContext();
+  const filteredResults = athlete.results
     .filter((result) => result.result_score !== 0)
     .reverse();
 
