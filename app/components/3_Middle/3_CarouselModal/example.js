@@ -30,7 +30,7 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-export const Example = (props) => {
+export const Example = () => {
   const { athlete } = useAthleteContext();
   const [page, setPage] = useState(0);
   const [direction, setDirection] = useState(0);

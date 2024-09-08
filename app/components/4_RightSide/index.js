@@ -5,7 +5,7 @@ import PeformanceGraph from "./3_PerformanceGraph";
 import styles from "./styles.module.css";
 import { useAthleteContext } from "../athlete_context";
 
-export default function RightSide(props) {
+export default function RightSide() {
   const { isMobile } = useAthleteContext();
   return (
     <div className={isMobile ? styles.mobileRightSide : styles.rightSide}>

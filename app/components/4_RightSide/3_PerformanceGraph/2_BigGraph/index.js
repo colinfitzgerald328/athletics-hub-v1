@@ -10,9 +10,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styles from "./styles.module.css";
+import { useAthleteContext } from "@/app/components/athlete_context";
 
-export default function BigGraph(props) {
-  const filteredResults = props.athlete_data
+export default function BigGraph() {
+  const { athlete } = useAthleteContext();
+  const filteredResults = athlete.results
     .filter((result) => result.result_score !== 0)
     .reverse();
 
@@ -47,8 +49,8 @@ export default function BigGraph(props) {
   return (
     <>
       <h2 className={styles.graphName}>
-        Performance Graph for {props.athlete.first_name}{" "}
-        {props.athlete.last_name}
+        Performance Graph for {athlete.athlete.first_name}{" "}
+        {athlete.athlete.last_name}
       </h2>
       <ResponsiveContainer className={styles.graphHolder}>
         <LineChart
