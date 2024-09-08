@@ -10,13 +10,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { useAthleteContext } from "./athlete_context";
 
 export default function MainComponent() {
-  const { athlete, fetchRandomAthlete, getLetsRunDailySummaryFunction, width } =
-    useAthleteContext();
-
-  useEffect(() => {
-    fetchRandomAthlete();
-    getLetsRunDailySummaryFunction();
-  }, []);
+  const { athlete, width } = useAthleteContext();
 
   if (!athlete) {
     return (
