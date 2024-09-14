@@ -73,6 +73,10 @@ export default function ComparisonModal() {
 
   async function handleSearchTermChange(searchTerm) {
     const { data, error } = await getSearchResultsForQuery(searchTerm);
+    if (error) {
+      console.log(error);
+      return;
+    }
     setShowSearchResults(true);
     setSearchResults(data);
     setLoadingSearchResults(false);
@@ -222,27 +226,6 @@ export default function ComparisonModal() {
       );
       console.log(chunk.choices[0]?.delta?.content || "");
     }
-    // const iteration = 0;
-    // const stream = client.messages
-    //   .stream({
-    //     model: "claude-3-opus-20240229",
-    //     max_tokens: 1024,
-    //     messages: [
-    //       {
-    //         role: "user",
-    //         content: prompt,
-    //       },
-    //     ],
-    //   })
-    //   .on("text", (text) => {
-    //     if (iteration === 0) {
-    //       setLoadingComparison(false);
-    //       toggleDrawer(true);
-    //     }
-    //     iteration++;
-    //     setComparisonSummary((...prev) => prev + text);
-    //   });
-    // await stream.finalMessage();
   }
 
   return (

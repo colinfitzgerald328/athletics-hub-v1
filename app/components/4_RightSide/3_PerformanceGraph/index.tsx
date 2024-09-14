@@ -29,7 +29,7 @@ export default function PeformanceGraph() {
       </div>
 
       {loadingNewAthlete || athlete.results.length == 0 ? (
-        <Skeleton height={200} animation="wave" variant="rectangulat" />
+        <Skeleton height={200} animation="wave" variant="rectangular" />
       ) : (
         <CardGraph />
       )}
