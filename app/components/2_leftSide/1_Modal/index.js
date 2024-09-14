@@ -207,7 +207,7 @@ export default function ComparisonModal() {
     Please take your time to thoroughly evaluate the scenario and provide a well-reasoned response.`;
     let iterations = 0;
     const stream = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "o1-preview",
       messages: [{ role: "user", content: prompt }],
       stream: true,
     });

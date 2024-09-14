@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import TopBar from "./1_topbar";
 import LeftSide from "./2_leftSide";
 import AthleteBreakDown from "./3_Middle";
