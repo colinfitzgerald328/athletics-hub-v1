@@ -1,0 +1,160 @@
+$grey: #1f1f1f;
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: black;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 0;
+  border-radius: 30px;
+  
+  .slider {
+    position: relative;
+    height: 500px;
+    width: 350px;
+    overflow: hidden;   
+    border-radius: 30px;
+
+    @media only screen and (max-width: 375px) {
+      height: 400px;
+      width: 300px;
+    }
+
+    .image {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      will-change: transform, opacity;
+      border-radius: 30px;
+  
+      &:hover {
+        cursor: grab;
+      }
+  
+      &:active {
+        cursor: grabbing;
+      }
+    }
+  }
+
+  .buttons {
+    margin-top: 12px;
+
+    button {
+      outline: none;
+      border: none;
+      user-select: none;
+      padding: 10px 12px;
+      transform: skewY(-5deg) rotate(5deg);
+      background-color: $grey;
+      font-family: inherit;
+      font-size: inherit;
+      color: white;
+      transition: .07s ease-out transform;
+      border-radius: 15px;
+
+      &:first-of-type {
+        margin-right: 15px;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:active {
+        transform: scale(.85) skewY(-5deg) rotate(5deg);
+      }
+    }
+  }   
+}
+
+.thumbnails {
+  display: flex;
+  justify-content: flex-start; // Changed from center to allow proper scrolling
+  overflow-x: auto;
+  padding: 20px;
+  max-width: 100%; // Sets maximum width to container width
+  width: 100%;
+  -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+  border-radius: 30px;
+  
+  // Hide scrollbar but keep functionality
+  &::-webkit-scrollbar {
+    display: none; // Chrome, Safari, Opera
+  }
+  -ms-overflow-style: none; // IE, Edge
+  scrollbar-width: none; // Firefox
+  
+  .thumbnail-container {
+    position: relative;
+    height: 120px;
+    width: 90px;
+    flex-shrink: 0; // Prevent thumbnails from shrinking
+    border-radius: 30px;
+    
+    @media only screen and (max-width: 375px) {
+      height: 70px;
+      width: 50px;
+    }
+    
+    &:hover {
+      cursor: pointer;
+    }
+    
+    &:not(:last-of-type) {
+      margin-right: 5px;
+    }
+    
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 15px;
+    }
+    
+    .active-indicator {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      pointer-events: none;
+      transform: scaleX(0);
+      transform-origin: left;
+      background-color: $grey;
+      transition: 1s cubic-bezier(0.56, 0.03, 0.12, 1.04) transform;
+      border-radius: 15px;
+      
+      &.active {
+        transform: scaleX(1);
+      }
+    }
+  }
+}
+
