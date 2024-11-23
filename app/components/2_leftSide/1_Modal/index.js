@@ -14,10 +14,7 @@ import { IconButton } from "@mui/material";
 import Close from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import { useAthleteContext } from "../../athlete_context";
-import {
-  getInfoForAIComparison,
-  getSearchResultsForQuery,
-} from "@/app/api/api";
+import { getSearchResultsForQuery } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
 import OpenAI from "openai";
 let apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
@@ -216,6 +213,9 @@ export default function ComparisonModal() {
       stream: true,
     });
     for await (const chunk of stream) {
+      if (chunk.choices[0]?.finish_reason === "stop") {
+        break;
+      }
       if (iterations === 0) {
         setLoadingComparison(false);
         toggleDrawer(true);
@@ -224,7 +224,6 @@ export default function ComparisonModal() {
       setComparisonSummary(
         (...prev) => prev + chunk.choices[0]?.delta?.content || "",
       );
-      console.log(chunk.choices[0]?.delta?.content || "");
     }
   }
 
