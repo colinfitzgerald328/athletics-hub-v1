@@ -9,6 +9,8 @@ type CreateAccountPayload = components["schemas"]["CreateAccountPayload"];
 type LoginPayload = components["schemas"]["LoginPayload"];
 type ModifyCollectionPayload = components["schemas"]["ModifyCollectionPayload"];
 
+// This is the client for the athletics-hub-engine API.  It is an
+// automatically generated client that uses the openapi-fetch library.
 const client = createClient<paths>({ baseUrl: API_URL });
 
 export async function getSearchResultsForQuery(search: string) {
