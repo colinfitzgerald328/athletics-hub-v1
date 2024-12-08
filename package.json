@@ -17,17 +17,22 @@
     "@mui/joy": "^5.0.0-beta.27",
     "@mui/material": "^5.14.20",
     "@popmotion/popcorn": "^0.4.4",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
     "@uiw/react-markdown-editor": "^6.0.0",
     "@vercel/analytics": "^1.1.3",
     "@vercel/speed-insights": "^1.0.2",
     "antd": "^5.12.2",
     "bootstrap": "^5.3.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "cohere-ai": "^7.12.0",
     "dotenv": "^16.4.5",
     "evergreen-ui": "^7.1.9",
     "framer-motion": "^11.2.4",
     "javascript-time-ago": "^2.5.9",
     "lodash.debounce": "^4.0.8",
+    "lucide-react": "^0.464.0",
     "markdown-it": "^14.0.0",
     "marked": "^12.0.0",
     "micromark": "^4.0.0",
@@ -44,12 +49,17 @@
     "react-markdown": "^9.0.1",
     "recharts": "^2.10.3",
     "sass": "^1.81.0",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7",
     "vercel": "^36.0.0"
   },
   "devDependencies": {
     "@types/node": "20.11.17",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "prettier": "3.1.0"
+    "postcss": "^8.4.49",
+    "prettier": "3.1.0",
+    "tailwindcss": "^3.4.16"
   }
 }

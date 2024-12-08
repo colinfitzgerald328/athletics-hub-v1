@@ -4,8 +4,6 @@ import ComparisonModal from "../2_leftSide/1_Modal";
 import styles from "./styles.module.css";
 import { useAthleteContext } from "../athlete_context";
 
-
-
 const TopBar = () => {
   const { isMobile } = useAthleteContext();
   return (
@@ -15,8 +13,8 @@ const TopBar = () => {
           Track and Field Hub
         </div>
         <div className={styles.stupidWrapper}>
-          <SummaryModal/>
-          <ComparisonModal/>
+          <SummaryModal />
+          <ComparisonModal />
         </div>
       </div>
     </div>

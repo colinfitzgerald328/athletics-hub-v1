@@ -1,16 +1,26 @@
 "use client";
-import { createContext, useContext, ReactNode, useState, useCallback, useMemo, useEffect } from 'react';
-import { getAthleteById, getRandomDoc, getLetsRunDailySummary } from "../api/api";
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useCallback,
+  useMemo,
+  useEffect,
+} from "react";
+import {
+  getAthleteById,
+  getRandomDoc,
+  getLetsRunDailySummary,
+} from "../api/api";
 import { components } from "@/src/lib/api/v1";
 
-
-type Athlete = components["schemas"]["QueriedAthlete"]; 
-
+type Athlete = components["schemas"]["QueriedAthlete"];
 
 export interface AthleteContextType {
   athlete: Athlete | null;
   loadingNewAthlete: boolean;
-  fetchAthleteById: (athleteId: number) => Promise<void>; 
+  fetchAthleteById: (athleteId: number) => Promise<void>;
   fetchRandomAthlete: () => Promise<void>;
   getLetsRunDailySummaryFunction: () => Promise<void>;
   summaryResponse: string;
@@ -19,9 +29,7 @@ export interface AthleteContextType {
   isMobile: boolean;
 }
 
-
 const AthleteContext = createContext<AthleteContextType | undefined>(undefined);
-
 
 export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   const [athlete, setAthlete] = useState<Athlete | null>(null);
@@ -30,7 +38,6 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
 
-
   useEffect(() => {
     window.addEventListener("resize", updateWindowDimensions);
     updateWindowDimensions();
@@ -38,14 +45,12 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
     getLetsRunDailySummaryFunction();
   }, []);
 
-
   const isMobile = width < 1000;
 
   function updateWindowDimensions() {
     setWidth(window.innerWidth);
     setHeight(window.innerHeight);
   }
-
 
   const fetchAthleteById = useCallback(async (athleteId: number) => {
     setLoadingNewAthlete(true);
@@ -80,31 +85,49 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const getLetsRunDailySummaryFunction = useCallback(async () => {
-  const { data, error } = await getLetsRunDailySummary();
-  if (error) {
-    return;
-  }
-  setSummaryResponse(data.summary_text);
-}, [setSummaryResponse]);
+    const { data, error } = await getLetsRunDailySummary();
+    if (error) {
+      return;
+    }
+    setSummaryResponse(data.summary_text);
+  }, [setSummaryResponse]);
 
-
-
-return (
-  <AthleteContext.Provider
-    value={useMemo(
-      () => ({ athlete, loadingNewAthlete, fetchAthleteById, fetchRandomAthlete, getLetsRunDailySummaryFunction, summaryResponse, width, height, isMobile}),
-      [athlete, loadingNewAthlete, fetchAthleteById, fetchRandomAthlete, getLetsRunDailySummaryFunction, summaryResponse, width, height, isMobile],
-    )}
-  >
-    {children}
-  </AthleteContext.Provider>
-);
+  return (
+    <AthleteContext.Provider
+      value={useMemo(
+        () => ({
+          athlete,
+          loadingNewAthlete,
+          fetchAthleteById,
+          fetchRandomAthlete,
+          getLetsRunDailySummaryFunction,
+          summaryResponse,
+          width,
+          height,
+          isMobile,
+        }),
+        [
+          athlete,
+          loadingNewAthlete,
+          fetchAthleteById,
+          fetchRandomAthlete,
+          getLetsRunDailySummaryFunction,
+          summaryResponse,
+          width,
+          height,
+          isMobile,
+        ],
+      )}
+    >
+      {children}
+    </AthleteContext.Provider>
+  );
 };
 
 export const useAthleteContext = () => {
   const context = useContext(AthleteContext);
   if (context === undefined) {
-    throw new Error('useAthleteContext must be used within an AthleteProvider');
+    throw new Error("useAthleteContext must be used within an AthleteProvider");
   }
   return context;
 };
