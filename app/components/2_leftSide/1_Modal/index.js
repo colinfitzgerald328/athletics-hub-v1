@@ -16,11 +16,15 @@ import Box from "@mui/material/Box";
 import { useAthleteContext } from "../../athlete_context";
 import { getSearchResultsForQuery } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
-import OpenAI from "openai";
-let apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
-const openai = new OpenAI({ apiKey, dangerouslyAllowBrowser: true });
 import Markdown from "react-markdown";
 import { getAthleteById } from "@/app/api/api";
+
+import Groq from "groq-sdk";
+
+const groq = new Groq({
+  apiKey: process.env.NEXT_PUBLIC_GROQ_API_KEY,
+  dangerouslyAllowBrowser: true,
+});
 
 const trackAndFieldEvents = [
   "100m Dash",
@@ -207,12 +211,16 @@ export default function ComparisonModal() {
     Provide a detailed explanation of your reasoning and a prediction of who is likely to win the race.
     Please take your time to thoroughly evaluate the scenario and provide a well-reasoned response.`;
     let iterations = 0;
-    const stream = await openai.chat.completions.create({
-      model: "o1-mini",
+    const chatCompletion = await groq.chat.completions.create({
       messages: [{ role: "user", content: prompt }],
+      model: "llama-3.1-8b-instant",
+      temperature: 1,
+      max_tokens: 1024,
+      top_p: 1,
       stream: true,
+      stop: null,
     });
-    for await (const chunk of stream) {
+    for await (const chunk of chatCompletion) {
       if (chunk.choices[0]?.finish_reason === "stop") {
         break;
       }
