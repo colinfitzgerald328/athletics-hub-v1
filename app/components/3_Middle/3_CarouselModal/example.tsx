@@ -13,14 +13,16 @@ function Example() {
   const [[imageCount, direction], setImageCount] = useState([0, 0]);
   const { athlete } = useAthleteContext();
 
-
-  const activeImageIndex = wrap(0, athlete.athlete.hq_images.length, imageCount);
+  const activeImageIndex = wrap(
+    0,
+    athlete.athlete.hq_images.length,
+    imageCount,
+  );
 
   const swipeToImage = (swipeDirection: SwipeDirection) => {
     setImageCount([imageCount + swipeDirection, swipeDirection]);
   };
 
-  
   const sliderVariants = {
     incoming: (direction) => ({
       x: direction > 0 ? "100%" : "-100%",

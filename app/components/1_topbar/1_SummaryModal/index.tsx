@@ -5,6 +5,7 @@ import Button from "@mui/joy/Button";
 import styles from "./styles.module.css";
 import { CircularProgress } from "@mui/material";
 import markdownit from "markdown-it";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 import { useAthleteContext } from "../../athlete_context";
 
 type Anchor = "top" | "left" | "bottom" | "right";
@@ -48,15 +49,8 @@ export default function AnchorTemporaryDrawer() {
     >
       {summaryResponse ? (
         <div className={styles.container}>
-          <div className={styles.topItemsHolder}>
-            <h1 className={styles.title}>Today in Track and Field</h1>
-          </div>
-          <div className={styles.summaryJamison}>
-            <div
-              className={styles.summaryHolder}
-              dangerouslySetInnerHTML={{ __html: result }}
-            />
-          </div>
+          <div className={styles.topItemsHolder}></div>
+          <MarkdownEditor.Markdown source={summaryResponse} />
         </div>
       ) : (
         <div className={styles.containerCenter}>

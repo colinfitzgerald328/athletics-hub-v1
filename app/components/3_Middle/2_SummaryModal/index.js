@@ -3,18 +3,17 @@ import { IconButton } from "@mui/material";
 import Close from "@mui/icons-material/Close";
 import Button from "@mui/joy/Button";
 import { Modal } from "antd";
-import markdownit from "markdown-it";
 import styles from "./styles.module.css";
 import { useAthleteContext } from "../../athlete_context";
 
 export default function SummaryModal(props) {
   const { athlete } = useAthleteContext();
-  let result = ""; // Define result outside if block
+  // let result = ""; // Define result outside if block
 
-  if (athlete.athlete.markdown_summary) {
-    const md = markdownit();
-    result = md.render(athlete.athlete.markdown_summary); // Assign result inside if block
-  }
+  // // if (athlete.athlete.markdown_summary) {
+  // //   const md = markdownit();
+  // //   result = md.render(athlete.athlete.markdown_summary); // Assign result inside if block
+  // // }
 
   return (
     <Modal
@@ -53,10 +52,6 @@ export default function SummaryModal(props) {
             </div>
           </div>
         </div>
-        <div
-          className={styles.summaryHolder}
-          dangerouslySetInnerHTML={{ __html: result }}
-        />
       </div>
     </Modal>
   );

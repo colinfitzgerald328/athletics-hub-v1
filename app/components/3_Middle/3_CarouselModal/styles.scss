@@ -29,12 +29,12 @@ main {
   align-items: center;
   margin: 25px 0;
   border-radius: 30px;
-  
+
   .slider {
     position: relative;
     height: 500px;
     width: 350px;
-    overflow: hidden;   
+    overflow: hidden;
     border-radius: 30px;
 
     @media only screen and (max-width: 375px) {
@@ -51,11 +51,11 @@ main {
       background-position: center;
       will-change: transform, opacity;
       border-radius: 30px;
-  
+
       &:hover {
         cursor: grab;
       }
-  
+
       &:active {
         cursor: grabbing;
       }
@@ -75,7 +75,7 @@ main {
       font-family: inherit;
       font-size: inherit;
       color: white;
-      transition: .07s ease-out transform;
+      transition: 0.07s ease-out transform;
       border-radius: 15px;
 
       &:first-of-type {
@@ -87,10 +87,10 @@ main {
       }
 
       &:active {
-        transform: scale(.85) skewY(-5deg) rotate(5deg);
+        transform: scale(0.85) skewY(-5deg) rotate(5deg);
       }
     }
-  }   
+  }
 }
 
 .thumbnails {
@@ -102,34 +102,34 @@ main {
   width: 100%;
   -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
   border-radius: 30px;
-  
+
   // Hide scrollbar but keep functionality
   &::-webkit-scrollbar {
     display: none; // Chrome, Safari, Opera
   }
   -ms-overflow-style: none; // IE, Edge
   scrollbar-width: none; // Firefox
-  
+
   .thumbnail-container {
     position: relative;
     height: 120px;
     width: 90px;
     flex-shrink: 0; // Prevent thumbnails from shrinking
     border-radius: 30px;
-    
+
     @media only screen and (max-width: 375px) {
       height: 70px;
       width: 50px;
     }
-    
+
     &:hover {
       cursor: pointer;
     }
-    
+
     &:not(:last-of-type) {
       margin-right: 5px;
     }
-    
+
     img {
       height: 100%;
       width: 100%;
@@ -137,7 +137,7 @@ main {
       object-position: center;
       border-radius: 15px;
     }
-    
+
     .active-indicator {
       position: absolute;
       top: 0;
@@ -150,11 +150,10 @@ main {
       background-color: $grey;
       transition: 1s cubic-bezier(0.56, 0.03, 0.12, 1.04) transform;
       border-radius: 15px;
-      
+
       &.active {
         transform: scaleX(1);
       }
     }
   }
 }
-
