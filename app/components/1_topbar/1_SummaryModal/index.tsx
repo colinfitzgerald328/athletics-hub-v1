@@ -2,6 +2,9 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/joy/Button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { ExternalLink } from 'lucide-react'
 import { useAthleteContext } from "../../athlete_context";
 
 type Anchor = "top" | "left" | "bottom" | "right";
@@ -37,19 +40,35 @@ export default function AnchorTemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      <div className="space-y-6 p-4 max-w-3xl mx-auto">
       {summaryParts.map((part) => (
-        <div key={part.id}>
-          <h3>{part.section_title}</h3>
-          <li>{part.summary_text}</li>
-          <b>Sources</b>
-          {part.source_links.map((link) => (
-            <div key={link.id}>
-              <a href={link.source_link}>{link.source_name}</a>
-            </div>
-          ))}
-          <hr />
-        </div>
+        <Card key={part.id} className="overflow-hidden">
+          <CardHeader className="bg-muted">
+            <CardTitle style={{fontSize: "23px"}} className="text-lg font-semibold">{part.section_title}</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <p className="mb-4 text-sm leading-relaxed">{part.summary_text}</p>
+            <h6 className="mb-2 font-semibold text-muted-foreground">Sources</h6>
+            <ul className="space-y-2" style={{padding: "0px", margin: "0px"}}>
+              {part.source_links.map((link) => (
+                <li key={link.id}>
+                  <a
+                    href={link.source_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm text-primary hover:underline"
+                  >
+                    {link.source_name}
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+          <Separator className="my-0" />
+        </Card>
       ))}
+    </div>
     </Box>
   );
 
