@@ -32,6 +32,14 @@ export default function AthleteBreakDown() {
     setCarouselModalOpen(false);
   }
 
+  const getImageByScreenSize = () => {
+    if (isMobile) {
+      return athlete.athlete.hq_images[0];
+    } else {
+      return athlete.athlete.headshot_image_url;
+    }
+  };
+
   return (
     <div
       className={isMobile ? styles.mobileBreakdown : styles.athleteBreakdown}
@@ -50,14 +58,7 @@ export default function AthleteBreakDown() {
           ></Skeleton>
         ) : athlete.athlete.hq_images ? (
           <>
-            <img
-              className={styles.athleteImage}
-              src={
-                athlete.athlete.headshot_image_url
-                  ? athlete.athlete.headshot_image_url
-                  : athlete.athlete.hq_images[0]
-              }
-            />
+            <img className={styles.athleteImage} src={getImageByScreenSize()} />
             <img
               onClick={() => openCarouselModal()}
               className={styles.expandImage}
