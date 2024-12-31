@@ -11,11 +11,12 @@ import {
 import {
   getAthleteById,
   getRandomDoc,
-  getLetsRunDailySummary,
+  getLetsRunSummaryParts,
 } from "../api/api";
 import { components } from "@/src/lib/api/v1";
 
 type Athlete = components["schemas"]["QueriedAthlete"];
+type LetsRunSummaryParts = components["schemas"]["LetsRunSummaryItemPydantic"];
 
 export interface AthleteContextType {
   athlete: Athlete | null;
@@ -23,7 +24,7 @@ export interface AthleteContextType {
   fetchAthleteById: (athleteId: number) => Promise<void>;
   fetchRandomAthlete: () => Promise<void>;
   getLetsRunDailySummaryFunction: () => Promise<void>;
-  summaryResponse: string;
+  summaryParts: LetsRunSummaryParts[];
   width: number;
   height: number;
   isMobile: boolean;
@@ -34,7 +35,7 @@ const AthleteContext = createContext<AthleteContextType | undefined>(undefined);
 export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   const [athlete, setAthlete] = useState<Athlete | null>(null);
   const [loadingNewAthlete, setLoadingNewAthlete] = useState(false);
-  const [summaryResponse, setSummaryResponse] = useState("");
+  const [summaryParts, setSummaryParts] = useState<LetsRunSummaryParts[]>([]);
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
 
@@ -85,12 +86,12 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const getLetsRunDailySummaryFunction = useCallback(async () => {
-    const { data, error } = await getLetsRunDailySummary();
+    const { data, error } = await getLetsRunSummaryParts();
     if (error) {
       return;
     }
-    setSummaryResponse(data.summary_text);
-  }, [setSummaryResponse]);
+    setSummaryParts(data);
+  }, [setSummaryParts]);
 
   return (
     <AthleteContext.Provider
@@ -101,7 +102,7 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
           fetchAthleteById,
           fetchRandomAthlete,
           getLetsRunDailySummaryFunction,
-          summaryResponse,
+          summaryParts,
           width,
           height,
           isMobile,
@@ -112,7 +113,7 @@ export const AthleteProvider = ({ children }: { children: ReactNode }) => {
           fetchAthleteById,
           fetchRandomAthlete,
           getLetsRunDailySummaryFunction,
-          summaryResponse,
+          summaryParts,
           width,
           height,
           isMobile,

@@ -21,30 +21,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/_ah/warmup": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Warmup
-     * @description Served stub function returning no content.
-     *
-     *
-     *     Returns:
-     *         An empty string, an HTTP code 200, and an empty object.
-     */
-    get: operations["warmup__ah_warmup_get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/athletes/{athlete_id}": {
     parameters: {
       query?: never;
@@ -96,7 +72,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/athletes/compare": {
+  "/save_letsrun_summary": {
     parameters: {
       query?: never;
       header?: never;
@@ -105,161 +81,25 @@ export interface paths {
     };
     get?: never;
     put?: never;
-    /** Compare Two Athletes Controller */
-    post: operations["compare_two_athletes_controller_athletes_compare_post"];
+    /** Save Letsrun Summary */
+    post: operations["save_letsrun_summary_save_letsrun_summary_post"];
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  "/account/create": {
+  "/get_letsrun_summary": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
-    get?: never;
-    put?: never;
-    /** Create Account Controller */
-    post: operations["create_account_controller_account_create_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/account/login": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Login User */
-    post: operations["login_user_account_login_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/collections/create": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Create And Return Collection */
-    post: operations["create_and_return_collection_collections_create_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/collections/user": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get User Collections */
-    get: operations["get_user_collections_collections_user_get"];
+    /** Get Letsrun Summary */
+    get: operations["get_letsrun_summary_get_letsrun_summary_get"];
     put?: never;
     post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/collections/{collection_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get User Collection By Collection Id */
-    get: operations["get_user_collection_by_collection_id_collections__collection_id__get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/collections/modify": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Modify Collection */
-    post: operations["modify_collection_collections_modify_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/collections/delete": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Delete Collection */
-    post: operations["delete_collection_collections_delete_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/letsrun/daily_summary": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get Letsrun Daily Summary */
-    get: operations["get_letsrun_daily_summary_letsrun_daily_summary_get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/letsrun/daily_summary/create": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Post Letsrun Daily Summary */
-    post: operations["post_letsrun_daily_summary_letsrun_daily_summary_create_post"];
     delete?: never;
     options?: never;
     head?: never;
@@ -270,50 +110,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
-    /** AccountDetails */
-    AccountDetails: {
-      /** Id */
-      id: string;
-      /** Username */
-      username: string;
-      /** Password */
-      password: string;
-    };
-    /** Athlete */
-    Athlete: {
-      /** Id */
-      id: string;
-      /** Athlete Id */
-      athlete_id: number;
-      /** First Name */
-      first_name: string;
-      /** Last Name */
-      last_name: string;
-      /** Date Of Birth */
-      date_of_birth?: string;
-      /** Country */
-      country: string;
-      /** Url Slug */
-      url_slug: string;
-      /** Primary Disciplines */
-      primary_disciplines: string;
-      /** Accomplishments */
-      accomplishments?: string[];
-      /** Personal Bests */
-      personal_bests?: unknown[];
-      /** Gender */
-      gender: string;
-      /** Wikipedia Url */
-      wikipedia_url?: string;
-      /** Social Urls */
-      social_urls?: Record<string, never> | unknown[];
-      /** Nickname */
-      nickname?: string;
-      /** Hq Images */
-      hq_images?: string[];
-      /** Markdown Summary */
-      markdown_summary?: string;
-    };
     /** AthleteResult */
     AthleteResult: {
       /** Date */
@@ -323,13 +119,13 @@ export interface components {
       /** Venue */
       venue: string;
       /** Indoor */
-      indoor?: boolean;
+      indoor: boolean | null;
       /** Discipline Code */
-      discipline_code?: string;
+      discipline_code: string | null;
       /** Discipline Name Url Slug */
-      discipline_name_url_slug?: string;
+      discipline_name_url_slug: string | null;
       /** Type Name Url Slug */
-      type_name_url_slug?: string;
+      type_name_url_slug: string | null;
       /** Discipline */
       discipline: string;
       /** Country */
@@ -343,13 +139,13 @@ export interface components {
       /** Mark */
       mark: string;
       /** Wind */
-      wind?: string;
+      wind: string | null;
       /** Not Legal */
-      not_legal?: boolean;
+      not_legal: boolean | null;
       /** Result Score */
-      result_score?: number;
+      result_score: number | null;
       /** Remark */
-      remark?: string;
+      remark: string | null;
       /** Timestamp */
       timestamp: number;
     };
@@ -364,113 +160,88 @@ export interface components {
       /** Primary Disciplines */
       primary_disciplines: string;
       /** Hq Images */
-      hq_images?: string[];
-    };
-    /**
-     * CollectionAction
-     * @description An enumeration.
-     * @enum {unknown}
-     */
-    CollectionAction: "ADD" | "DELETE" | "UPDATE_NAME";
-    /** CollectionReturnPayload */
-    CollectionReturnPayload: {
-      /** Collection Id */
-      collection_id: string;
-      /** Collection Name */
-      collection_name: string;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-      /**
-       * Updated At
-       * Format: date-time
-       */
-      updated_at: string;
-      /** Athletes */
-      athletes: components["schemas"]["StoredQueriedAthlete"][];
-    };
-    /** CreateAccountPayload */
-    CreateAccountPayload: {
-      /** Username */
-      username: string;
-      /** Password */
-      password: string;
-    };
-    /** CreateCollectionPayload */
-    CreateCollectionPayload: {
-      /** Collection Name */
-      collection_name: string;
-      /** Account Id */
-      account_id: string;
-      /** Athlete Ids */
-      athlete_ids: number[];
-    };
-    /** DeleteCollectionPayload */
-    DeleteCollectionPayload: {
-      /** Collection Id */
-      collection_id: number;
+      hq_images: string[] | null;
     };
     /** HTTPValidationError */
     HTTPValidationError: {
       /** Detail */
       detail?: components["schemas"]["ValidationError"][];
     };
-    /** LetsrunSummaryForDay */
-    LetsrunSummaryForDay: {
+    /** LetsRunSummaryItemPydantic */
+    LetsRunSummaryItemPydantic: {
       /** Id */
       id: number;
+      /** Section Title */
+      section_title: string;
       /** Summary Text */
       summary_text: string;
+      /** Source Links */
+      source_links: components["schemas"]["LetsrunSourceLinkPydantic"][];
       /**
-       * Created At
-       * Format: date-time
+       * Date Created
+       * Format: date
        */
-      created_at: string;
+      date_created: string;
     };
-    /** LoginPayload */
-    LoginPayload: {
-      /** Username */
-      username: string;
-      /** Password */
-      password: string;
+    /** LetsrunSourceLinkPydantic */
+    LetsrunSourceLinkPydantic: {
+      /** Id */
+      id: number;
+      /** Item Id */
+      item_id: number;
+      /** Source Name */
+      source_name: string;
+      /** Source Link */
+      source_link: string;
     };
-    /** ModifyCollectionPayload */
-    ModifyCollectionPayload: {
-      action: components["schemas"]["CollectionAction"];
-      /** Collection Id */
-      collection_id: number;
+    /** PydanticAthlete */
+    PydanticAthlete: {
+      /** Id */
+      id: number;
       /** Athlete Id */
-      athlete_id?: number;
-      /** New Name */
-      new_name?: string;
-      /** Athlete Ids */
-      athlete_ids?: number[];
-    };
-    /** ModifyCollectionReturnPayload */
-    ModifyCollectionReturnPayload: {
-      /** Name Was Updated */
-      name_was_updated: boolean;
+      athlete_id: number;
+      /** First Name */
+      first_name: string;
+      /** Last Name */
+      last_name: string;
+      /** Date Of Birth */
+      date_of_birth: string | null;
+      /** Country */
+      country: string;
+      /** Url Slug */
+      url_slug: string;
+      /** Primary Disciplines */
+      primary_disciplines: string;
+      /** Accomplishments */
+      accomplishments: string[] | null;
+      /** Personal Bests */
+      personal_bests: unknown[] | null;
+      /** Gender */
+      gender: string;
+      /** Wikipedia Url */
+      wikipedia_url: string | null;
+      /** Social Urls */
+      social_urls: Record<string, never> | unknown[] | null;
+      /** Nickname */
+      nickname: string | null;
+      /** Hq Images */
+      hq_images: string[] | null;
+      /** Markdown Summary */
+      markdown_summary: string | null;
+      /** Avg Result Score */
+      avg_result_score: number | null;
+      /** Primary Event */
+      primary_event: string | null;
     };
     /** QueriedAthlete */
     QueriedAthlete: {
-      athlete: components["schemas"]["Athlete"];
+      athlete: components["schemas"]["PydanticAthlete"];
       /** Results */
       results: components["schemas"]["AthleteResult"][];
       /** Top Competitors */
       top_competitors: components["schemas"]["TopCompetitor"][];
       /** Similar Athletes */
-      similar_athletes?: components["schemas"]["CloseMatch"][];
-    };
-    /** StoredQueriedAthlete */
-    StoredQueriedAthlete: {
-      /** Athlete Id */
-      athlete_id: number;
-      /** Json Data */
-      json_data: Record<string, never>;
-      /** Similar Athletes */
-      similar_athletes?: components["schemas"]["CloseMatch"][];
+      similar_athletes: components["schemas"]["CloseMatch"][] | null;
     };
     /** TopCompetitor */
     TopCompetitor: {
@@ -483,30 +254,9 @@ export interface components {
       /** Last Name */
       last_name: string;
       /** Markdown Summary */
-      markdown_summary?: string;
+      markdown_summary: string | null;
       /** Hq Images */
-      hq_images?: string[];
-    };
-    /** UserCollections */
-    UserCollections: {
-      /** Id */
-      id: string;
-      /** Account Id */
-      account_id: string;
-      /** Collection Name */
-      collection_name: string;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-      /**
-       * Updated At
-       * Format: date-time
-       */
-      updated_at: string;
-      /** Detailed Athletes */
-      detailed_athletes: components["schemas"]["StoredQueriedAthlete"][];
+      hq_images: string[] | null;
     };
     /** ValidationError */
     ValidationError: {
@@ -522,7 +272,7 @@ export interface components {
       /** Athlete Id */
       athlete_id: number;
       /** Hq Images */
-      hq_images?: string[];
+      hq_images: string[] | null;
       /** Full Name */
       full_name: string;
       /** Primary Disciplines */
@@ -538,26 +288,6 @@ export interface components {
 export type $defs = Record<string, never>;
 export interface operations {
   read_root__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-    };
-  };
-  warmup__ah_warmup_get: {
     parameters: {
       query?: never;
       header?: never;
@@ -659,286 +389,7 @@ export interface operations {
       };
     };
   };
-  compare_two_athletes_controller_athletes_compare_post: {
-    parameters: {
-      query: {
-        athlete_id_1: number;
-        athlete_id_2: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  create_account_controller_account_create_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateAccountPayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AccountDetails"];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  login_user_account_login_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["LoginPayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["AccountDetails"];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  create_and_return_collection_collections_create_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CreateCollectionPayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CollectionReturnPayload"];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  get_user_collections_collections_user_get: {
-    parameters: {
-      query: {
-        account_id: number;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["UserCollections"][];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  get_user_collection_by_collection_id_collections__collection_id__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        collection_id: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["CollectionReturnPayload"];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  modify_collection_collections_modify_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["ModifyCollectionPayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["ModifyCollectionReturnPayload"];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  delete_collection_collections_delete_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["DeleteCollectionPayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  get_letsrun_daily_summary_letsrun_daily_summary_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["LetsrunSummaryForDay"];
-        };
-      };
-    };
-  };
-  post_letsrun_daily_summary_letsrun_daily_summary_create_post: {
+  save_letsrun_summary_save_letsrun_summary_post: {
     parameters: {
       query?: never;
       header?: never;
@@ -954,6 +405,26 @@ export interface operations {
         };
         content: {
           "application/json": unknown;
+        };
+      };
+    };
+  };
+  get_letsrun_summary_get_letsrun_summary_get: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          "application/json": components["schemas"]["LetsRunSummaryItemPydantic"][];
         };
       };
     };

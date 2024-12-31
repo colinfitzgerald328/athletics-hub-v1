@@ -2,22 +2,13 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/joy/Button";
-import styles from "./styles.module.css";
-import { CircularProgress } from "@mui/material";
-import markdownit from "markdown-it";
-import MarkdownEditor from "@uiw/react-markdown-editor";
 import { useAthleteContext } from "../../athlete_context";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function AnchorTemporaryDrawer() {
-  const { summaryResponse } = useAthleteContext();
-  let result: string; // Define result outside if block
+  const { summaryParts } = useAthleteContext();
 
-  if (summaryResponse) {
-    const md = markdownit();
-    result = md.render(summaryResponse); // Assign result inside if block
-  }
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -41,28 +32,30 @@ export default function AnchorTemporaryDrawer() {
 
   const list = (anchor: Anchor) => (
     <Box
-      style={{ padding: "20px" }}
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      style={{ padding: "20px", width: "800px" }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {summaryResponse ? (
-        <div className={styles.container}>
-          <div className={styles.topItemsHolder}></div>
-          <MarkdownEditor.Markdown source={summaryResponse} />
+      {summaryParts.map((part) => (
+        <div key={part.id}>
+          <h3>{part.section_title}</h3>
+          <li>{part.summary_text}</li>
+          <b>Sources</b>
+          {part.source_links.map((link) => (
+            <div key={link.id}>
+              <a href={link.source_link}>{link.source_name}</a>
+            </div>
+          ))}
+          <hr />
         </div>
-      ) : (
-        <div className={styles.containerCenter}>
-          <CircularProgress />
-        </div>
-      )}
+      ))}
     </Box>
   );
 
   return (
     <div>
-      {(["bottom"] as const).map((anchor) => (
+      {(["right"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
             sx={{
