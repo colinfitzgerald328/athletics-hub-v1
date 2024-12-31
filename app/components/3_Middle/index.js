@@ -52,7 +52,11 @@ export default function AthleteBreakDown() {
           <>
             <img
               className={styles.athleteImage}
-              src={athlete.athlete.hq_images[0]}
+              src={
+                athlete.athlete.headshot_image_url
+                  ? athlete.athlete.headshot_image_url
+                  : athlete.athlete.hq_images[0]
+              }
             />
             <img
               onClick={() => openCarouselModal()}
