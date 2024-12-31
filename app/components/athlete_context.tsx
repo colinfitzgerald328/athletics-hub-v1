@@ -16,7 +16,7 @@ import {
 import { components } from "@/src/lib/api/v1";
 
 type Athlete = components["schemas"]["QueriedAthlete"];
-type LetsRunSummaryParts = components["schemas"]["LetsRunSummaryItemPydantic"];
+type LetsRunSummaryParts = components["schemas"]["LetsRunSummaryItemSchema"];
 
 export interface AthleteContextType {
   athlete: Athlete | null;
