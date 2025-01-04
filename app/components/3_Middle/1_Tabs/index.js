@@ -106,6 +106,7 @@ export default function BasicTabs() {
                   />
                 ) : (
                   <img
+                    loading="lazy"
                     className={styles.competitorImage}
                     src={
                       competitor.hq_images

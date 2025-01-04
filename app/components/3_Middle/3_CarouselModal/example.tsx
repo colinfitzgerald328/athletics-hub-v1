@@ -15,7 +15,7 @@ function Example() {
 
   const activeImageIndex = wrap(
     0,
-    athlete.athlete.hq_images.length,
+    athlete.high_quality_images.length,
     imageCount,
   );
 
@@ -24,13 +24,13 @@ function Example() {
   };
 
   const sliderVariants = {
-    incoming: (direction) => ({
+    incoming: (direction: SwipeDirection) => ({
       x: direction > 0 ? "100%" : "-100%",
       scale: 1.2,
       opacity: 0,
     }),
     active: { x: 0, scale: 1, opacity: 1 },
-    exit: (direction) => ({
+    exit: (direction: SwipeDirection) => ({
       x: direction > 0 ? "-100%" : "100%",
       scale: 1,
       opacity: 0.2,
@@ -70,7 +70,7 @@ function Example() {
             <motion.div
               key={imageCount}
               style={{
-                backgroundImage: `url(${athlete.athlete.hq_images[activeImageIndex]})`,
+                backgroundImage: `url(${athlete.high_quality_images[activeImageIndex].image_url})`,
               }}
               custom={direction}
               variants={sliderVariants}
@@ -93,13 +93,13 @@ function Example() {
         </div>
       </div>
       <div className="thumbnails">
-        {athlete.athlete.hq_images.map((image, index) => (
+        {athlete.high_quality_images.map((image, index) => (
           <div
             key={index}
             onClick={() => skipToImage(index)}
             className="thumbnail-container"
           >
-            <img src={image} alt="" />
+            <img src={image.image_url} loading="lazy"/>
             <div
               className={`active-indicator ${
                 index === activeImageIndex ? "active" : null

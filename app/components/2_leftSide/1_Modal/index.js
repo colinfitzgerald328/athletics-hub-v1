@@ -310,6 +310,7 @@ export default function ComparisonModal() {
                       className={styles.singleResult}
                     >
                       <img
+                        loading="lazy"
                         src={
                           result.hq_images
                             ? result.hq_images[0]
@@ -344,6 +345,7 @@ export default function ComparisonModal() {
                       <div className={styles.itemsContainer}>
                         <div className={styles.gradient}></div>
                         <img
+                          loading="lazy"
                           src={
                             athlete.hq_images
                               ? athlete.hq_images[0]

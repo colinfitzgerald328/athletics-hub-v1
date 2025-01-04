@@ -148,6 +148,7 @@ export default function LeftSide() {
                 className={styles.singleResult}
               >
                 <img
+                  loading="lazy"
                   src={
                     result.hq_images
                       ? result.hq_images[0]

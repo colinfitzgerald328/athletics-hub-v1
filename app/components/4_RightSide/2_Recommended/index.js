@@ -21,6 +21,7 @@ export default function Recommended() {
         />
       ) : (
         <img
+          loading="lazy"
           src={
             similar_athlete.hq_images
               ? similar_athlete.hq_images[0]

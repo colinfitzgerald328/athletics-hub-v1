@@ -1,4 +1,5 @@
 const API_URL = "https://athletics-hub-engine-production.up.railway.app";
+// const API_URL = "http://localhost:8000";
 
 import createClient from "openapi-fetch";
 import type { paths } from "@/src/lib/api/v1";

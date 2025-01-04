@@ -33,11 +33,10 @@ export default function AthleteBreakDown() {
   }
 
   const getImageByScreenSize = () => {
-    if (isMobile) {
-      return athlete.athlete.hq_images[0];
-    } else {
-      return athlete.athlete.headshot_image_url;
-    }
+    return isMobile
+      ? athlete.high_quality_images?.[0].image_url ??
+          athlete.athlete.hq_images[0]
+      : athlete.athlete.headshot_image_url;
   };
 
   return (
@@ -60,6 +59,7 @@ export default function AthleteBreakDown() {
           <>
             <img className={styles.athleteImage} src={getImageByScreenSize()} />
             <img
+              loading="lazy"
               onClick={() => openCarouselModal()}
               className={styles.expandImage}
               src={"expand.png"}
@@ -71,6 +71,7 @@ export default function AthleteBreakDown() {
           </>
         ) : (
           <img
+            loading="lazy"
             className={styles.athleteImageContained}
             src={
               "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
@@ -88,6 +89,7 @@ export default function AthleteBreakDown() {
             ></Skeleton>
           ) : !isMobile && athlete.athlete.hq_images ? (
             <img
+              loading="lazy"
               src={athlete.athlete.hq_images[0]}
               className={styles.profileImage}
             />
