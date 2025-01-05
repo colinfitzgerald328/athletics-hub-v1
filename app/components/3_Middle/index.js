@@ -39,6 +39,35 @@ export default function AthleteBreakDown() {
       : athlete.athlete.headshot_image_url;
   };
 
+  const displaySponsors = () => {
+    return athlete.sponsors.sponsors.length > 0 ? (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginTop: "10px",
+        }}
+      >
+        <div
+          className="text-lg font-semibold text-gray-700"
+          style={{ marginRight: "5px" }}
+        >
+          Sponsored by:
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {athlete.sponsors.sponsors.map((sponsor) => (
+            <div
+              key={sponsor}
+              className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-blue-200 hover:text-blue-900"
+            >
+              {sponsor}
+            </div>
+          ))}
+        </div>
+      </div>
+    ) : null;
+  };
+
   return (
     <div
       className={isMobile ? styles.mobileBreakdown : styles.athleteBreakdown}
@@ -145,6 +174,16 @@ export default function AthleteBreakDown() {
                   </div>
                 ))}
               </div>
+            )}
+            {loadingNewAthlete ? (
+              <Skeleton
+                sx={{ marginTop: "5px" }}
+                animation="wave"
+                width={300}
+                height={35}
+              ></Skeleton>
+            ) : (
+              displaySponsors()
             )}
           </div>
         </div>

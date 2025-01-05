@@ -123,6 +123,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/add_headshot_image_to_single_athlete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add Headshot To Athlete */
+        post: operations["add_headshot_to_athlete_add_headshot_image_to_single_athlete_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/add_headshots_for_all_athletes": {
         parameters: {
             query?: never;
@@ -208,6 +225,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/save_sponsor_for_athlete": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Save Sponsor For Athlete */
+        post: operations["save_sponsor_for_athlete_save_sponsor_for_athlete_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/save_sponsors_for_athletes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Save Sponsors For Athletes */
+        post: operations["save_sponsors_for_athletes_save_sponsors_for_athletes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -256,6 +307,20 @@ export interface components {
             /** Timestamp */
             timestamp: number;
         };
+        /** AthleteSponsorSchema */
+        AthleteSponsorSchema: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** Sponsors */
+            sponsors: string[];
+            /** Context */
+            context: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
         /** CloseMatch */
         CloseMatch: {
             /** Athlete Id */
@@ -268,6 +333,11 @@ export interface components {
             primary_disciplines: string;
             /** Hq Images */
             hq_images: string[] | null;
+        };
+        /** GenericAthleteRequest */
+        GenericAthleteRequest: {
+            /** Athlete Id */
+            athlete_id: number;
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -371,6 +441,7 @@ export interface components {
             similar_athletes: components["schemas"]["CloseMatch"][] | null;
             /** High Quality Images */
             high_quality_images: components["schemas"]["HighQualityAthleteImageSchema"][] | null;
+            sponsors: components["schemas"]["AthleteSponsorSchema"] | null;
         };
         /** SaveHighQualityAthletePayload */
         SaveHighQualityAthletePayload: {
@@ -583,6 +654,39 @@ export interface operations {
             };
         };
     };
+    add_headshot_to_athlete_add_headshot_image_to_single_athlete_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SaveHighQualityAthletePayload"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     add_headshots_for_all_athletes_add_headshots_for_all_athletes_post: {
         parameters: {
             query?: never;
@@ -690,6 +794,59 @@ export interface operations {
         };
     };
     save_high_quality_images_for_all_athletes_save_high_quality_images_for_all_athletes_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
+    };
+    save_sponsor_for_athlete_save_sponsor_for_athlete_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["GenericAthleteRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    save_sponsors_for_athletes_save_sponsors_for_athletes_post: {
         parameters: {
             query?: never;
             header?: never;
