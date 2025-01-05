@@ -39,6 +39,24 @@ export default function AthleteBreakDown() {
       : athlete.athlete.headshot_image_url;
   };
 
+  const displayHeaderImage = () => {
+    return (
+      <>
+        <img className={styles.athleteImage} src={getImageByScreenSize()} />
+        <img
+          loading="lazy"
+          onClick={() => openCarouselModal()}
+          className={styles.expandImage}
+          src={"expand.png"}
+        ></img>{" "}
+        <CarouselModal
+          carouselModalOpen={carouselModalOpen}
+          closeCarouselModal={closeCarouselModal}
+        />
+      </>
+    );
+  };
+
   const displaySponsors = () => {
     return athlete.sponsors.sponsors.length > 0 ? (
       <div
@@ -84,28 +102,8 @@ export default function AthleteBreakDown() {
             style={{ borderRadius: "25px" }}
             variant="rectangular"
           ></Skeleton>
-        ) : athlete.athlete.hq_images ? (
-          <>
-            <img className={styles.athleteImage} src={getImageByScreenSize()} />
-            <img
-              loading="lazy"
-              onClick={() => openCarouselModal()}
-              className={styles.expandImage}
-              src={"expand.png"}
-            ></img>{" "}
-            <CarouselModal
-              carouselModalOpen={carouselModalOpen}
-              closeCarouselModal={closeCarouselModal}
-            />
-          </>
         ) : (
-          <img
-            loading="lazy"
-            className={styles.athleteImageContained}
-            src={
-              "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
-            }
-          />
+          displayHeaderImage()
         )}
         <div className={styles.athleteNameHolder}>
           {!isMobile && loadingNewAthlete ? (
