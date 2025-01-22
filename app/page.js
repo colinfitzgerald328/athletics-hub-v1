@@ -1,8 +1,16 @@
+"use client";
 import MainComponent from "./components";
 import styles from "./page.module.css";
+import { useEffect } from "react";
 import { AthleteProvider } from "./components/athlete_context";
 
 export default function Home() {
+  useEffect(() => {
+    navigator.storage.estimate().then((estimate) => {
+      console.log(`Quota: ${estimate.quota / 1024 / 1024} MB`);
+      console.log(`Usage: ${estimate.usage / 1024 / 1024} MB`);
+    });
+  }, []);
   return (
     <main className={styles.main}>
       <link

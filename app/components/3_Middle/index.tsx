@@ -58,7 +58,7 @@ export default function AthleteBreakDown() {
   };
 
   const displaySponsors = () => {
-    return athlete.sponsors.sponsors.length > 0 ? (
+    return athlete.sponsors?.sponsors.length > 0 ? (
       <div
         style={{
           display: "flex",
@@ -73,7 +73,7 @@ export default function AthleteBreakDown() {
           Sponsored by:
         </div>
         <div className="flex flex-wrap gap-2">
-          {athlete.sponsors.sponsors.map((sponsor) => (
+          {athlete.sponsors?.sponsors.map((sponsor) => (
             <div
               key={sponsor}
               className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition-colors duration-200 ease-in-out hover:bg-blue-200 hover:text-blue-900"

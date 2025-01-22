@@ -62,6 +62,13 @@ function Example() {
     setImageCount([imageId, changeDirection]);
   };
 
+  const athleteHasAtLeastOneHighQualityImage =
+    athlete.high_quality_images?.length > 0;
+
+  if (!athleteHasAtLeastOneHighQualityImage) {
+    return null;
+  }
+
   return (
     <>
       <div className="slider-container">
@@ -99,7 +106,7 @@ function Example() {
             onClick={() => skipToImage(index)}
             className="thumbnail-container"
           >
-            <img src={image.image_url} loading="lazy"/>
+            <img src={image.image_url} loading="lazy" />
             <div
               className={`active-indicator ${
                 index === activeImageIndex ? "active" : null
