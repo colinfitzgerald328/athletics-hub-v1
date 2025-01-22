@@ -18,6 +18,8 @@ import { getSearchResultsForQuery } from "@/app/api/api";
 import Drawer from "@mui/material/Drawer";
 import Markdown from "react-markdown";
 import { getAthleteById } from "@/app/api/api";
+import { components } from "@/src/lib/api/v1";
+type SearchResult = components["schemas"]["VectorSearchResult"]
 
 import Groq from "groq-sdk";
 
@@ -52,9 +54,9 @@ const trackAndFieldEvents = [
 
 export default function ComparisonModal() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [athletes, setAthletes] = useState([]);
+  const [athletes, setAthletes] = useState<SearchResult[]>([]);
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
+  const [searchResults, setSearchResults] = React.useState<SearchResult[]>([]);
   const [showSearchResults, setShowSearchResults] = React.useState(false);
   const [loadingSearchResults, setLoadingSearchResults] = React.useState(false);
   const inputRef = useRef(null);
@@ -124,12 +126,12 @@ export default function ComparisonModal() {
       }
       setLoadingSearchResults(true);
       handleSearchTermChange(searchTerm);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
 
-  function handleChooseAthlete(athlete) {
+  function handleChooseAthlete(athlete: SearchResult) {
     if (athletes.length >= 2) {
       alert("You can only choose 2 athletes");
       return;
@@ -150,11 +152,11 @@ export default function ComparisonModal() {
     setAthletes([]);
   }
 
-  function spliceItem(item) {
+  function spliceItem(item: SearchResult) {
     const currentAthletes = [...athletes];
 
     for (let i = 0; i < currentAthletes.length; i++) {
-      if (currentAthletes[i].aaAthleteId === item.aaAthleteId) {
+      if (currentAthletes[i].athlete_id === item.athlete_id) {
         currentAthletes.splice(i, 1); // Use the index i to splice
         break;
       }
@@ -171,7 +173,7 @@ export default function ComparisonModal() {
     }
     setLoadingComparison(true);
     const athlete_id_1 = athletes[0].athlete_id;
-    const athlete_id_2 = athletes[1].athlete_id;
+    const athlete_id_2 = athletes[1].athlete_id;  
     const [res_1, res_2] = await Promise.all([
       getAthleteById(athlete_id_1),
       getAthleteById(athlete_id_2),
@@ -182,9 +184,9 @@ export default function ComparisonModal() {
     
     Scenario: Head-to-Head Race over ${comparison_distance}
 
-    Two athletes, ${res_1.data.athlete.full_name} and ${
-      res_2.data.athlete.full_name
-    },
+    Two athletes, ${res_1.data.athlete.first_name} ${res_1.data.athlete.last_name} and ${
+      res_2.data.athlete.first_name
+    } ${res_2.data.athlete.last_name},
     have been asked to compete in a head-to-head race over a distance of ${comparison_distance}.
     To provide a thorough analysis, let's examine the personal bests and performance history of each athlete:
     
@@ -312,8 +314,8 @@ export default function ComparisonModal() {
                       <img
                         loading="lazy"
                         src={
-                          result.hq_images
-                            ? result.hq_images[0]
+                          result.headshot_image_url
+                            ? result.headshot_image_url
                             : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                         }
                         className={styles.searchResultImage}
@@ -323,7 +325,7 @@ export default function ComparisonModal() {
                           {result.full_name}
                         </div>
                         <div className={styles.disciplines}>
-                          {result.primary_disciplines}
+                          {result.primary_event}
                         </div>
                       </div>
                     </div>
@@ -347,18 +349,18 @@ export default function ComparisonModal() {
                         <img
                           loading="lazy"
                           src={
-                            athlete.hq_images
-                              ? athlete.hq_images[0]
+                            athlete.headshot_image_url
+                              ? athlete.headshot_image_url
                               : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                           }
                           className={styles.athleteImage}
                         />
                         <div className={styles.athleteNameHolder}>
                           <div className={styles.fullName}>
-                            {athlete.full_name}
+                            {athlete.full_name}{" "}
                           </div>
                           <div className={styles.disciplines}>
-                            {athlete.primary_disciplines}
+                            {athlete.primary_event}
                           </div>
                         </div>
                         <div
@@ -386,7 +388,7 @@ export default function ComparisonModal() {
           <div className={styles.bottomHolder}>
             <Autocomplete
               freeSolo
-              variant="contained"
+              // variant="contained"
               value={value}
               onChange={(event, newValue) => {
                 setValue(newValue);
@@ -405,7 +407,7 @@ export default function ComparisonModal() {
             <Button
               onClick={getResponse}
               sx={{ marginLeft: "5px" }}
-              variant="contained"
+              // variant="contained"
             >
               {loadingComparison ? (
                 <CircularProgress color="inherit" />

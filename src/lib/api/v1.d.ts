@@ -4,868 +4,466 @@
  */
 
 export interface paths {
-  "/": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Root */
+        get: operations["read_root__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Read Root */
-    get: operations["read_root__get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/health": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/health": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Health Check */
+        get: operations["health_check_health_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Health Check */
-    get: operations["health_check_health_get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/athletes/{athlete_id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/athletes/{athlete_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Athlete By Id */
+        get: operations["get_athlete_by_id_athletes__athlete_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Get Athlete By Id */
-    get: operations["get_athlete_by_id_athletes__athlete_id__get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/athlete/random": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/athlete/random": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Random Athlete */
+        get: operations["get_random_athlete_athlete_random_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Get Random Athlete */
-    get: operations["get_random_athlete_athlete_random_get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/athlete/search": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/athlete/search": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Search For Athlete */
+        get: operations["search_for_athlete_athlete_search_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    /** Search For Athlete */
-    get: operations["search_for_athlete_athlete_search_get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/save_letsrun_summary": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/get_letsrun_summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Letsrun Summary */
+        get: operations["get_letsrun_summary_get_letsrun_summary_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    /** Save Letsrun Summary */
-    post: operations["save_letsrun_summary_save_letsrun_summary_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/get_letsrun_summary": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get Letsrun Summary */
-    get: operations["get_letsrun_summary_get_letsrun_summary_get"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/add_headshot_image_to_single_athlete": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Add Headshot To Athlete */
-    post: operations["add_headshot_to_athlete_add_headshot_image_to_single_athlete_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/add_headshots_for_all_athletes": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Add Headshots For All Athletes */
-    post: operations["add_headshots_for_all_athletes_add_headshots_for_all_athletes_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/add_signal_to_athlete": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Add Signal To All Athletes */
-    post: operations["add_signal_to_all_athletes_add_signal_to_athlete_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/add_signal_to_all_athletes": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Add Signal To All Athletes */
-    post: operations["add_signal_to_all_athletes_add_signal_to_all_athletes_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/save_high_quality_images_for_athlete": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Save High Quality Images For Athlete */
-    post: operations["save_high_quality_images_for_athlete_save_high_quality_images_for_athlete_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/save_high_quality_images_for_all_athletes": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Save High Quality Images For All Athletes */
-    post: operations["save_high_quality_images_for_all_athletes_save_high_quality_images_for_all_athletes_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/save_sponsor_for_athlete": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Save Sponsor For Athlete */
-    post: operations["save_sponsor_for_athlete_save_sponsor_for_athlete_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/save_sponsors_for_athletes": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /** Save Sponsors For Athletes */
-    post: operations["save_sponsors_for_athletes_save_sponsors_for_athletes_post"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    /** AddSignalPayload */
-    AddSignalPayload: {
-      /** Athlete Id */
-      athlete_id: number;
+    schemas: {
+        /** AthleteResult */
+        AthleteResult: {
+            /** Date */
+            date: string;
+            /** Competition */
+            competition: string;
+            /** Venue */
+            venue: string;
+            /** Indoor */
+            indoor: boolean | null;
+            /** Discipline Code */
+            discipline_code: string | null;
+            /** Discipline Name Url Slug */
+            discipline_name_url_slug: string | null;
+            /** Type Name Url Slug */
+            type_name_url_slug: string | null;
+            /** Discipline */
+            discipline: string;
+            /** Country */
+            country: string;
+            /** Category */
+            category: string;
+            /** Race */
+            race: string;
+            /** Place */
+            place: string;
+            /** Mark */
+            mark: string;
+            /** Wind */
+            wind: string | null;
+            /** Not Legal */
+            not_legal: boolean | null;
+            /** Result Score */
+            result_score: number | null;
+            /** Remark */
+            remark: string | null;
+            /** Timestamp */
+            timestamp: number;
+        };
+        /** AthleteSponsorSchema */
+        AthleteSponsorSchema: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** Sponsors */
+            sponsors: string[];
+            /** Context */
+            context: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** CloseMatch */
+        CloseMatch: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** First Name */
+            first_name: string;
+            /** Last Name */
+            last_name: string;
+            /** Primary Disciplines */
+            primary_disciplines: string;
+            /** Hq Images */
+            hq_images: string[] | null;
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
+        /** HighQualityAthleteImageSchema */
+        HighQualityAthleteImageSchema: {
+            /** Id */
+            id: number;
+            /** Athlete Id */
+            athlete_id: number;
+            /** Image Url */
+            image_url: string;
+            /** Visual Pleasure */
+            visual_pleasure: number;
+            /** Facial Expression */
+            facial_expression: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
+        /** LetsRunSummaryItemSchema */
+        LetsRunSummaryItemSchema: {
+            /** Id */
+            id: number;
+            /** Section Title */
+            section_title: string;
+            /** Summary Text */
+            summary_text: string;
+            /** Source Links */
+            source_links: components["schemas"]["LetsrunSourceLinkSchema"][];
+            /**
+             * Date Created
+             * Format: date
+             */
+            date_created: string;
+        };
+        /** LetsrunSourceLinkSchema */
+        LetsrunSourceLinkSchema: {
+            /** Id */
+            id: number;
+            /** Item Id */
+            item_id: number;
+            /** Source Name */
+            source_name: string;
+            /** Source Link */
+            source_link: string;
+        };
+        /** PydanticAthlete */
+        PydanticAthlete: {
+            /** Id */
+            id: number;
+            /** Athlete Id */
+            athlete_id: number;
+            /** First Name */
+            first_name: string;
+            /** Last Name */
+            last_name: string;
+            /** Date Of Birth */
+            date_of_birth: string | null;
+            /** Country */
+            country: string;
+            /** Url Slug */
+            url_slug: string;
+            /** Primary Disciplines */
+            primary_disciplines: string;
+            /** Accomplishments */
+            accomplishments: string[] | null;
+            /** Personal Bests */
+            personal_bests: unknown[] | null;
+            /** Gender */
+            gender: string;
+            /** Wikipedia Url */
+            wikipedia_url: string | null;
+            /** Social Urls */
+            social_urls: Record<string, never> | unknown[] | null;
+            /** Nickname */
+            nickname: string | null;
+            /** Hq Images */
+            hq_images: string[] | null;
+            /** Markdown Summary */
+            markdown_summary: string | null;
+            /** Avg Result Score */
+            avg_result_score: number | null;
+            /** Primary Event */
+            primary_event: string | null;
+            /** Headshot Image Url */
+            headshot_image_url?: string | null;
+        };
+        /** QueriedAthlete */
+        QueriedAthlete: {
+            athlete: components["schemas"]["PydanticAthlete"];
+            /** Results */
+            results: components["schemas"]["AthleteResult"][];
+            /** Top Competitors */
+            top_competitors: components["schemas"]["TopCompetitor"][];
+            /** Similar Athletes */
+            similar_athletes: components["schemas"]["CloseMatch"][] | null;
+            /** High Quality Images */
+            high_quality_images: components["schemas"]["HighQualityAthleteImageSchema"][] | null;
+            sponsors: components["schemas"]["AthleteSponsorSchema"] | null;
+        };
+        /** TopCompetitor */
+        TopCompetitor: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** Primary Disciplines */
+            primary_disciplines: string;
+            /** First Name */
+            first_name: string;
+            /** Last Name */
+            last_name: string;
+            /** Markdown Summary */
+            markdown_summary: string | null;
+            /** Hq Images */
+            hq_images: string[] | null;
+        };
+        /** ValidationError */
+        ValidationError: {
+            /** Location */
+            loc: (string | number)[];
+            /** Message */
+            msg: string;
+            /** Error Type */
+            type: string;
+        };
+        /** VectorSearchResult */
+        VectorSearchResult: {
+            /** Athlete Id */
+            athlete_id: number;
+            /** Headshot Image Url */
+            headshot_image_url?: string | null;
+            /** Full Name */
+            full_name: string;
+            /** Primary Event */
+            primary_event: string;
+        };
     };
-    /** AthleteResult */
-    AthleteResult: {
-      /** Date */
-      date: string;
-      /** Competition */
-      competition: string;
-      /** Venue */
-      venue: string;
-      /** Indoor */
-      indoor: boolean | null;
-      /** Discipline Code */
-      discipline_code: string | null;
-      /** Discipline Name Url Slug */
-      discipline_name_url_slug: string | null;
-      /** Type Name Url Slug */
-      type_name_url_slug: string | null;
-      /** Discipline */
-      discipline: string;
-      /** Country */
-      country: string;
-      /** Category */
-      category: string;
-      /** Race */
-      race: string;
-      /** Place */
-      place: string;
-      /** Mark */
-      mark: string;
-      /** Wind */
-      wind: string | null;
-      /** Not Legal */
-      not_legal: boolean | null;
-      /** Result Score */
-      result_score: number | null;
-      /** Remark */
-      remark: string | null;
-      /** Timestamp */
-      timestamp: number;
-    };
-    /** AthleteSponsorSchema */
-    AthleteSponsorSchema: {
-      /** Athlete Id */
-      athlete_id: number;
-      /** Sponsors */
-      sponsors: string[];
-      /** Context */
-      context: string;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-    };
-    /** CloseMatch */
-    CloseMatch: {
-      /** Athlete Id */
-      athlete_id: number;
-      /** First Name */
-      first_name: string;
-      /** Last Name */
-      last_name: string;
-      /** Primary Disciplines */
-      primary_disciplines: string;
-      /** Hq Images */
-      hq_images: string[] | null;
-    };
-    /** GenericAthleteRequest */
-    GenericAthleteRequest: {
-      /** Athlete Id */
-      athlete_id: number;
-    };
-    /** HTTPValidationError */
-    HTTPValidationError: {
-      /** Detail */
-      detail?: components["schemas"]["ValidationError"][];
-    };
-    /** HighQualityAthleteImageSchema */
-    HighQualityAthleteImageSchema: {
-      /** Id */
-      id: number;
-      /** Athlete Id */
-      athlete_id: number;
-      /** Image Url */
-      image_url: string;
-      /** Visual Pleasure */
-      visual_pleasure: number;
-      /** Facial Expression */
-      facial_expression: string;
-      /**
-       * Created At
-       * Format: date-time
-       */
-      created_at: string;
-    };
-    /** LetsRunSummaryItemSchema */
-    LetsRunSummaryItemSchema: {
-      /** Id */
-      id: number;
-      /** Section Title */
-      section_title: string;
-      /** Summary Text */
-      summary_text: string;
-      /** Source Links */
-      source_links: components["schemas"]["LetsrunSourceLinkSchema"][];
-      /**
-       * Date Created
-       * Format: date
-       */
-      date_created: string;
-    };
-    /** LetsrunSourceLinkSchema */
-    LetsrunSourceLinkSchema: {
-      /** Id */
-      id: number;
-      /** Item Id */
-      item_id: number;
-      /** Source Name */
-      source_name: string;
-      /** Source Link */
-      source_link: string;
-    };
-    /** PydanticAthlete */
-    PydanticAthlete: {
-      /** Id */
-      id: number;
-      /** Athlete Id */
-      athlete_id: number;
-      /** First Name */
-      first_name: string;
-      /** Last Name */
-      last_name: string;
-      /** Date Of Birth */
-      date_of_birth: string | null;
-      /** Country */
-      country: string;
-      /** Url Slug */
-      url_slug: string;
-      /** Primary Disciplines */
-      primary_disciplines: string;
-      /** Accomplishments */
-      accomplishments: string[] | null;
-      /** Personal Bests */
-      personal_bests: unknown[] | null;
-      /** Gender */
-      gender: string;
-      /** Wikipedia Url */
-      wikipedia_url: string | null;
-      /** Social Urls */
-      social_urls: Record<string, never> | unknown[] | null;
-      /** Nickname */
-      nickname: string | null;
-      /** Hq Images */
-      hq_images: string[] | null;
-      /** Markdown Summary */
-      markdown_summary: string | null;
-      /** Avg Result Score */
-      avg_result_score: number | null;
-      /** Primary Event */
-      primary_event: string | null;
-      /** Headshot Image Url */
-      headshot_image_url?: string | null;
-    };
-    /** QueriedAthlete */
-    QueriedAthlete: {
-      athlete: components["schemas"]["PydanticAthlete"];
-      /** Results */
-      results: components["schemas"]["AthleteResult"][];
-      /** Top Competitors */
-      top_competitors: components["schemas"]["TopCompetitor"][];
-      /** Similar Athletes */
-      similar_athletes: components["schemas"]["CloseMatch"][] | null;
-      /** High Quality Images */
-      high_quality_images:
-        | components["schemas"]["HighQualityAthleteImageSchema"][]
-        | null;
-      sponsors: components["schemas"]["AthleteSponsorSchema"] | null;
-    };
-    /** SaveHighQualityAthletePayload */
-    SaveHighQualityAthletePayload: {
-      /** Athlete Id */
-      athlete_id: number;
-    };
-    /** TopCompetitor */
-    TopCompetitor: {
-      /** Athlete Id */
-      athlete_id: number;
-      /** Primary Disciplines */
-      primary_disciplines: string;
-      /** First Name */
-      first_name: string;
-      /** Last Name */
-      last_name: string;
-      /** Markdown Summary */
-      markdown_summary: string | null;
-      /** Hq Images */
-      hq_images: string[] | null;
-    };
-    /** ValidationError */
-    ValidationError: {
-      /** Location */
-      loc: (string | number)[];
-      /** Message */
-      msg: string;
-      /** Error Type */
-      type: string;
-    };
-    /** VectorSearchResult */
-    VectorSearchResult: {
-      /** Athlete Id */
-      athlete_id: number;
-      /** Hq Images */
-      hq_images: string[] | null;
-      /** Full Name */
-      full_name: string;
-      /** Primary Disciplines */
-      primary_disciplines: string;
-    };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  read_root__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    read_root__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+        };
     };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    health_check_health_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
         };
-      };
     };
-  };
-  health_check_health_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    get_athlete_by_id_athletes__athlete_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                athlete_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QueriedAthlete"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
     };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    get_random_athlete_athlete_random_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QueriedAthlete"];
+                };
+            };
         };
-      };
     };
-  };
-  get_athlete_by_id_athletes__athlete_id__get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        athlete_id: number;
-      };
-      cookie?: never;
+    search_for_athlete_athlete_search_get: {
+        parameters: {
+            query: {
+                search_query: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["VectorSearchResult"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
     };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    get_letsrun_summary_get_letsrun_summary_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["QueriedAthlete"];
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LetsRunSummaryItemSchema"][];
+                };
+            };
         };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
     };
-  };
-  get_random_athlete_athlete_random_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["QueriedAthlete"];
-        };
-      };
-    };
-  };
-  search_for_athlete_athlete_search_get: {
-    parameters: {
-      query: {
-        search_query: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["VectorSearchResult"][];
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  save_letsrun_summary_save_letsrun_summary_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-    };
-  };
-  get_letsrun_summary_get_letsrun_summary_get: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["LetsRunSummaryItemSchema"][];
-        };
-      };
-    };
-  };
-  add_headshot_to_athlete_add_headshot_image_to_single_athlete_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["SaveHighQualityAthletePayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  add_headshots_for_all_athletes_add_headshots_for_all_athletes_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-    };
-  };
-  add_signal_to_all_athletes_add_signal_to_athlete_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["AddSignalPayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  add_signal_to_all_athletes_add_signal_to_all_athletes_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-    };
-  };
-  save_high_quality_images_for_athlete_save_high_quality_images_for_athlete_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["SaveHighQualityAthletePayload"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  save_high_quality_images_for_all_athletes_save_high_quality_images_for_all_athletes_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-    };
-  };
-  save_sponsor_for_athlete_save_sponsor_for_athlete_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["GenericAthleteRequest"];
-      };
-    };
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"];
-        };
-      };
-    };
-  };
-  save_sponsors_for_athletes_save_sponsors_for_athletes_post: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          "application/json": unknown;
-        };
-      };
-    };
-  };
 }

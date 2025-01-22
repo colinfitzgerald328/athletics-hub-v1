@@ -5,10 +5,13 @@ import CircularProgress from "@mui/material/CircularProgress";
 import styles from "./styles.module.css";
 import { getSearchResultsForQuery } from "@/app/api/api";
 import { useAthleteContext } from "../athlete_context";
+import { components } from "@/src/lib/api/v1";
+type SearchResult = components["schemas"]["VectorSearchResult"][]
+
 
 export default function LeftSide() {
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
+  const [searchResults, setSearchResults] = React.useState<SearchResult>([]);
   const [showSearchResults, setShowSearchResults] = React.useState(false);
   const [loadingSearchResults, setLoadingSearchResults] = React.useState(false);
   const inputRef = useRef(null);
@@ -17,7 +20,7 @@ export default function LeftSide() {
   const xButtonRef = useRef(null);
   const { isMobile, fetchAthleteById } = useAthleteContext();
 
-  async function handleSearchTermChange(searchTerm) {
+  async function handleSearchTermChange(searchTerm: string) {
     const { data, error } = await getSearchResultsForQuery(searchTerm);
     if (error) {
       return;
@@ -68,7 +71,7 @@ export default function LeftSide() {
       }
       setLoadingSearchResults(true);
       handleSearchTermChange(searchTerm);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchTerm]);
@@ -150,8 +153,8 @@ export default function LeftSide() {
                 <img
                   loading="lazy"
                   src={
-                    result.hq_images
-                      ? result.hq_images[0]
+                    result.headshot_image_url
+                      ? result.headshot_image_url
                       : "https://cdn.pixabay.com/photo/2014/04/03/11/07/running-311805_640.png"
                   }
                   alt="Athlete Image"
@@ -160,7 +163,7 @@ export default function LeftSide() {
                 <div className={styles.textDisplay}>
                   <div className={styles.fullName}>{result.full_name}</div>
                   <div className={styles.disciplines}>
-                    {result.primary_disciplines}
+                    {result.primary_event}
                   </div>
                 </div>
               </div>
