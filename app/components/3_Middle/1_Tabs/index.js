@@ -79,6 +79,8 @@ export default function BasicTabs() {
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          scrollButtons="auto"
+          variant="scrollable"
         >
           <Tab label="Competition" {...a11yProps(1)} />
           <Tab label="PBs" {...a11yProps(2)} />
