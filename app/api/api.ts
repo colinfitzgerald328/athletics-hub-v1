@@ -1,15 +1,14 @@
 const API_URL = "https://athletics-hub-engine-production.up.railway.app";
-// const API_URL = "http://localhost:8000";
-
 import createClient from "openapi-fetch";
 import type { paths } from "@/src/lib/api/v1";
+import mixpanel from "mixpanel-browser";
 
 // This is the client for the athletics-hub-engine API.  It is an
 // automatically generated client that uses the openapi-fetch library.
 const client = createClient<paths>({ baseUrl: API_URL });
 
 export async function getSearchResultsForQuery(search: string) {
-  console.log("search, ", search);
+  mixpanel.track('search for athletes', { query: search });
   return await client.GET("/athlete/search", {
     params: {
       query: {
@@ -20,10 +19,12 @@ export async function getSearchResultsForQuery(search: string) {
 }
 
 export async function getRandomDoc() {
+  mixpanel.track('get random athlete');
   return await client.GET("/athlete/random");
 }
 
 export async function getAthleteById(athlete_id: number) {
+  mixpanel.track('get athlete by id', { id: athlete_id });
   return await client.GET("/athletes/{athlete_id}", {
     params: {
       path: {
@@ -34,5 +35,6 @@ export async function getAthleteById(athlete_id: number) {
 }
 
 export async function getLetsRunSummaryParts() {
+  mixpanel.track('get letsrun summary');
   return await client.GET("/get_letsrun_summary");
 }

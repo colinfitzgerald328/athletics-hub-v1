@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ExternalLink } from "lucide-react";
 import { useAthleteContext } from "../../athlete_context";
+// import mixpanel from "mixpanel-browser";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -21,6 +22,7 @@ export default function AnchorTemporaryDrawer() {
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
+      
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event.type === "keydown" &&
@@ -29,6 +31,8 @@ export default function AnchorTemporaryDrawer() {
       ) {
         return;
       }
+
+      // mixpanel.track("Open Summary Modal");
 
       setState({ ...state, [anchor]: open });
     };

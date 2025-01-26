@@ -1,16 +1,18 @@
 "use client";
 import MainComponent from "./components";
 import styles from "./page.module.css";
-import { useEffect } from "react";
+// Import Mixpanel SDK
+import mixpanel from "mixpanel-browser";
 import { AthleteProvider } from "./components/athlete_context";
 
+//Initialize Mixpanel
+mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN, {
+  debug: true,
+  track_pageview: true,
+  persistence: "localStorage",
+});
+
 export default function Home() {
-  useEffect(() => {
-    navigator.storage.estimate().then((estimate) => {
-      console.log(`Quota: ${estimate.quota / 1024 / 1024} MB`);
-      console.log(`Usage: ${estimate.usage / 1024 / 1024} MB`);
-    });
-  }, []);
   return (
     <main className={styles.main}>
       <link
