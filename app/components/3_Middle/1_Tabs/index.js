@@ -140,7 +140,7 @@ export default function BasicTabs() {
                       <Skeleton
                         animation="wave"
                         variant="rectangular"
-                        width={300}
+                        width={280}
                         height={18}
                         sx={{ marginTop: "5px" }}
                       />
