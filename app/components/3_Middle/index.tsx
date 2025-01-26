@@ -34,8 +34,8 @@ export default function AthleteBreakDown() {
 
   const getImageByScreenSize = () => {
     return isMobile
-      ? athlete.high_quality_images?.[0].image_url ??
-          athlete.athlete.hq_images[0]
+      ? athlete.high_quality_images?.[0]?.image_url ??
+          athlete.athlete.hq_images?.[0]
       : athlete.athlete.headshot_image_url;
   };
 

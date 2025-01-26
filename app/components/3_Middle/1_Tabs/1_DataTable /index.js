@@ -17,7 +17,7 @@ import { useAthleteContext } from "@/app/components/athlete_context";
 export default function DataTable() {
   const { athlete } = useAthleteContext();
   const currentYear = new Date().getFullYear();
-  const [selectedYear, setSelectedYear] = useState(currentYear);
+  const [selectedYear, setSelectedYear] = useState(2024);
 
   const years = useMemo(() => {
     const uniqueYears = [
