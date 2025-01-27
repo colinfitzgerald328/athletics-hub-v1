@@ -6,11 +6,13 @@ import { Separator } from "@/components/ui/separator";
 import { ExternalLink } from "lucide-react";
 import { useAthleteContext } from "../../athlete_context";
 import Link from 'next/link'
+import { useRouter } from 'next/navigation';
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export default function AnchorTemporaryDrawer() {
   const { summaryParts } = useAthleteContext();
+  const router = useRouter();
 
   const [state, setState] = React.useState({
     top: false,
@@ -103,7 +105,7 @@ export default function AnchorTemporaryDrawer() {
             }}
             variant="soft"
             color="primary"
-            onClick={() => window.location.href = "/daily-news"}
+            onClick={() => router.push('/daily-news')}
           >
             Daily News
           </Button>
