@@ -1,12 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
 import Button from "@mui/joy/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { ExternalLink } from "lucide-react";
 import { useAthleteContext } from "../../athlete_context";
-// import mixpanel from "mixpanel-browser";
+import Link from 'next/link'
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -39,7 +38,7 @@ export default function AnchorTemporaryDrawer() {
 
   const list = (anchor: Anchor) => (
     <Box
-      style={{ padding: "20px", width: "800px" }}
+      style={{ padding: "20px" }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -90,8 +89,11 @@ export default function AnchorTemporaryDrawer() {
 
   return (
     <div>
-      {(["right"] as const).map((anchor) => (
+      {(["bottom"] as const).map((anchor) => (
         <React.Fragment key={anchor}>
+          <Link
+            href="/daily-news"
+          >
           <Button
             sx={{
               marginLeft: "15px",
@@ -101,17 +103,11 @@ export default function AnchorTemporaryDrawer() {
             }}
             variant="soft"
             color="primary"
-            onClick={toggleDrawer(anchor, true)}
+            onClick={() => window.location.href = "/daily-news"}
           >
             Daily News
           </Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
+          </Link>
         </React.Fragment>
       ))}
     </div>
