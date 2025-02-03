@@ -110,6 +110,21 @@ export default function AnchorTemporaryDrawer() {
             Daily News
           </Button>
           </Link>
+          <Link href="/privacy-policy">
+            <Button
+              sx={{
+                marginLeft: "15px",
+                borderRadius: "25px",
+                marginTop: "auto",
+                marginBottom: "auto",
+              }}
+              variant="soft"
+              color="primary"
+              onClick={() => router.push('/privacy-policy')}
+            >
+              Privacy Policy
+            </Button>
+          </Link>
         </React.Fragment>
       ))}
     </div>
