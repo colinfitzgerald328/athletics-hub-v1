@@ -27,7 +27,11 @@ export default function PrivacyPolicy() {
         <CardContent className="space-y-6">
           <section>
             <h2 className="text-xl font-semibold mb-2">1. Introduction</h2>
-            <p>Welcome to Track and Field Hub ("we," "our," or "us"). Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information when you use our app and services ("Services").</p>
+            <p>
+              Welcome to Track and Field Hub (&quot;we,&quot; &quot;our&quot; or &quot;us&quot;). Your
+              privacy is important to us. This Privacy Policy explains how we collect, use,
+              and protect your information when you use our app and services (&quot;Services&quot;).
+            </p>
           </section>
 
           <section>
@@ -78,7 +82,7 @@ export default function PrivacyPolicy() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-2">7. Children's Privacy</h2>
+            <h2 className="text-xl font-semibold mb-2">7. Childrens Privacy</h2>
             <p>Our Services are not intended for users under 13. If we learn that we have collected data from a child under 13, we will take steps to delete it.</p>
           </section>
 
